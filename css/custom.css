@@ -1,0 +1,49 @@
+/**Seperate line hr**/
+
+.hr {
+    width: 100%;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    color: #FF0066;
+    border: 0 none;
+}
+
+
+/**font type **/
+
+.font {
+    font-family: serif;
+    font-weight: bold;
+    
+}
+
+
+/**color default**/
+
+.color {
+    color: black;
+}
+
+
+
+/**login page body color **/
+
+.body {
+    background-color: #F0F0F0;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.btn_style{
+    background:#41C5A8;
+    color:white;
+    width:100px;
+    height:40px"
+
+}
