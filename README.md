@@ -1,5 +1,10 @@
-# vms-frontend
+# AngularJS - VMS
+Create a good practice for AngularJS Code Structure
 
-## Coding standard
 
-VMS front-end follows [JavaScript](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) and [AngularJS](https://github.com/johnpapa/angular-styleguide) coding standard.
+----------
+
+###Code Sturcture
+- 
+
+
