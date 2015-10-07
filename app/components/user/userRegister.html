@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Jumbotron Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../asscss/custom.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+</head>
+
+<body class="body" ng-app="myApp">
+    <div class="container">
+        <nav>
+            <div class="container" ng-controller="MainController">
+                <div class="navbar-header">
+                    <a class="navbar-brand color" href="#">{{vms}}</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse navbar-right">
+                    <a class="navbar-brand color" href="#">{{register}}</a>
+                    <a class="navbar-brand color" href="#">{{login}}</a>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </nav>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <!-- id center created on custom.css -->
+        <div class="container" style="height:100%;background-color:#F8F8F8" ng-controller="MainController">
+            <div class="container" style="margin-top:5%;margin-bottom:15px;width:80%">
+                <h2>Create My Profile</h2>
+                <div style="background:white">
+                    <hr class="line">
+                    <div class="container" style="width:inherit">
+                        <label style="color:#50E3C2;font-size:20px;margin-top:15px;margin-left:30px">About</label>
+                        <hr class="line" style="height:2px;background:grey">
+                        <div>
+                            <img alt="Bootstrap Image Preview" src="profile.png" class="img-circle col-sm-2" />
+                            <button class="btn btn_style" style="margin-top:8%;margin-left:20px;width:auto">Upload avatar</button>
+                        </div>
+                    </div>
+                    <div class="container" style="width:inherit;margin-left:30px;margin-top:40px">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2">First Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="FirstName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Last Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="LastName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Username</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="Username" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Password</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Password Confirmation</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="PasswordConfirmation" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Birth Year</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" id="Birth Year" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Gender</label>
+                                <div class="col-sm-4">
+                                    <input type="radio" name="sex" value="female">Female &nbsp; &nbsp;
+                                    <input type="radio" name="sex" value="male" checked>Male
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">City</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="select">
+                                        <option value="select">Select</option>
+                                        <option value="select">Taoyuan</option>
+                                        <option value="select">TaiChung</option>
+                                        <option value="select">Chiai</option>
+                                        <option value="select">Tainan</option>
+                                        <option value="select">Gaoxiong</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Address</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Address" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="container" style="color:#50E3C2;font-size:20px;margin-top:5%;margin-left:30px;width:inherit">
+                        <label>Contact</label>
+                        <hr class="line" style="height:2px;background:grey">
+                    </div>
+                    <div class="container" style="width:inherit;margin-left:30px;margin-top:40px">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2">Phone Number</label>
+                                <div class="col-sm-6">
+                                    <input type="tel" class="form-control" id="PhoneNumber" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Email Address</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="EmailAddress" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Emergency Contact</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="EmergencyContact" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2">Emergency Phone</label>
+                                <div class="col-sm-6">
+                                    <input type="tel" class="form-control" id="EmergencyPhone" />
+                                </div>
+                            </div>
+                        </form>
+                        <button class="btn btn_style">Submit</button>
+                    </div>
+                </div>
+                <footer style="margin-top:10%">
+                    <div class="col-sm-2">By OpenISDM</div>
+                    <a href="#" class="col-sm-2" style="color:#7AFEC6;font-family:serif;font-weight:bold">Privacy policies</a>
+                </footer>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../../assets/js/bootstrap.min.js"></script>
+        <!-- Modules -->
+        <script src="../../../assets/js/app.js"></script>
+        <!-- Controllers -->
+        <script src="userController.js"></script>
+</body>
+
+</html>

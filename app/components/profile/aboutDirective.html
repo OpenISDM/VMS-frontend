@@ -1,0 +1,80 @@
+<div class="row" ng-controller = "profileController as profile">
+    <div class="col-md-2 " style="margin:20px">
+        <label style="font-size:20px">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            About
+        </label>
+    </div>
+    <div class="col-md-2 col-md-offset-7" style="margin-top:20px">
+        <button type="button" class="btn btn-default"
+                style="width:auto; background-color: #41C5A8 ; color:white">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6" style="margin-left:20px">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey;">
+                    First Name
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.firstName}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    Username
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.userName}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    Gender
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.gender}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    Address
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.address}}
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    Last Name
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.lastName}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    Birth Date
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.birthDate}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 " style="color:grey">
+                    City
+                </label>
+                <label class="col-sm-6 ">
+                    {{profile.profile.about.city}}
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
