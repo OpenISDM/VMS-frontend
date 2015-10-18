@@ -1,22 +1,29 @@
+/**
+ *  Welcome to your gulpfile!
+ *  The gulp tasks are splitted in several files in the gulp directory
+ *  because putting all here was really too long
+ */
+
+'use strict';
+
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var wrench = require('wrench');
 
-var config = {
-    bootstrapDir: './bower_components/bootstrap-sass',
-    publicDir: './assets',
-};
-
-gulp.task('css', function() {
-    return gulp.src('./assets/sass/app.scss')
-    .pipe(sass({
-        includePaths: [config.bootstrapDir + '/assets/stylesheets'],
-    }))
-    .pipe(gulp.dest(config.publicDir + '/css'));
+/**
+ *  This will load all js or coffee files in the gulp directory
+ *  in order to load all gulp tasks
+ */
+wrench.readdirSyncRecursive('./gulp').filter(function(file) {
+  return (/\.(js|coffee)$/i).test(file);
+}).map(function(file) {
+  require('./gulp/' + file);
 });
 
-gulp.task('fonts', function() {
-    return gulp.src(config.bootstrapDir + '/assets/fonts/**/*')
-    .pipe(gulp.dest(config.publicDir + '/fonts'));
-});
 
-gulp.task('default', ['css', 'fonts']);
+/**
+ *  Default task clean temporaries directories and launch the
+ *  main optimization build task
+ */
+gulp.task('default', ['clean'], function () {
+  gulp.start('build');
+});

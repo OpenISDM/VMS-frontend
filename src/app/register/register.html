@@ -1,0 +1,114 @@
+<h1>註冊</h1>
+<div id="main-content" class="top-line">
+	<form class="form-horizontal">
+		<h2>關於</h2>
+		<hr>
+		<div id="profile-avatar" class="row">
+			<img alt="Bootstrap Image Preview" src="/assets/images/profile-default-avatar.png" class="img-circle img-responsive col-lg-2 col-md-3 col-sm-3 col-xs-3"/>
+			<div class="col-md-9 col-sm-9 col-xs-9 col-lg-10">
+				<button class="btn btn-primary clearfix">Upload avatar</button>
+			</div>
+		</div>
+		<div id="profile-basic" class="profile-section">
+			<div class="form-group">
+				<label for="first-name" class="col-sm-3 control-label">姓氏</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="first-name" placeholder="姓氏" data-model="registerVolunteer.first_name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="last-name" class="col-sm-3 control-label">名字</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="last-name" placeholder="名字" data-model="registerVolunteer.last_name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="username" class="col-sm-3 control-label">帳號</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="username" placeholder="帳號" data-model="registerVolunteer.username">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">密碼</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="password" placeholder="密碼" data-model="registerVolunteer.password">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="confirm-passowrd" class="col-sm-3 control-label">確認密碼</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="confirm-passowrd" placeholder="確認密碼">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="birth-year" class="col-sm-3 control-label">出生年份</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="birth-year" placeholder="出生年份" data-model="registerVolunteer.birth_year">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="gender" class="col-sm-3 control-label">性別</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+						<input type="radio" name="gender" id="gender" value="female" data-model="registerVolunteer.gender"> 女
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" id="gender" value="male" data-model="registerVolunteer.gender"> 男
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="city" class="col-sm-3 control-label">縣市</label>
+				<div class="col-sm-3">
+					<select class="form-control" name="city" data-model="registerVolunteer.city">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-3 control-label">地址</label>
+				<div class="col-sm-8">
+					<input name="address" type="text" class="form-control" id="address" placeholder="地址" data-model="registerVolunteer.address">
+				</div>
+			</div>
+		</div>
+		<div id="profile-contact" class="profile-section">
+			<h2>聯絡資料</h2>
+			<hr>
+			<div class="form-group">
+				<label for="email" class="col-sm-3 control-label">電子郵件</label>
+				<div class="col-sm-6">
+					<input name="email" type="text" class="form-control" id="email" placeholder="電子郵件" data-model="registerVolunteer.email">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="phone-number" class="col-sm-3 control-label">電話號碼</label>
+				<div class="col-sm-6">
+					<input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="電話號碼" data-model="registerVolunteer.phone_number">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="emergency-contact" class="col-sm-3 control-label">緊急聯絡人</label>
+				<div class="col-sm-6">
+					<input name="emergency-contact" type="text" class="form-control" id="emergency-contact" placeholder="緊急聯絡人" data-model="registerVolunteer.emergency_contact">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="emergency-contact-phone" class="col-sm-3 control-label">緊急聯絡人電話</label>
+				<div class="col-sm-6">
+					<input name="emergency-contact-phone" type="text" class="form-control" id="emergency-contact-phone" placeholder="緊急聯絡人電話" data-model="registerVolunteer.emergency_contact_phone">
+				</div>
+			</div>
+		</div>
+		<div class="row profile-section">
+			<div class="col-md-2 col-md-offset-5">
+				<button class="btn btn-primary btn-lg" ui-sref="register" ng-click="register(registerVolunteer)">送出</button>
+			</div>
+			<div class="col-md-5"></div>
+		</div>
+	</form>
+</div>
