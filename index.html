@@ -10,19 +10,18 @@
         <title>Volunteer management system</title>
         <link rel="stylesheet" type="text/css" href="/assets/css/app.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
-        <script src="/bower_components/angular/angular.min.js"></script>
         <link href='http://fonts.googleapis.com/earlyaccess/cwtexhei.css' rel='stylesheet' type='text/css'>
     </head>
     <body ng-app="myApp">
         <nav class="navbar navbar-fixed-top">
-            <div class="container" ng-controller="MainController">
+            <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand color" href="#">{{vms}}</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand color" href="#">{{register}}</a>
-                        <a class="navbar-brand color" href="#">{{login}}</a>
+                        <a class="navbar-brand" ui-sref="register">註冊</a>
+                        <a class="navbar-brand" ui-sref="login">登入</a>
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
@@ -30,7 +29,7 @@
         </nav>
         <div class="container">
             <div class="row">
-                <div id="main-content" class="col-md-8 col-md-offset-2 col-ld-8 col-ld-8 col-ld-offset-2">
+                <div id="main-content" class="col-md-8 col-md-offset-2 col-ld-8 col-ld-8 col-ld-offset-2" ui-view>
                     <h1>登入</h1>
                     <hr class="hr">
                     <div class="col-md-10 col-md-offset-1">
@@ -62,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="col-sm-offset-5 col-sm-2 btn btn-primary">Login</button>                                
+                                    <button type="submit" class="col-sm-offset-5 col-sm-2 btn btn-primary">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -80,11 +79,6 @@
             <!-- Bootstrap core JavaScript
             ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="../../../assets/js/bootstrap.min.js"></script>
-            <!-- Modules -->
-            <script src="../../../assets/js/app.js"></script>
-            <!-- Controllers -->
-            <script src="userController.js"></script>
+            <script src="http://requirejs.org/docs/release/2.1.20/minified/require.js" data-main="/assets/js/start.js"></script>
         </body>
     </html>
