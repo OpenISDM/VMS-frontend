@@ -5,8 +5,7 @@
     height: 1px;
     margin-left: auto;
     margin-right: auto;
-    background-color: black;
-    color: #FF0066;
+    background-color: #979797;
     border: 0 none;
 }
 
@@ -17,18 +16,50 @@
 
 }
 
+nav {
+    background-color: #ECECEC;
+}
+
+body {
+    padding-top: 50px;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ECECEC;
+}
+
+footer p {
+    margin: 20px 0;
+}
+
+#main-content {
+    background-color: #FFFFFF;
+    min-height: 80%;
+    padding: 30px;
+    margin-top: 80px;
+}
+
+a {
+    color: #50E3C2;
+}
 
 /**font type **/
 
-.font {
-    font-family: serif;
-    font-weight: bold;
-    
-}
-
-default_color{
-
-    
+@font-face {
+    font-family: 'cwTeXHei';
+    font-family: 'cwTeXHei';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot);
+    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format('embedded-opentype'),
+         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'),
+         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'),
+         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
 }
 
 /**color default**/
@@ -41,9 +72,6 @@ default_color{
 
 /**login page body color **/
 
-.body {
-    background-color: #F0F0F0;
-}
 
 .scrollable-menu {
     height: auto;
