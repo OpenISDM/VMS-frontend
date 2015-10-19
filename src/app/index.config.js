@@ -6,7 +6,10 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig, RestangularProvider) {
+    RestangularProvider.setBaseUrl('https://vms-dev.herokuapp.com/api');
+    RestangularProvider.setDefaultHeaders( {'X-VMS-API-Key': '581dba93a4dbafa42a682d36b015d8484622f8e3543623bec5a291f67f5ddff1'} );
+
     // Enable log
     $logProvider.debugEnabled(true);
 

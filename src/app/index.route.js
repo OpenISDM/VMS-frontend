@@ -10,19 +10,19 @@
     $stateProvider
       .state('login', {
         url: '/login',
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login'
+        templateUrl: 'app/login/login.html'
       })
       .state('register-privacy', {
         url: '/register-privacy',
         templateUrl: 'app/register-privacy/register-privacy.html',
         controller: 'RegisterPrivacyController',
-        controllerAs: 'registerPrivacy'
+        controllerAs: 'vm'
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'app/register/register.html'
+        templateUrl: 'app/register/register.html',
+        controller: 'RegisterController',
+        controllerAs: 'vm'
       });
 
     $urlRouterProvider.otherwise('/');
