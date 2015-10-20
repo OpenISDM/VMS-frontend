@@ -23,6 +23,12 @@
         templateUrl: 'app/register/register.html',
         controller: 'RegisterController',
         controllerAs: 'vm'
+      })
+      .state('register-success', {
+        url: '/register/success',
+        templateUrl: 'app/register-success/register-success.html',
+        controller: 'RegisterSuccessController',
+        controllerAs: 'vm'
       });
 
     $urlRouterProvider.otherwise('/');

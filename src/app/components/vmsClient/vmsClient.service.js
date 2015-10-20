@@ -13,8 +13,12 @@
 
         return service;
 
-        function register(volunteer) {
-            return Restangular.all('register').post(volunteer);
+        function register(volunteer, successCallback, failureCallback) {
+            Restangular.all('register').post(volunteer).then(function(response) {
+                successCallback(response);
+            }, function(response) {
+                failureCallback(response);
+            });
         }
     }
 })();

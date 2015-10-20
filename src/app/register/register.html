@@ -1,5 +1,10 @@
 <h1>註冊</h1>
 <div id="main-content" class="top-line">
+	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		{{ vm.errorMsg }}
+	</div>
 	<form class="form-horizontal">
 		<h2>關於</h2>
 		<hr>
