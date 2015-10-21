@@ -1,11 +1,13 @@
-<h1>註冊</h1>
-<div id="main-content" class="top-line">
+<div class="col-xs-10 col-xs-offset-1">
+	<h1>註冊</h1>
+</div>
+<div id="main-content" class="top-line col-xs-10 col-xs-offset-1">
 	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span class="sr-only">Error:</span>
 		{{ vm.errorMsg }}
 	</div>
-	<form class="form-horizontal">
+	<form class="form-inline">
 		<h2>關於</h2>
 		<hr>
 		<div id="profile-avatar" class="row">
@@ -14,98 +16,124 @@
 				<button class="btn btn-primary clearfix">Upload avatar</button>
 			</div>
 		</div>
-		<div id="profile-basic" class="profile-section">
-			<div class="form-group">
-				<label for="first-name" class="col-sm-3 control-label">姓氏</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="first-name" placeholder="姓氏" ng-model="vm.volunteer.first_name">
+		<div id="profile-basic" class="profile-section row">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="first-name" class="control-label col-md-3 col-lg-3">姓氏</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="text" class="form-control" id="first-name" placeholder="姓氏" ng-model="vm.volunteer.first_name">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="last-name" class="col-sm-3 control-label">名字</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="last-name" placeholder="名字" ng-model="vm.volunteer.last_name">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="last-name" class="control-label col-md-3 col-lg-3">名字</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="text" class="form-control" id="last-name" placeholder="名字" ng-model="vm.volunteer.last_name">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="username" class="col-sm-3 control-label">帳號</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="username" placeholder="帳號" ng-model="vm.volunteer.username">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="username" class="control-label col-md-3 col-lg-3">帳號</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="text" class="form-control" id="username" placeholder="帳號" ng-model="vm.volunteer.username">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="password" class="col-sm-3 control-label">密碼</label>
-				<div class="col-sm-5">
-					<input type="password" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="password" class="control-label col-md-3 col-lg-3">密碼</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="password" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="confirm-passowrd" class="col-sm-3 control-label">確認密碼</label>
-				<div class="col-sm-5">
-					<input type="password" class="form-control" id="confirm-passowrd" placeholder="確認密碼">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="confirm-passowrd" class="control-label col-md-3 col-lg-3">確認密碼</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="password" class="form-control" id="confirm-passowrd" placeholder="確認密碼">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="birth-year" class="col-sm-3 control-label">出生年份</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="birth-year" placeholder="出生年份" ng-model="vm.volunteer.birth_year">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="birth-year" class="control-label col-md-3 col-lg-3">出生年份</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="text" class="form-control" id="birth-year" placeholder="出生年份" ng-model="vm.volunteer.birth_year">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="gender" class="col-sm-3 control-label">性別</label>
-				<div class="col-sm-5">
-					<label class="radio-inline">
-						<input type="radio" name="gender" id="gender" value="female" ng-model="vm.volunteer.gender"> 女
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="gender" id="gender" value="male" ng-model="vm.volunteer.gender"> 男
-					</label>
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="gender" class="control-label col-md-3 col-lg-3">性別</label>
+					<div class="col-md-9 col-lg-9">
+						<label class="radio-inline">
+							<input type="radio" name="gender" id="gender" value="female" ng-model="vm.volunteer.gender"> 女
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="gender" id="gender" value="male" ng-model="vm.volunteer.gender"> 男
+						</label>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="city" class="col-sm-3 control-label">縣市</label>
-				<div class="col-sm-3">
-					<select class="form-control" name="city" ng-model="vm.volunteer.city.id">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="city" class="control-label col-md-3 col-lg-3">縣市</label>
+					<div class="col-md-9 col-lg-9">
+						<select class="form-control" name="city" ng-model="vm.volunteer.city.id">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="address" class="col-sm-3 control-label">地址</label>
-				<div class="col-sm-8">
-					<input name="address" type="text" class="form-control" id="address" placeholder="地址" ng-model="vm.volunteer.address">
+			<div class="form-group col-md-6 col-lg-6 col-xs-12">
+				<div class="row">
+					<label for="address" class="control-label col-md-3 col-lg-3">地址</label>
+					<div class="col-md-9 col-lg-9">
+						<input name="address" type="text" class="form-control" id="address" placeholder="地址" ng-model="vm.volunteer.address">
+					</div>
 				</div>
 			</div>
 		</div>
-		<div id="profile-contact" class="profile-section">
+		<div id="profile-contact" class="profile-section row">
 			<h2>聯絡資料</h2>
 			<hr>
-			<div class="form-group">
-				<label for="email" class="col-sm-3 control-label">電子郵件</label>
-				<div class="col-sm-6">
-					<input name="email" type="text" class="form-control" id="email" placeholder="電子郵件" ng-model="vm.volunteer.email">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="email" class="control-label col-md-3 col-lg-3">電子郵件</label>
+					<div class="col-md-9 col-lg-9">
+						<input name="email" type="text" class="form-control" id="email" placeholder="電子郵件" ng-model="vm.volunteer.email">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="phone-number" class="col-sm-3 control-label">電話號碼</label>
-				<div class="col-sm-6">
-					<input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="電話號碼" ng-model="vm.volunteer.phone_number">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="phone-number" class="control-label col-md-3 col-lg-3">電話號碼</label>
+					<div class="col-md-9 col-lg-9">
+						<input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="電話號碼" ng-model="vm.volunteer.phone_number">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="emergency-contact" class="col-sm-3 control-label">緊急聯絡人</label>
-				<div class="col-sm-6">
-					<input name="emergency-contact" type="text" class="form-control" id="emergency-contact" placeholder="緊急聯絡人" ng-model="vm.volunteer.emergency_contact">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="emergency-contact" class="control-label col-md-3 col-lg-3">緊急聯絡人</label>
+					<div class="col-md-9 col-lg-9">
+						<input name="emergency-contact" type="text" class="form-control" id="emergency-contact" placeholder="緊急聯絡人" ng-model="vm.volunteer.emergency_contact">
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="emergency-contact-phone" class="col-sm-3 control-label">緊急聯絡人電話</label>
-				<div class="col-sm-6">
-					<input name="emergency-contact-phone" type="text" class="form-control" id="emergency-contact-phone" placeholder="緊急聯絡人電話" ng-model="vm.volunteer.emergency_phone">
+			<div class="form-group col-md-6 col-lg-6 col-xs-6">
+				<div class="row">
+					<label for="emergency-contact-phone" class="control-label col-md-3 col-lg-3">緊急聯絡人電話</label>
+					<div class="col-md-9 col-lg-9">
+						<input name="emergency-contact-phone" type="text" class="form-control" id="emergency-contact-phone" placeholder="緊急聯絡人電話" ng-model="vm.volunteer.emergency_phone">
+					</div>
 				</div>
 			</div>
 		</div>

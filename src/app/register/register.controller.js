@@ -13,21 +13,21 @@
         vm.register = function() {
             $log.log('register');
             $log.log(vm.volunteer);
-           vmsClient.register(vm.volunteer, function (response) {
-           		$log.log('success');
-            	$log.log(response);
-            	$location.path('/register-success?last_name=' + vm.volunteer.last_name + '&email=' + vm.volunteer.email, false);
-           }, function (response) {
-           		$log.error('error');
-           		$log.error(response);
+            vmsClient.register(vm.volunteer, function(response) {
+                $log.log('success');
+                $log.log(response);
+                $location.path('/register-success?last_name=' + vm.volunteer.last_name + '&email=' + vm.volunteer.email, false);
+            }, function(response) {
+                $log.error('error');
+                $log.error(response);
 
-           		if(response.status == 422) {
-           			$log.error(response.data);
+                if (response.status == 422) {
+                    $log.error(response.data);
 
-           			var errors = response.data.errors;
-           			vm.errorMsg = vmsErrorMessage.getErrorMsg(errors);
-           		}
-           });
+                    var errors = response.data.errors;
+                    vm.errorMsg = vmsErrorMessage.getErrorMsg(errors);
+                }
+            });
 
         };
     }

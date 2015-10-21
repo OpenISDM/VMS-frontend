@@ -4,9 +4,10 @@
  */
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-$brand-primary:         #50E3C2;
-$body-bg:               #F8F8F8 !default;
-$input-border-focus:             #80E1CC !default;
+$brand-primary:         #5AA9D9;
+$body-bg:               #EDEDEE !default;
+$input-border-focus:             #5AA9D9 !default;
+$nav-color:             #454649;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -36,7 +37,11 @@ html {
 }
 
 nav {
-    background-color: #ECECEC;
+    background-color: $nav-color;
+}
+
+nav a {
+  color: #ffffff !important;
 }
 
 body {
@@ -50,7 +55,8 @@ footer {
   bottom: 0;
   width: 100%;
   height: 60px;
-  background-color: #ECECEC;
+  background-color: $nav-color;
+  color: #ffffff;
 }
 
 footer p {
@@ -75,6 +81,27 @@ footer p {
 
 .text-center {
   text-align: center;
+}
+
+.profile-section > div {
+  margin: 10px 0;
+}
+
+.profile-section input:not([type='radio']), select {
+  width: 100% !important;
+}
+
+@media (max-width: $screen-sm-max) {
+  form label {
+    margin-bottom: 8px !important;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  form .control-label {
+    padding-top: 7px;
+    padding-left: 20px;
+  }
 }
 
 @font-face {

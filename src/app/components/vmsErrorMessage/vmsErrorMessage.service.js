@@ -17,7 +17,6 @@
             $log.log('getErrorMsg');
             $log.log(errors);
 
-            var errorMsg;
             var errorMsgs = [];
             errors.forEach(function(error) {
                 if (error.code == "used_field") {
