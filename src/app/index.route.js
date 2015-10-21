@@ -1,0 +1,39 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('vmsFrontend')
+    .config(routerConfig);
+
+  /** @ngInject */
+  function routerConfig($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('login', {
+        url: '/login',
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginController',
+        controllerAs: 'vm'
+      })
+      .state('register-privacy', {
+        url: '/register-privacy',
+        templateUrl: 'app/register-privacy/register-privacy.html',
+        controller: 'RegisterPrivacyController',
+        controllerAs: 'vm'
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: 'app/register/register.html',
+        controller: 'RegisterController',
+        controllerAs: 'vm'
+      })
+      .state('register-success', {
+        url: '/register/success',
+        templateUrl: 'app/register-success/register-success.html',
+        controller: 'RegisterSuccessController',
+        controllerAs: 'vm'
+      });
+
+    $urlRouterProvider.otherwise('/');
+  }
+
+})();
