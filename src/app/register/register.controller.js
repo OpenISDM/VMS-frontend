@@ -6,17 +6,18 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController($log, $location, fieldName, vmsClient, vmsErrorMessage) {
+    function RegisterController($log, $state, fieldName, vmsClient, vmsErrorMessage) {
         var vm = this;
         $log.log('RegisterController');
 
         vm.register = function() {
             $log.log('register');
             $log.log(vm.volunteer);
-            vmsClient.register(vm.volunteer, function(response) {
+            $state.go('register.success', {last_name: vm.volunteer.last_name, email: vm.volunteer.email});
+            /**vmsClient.register(vm.volunteer, function(response) {
                 $log.log('success');
                 $log.log(response);
-                $location.path('/register-success?last_name=' + vm.volunteer.last_name + '&email=' + vm.volunteer.email, false);
+                $state.go('register.success', {last_name: vm.volunteer.last_name, email: vm.volunteer.email);
             }, function(response) {
                 $log.error('error');
                 $log.error(response);
@@ -28,6 +29,7 @@
                     vm.errorMsg = vmsErrorMessage.getErrorMsg(errors);
                 }
             });
+            */
 
         };
     }
