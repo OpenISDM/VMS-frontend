@@ -27,10 +27,18 @@
         controllerAs: 'vm'
       })
       .state('register-success', {
-        url: '/register/success',
+        url: '/register/success?last_name&email',     // NEED to add paramters
         templateUrl: 'app/register-success/register-success.html',
         controller: 'RegisterSuccessController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        params: {
+          last_name: {
+            value: "志工",  // default value
+          },
+          email: {
+            value: "註冊",   // default value
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
