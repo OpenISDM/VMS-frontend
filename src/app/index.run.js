@@ -6,7 +6,8 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($log, jwtRequest, jwtLocalStorage, Restangular) {
+    function runBlock($log, jwtRequest, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter) {
+        // Set a request interceptor
         Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
             $log.log('== what ==');
             $log.log(what);
@@ -32,6 +33,46 @@
                 httpConfig: httpConfig
             }
         });
+
+        // Set a response interceptor
+        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+            $log.debug('== response ==');
+
+            // Get the refreshed JSON Web Token
+            var refreshToken = response.headers('Authorization');
+
+            if (angular.isDefined(refreshToken)) {
+                // Set the refreshToken into local storage
+                $log.debug("=== Refresh toekn ===");
+                $log.debug(refreshToken);
+            }
+
+            return data;
+        })
+
+
+        // Listen state check start event
+        var authorizationDeregistrationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams, fromState, fromStateParams) {
+            $log.debug("=== $stateChangeStart ===");
+            $rootScope.toState = toState;
+            $rootScope.toStateParams = toStateParams;
+
+            if (authPrinciple.isIdentityResolved()) {
+                $log.debug("==== isIdentityResolved true ====");
+
+                authorization.authorize();
+            }
+        })
+
+        var urlRouterSyncDeregisteratinoCallback = $rootScope.$on('$locationChange', function(evt) {
+            evt.preventDefault();
+
+            $urlRouter.sync();
+        });
+
+        $rootScope.$on('$destroy', authorizationDeregistrationCallback);
+        $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
+
 
         $log.debug('runBlock end');
     }

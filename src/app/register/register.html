@@ -10,11 +10,9 @@
 	<form class="form-inline">
 		<h2>關於</h2>
 		<hr>
-		<div id="profile-avatar" class="row">
-			<img alt="Bootstrap Image Preview" src="/assets/images/profile-default-avatar.png" class="img-circle img-responsive col-lg-2 col-md-3 col-sm-3 col-xs-3"/>
-			<div class="col-md-9 col-sm-9 col-xs-9 col-lg-10">
-				<button class="btn btn-primary clearfix">Upload avatar</button>
-			</div>
+		<div id="profile-avatar">
+			<img id="avatar-image" alt="Bootstrap Image Preview" ng-src="{{vm.showAvatar}}" class="img-circle"/>
+			<input id="avatar-input" type="file" ng-model="vm.avatar" onloadend="vm.selectAvatar" base-sixty-four-input>
 		</div>
 		<div id="profile-basic" class="profile-section row">
 			<div class="form-group col-md-6 col-lg-6 col-xs-6">
@@ -61,7 +59,12 @@
 				<div class="row">
 					<label for="birth-year" class="control-label col-md-3 col-lg-3">出生年份</label>
 					<div class="col-md-9 col-lg-9">
-						<input type="text" class="form-control" id="birth-year" placeholder="出生年份" ng-model="vm.volunteer.birth_year">
+						<div class="input-group">
+							<input id="birth-year" type="text" class="form-control" uib-datepicker-popup="{{vm.datePicker.format}}" ng-model="vm.volunteer.birth_year" is-open="vm.datePicker.status.opened" datepicker-options="vm.datePicker.dateOptions" ng-required="true" close-text="Close" format-year />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="vm.openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
