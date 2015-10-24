@@ -14,6 +14,12 @@
         controller: 'LoginController',
         controllerAs: 'vm'
       })
+      .state('login-profile', {
+        url: '/login-profile',
+        templateUrl: 'app/volunteer-profile/volunteer-profile.html',
+        controller: 'ProfileController',
+        controllerAs: 'vm'
+      })
       .state('register-privacy', {
         url: '/register-privacy',
         templateUrl: 'app/register-privacy/register-privacy.html',
