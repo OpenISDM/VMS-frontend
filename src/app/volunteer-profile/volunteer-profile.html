@@ -28,11 +28,26 @@
                     </div>
                 </div>
                 <div id="profile-delete-div">
-                    <button class="btn btn-danger delete-button">Delete account</button>
+                    <button class="btn btn-danger delete-button" ng-click="vm.open()">Delete account</button>
                 </div>
             </div>
         </div>
-        
+        <!--angular ui modal-->
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header " style="background-color:#333333;color:white">
+                <h3 class="modal-title">Delete your account</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>{{vm.remind}}</p>
+                    <input type="password" class="form-control" ng-model="vm.password" placeholder="Enter your password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+            </div>
+        </script>
         <!--  <div class="col-md-8" style="background:white;height: auto;margin-left: 20px">
             <div ng-init="tab = 1">
                 <ul class="nav  nav-tabs" style="margin: 20px">
