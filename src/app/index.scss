@@ -119,48 +119,50 @@ select {
 
 #profile-left-column {
     background: white;
-    height: 700px
 }
 
 #profile-left-padding {
     padding: 40px;
 }
 
-#profile-left-info{
-    
-    padding-top:20px;
-    padding-left:40px;
-    padding-right:40px;
-    padding-bottom:20px;
-}
-#profile-left-pp{
-    
-    padding-left:40px;
-    padding-right:40px;
-    padding-bottom:10px;
-
-}
-#profile-delete-div{
-    
-    padding:40px;
-
+#profile-left-info {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
 }
 
-.delete-button{
-    
-    width:100%;
+#profile-left-pp {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
 }
 
-.line{
+#profile-delete-div {
+    padding: 40px;
+}
 
-    background-color:#50E3C2  ;
-    height:15px;
-    margin:auto;
+.delete-button {
+    width: 100%;
+}
+
+.line {
+    background-color: #50E3C2;
+    height: 15px;
+    margin: auto;
+}
+
+#custom-modal-header {}
+
+#profile-right-column{
+    background: white;
+    height: auto;
+    margin-left: 20px
 
 }
 
-#custom-modal-header{
-    
+#profile-right-navbar{
+    margin: 20px;
 }
 
 

@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-6 ">
+            <label style="font-size:20px">
+                <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                Skills
+            </label>
+            <br>
+            <label ng-repeat="skill in profile.profile.skills">
+                {{skill}}
+            </label>
+        </div>
+
+
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-6 ">
+            <label style="font-size:20px">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                Equipment
+            </label>
+            <br>
+            <label ng-repeat="equipment in profile.profile.equipments">
+                {{equipment}}
+                <br>
+            </label>
+        </div>
+    </div>
+</div>

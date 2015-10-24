@@ -32,6 +32,26 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-8" id="profile-right-column">
+            <div ng-init="tab = 1">
+                <ul class="nav nav-tabs" id="profile-right-navbar">
+                    <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Profile</a></li>
+                    <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Projects</a></li>
+                </ul>
+            </div>
+            <div class="panel" ng-show="tab===1">
+                <div ng-include src="'aboutDirective.html'"></div>
+                <hr>
+                <div ng-include src="'contactDirective.html'"></div>
+                <hr>
+                <div ng-include src="'eeDirective.html'"></div>
+                <hr>
+                <div ng-include src="'seDirective.html'"></div>
+            </div>
+            <div class="panel" ng-show="tab===2">
+                <h1>bbbb</h1>
+            </div>
+        </div>
         <!--angular ui modal-->
         <script type="text/ng-template" id="myModalContent.html">
             <div class="modal-header " style="background-color:#333333;color:white">
@@ -48,27 +68,5 @@
                 <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
             </div>
         </script>
-        <!--  <div class="col-md-8" style="background:white;height: auto;margin-left: 20px">
-            <div ng-init="tab = 1">
-                <ul class="nav  nav-tabs" style="margin: 20px">
-                    <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Profile</a></li>
-                    <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Projects</a></li>
-                </ul>
-            </div> 
-            
-           <div class="panel" ng-show="tab===1">
-                <div ng-include src="'aboutDirective.html'"></div>
-                <hr>
-                <div ng-include src="'contactDirective.html'"></div>
-                <hr>
-                <div ng-include src="'eeDirective.html'"></div>
-                <hr>
-                <div ng-include src="'seDirective.html'"></div>
-            </div>
-            <div class="panel" ng-show="tab===2">
-                <h1>bbbb</h1>
-            </div>
-        </div>
-    </div>  -->
     </div>
 </div>
