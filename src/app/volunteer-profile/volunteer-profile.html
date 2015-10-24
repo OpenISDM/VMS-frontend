@@ -1,31 +1,38 @@
-<div class="container" >
+<div class="container">
     <h1>My Profile</h1>
-     <div class="row">
+    <div class="row">
         <div class="col-md-3" id="profile-left-column">
             <div class="row">
-                <hr class="line" style="margin: auto;">
-                <div class="container">
-                    <img ng-src={{vm.img}} id="profile-img" class="img-circle" >
+                <hr class="line">
+                <img ng-src={{vm.img}} id="profile-left-padding" class="img-responsive img-circle">
+                <h3 class="text-center">{{vm.volunteer.name}}</h3>
+                <p id="profile-left-info">{{vm.volunteer.introduction}}</p>
+                <div class="row" id="profile-left-pp">
+                    <div class="col-sm-6">
+                        <label>Participating</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-info btn-sm">
+                            {{vm.volunteer.participating}}
+                        </button>
+                    </div>
                 </div>
-                <!-- <h3 style="text-align: center;">{{profile.volunteer.name}}</h3>
-                <div class="container" style="width: inherit;margin:30px;">
-                    {{profile.volunteer.introduction}}
+                <div class="row" id="profile-left-pp">
+                    <div class="col-sm-6">
+                        <label>Participated</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-info btn-sm">
+                            {{vm.volunteer.participated}}
+                        </button>
+                    </div>
                 </div>
-                <div class="container" style="margin-left: 30px">
-                    <label>Participating</label>
-                    <button class="btn btn-info btn_custom" style="margin-left:30px">
-                        {{profile.volunteer.participating}}
-                    </button>
+                <div id="profile-delete-div">
+                    <button class="btn btn-danger" id="delete-button">Delete account</button>
                 </div>
-                <div class="container" style="margin-left: 30px">
-                    <label>Participated</label>
-                    <button class="btn btn-info btn_custom" style="margin-left: 35px ;margin-top: 10px">
-                        {{profile.volunteer.participated}}
-                    </button>
-                </div> -->
             </div>
         </div>
-       <!--  <div class="col-md-8" style="background:white;height: auto;margin-left: 20px">
+        <!--  <div class="col-md-8" style="background:white;height: auto;margin-left: 20px">
             <div ng-init="tab = 1">
                 <ul class="nav  nav-tabs" style="margin: 20px">
                     <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Profile</a></li>
@@ -47,4 +54,5 @@
             </div>
         </div>
     </div>  -->
+    </div>
 </div>
