@@ -14,8 +14,8 @@
         controller: 'LoginController',
         controllerAs: 'vm'
       })
-      .state('login-profile', {
-        url: '/login-profile',
+      .state('volunteer-profile', {
+        url: '/volunteer-profile',
         templateUrl: 'app/volunteer-profile/volunteer-profile.html',
         controller: 'ProfileController',
         controllerAs: 'vm'
@@ -39,10 +39,10 @@
         controllerAs: 'vm',
         params: {
           last_name: {
-            value: "志工",  // default value
+            value: "志工"  // default value
           },
           email: {
-            value: "註冊",   // default value
+            value: "註冊"   // default value
           }
         }
       });
