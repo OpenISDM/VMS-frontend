@@ -6,7 +6,7 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController($log, $location, toastr, vmsClient, jwtLocalStorage) {
+    function LoginController($log, $location, vmsClient, authPrinciple, $state) {
         var vm = this;
 
         vm.login = function() {
@@ -17,16 +17,13 @@
                 var token = response.auth_access_token;
 
                 $log.debug('token = ' + token);
+                
+                authPrinciple.authenticate(token);
 
-                jwtLocalStorage.set(token);
-
-                toastr.success('login successfully', '登入成功', {
-                    closeButton: true
-                });
+                $state.go('profile');
             }, function(response) {
                 $log.debug('login error');
                 $log.debug(response);
-
             });
         }
     }

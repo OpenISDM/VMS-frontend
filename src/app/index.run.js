@@ -6,24 +6,19 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($log, jwtRequest, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter) {
+    function runBlock($log, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter) {
         // Set a request interceptor
         Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
             $log.log('== what ==');
             $log.log(what);
-            $log.debug(jwtRequest);
 
             var customHeaders = {};
             customHeaders['X-VMS-API-Key'] = '581dba93a4dbafa42a682d36b015d8484622f8e3543623bec5a291f67f5ddff1';
 
-            if (jwtRequest.indexOf(what) != -1) {
-                $log.log('NEED to ADD Token');
+            if (jwtLocalStorage.tokenKeyExists()) {
+                $log.log('token key exists');
 
-                if (jwtLocalStorage.tokenKeyExists()) {
-                    $log.log('token key exists');
-
-                    customHeaders['Authorization'] = 'Bearer ' + jwtLocalStorage.get();
-                }
+                customHeaders['Authorization'] = 'Bearer ' + jwtLocalStorage.get();
             }
 
             return {
@@ -35,7 +30,7 @@
         });
 
         // Set a response interceptor
-        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+        Restangular.addResponseInterceptor(function(data, operation, what, url, response) {
             $log.debug('== response ==');
 
             // Get the refreshed JSON Web Token
@@ -52,7 +47,7 @@
 
 
         // Listen state check start event
-        var authorizationDeregistrationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams, fromState, fromStateParams) {
+        var authorizationDeregistrationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
             $log.debug("=== $stateChangeStart ===");
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
@@ -72,7 +67,6 @@
 
         $rootScope.$on('$destroy', authorizationDeregistrationCallback);
         $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
-
 
         $log.debug('runBlock end');
     }

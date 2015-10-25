@@ -21,9 +21,26 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(authPrinciple) {
+    function NavbarController(authPrinciple, vmsClient, $state, $log) {
       var vm = this;
-      vm.isAuthenticated = authPrinciple.isAuthenticated();
+      vm.authPrinciple = authPrinciple;
+      $log.debug("=== vm.isAuthenticated ===");
+      $log.debug(vm.authPrinciple.isAuthenticated());
+
+      vm.logout = function () {
+        $log.debug("logout...");
+
+        vmsClient.logout(function(response){
+          $log.debug("logout success");
+
+          authPrinciple.authenticate(null);
+
+          $state.go('login');
+        }, function(response) {
+          $log.debug("logout failure");
+          authPrinciple.authenticate(null);
+        })
+      }
     }
   }
 

@@ -23,12 +23,12 @@
     <body ng-app="vmsFrontend">
         <vms-navbar></vms-navbar>
         <div class="container">
-            <div class="row" ui-view="mainContent">
-                
+            <div class="row anim-in-out anim-fade" data-anim-speed="1000" ui-view="mainContent">
             </div>
         </div>
         <footer>
             <div class="container">
+                <hr class="color">
                 <p>
                     By OpenISDM
                     <a href="#" class="col-sm-3 col-md-2">Privacy policies</a>

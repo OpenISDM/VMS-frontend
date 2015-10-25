@@ -23,17 +23,17 @@
         return service;
 
         function isIdentityResolved() {
-            $log.debug("=== 000 isIdentityResolved ===");
+            $log.debug("=== authPrinciple.isIdentityResolved() ===");
             return angular.isDefined(_identity);
         }
 
         function isAuthenticated() {
-            $log.debug("=== isAuthenticated() ===");
+            $log.debug("=== authPrinciple.isAuthenticated() ===");
             return _authenticated;
         }
 
         function authenticate(identity) {
-            $log.debug("=== authenticate() ===");
+            $log.debug("=== authPrinciple.authenticate() ===");
             _identity = identity;
             _authenticated = identity != null;
 
@@ -45,7 +45,7 @@
         }
 
         function identity(force) {
-            $log.debug("=== identity ===");
+            $log.debug("=== authPrinciple.identity() ===");
             var deferred = $q.defer();
 
             if (force === true) _identity = undefined;
