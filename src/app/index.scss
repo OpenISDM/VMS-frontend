@@ -2,38 +2,38 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
+
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-$brand-primary:         #5AA9D9;
-$body-bg:               #EDEDEE !default;
-$input-border-focus:             #5AA9D9 !default;
-$nav-color:             #454649;
+$brand-primary: #5AA9D9;
+$body-bg: #EDEDEE !default;
+$input-border-focus: #5AA9D9 !default;
+$nav-color: #454649;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
  *  sass dependencies when defined in the bower.json of your dependencies
  */
+
 // bower:scss
 // endbower
-
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
 
 .thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
+    height: 200px;
+    img.pull-right {
+        width: 50px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 nav {
@@ -41,7 +41,7 @@ nav {
 }
 
 nav a {
-  color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 body {
@@ -51,12 +51,12 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: $nav-color;
-  color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: $nav-color;
+    color: #ffffff;
 }
 
 footer p {
@@ -70,38 +70,39 @@ footer p {
 }
 
 .top-line {
-  border-top-style: solid;
-  border-top-width: 5px;
-  border-top-color: $brand-primary;
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-top-color: $brand-primary;
 }
 
 .profile-section {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 .profile-section > div {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
-.profile-section input:not([type='radio']), select {
-  width: 100% !important;
+.profile-section input:not([type='radio']),
+select {
+    width: 100% !important;
 }
 
 @media (max-width: $screen-sm-max) {
-  form label {
-    margin-bottom: 8px !important;
-  }
+    form label {
+        margin-bottom: 8px !important;
+    }
 }
 
 @media (min-width: $screen-md-min) {
-  form .control-label {
-    padding-top: 7px;
-    padding-left: 20px;
-  }
+    form .control-label {
+        padding-top: 7px;
+        padding-left: 20px;
+    }
 }
 
 @font-face {
@@ -110,10 +111,98 @@ footer p {
     font-style: normal;
     font-weight: 500;
     src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot);
-    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format('embedded-opentype'),
-         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'),
-         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'),
-         url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
+    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
+}
+
+
+/*MOH Edit*/
+
+#profile-left-column {
+    background: white;
+}
+
+#profile-left-padding {
+    padding: 40px;
+}
+
+#profile-left-info {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+}
+
+#profile-left-pp {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+}
+
+#profile-delete-div {
+    padding: 40px;
+}
+
+.delete-button {
+    width: 100%;
+}
+
+.line {
+    background-color: #50E3C2;
+    height: 15px;
+    margin: auto;
+}
+
+//right column
+#custom-modal-header {}
+
+#profile-right-column {
+    background: white;
+    height: auto;
+    margin-left: 20px
+}
+
+#profile-right-navbar {
+    margin: 20px;
+}
+
+.profile-head-title {
+    padding: 20px;
+}
+
+.profile-right-padding {
+    margin-left: 20px;
+}
+
+.profile-font {
+    font-size: 20px;
+}
+
+.profile-font-color {
+    color: grey;
+}
+
+.btn-edit-profile {
+    width: auto;
+    background-color: #41C5A8;
+    color: white;
+}
+
+.profile-experience-title{
+    color:#41C5A8;
+}
+
+.profile-experience-content{
+    color:grey;
+}
+
+.profile-project-a{
+    
+     color: #50E3C2;
+}
+
+.profile-project-tableHead{
+    
+    background-color: #f1f1f1;
 }
 
 
@@ -121,5 +210,6 @@ footer p {
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
+
 // injector
 // endinjector

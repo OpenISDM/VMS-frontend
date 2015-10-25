@@ -1,0 +1,72 @@
+<div class="container">
+    <h1>My Profile</h1>
+    <div class="row">
+        <div class="col-md-3" id="profile-left-column">
+            <div class="row">
+                <hr class="line">
+                <img ng-src={{vm.volunteer.img}} id="profile-left-padding" class="img-responsive img-circle">
+                <h3 class="text-center">{{vm.volunteer.name}}</h3>
+                <p id="profile-left-info">{{vm.volunteer.introduction}}</p>
+                <div class="row" id="profile-left-pp">
+                    <div class="col-sm-6">
+                        <label>Participating</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-info btn-sm">
+                            {{vm.volunteer.participating}}
+                        </button>
+                    </div>
+                </div>
+                <div class="row" id="profile-left-pp">
+                    <div class="col-sm-6">
+                        <label>Participated</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-info btn-sm">
+                            {{vm.volunteer.participated}}
+                        </button>
+                    </div>
+                </div>
+                <div id="profile-delete-div">
+                    <button class="btn btn-danger delete-button" ng-click="vm.open()">Delete account</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" id="profile-right-column">
+            <div ng-init="tab = 1">
+                <ul class="nav nav-tabs" id="profile-right-navbar">
+                    <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Profile</a></li>
+                    <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Projects</a></li>
+                </ul>
+            </div>
+            <div class="panel" ng-show="tab===1">
+                <div ng-include src="'/app/volunteer-profile/volunteer-about.html'"></div>
+                <hr>
+                <div ng-include src="'/app/volunteer-profile/volunteer-contact.html'"></div>
+                <hr>
+                <div ng-include src="'/app/volunteer-profile/volunteer-ee.html'"></div>
+                <hr>
+                <div ng-include src="'/app/volunteer-profile/volunteer-se.html'"></div>
+            </div>
+            <div class="panel" ng-show="tab===2">
+                <div ng-include src="'/app/volunteer-profile/volunteer-projects.html'"></div>
+            </div>
+        </div>
+        <!--angular ui modal-->
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header " style="background-color:#333333;color:white">
+                <h3 class="modal-title">Delete your account</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>{{vm.remind}}</p>
+                    <input type="password" class="form-control" ng-model="vm.password" placeholder="Enter your password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+            </div>
+        </script>
+    </div>
+</div>
