@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .directive('acmeNavbar', acmeNavbar);
+    .directive('vmsNavbar', vmsNavbar);
 
   /** @ngInject */
-  function acmeNavbar() {
+  function vmsNavbar() {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
@@ -21,11 +21,9 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(moment) {
+    function NavbarController(authPrinciple) {
       var vm = this;
-
-      // "vm.creation" is avaible by directive option "bindToController: true"
-      vm.relativeDate = moment(vm.creationDate).fromNow();
+      vm.isAuthenticated = authPrinciple.isAuthenticated();
     }
   }
 

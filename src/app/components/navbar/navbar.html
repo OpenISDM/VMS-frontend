@@ -1,20 +1,13 @@
-<nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
+<nav class="navbar navbar-fixed-top">
+  <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-        <span class="glyphicon glyphicon-home"></span> Gulp Angular
-      </a>
+      <a class="navbar-brand color" href="#">VMS</a>
     </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+    <div id="navbar" class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right acme-navbar-text">
-        <li>Application was created {{ vm.relativeDate }}.</li>
+        <a ng-hide="vm.isAuthenticated" class="navbar-brand" ui-sref="registerPrivacy">註冊</a>
+        <a ng-hide="vm.isAuthenticated" class="navbar-brand" ui-sref="login">登入</a>
+        <a ng-show="vm.isAuthenticated" class="navbar-brand" ui-sref="logout">登出</a>
       </ul>
     </div>
   </div>
