@@ -152,18 +152,49 @@ select {
     margin: auto;
 }
 
+//right column
 #custom-modal-header {}
 
-#profile-right-column{
+#profile-right-column {
     background: white;
     height: auto;
     margin-left: 20px
-
 }
 
-#profile-right-navbar{
+#profile-right-navbar {
     margin: 20px;
 }
+
+.profile-head-title {
+    padding: 20px;
+}
+
+.profile-right-padding {
+    margin-left: 20px;
+}
+
+.profile-font {
+    font-size: 20px;
+}
+
+.profile-font-color {
+    color: grey;
+}
+
+.btn-edit-profile {
+    width: auto;
+    background-color: #41C5A8;
+    color: white;
+}
+
+.profile-experience-title{
+    color:#41C5A8;
+}
+
+.profile-experience-content{
+    color:grey;
+}
+
 
 
 /**

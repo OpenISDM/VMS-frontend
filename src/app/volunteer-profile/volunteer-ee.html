@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-6 ">
+            <label class="profile-font">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Experience
+            </label>
+            <label>
+                {{vm.profile.experience.researchAssistant}}
+            </label>
+            <label class="profile-experience-title">
+                {{vm.profile.experience.position}}
+            </label>
+            <label class="profile-experience-content">
+                {{vm.profile.experience.date}}
+            </label>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-10 ">
+            <label class="profile-font">
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span> Education
+            </label>
+            <label>
+                {{vm.profile.education.background}}
+            </label>
+            <label class="profile-experience-title">
+                {{vm.profile.education.school}}
+            </label>
+            <br>
+            <label class="profile-experience-content">
+                {{vm.profile.education.schoolDate}}
+            </label>
+        </div>
+    </div>
+</div>
