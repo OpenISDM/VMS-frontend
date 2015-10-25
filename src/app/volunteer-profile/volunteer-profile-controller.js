@@ -18,6 +18,15 @@
             participated: "8"
         };
 
+
+        vm.open = function() {
+            var modal = $uibModal.open({
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                controllerAs: 'vm'
+            });
+        }
+
         vm.profile = {
             about: {
                 firstName: "Lin",
@@ -49,13 +58,28 @@
 
         };
 
-        vm.open = function() {
-            var modal = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                controllerAs: 'vm'
-            });
-        }
+        vm.projects = [{
+            "Id": 1,
+            "ProjectName": "Flood surveillance",
+            "Manager": "Water Resources Agency",
+        }, {
+            "Id": 2,
+            "ProjectName": "Earthquake Hazards",
+            "Manager": "IES,Academia Sinica",
+        }, {
+            "Id": 3,
+            "ProjectName": "Disaster-prone area monitor",
+            "Manager": "NCKU",
+        }];
+
+        vm.invites = [{
+            "Id": 1,
+            "ProjectName": "Mudslide surveillance",
+            "Manager": "Soil and Water Conservation Bureau",
+            "choose" : ["Accept","Cancel","Hold"]
+        }]
+
+
 
 
     }
