@@ -9,7 +9,8 @@
     function vmsClient($log, Restangular) {
         var service = {
             register: register,
-            login: login
+            login: login,
+            logout: logout
         };
 
         return service;
@@ -24,6 +25,14 @@
 
         function login(credentials, successCallback, failureCallback) {
             Restangular.all('auth').post(credentials).then(function(response) {
+                successCallback(response);
+            }, function(response) {
+                failureCallback(response);
+            });
+        }
+
+        function logout(successCallback, failureCallback) {
+            Restangular.all('auth').remove().then(function(response) {
                 successCallback(response);
             }, function(response) {
                 failureCallback(response);
