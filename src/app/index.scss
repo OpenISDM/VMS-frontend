@@ -115,28 +115,29 @@ footer p {
   background-color: #F8F9F6;
   background-repeat: repeat;
   box-sizing: border-box;
-  color: #1E232A;
-  font-size: 1.25em;
   display: block;
-  line-height: 30px;
   margin-left: -70px;
   margin-top: 80px;
   padding-bottom: 30px;
   padding-top: 30px;
   position: absolute;
-  text-align: left;
   width: 100%;
-  background-color: #F8F9F6;
   /**min-height: 50%;*/
   padding: 30px;
 }
 
-.abc{
-  background-color: #5AADBB;
-  width: 100%;
+.flex-container-text{
+  line-height: 30px;
+  background-color: #F8F9F6;
+  width: 50%;
+  color: #1E232A;
+  font-size: 1.25em;
+  text-align: left;
 }
 
+.ad-block{
 
+}
 
 
 
