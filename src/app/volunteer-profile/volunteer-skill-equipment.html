@@ -6,7 +6,7 @@
             </label>
             <br>
             <label ng-repeat="skill in vm.profile.skills">
-                {{skill}}&nbsp;
+                {{skill.name}}&nbsp;
             </label>
         </div>
     </div>
@@ -16,8 +16,8 @@
                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Equipment
             </label>
             <br>
-            <label ng-repeat="equipment in vm.profile.equipments">
-                {{equipment}}&nbsp;
+            <label ng-repeat="equipment in vm.profile.equipment">
+                {{equipment.name}}&nbsp;
             </label>
         </div>
     </div>

@@ -10,14 +10,6 @@
     function ProfileController($uibModal) {
 
         var vm = this;
-        vm.volunteer = {
-            img: "/assets/images/profile-default-avatar.png",
-            name: "Jim Lim",
-            introduction: "I'm a genius. I work on Data science/analytics and have excellent skills with Matlab and Ruby programming. My hobbies is sporting.",
-            participating: "3",
-            participated: "8"
-        };
-
 
         vm.open = function() {
             var modal = $uibModal.open({
@@ -28,33 +20,73 @@
         }
 
         vm.profile = {
-            about: {
-                firstName: "Lin",
-                lastName: "Jim",
-                userName: "jimlin",
-                gender: "Male",
-                address: "128 Academia Road, Section2, Nankang Dist.",
-                birthDate: "1990/05/05",
-                city: "Taipei City"
+            projects: {
+                "href": "https://vms.app/api/users/me/projects"
             },
-            contact: {
-                phoneNumber: "0912345678",
-                emailAddress: "jimlin@citi.sinica.edu.tw",
-                emergencyContact: "Jeremy Lin",
-                emergencyPhone: "0919119119"
+            processes: {
+                "participating_number": 3,
+                "participated_number": 8,
+                "href": "https://vms.app/api/users/me/proccesses"
             },
-            experience: {
-                researchAssistant: "Research assistant",
-                position: "Academia Sinica",
-                date: "2014-now"
+            avatar_url: "/assets/images/profile-default-avatar.png",
+            introduction: "I'm a genius. I work on Data science/analytics and have excellent skills with Matlab and Ruby programming. My hobbies is sporting.",
+            username: "jimlin",
+            first_name: "Lin",
+            last_name: "Jim",
+            birth_year: "1990/05/05",
+            gender: "男",
+            city: {
+                "id": 1,
+                "name_zh_tw": "臺北市",
+                "name_en": "Taipei City"
             },
-            education: {
-                background: "Master's degree, Computer science",
-                school: "NCKU",
-                schoolDate: "2012-2014"
-            },
-            skills: ["Swimming", "Programming"],
-            equipments: ["Car", "Scooter", "Camera"]
+            address: "128 Academia Road, Section2, Nankang Dist.",
+
+
+
+
+            phone_number: "0912345678",
+            email: "jimlin@citi.sinica.edu.tw",
+            emergency_contact: "Jeremy Lin",
+            emergency_phone: "0919119119",
+
+            experience: [{
+                "id": 1,
+                "name": "Academia Sinica",
+                "job_title": "Research Assistant",
+                "start_year": 2014,
+                "end_year": null
+            }],
+            // education: {
+            //     background: "Master's degree, Computer science",
+            //     school: "NCKU",
+            //     schoolDate: "2012-2014"
+            // },
+            education: [{
+                "id": 1,
+                "school": "National Cheng Kung University",
+                "degree": 5,
+                "field_of_study": "Computer Science",
+                "start_year": 2012,
+                "end_year": 2014
+            }],
+            skills: [{
+                "name": "Swimming",
+                "id": 82
+            }, {
+                "name": "Programming",
+                "id": 73
+            }],
+            equipment: [{
+                "name": "Car",
+                "id": 21
+            }, {
+                "name": "Scooter",
+                "id": 28
+            }, {
+                "name": "Camera",
+                "id": 43
+            }]
 
         };
 
@@ -76,7 +108,7 @@
             "Id": 1,
             "ProjectName": "Mudslide surveillance",
             "Manager": "Soil and Water Conservation Bureau",
-            "choose" : ["Accept","Cancel","Hold"]
+            "choose": ["Accept", "Cancel", "Hold"]
         }]
 
 
@@ -89,7 +121,7 @@
 angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($uibModalInstance) {
 
     var vm = this;
-    vm.remind = "Warning: Account deletion cannot be undone. If you're absolutely sure you want to delete your account, enter your password to continue:";
+    vm.remind = "提醒您，賬號刪除後無法再還原，如果您確定要刪除帳號。請輸入您的密碼：";
 
     vm.ok = function() {
         // alert(vm.password); //testing ng-model password

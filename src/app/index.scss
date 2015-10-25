@@ -132,7 +132,7 @@ select {
     padding-bottom: 20px;
 }
 
-#profile-left-pp {
+#profile-left-participate {
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 10px;
@@ -195,14 +195,19 @@ select {
     color:grey;
 }
 
+/**
 .profile-project-a{
     
      color: #50E3C2;
-}
+}**/
 
 .profile-project-tableHead{
     
     background-color: #f1f1f1;
+}
+
+#profile-form div label{
+    color: grey;
 }
 
 

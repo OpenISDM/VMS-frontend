@@ -5,13 +5,13 @@
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Experience
             </label>
             <label>
-                {{vm.profile.experience.researchAssistant}}
+                {{vm.profile.experience[0].name}}
             </label>
             <label class="profile-experience-title">
-                {{vm.profile.experience.position}}
+                {{vm.profile.experience[0].job_title}}
             </label>
             <label class="profile-experience-content">
-                {{vm.profile.experience.date}}
+                {{vm.profile.experience[0].start_year}}-{{vm.profile.experience[0].end_year}}
             </label>
         </div>
     </div>
@@ -20,15 +20,15 @@
             <label class="profile-font">
                 <span class="glyphicon glyphicon-education" aria-hidden="true"></span> Education
             </label>
+            <br>
             <label>
-                {{vm.profile.education.background}}
+                {{vm.profile.education[0].field_of_study}}
             </label>
             <label class="profile-experience-title">
-                {{vm.profile.education.school}}
+                {{vm.profile.education[0].school}}
             </label>
-            <br>
             <label class="profile-experience-content">
-                {{vm.profile.education.schoolDate}}
+                {{vm.profile.education[0].start_year}}-{{vm.profile.education[0].end_year}}
             </label>
         </div>
     </div>
