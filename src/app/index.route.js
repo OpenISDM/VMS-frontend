@@ -20,6 +20,12 @@
         controller: 'RegisterPrivacyController',
         controllerAs: 'vm'
       })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'app/about/about.html',
+        controller: 'AboutController',
+        controllerAs: 'vm'
+      })
       .state('register', {
         url: '/register',
         templateUrl: 'app/register/register.html',

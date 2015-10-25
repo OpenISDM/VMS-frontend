@@ -4,7 +4,7 @@
  */
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-$brand-primary:         #5AA9D9;
+$brand-primary:         #303030;
 $body-bg:               #EDEDEE !default;
 $input-border-focus:             #5AA9D9 !default;
 $nav-color:             #454649;
@@ -90,6 +90,55 @@ footer p {
 .profile-section input:not([type='radio']), select {
   width: 100% !important;
 }
+
+.header-basic{
+  background-attachment: fixed;
+  background-color: #2b323a;
+  /**background-image: url(https://4f103e355fd70dee701f-b33c860044c19cda3e23f2a03168f599.ssl.cf2.rackcdn.com/assets/img/map-bg.png);*/
+  background-image: url(https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg);
+  background-repeat: repeat;
+  box-sizing: border-box;
+  color: rgb(199, 204, 212);
+  display: block;
+  line-height: 15px;
+  margin-left: -70px;
+  margin-top: -50px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.flex-container{
+  background-attachment: fixed;
+  background-color: #F8F9F6;
+  background-repeat: repeat;
+  box-sizing: border-box;
+  color: #1E232A;
+  font-size: 1.25em;
+  display: block;
+  line-height: 30px;
+  margin-left: -70px;
+  margin-top: 80px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  position: absolute;
+  text-align: left;
+  width: 100%;
+  background-color: #F8F9F6;
+  /**min-height: 50%;*/
+  padding: 30px;
+}
+
+.abc{
+  background-color: #5AADBB;
+  width: 100%;
+}
+
+
+
+
 
 @media (max-width: $screen-sm-max) {
   form label {
