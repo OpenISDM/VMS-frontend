@@ -121,7 +121,7 @@
 angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($uibModalInstance) {
 
     var vm = this;
-    vm.remind = "提醒您，賬號刪除後無法再還原，如果您確定要刪除帳號。請輸入您的密碼：";
+    vm.remind = "提醒您，帳號刪除後無法再還原，如果您確定要刪除帳號。";
 
     vm.ok = function() {
         // alert(vm.password); //testing ng-model password

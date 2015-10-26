@@ -1,4 +1,42 @@
 <div class="row">
+    <div class="col-md-6 row">
+        <div class="col-md-12 profile-header">
+            <h3 class="glyphicon glyphicon-file" aria-hidden="true"> 經歷</h3>
+        </div>
+        <div class="profile-content-list" ng-repeat="(id, experience) in vm.profile.experience">
+            <div id="profile-experience-{{id}}" class="profile-content-item">
+                <span class="col-sm-12">
+                    {{experience.name}}
+                </span>
+                <span class="col-sm-12">
+                    {{experience.job_title}}
+                </span>
+                <span class="col-sm-12">
+                    {{experience.start_year}} ~ {{experience.end_year}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 row">
+        <div class="col-md-12 profile-header">
+            <h3 class="glyphicon glyphicon-education" aria-hidden="true"> 學歷</h3>
+        </div>
+        <div class="profile-content-list" ng-repeat="(id, education) in vm.profile.education">
+            <div id="profile-education-{{id}}" class="profile-content-item">
+                <span class="col-sm-12">
+                    {{education.field_of_study}}
+                </span>
+                <span class="col-sm-12">
+                    {{education.school}}
+                </span>
+                <span class="col-sm-12">
+                    {{education.start_year}} ~ {{education.end_year}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="row">
     <div class="col-md-6">
         <div class="col-md-6 ">
             <label class="profile-font">
@@ -32,4 +70,4 @@
             </label>
         </div>
     </div>
-</div>
+</div>-->

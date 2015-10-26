@@ -1,51 +1,40 @@
-<div class="row profile-head-title">
-    <div class="col-md-4 ">
-        <label class="profile-font">
-            <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
-            Contact
-        </label>
+
+<div class="row profile-header">
+    <div class="col-md-3">
+        <h3 class="glyphicon glyphicon-phone-alt" aria-hidden="true"> 聯絡資訊</h3>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-md-6 profile-right-padding">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-6 profile-font-color">
-                    Phone Number
-                </label>
-                <label class="col-sm-6 ">
-                    {{vm.profile.phone_number}}
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-6 profile-font-color">
-                    Emergency Contact
-                </label>
-                <label class="col-sm-6 ">
-                    {{vm.profile.emergency_contact}}
-                </label>
-            </div>
-        </form>
+<div class="row profile-content">
+    <div class="col-md-6 row">
+        <span class="col-sm-5 ">
+            電話號碼
+        </span>
+        <span class="col-sm-7">
+            {{vm.profile.phone_number}}
+        </span>
     </div>
-    <div class="col-md-4">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-6 profile-font-color">
-                    Email Address
-                </label>
-                <label class="col-sm-6 ">
-                    {{vm.profile.email}}
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-6 profile-font-color">
-                    Emergency Phone
-                </label>
-                <label class="col-sm-6 ">
-                    {{vm.profile.emergency_phone}}
-                </label>
-            </div>
-        </form>
+    <div class="col-md-6 row">
+        <span class="col-sm-5">
+            電子郵件
+        </span>
+        <span class="col-sm-7">
+            {{vm.profile.email}}
+        </span>
+    </div>
+    <div class="col-md-6 row">
+        <span class="col-sm-5">
+            緊急聯絡人
+        </span>
+        <span class="col-sm-7">
+            {{vm.profile.emergency_contact}}
+        </span>
+    </div>
+    <div class="col-md-6 row">
+        <span class="col-sm-5">
+            緊急聯絡電話
+        </span>
+        <span class="col-sm-7 ">
+            {{vm.profile.emergency_phone}}
+        </span>
     </div>
 </div>

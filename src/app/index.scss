@@ -79,10 +79,6 @@ footer p {
     margin-top: 30px;
 }
 
-.text-center {
-    text-align: center;
-}
-
 .profile-section > div {
     margin: 10px 0;
 }
@@ -117,98 +113,87 @@ select {
 
 /*MOH Edit*/
 
-#profile-left-column {
+#main-profile {
+    padding: 0 20px 20px 20px;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-content > div > span:first-child {
+    color: grey;
+}
+
+.profile-content span, #profile-participate > div > span {
+    font-weight: bold;
+}
+
+.profile-content-list > div > span {
+    margin-bottom: 8px;
+}
+
+.profile-content-item {
+    margin-bottom: 10px;
+}
+
+.profile-content-list > div > span:nth-child(1) {
+    font-weight: bold;
+}
+
+.profile-content-list > div > span:nth-child(2) {
+    font-weight: bold;
+    color: $brand-primary;
+}
+
+.profile-content-list > div > span:nth-child(3) {
+    font-style: italic;
+    color: grey;
+}
+
+#profile-main {
+    padding-left: 20px;
+    height: auto;
+}
+
+#profile-participate > div > div {
+    padding: 0 50px;
+    margin-bottom: 10px;
+
+    div > span {
+        font-weight: bold;
+    }
+}
+
+.profile-content > div {
+    margin-bottom: 15px;
+}
+
+#profle-introduction {
     background: white;
+    padding: 30px 20px;
 }
 
-#profile-left-padding {
+#profile-self-introduction {
+    padding: 20px 40px;
+}
+
+#profile-avatar {
     padding: 40px;
 }
 
-#profile-left-info {
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-}
-
-#profile-left-participate {
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 10px;
-}
-
-#profile-delete-div {
-    padding: 40px;
-}
-
-.delete-button {
-    width: 100%;
-}
-
-.line {
-    background-color: #50E3C2;
-    height: 15px;
-    margin: auto;
-}
-
-//right column
-#custom-modal-header {}
-
-#profile-right-column {
+#profile-container {
     background: white;
     height: auto;
-    margin-left: 20px
+    padding-top: 20px;
 }
 
 #profile-right-navbar {
-    margin: 20px;
+    margin: 0 20px 20px 20px;
 }
 
-.profile-head-title {
-    padding: 20px;
-}
 
-.profile-right-padding {
-    margin-left: 20px;
-}
 
-.profile-font {
-    font-size: 20px;
-}
-
-.profile-font-color {
-    color: grey;
-}
-
-.btn-edit-profile {
-    width: auto;
-    background-color: #41C5A8;
-    color: white;
-}
-
-.profile-experience-title{
-    color:#41C5A8;
-}
-
-.profile-experience-content{
-    color:grey;
-}
-
-/**
-.profile-project-a{
-    
-     color: #50E3C2;
-}**/
-
-.profile-project-tableHead{
-    
-    background-color: #f1f1f1;
-}
-
-#profile-form div label{
-    color: grey;
-}
 
 
 /**
