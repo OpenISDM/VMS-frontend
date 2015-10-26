@@ -1,0 +1,57 @@
+<div class="row profile-right-padding">
+    <h3>Projects you're in </h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="profile-project-tableHead">
+                    <th>#</th>
+                    <th>Project Name</th>
+                    <th>Manager</th>
+                    <th>Details</th>
+                    <th>Cancel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="project in vm.projects">
+                    <td>{{project.Id}}</td>
+                    <td>{{project.ProjectName}}</td>
+                    <td>{{project.Manager}}</td>
+                    <td><a href="#" class="profile-project-a">View</a></td>
+                    <td><a href="#"><span class="glyphicon glyphicon-share" aria-hidden="true"></a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>Invites</h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="profile-project-tableHead">
+                    <th>#</th>
+                    <th>Project Name</th>
+                    <th>Manager</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="invite in vm.invites">
+                    <td>{{invite.Id}}</td>
+                    <td>{{invite.ProjectName}}</td>
+                    <td>{{invite.Manager}}</td>
+                    <td><a href="#" class="profile-project-a">View</a></td>
+                    <td>
+                        <button class="btn btn-default dropdown-toggle" type="button" id="" data-toggle="dropdown">
+                            Choose
+                            <span class="caret"></span>
+                        </button>
+                        <!-- <ul class="dropdown-menu" ng-repeat="select in vm.choose">
+                            <li><a href="#">select</a></li>
+                        </ul> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
