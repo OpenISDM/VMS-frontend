@@ -1,0 +1,68 @@
+<h1>我的資料</h1>
+<div class="col-md-3 col-sm-3" id="profle-introduction">
+    <img ng-src={{vm.profile.avatar_url}} id="profile-avatar" width="300" class="img-responsive img-circle center-block">
+    <h3 class="text-center">{{vm.profile.last_name +" "+ vm.profile.first_name}}</h3>
+    <p id="profile-self-introduction">{{vm.profile.introduction}}</p>
+    <div class="row" id="profile-participate">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-7">
+                    <span>正在參與中</span>
+                </div>
+                <div class="col-sm-5">
+                    <span class="pull-right label label-primary">{{vm.profile.processes.participating_number}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-7">
+                    <span>曾參與過的</span>
+                </div>
+                <div class="col-sm-5">
+                    <span class="pull-right label label-primary">{{vm.profile.processes.participated_number}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-danger center-block" ng-click="vm.open()">刪除帳號</button>
+</div>
+<div class="col-md-9 col-sm-9" id="profile-main">
+    <div id="profile-container">
+        <div ng-init="tab = 1">
+            <ul class="nav nav-tabs" id="profile-right-navbar">
+                <li ng-class="{active:tab===1}"><a href ng-click="tab=1">個人資料</a></li>
+                <!-- <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Projects</a></li> -->
+            </ul>
+        </div>
+        <div id="main-profile" class="panel" ng-show="tab===1">
+            <div ng-include src="'/app/volunteer-profile/volunteer-about.html'"></div>
+            <hr>
+            <div ng-include src="'/app/volunteer-profile/volunteer-contact.html'"></div>
+            <hr>
+            <div ng-include src="'/app/volunteer-profile/volunteer-experience-education.html'"></div>
+            <hr>
+            <div ng-include src="'/app/volunteer-profile/volunteer-skill-equipment.html'"></div>
+        </div>
+        <div class="panel" ng-show="tab===2" >
+            <div ng-include src="'/app/volunteer-profile/volunteer-projects.html'"></div>
+        </div>
+    </div>
+</div>
+<!--angular ui modal-->
+<script type="text/ng-template" id="myModalContent.html">
+<div class="modal-header">
+    <h3 class="modal-title">注意！您的帳號即將被刪除</h3>
+</div>
+<div class="modal-body">
+    <div class="alert alert-warning" role="alert">{{vm.remind}}</div>
+    <div class="form-group">
+        <label for="password" class="control-label">請輸入您的密碼：</label>
+        <input type="password" id="password" class="form-control" ng-model="vm.password" placeholder="輸入您的密碼">
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="vm.ok()">確認刪除帳號</button>
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()">取消</button>
+</div>
+</script>

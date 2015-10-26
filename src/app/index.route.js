@@ -87,6 +87,13 @@
                 templateUrl: 'app/profile/profile.index.html',
                 data: {
                     needAuth: true
+                },
+                views: {
+                    'mainContent@': {
+                        templateUrl: 'app/volunteer-profile/volunteer-profile.html',
+                        controller: 'ProfileController',
+                        controllerAs: 'vm'
+                    }
                 }
             });
 
