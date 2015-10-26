@@ -8,7 +8,7 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 
 $primary-color:         #E74C40;
 $grey-color:            #EDEDEE;
-$brand-primary:         #1EBCD4;
+$brand-primary:         $primary-color;
 $body-bg:               $grey-color !default;
 $input-border-focus:             #5AA9D9 !default;
 $navbar-default-bg:                $primary-color !default;

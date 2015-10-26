@@ -34,12 +34,19 @@
             $log.debug('== response ==');
 
             // Get the refreshed JSON Web Token
+            $log.debug("=== response ===");
+            $log.debug(data);
+            $log.debug("Headers " + response.headers("X-Powered-By"));
+
             var refreshToken = response.headers('Authorization');
+
+            $log.debug("refreshToken = " + refreshToken);
 
             if (angular.isDefined(refreshToken)) {
                 // Set the refreshToken into local storage
-                $log.debug("=== Refresh toekn ===");
-                $log.debug(refreshToken);
+                $log.debug("=== Refresh token ===");
+                $log.debug("refreshToken = " +refreshToken);
+                //jwtLocalStorage.set();
             }
 
             return data;

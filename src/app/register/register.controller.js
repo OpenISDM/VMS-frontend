@@ -42,8 +42,8 @@
 
                 $state.go('registerSuccess', {last_name: vm.volunteer.last_name, email: vm.volunteer.email});
             }, function(response) {
-                $log.error('error');
-                $log.error(response);
+                $log.debug('error');
+                //$log.debug(response);
 
                 if (response.status == 422) {
                     $log.error(response.data);
