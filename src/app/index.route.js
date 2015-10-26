@@ -20,12 +20,6 @@
         controller: 'RegisterPrivacyController',
         controllerAs: 'vm'
       })
-      .state('about', {
-        url: '/about',
-        templateUrl: 'app/about/about.html',
-        controller: 'AboutController',
-        controllerAs: 'vm'
-      })
       .state('register', {
         url: '/register',
         templateUrl: 'app/register/register.html',
@@ -43,6 +37,16 @@
           },
           email: {
             value: "註冊",   // default value
+          }
+        }
+      })
+      .state('introduction', {
+        url: '/',
+        views: {
+          'introductionContent@': {
+            templateUrl: 'app/about/about.html',
+            controller: 'AboutController',
+            controllerAs: 'vm'
           }
         }
       });

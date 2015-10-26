@@ -47,7 +47,7 @@ nav a {
 body {
     padding-top: 100px;
     min-height: 100%;
-    margin-bottom: 120px;
+    margin-bottom: 59px;
 }
 
 footer {
@@ -94,51 +94,53 @@ footer p {
 .header-basic{
   background-attachment: fixed;
   background-color: #2b323a;
-  /**background-image: url(https://4f103e355fd70dee701f-b33c860044c19cda3e23f2a03168f599.ssl.cf2.rackcdn.com/assets/img/map-bg.png);*/
   background-image: url(https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg);
   background-repeat: repeat;
   box-sizing: border-box;
   color: rgb(199, 204, 212);
   display: block;
   line-height: 15px;
-  margin-left: -70px;
   margin-top: -50px;
   padding-bottom: 30px;
   padding-top: 30px;
-  position: absolute;
   text-align: center;
   width: 100%;
 }
 
 .flex-container{
   background-attachment: fixed;
-  background-color: #F8F9F6;
+  background-color: #EFECE8;
   background-repeat: repeat;
   box-sizing: border-box;
   display: block;
-  margin-left: -70px;
-  margin-top: 80px;
-  padding-bottom: 30px;
-  padding-top: 30px;
-  position: absolute;
+  position: static;
   width: 100%;
-  /**min-height: 50%;*/
-  padding: 30px;
+  padding: 35px;
 }
 
-.flex-container-text{
+#introduction {
   line-height: 30px;
-  background-color: #F8F9F6;
-  width: 50%;
   color: #1E232A;
   font-size: 1.25em;
   text-align: left;
 }
 
-.ad-block{
 
+
+.ad-container{
+  background-image: url(http://img11.deviantart.net/bbe3/i/2008/266/4/e/texture_dark_5_by_fioletta_stock.jpg);
+  background-color: #1E232A;
+  padding: 35px;
+  width: 100%;
 }
 
+.ad-container-text{
+  line-height: 30px;
+  width: 100%;
+  color: #F8F9F6;
+  font-size: 1.25em;
+  text-align: left;
+}
 
 
 @media (max-width: $screen-sm-max) {
