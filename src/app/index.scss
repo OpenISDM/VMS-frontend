@@ -151,13 +151,18 @@ select {
     color: grey;
 }
 
-#profile-main {
-    padding-left: 20px;
-    height: auto;
+@media (min-width: $screen-lg-min) {
+    #profile-main {
+        padding-left: 20px;
+        height: auto;
+    }
 }
 
 #profile-participate > div > div {
-    padding: 0 50px;
+    @media screen and (min-width: $screen-lg-min) {
+        padding: 0 50px;
+    }
+
     margin-bottom: 10px;
 
     div > span {
@@ -175,7 +180,14 @@ select {
 }
 
 #profile-self-introduction {
-    padding: 20px 40px;
+    
+    @media screen and (min-width: $screen-md-max) {
+        padding: 20px 0px;
+    }
+
+    @media screen and (max-width: $screen-sm-max) {
+        padding: 20px 0px;
+    }
 }
 
 #profile-avatar {

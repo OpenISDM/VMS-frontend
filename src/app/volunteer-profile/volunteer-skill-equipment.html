@@ -1,34 +1,37 @@
 <div class="row">
-    <div class="col-md-6 row">
-        <div class="col-md-12 profile-header">
-            <h3 class="glyphicon glyphicon-certificate" aria-hidden="true"> 技能</h3>
-        </div>
-        <div class="profile-content-list">
-            <div id="profile-skills" class="profile-content-item">
-                <span class="col-sm-12">
-                    <span ng-repeat="skill in vm.profile.skills">
-                        {{skill.name}}&nbsp;
+    <div class="col-md-6 col-sm-6">
+        <div class="row">
+            <div class="col-md-12 profile-header">
+                <h3 class="glyphicon glyphicon-certificate" aria-hidden="true"> 技能</h3>
+            </div>
+            <div class="profile-content-list">
+                <div id="profile-skills" class="profile-content-item">
+                    <span class="col-sm-12">
+                        <span ng-repeat="skill in vm.profile.skills">
+                            {{skill.name}}&nbsp;
+                        </span>
                     </span>
-                </span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 row">
-        <div class="col-md-12 profile-header">
-            <h3 class="glyphicon glyphicon-wrench" aria-hidden="true"> 器材/設備</h3>
-        </div>
-        <div class="profile-content-list">
-            <div id="profile-equipment" class="profile-content-item">
-                <span class="col-sm-12">
-                    <span ng-repeat="equipment in vm.profile.equipment">
-                        {{equipment.name}}&nbsp;
+    <div class="col-md-6 col-sm-6">
+        <div class="row">
+            <div class="col-md-12 profile-header">
+                <h3 class="glyphicon glyphicon-wrench" aria-hidden="true"> 器材/設備</h3>
+            </div>
+            <div class="profile-content-list">
+                <div id="profile-equipment" class="profile-content-item">
+                    <span class="col-sm-12">
+                        <span ng-repeat="equipment in vm.profile.equipment">
+                            {{equipment.name}}&nbsp;
+                        </span>
                     </span>
-                </span>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <!--<div class="row">
     <div class="col-md-6">
         <div class="col-md-12">
