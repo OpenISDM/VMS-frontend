@@ -88,6 +88,28 @@
                 data: {
                     needAuth: true
                 }
+            })
+            .state('emailVerification', {
+                parent: 'site',
+                url: '/email_verification?email&verification_token',
+                params: {
+                    email: {
+                        value: ""
+                    },
+                    verification_token: {
+                        value: ""
+                    }
+                },
+                data: {
+                    needAuth: true
+                },
+                views: {
+                    'mainContent@': {
+                        templateUrl: 'app/emailVerification/emailVerification.html',
+                        controller: 'EmailVerificationController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');

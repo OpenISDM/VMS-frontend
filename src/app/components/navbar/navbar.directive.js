@@ -39,6 +39,7 @@
         }, function(response) {
           $log.debug("logout failure");
           authPrinciple.authenticate(null);
+          $state.go('login');
         })
       }
     }

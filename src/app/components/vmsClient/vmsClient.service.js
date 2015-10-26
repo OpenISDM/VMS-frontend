@@ -10,7 +10,8 @@
         var service = {
             register: register,
             login: login,
-            logout: logout
+            logout: logout,
+            emailVerification: emailVerification
         };
 
         return service;
@@ -37,6 +38,16 @@
             }, function(response) {
                 failureCallback(response);
             });
+        }
+
+        function emailVerification(email, verification_token, successCallback, failureCallback) {
+            Restangular.all('email_verification/' + email + '/' + verification_token)
+                .getList()
+                .then(function(response) {
+                    successCallback(response);
+                }, function(response) {
+                    failureCallback(response);
+                });
         }
     }
 })();
