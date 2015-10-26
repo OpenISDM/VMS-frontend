@@ -126,6 +126,12 @@ footer p {
   padding-bottom: 10px;
 }
 
+.photo{
+  border: 5px solid #fff;
+  box-shadow: 5px 5px 10px 0 rgba(0,0,0,.1);
+  transform: rotate(-3deg);
+}
+
 #introduction {
   line-height: 30px;
   color: #1E232A;
