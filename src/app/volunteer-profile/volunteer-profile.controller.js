@@ -7,7 +7,7 @@
 
     /** @ngInject */
 
-    function ProfileController($uibModal) {
+    function ProfileController($uibModal, vmsClient, $log) {
 
         var vm = this;
 
@@ -19,7 +19,21 @@
             });
         }
 
-        vm.profile = {
+        angular.element(document).ready(getProfile());
+
+        function getProfile() {
+            vmsClient.getProfile(function(response) {
+                $log.debug("success");
+                $log.debug(response);
+
+                vm.profile = response;
+            }, function(response) {
+                $log.debug('error');
+                $log.debug(response);
+            })
+        }
+
+        /**vm.profile = {
             projects: {
                 "href": "https://vms.app/api/users/me/projects"
             },
@@ -88,28 +102,8 @@
                 "id": 43
             }]
 
-        };
+        };**/
 
-        vm.projects = [{
-            "Id": 1,
-            "ProjectName": "Flood surveillance",
-            "Manager": "Water Resources Agency",
-        }, {
-            "Id": 2,
-            "ProjectName": "Earthquake Hazards",
-            "Manager": "IES,Academia Sinica",
-        }, {
-            "Id": 3,
-            "ProjectName": "Disaster-prone area monitor",
-            "Manager": "NCKU",
-        }];
-
-        vm.invites = [{
-            "Id": 1,
-            "ProjectName": "Mudslide surveillance",
-            "Manager": "Soil and Water Conservation Bureau",
-            "choose": ["Accept", "Cancel", "Hold"]
-        }]
 
 
 

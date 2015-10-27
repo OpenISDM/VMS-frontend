@@ -11,7 +11,8 @@
             register: register,
             login: login,
             logout: logout,
-            emailVerification: emailVerification
+            emailVerification: emailVerification,
+            getProfile: getProfile
         };
 
         return service;
@@ -43,6 +44,16 @@
         function emailVerification(email, verification_token, successCallback, failureCallback) {
             Restangular.all('email_verification/' + email + '/' + verification_token)
                 .getList()
+                .then(function(response) {
+                    successCallback(response);
+                }, function(response) {
+                    failureCallback(response);
+                });
+        }
+
+        function getProfile(successCallback, failureCallback) {
+            Restangular.one('users/me')
+                .get()
                 .then(function(response) {
                     successCallback(response);
                 }, function(response) {

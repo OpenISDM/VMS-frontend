@@ -42,11 +42,13 @@
 
             $log.debug("refreshToken = " + refreshToken);
 
-            if (angular.isDefined(refreshToken)) {
+            if (angular.isDefined(refreshToken) && refreshToken != null) {
                 // Set the refreshToken into local storage
                 $log.debug("=== Refresh token ===");
                 $log.debug("refreshToken = " +refreshToken);
-                //jwtLocalStorage.set();
+                var jwtToken = refreshToken.substring(7);
+                $log.debug("substring token = " + jwtToken);
+                jwtLocalStorage.set(jwtToken);
             }
 
             return data;

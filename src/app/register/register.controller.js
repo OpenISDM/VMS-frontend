@@ -6,8 +6,10 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, jwtLocalStorage, $scope) {
+    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, jwtLocalStorage, $scope, cities) {
         var vm = this;
+        vm.cities = cities;
+
         $log.log('RegisterController');
 
         vm.showAvatar = defaultAvatarPath;
@@ -27,12 +29,13 @@
         }
 
         vm.register = function() {
-            $log.debug('register');
+            $log.debug('=== register ===');
+            
             $log.debug(vm.volunteer);
 
-            if (vm.volunteer.avatar != defaultAvatarPath) {
+            if (vm.showAvatar != defaultAvatarPath) {
                 vm.volunteer.avatar = vm.showAvatar;
-            }
+            } 
             
             vmsClient.register(vm.volunteer, function(response) {
                 $log.debug('success');
@@ -43,7 +46,7 @@
                 $state.go('registerSuccess', {last_name: vm.volunteer.last_name, email: vm.volunteer.email});
             }, function(response) {
                 $log.debug('error');
-                //$log.debug(response);
+                $log.debug(response);
 
                 if (response.status == 422) {
                     $log.error(response.data);
