@@ -11,7 +11,7 @@
             .state('site', {
                 abstract: true,
                 resolve: {
-                    authorize: ['authorization', '$log', 
+                    authorize: ['authorization', '$log',
                         function(authorization, $log) {
                             $log.debug('== resolve, authorize ===');
                             return authorization.authorize();
@@ -84,7 +84,6 @@
             .state('profile', {
                 parent: 'site',
                 url: '/profile',
-                templateUrl: 'app/profile/profile.index.html',
                 data: {
                     needAuth: true
                 },
@@ -114,6 +113,20 @@
                     'mainContent@': {
                         templateUrl: 'app/emailVerification/emailVerification.html',
                         controller: 'EmailVerificationController',
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('introduction', {
+                parent: 'site',
+                url: '/',
+                data: {
+                    needAuth: false
+                },
+                views: {
+                    'introductionContent@': {
+                        templateUrl: 'app/about/about.html',
+                        controller: 'AboutController',
                         controllerAs: 'vm'
                     }
                 }
