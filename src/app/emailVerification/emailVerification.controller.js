@@ -6,7 +6,7 @@
         .controller('EmailVerificationController', EmailVerificationController);
 
     /** @ngInject */
-    function EmailVerificationController($log, $location, vmsClient, authPrinciple, $state, $rootScope) {
+    function EmailVerificationController($log, $location, vmsClient, authPrinciple, $state, $rootScope, $timeout) {
         var vm = this;
         vm.verification = true;
         vm.verificationSuccess = false;
@@ -29,7 +29,7 @@
             $log.debug("vm.verificationStatus " + vm.verificationStatus);
         }
 
-        function verify () {
+        function verify() {
             $log.debug("EmailVerificationController verify()");
 
             $log.debug("email = " + vm.volunteer.email);
@@ -39,10 +39,19 @@
                 $log.debug('emailVerification success');
                 $log.debug(response);
 
-                
+                vm.verification = false;
+                vm.verificationSuccess = true;
+                vm.verificationStatus = vm.verification || vm.verificationSuccess;
+
+                $timeout(function() {
+                    $state.go('profile')
+                }, 5000);
             }, function(response) {
                 $log.debug('emailVerification error');
                 $log.debug(response);
+
+                vm.verification = false;
+                vm.verificationStatus = vm.verification || vm.verificationSuccess;
             });
         }
     }

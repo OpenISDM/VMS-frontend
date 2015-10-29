@@ -1,6 +1,7 @@
 <div id="main-content" class="col-md-8 col-md-offset-2">
   <h1>登入</h1>
   <hr class="hr">
+  <div class="alert alert-danger" role="alter" ng-show="vm.loginErrorMsg">{{vm.loginErrorMsg}}</div>
   <form class="form-horizontal">
     <div class="form-group">
       <label for="username" class="col-sm-2 control-label">帳號</label>

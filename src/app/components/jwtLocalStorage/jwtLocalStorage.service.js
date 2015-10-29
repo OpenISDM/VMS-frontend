@@ -33,7 +33,6 @@
         function tokenKeyExists() {
             var lsKeys = localStorageService.keys();
 
-            $log.debug("=== lsKeys ===");
             $log.debug(lsKeys);
 
             if (lsKeys.indexOf(tokenKey) != -1) {

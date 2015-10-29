@@ -6,7 +6,7 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, jwtLocalStorage, $scope, cities) {
+    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, authPrinciple, $scope, cities, localStorageService) {
         var vm = this;
         vm.cities = cities;
 
@@ -41,7 +41,8 @@
                 $log.debug('success');
                 $log.debug(response);
 
-                jwtLocalStorage.set(response.auth_access_token);
+                localStorageService.set('username', vm.volunteer.username);
+                authPrinciple.authenticate(response.data.auth_access_token);
 
                 $state.go('registerSuccess', {last_name: vm.volunteer.last_name, email: vm.volunteer.email});
             }, function(response) {
@@ -58,14 +59,6 @@
         };
 
         vm.selectAvatar = function(event, fileReader, file, fileList, fileObjects, object) {
-            $log.debug('selectAvatar');
-            $log.debug('=== object ===');
-            $log.debug(object);
-            $log.debug('=== file ===');
-            $log.debug(file);
-            $log.debug('=== fileObjects ===');
-            $log.debug(fileObjects);
-
             var base64Image = "data:" + object.filetype + ';base64,' + object.base64
             vm.showAvatar = base64Image;
         };

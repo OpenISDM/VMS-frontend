@@ -6,37 +6,42 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController($log, $location, vmsClient, authPrinciple, $state, $rootScope) {
+    function LoginController($log, $location, vmsClient, authPrinciple, $state, $rootScope, localStorageService) {
         var vm = this;
 
         vm.login = function() {
-            $log.debug("=== $rootScope ===");
-            $log.debug($rootScope.toState);
-            $log.debug($rootScope.toStateParams);
-            $log.debug("======");
-            
             vmsClient.login(vm.credentials, function(response) {
                 $log.debug('login success');
                 $log.debug(response);
 
-                var token = response.auth_access_token;
+                vm.loginErrorMsg = undefined;
+                var token = response.data.auth_access_token;
 
                 $log.debug('token = ' + token);
-                
+
+                localStorageService.set('username', vm.credentials.username);
                 authPrinciple.authenticate(token);
 
                 if (angular.isDefined($rootScope.toState)) {
-                    if($rootScope.toState.name == 'login') {
-                        $state.go('profile');
+                    if ($rootScope.toState.name == 'login') {
+                        if (angular.isDefined($rootScope.returnToState)) {
+                            if ($rootScope.returnToState.name != 'login') {
+                                $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
+                            }
+                        }
                     } else {
-                        $log.debug("=== redirect ===");
-                        // redirect page
-                        $state.go($rootScope.toState.name);
+                        $state.go($rootScope.toState.name, $rootScope.returnToStateParams);
                     }
                 }
+
+                $state.go('profile');
             }, function(response) {
                 $log.debug('login error');
                 $log.debug(response);
+
+                if (response.status === 401) {
+                    vm.loginErrorMsg = "帳號或密碼錯誤";
+                }
             });
         }
     }
