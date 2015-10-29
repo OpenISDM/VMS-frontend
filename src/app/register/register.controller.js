@@ -6,8 +6,10 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, jwtLocalStorage, $scope) {
+    function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, authPrinciple, $scope, cities, localStorageService) {
         var vm = this;
+        vm.cities = cities;
+
         $log.log('RegisterController');
 
         vm.showAvatar = defaultAvatarPath;
@@ -27,23 +29,25 @@
         }
 
         vm.register = function() {
-            $log.debug('register');
+            $log.debug('=== register ===');
+            
             $log.debug(vm.volunteer);
 
-            if (vm.volunteer.avatar != defaultAvatarPath) {
+            if (vm.showAvatar != defaultAvatarPath) {
                 vm.volunteer.avatar = vm.showAvatar;
-            }
+            } 
             
             vmsClient.register(vm.volunteer, function(response) {
                 $log.debug('success');
                 $log.debug(response);
 
-                jwtLocalStorage.set(response.auth_access_token);
+                localStorageService.set('username', vm.volunteer.username);
+                authPrinciple.authenticate(response.data.auth_access_token);
 
                 $state.go('registerSuccess', {last_name: vm.volunteer.last_name, email: vm.volunteer.email});
             }, function(response) {
                 $log.debug('error');
-                //$log.debug(response);
+                $log.debug(response);
 
                 if (response.status == 422) {
                     $log.error(response.data);
@@ -55,14 +59,6 @@
         };
 
         vm.selectAvatar = function(event, fileReader, file, fileList, fileObjects, object) {
-            $log.debug('selectAvatar');
-            $log.debug('=== object ===');
-            $log.debug(object);
-            $log.debug('=== file ===');
-            $log.debug(file);
-            $log.debug('=== fileObjects ===');
-            $log.debug(fileObjects);
-
             var base64Image = "data:" + object.filetype + ';base64,' + object.base64
             vm.showAvatar = base64Image;
         };

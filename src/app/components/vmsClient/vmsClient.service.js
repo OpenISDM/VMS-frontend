@@ -11,7 +11,10 @@
             register: register,
             login: login,
             logout: logout,
-            emailVerification: emailVerification
+            emailVerification: emailVerification,
+            getProfile: getProfile,
+            refreshToken: refreshToken,
+            deleteAccount: deleteAccount
         };
 
         return service;
@@ -41,13 +44,38 @@
         }
 
         function emailVerification(email, verification_token, successCallback, failureCallback) {
-            Restangular.all('email_verification/' + email + '/' + verification_token)
-                .getList()
+            Restangular.one('email_verification/' + email + '/' + verification_token)
+                .get()
                 .then(function(response) {
                     successCallback(response);
                 }, function(response) {
                     failureCallback(response);
                 });
+        }
+
+        function getProfile(successCallback, failureCallback) {
+            Restangular.one('users/me')
+                .get()
+                .then(function(response) {
+                    successCallback(response);
+                }, function(response) {
+                    failureCallback(response);
+                });
+        }
+
+        function refreshToken(successCallback, failureCallback) {
+            Restangular.all('auth/refresh_token').post()
+                .then(function(response) {
+                    successCallback(response);
+                }, function(response) {
+                    failureCallback(response);
+                });
+        }
+
+        function deleteAccount(credentials, successCallback, failureCallback) {
+            Restangular.all('users/me/delete')
+                .post(credentials)
+                .then(successCallback, failureCallback);
         }
     }
 })();

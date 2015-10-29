@@ -12,7 +12,7 @@ $brand-primary:         $primary-color;
 $body-bg:               $grey-color !default;
 $input-border-focus:             #5AA9D9 !default;
 $navbar-default-bg:                $primary-color !default;
-$top-line-color:        #240303;
+$top-line-color:        $primary-color;
 $link-color:            $primary-color !default;
 $navbar-default-link-hover-bg:    darken($primary-color, 6.5%);
 

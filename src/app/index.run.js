@@ -6,7 +6,13 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($log, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter) {
+    function runBlock($log, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter, $http) {
+        $rootScope.$on('event:refreshToken', function(responseConfig, deferred, responseHandler) {
+            authPrinciple.refreshToken(responseConfig, deferred, responseHandler);
+        });
+
+        Restangular.setFullResponse(true);
+
         // Set a request interceptor
         Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
             $log.log('== what ==');
@@ -29,35 +35,56 @@
             }
         });
 
-        // Set a response interceptor
-        Restangular.addResponseInterceptor(function(data, operation, what, url, response) {
-            $log.debug('== response ==');
+        Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+            if (response.status === 401) {
+                $log.debug("=== 401 ===");
 
-            // Get the refreshed JSON Web Token
-            $log.debug("=== response ===");
-            $log.debug(data);
-            $log.debug("Headers " + response.headers("X-Powered-By"));
+                if (authPrinciple.isAuthenticated()) {
+                    //$log.debug("fired event:refreshToken");
+                    //$rootScope.$broadcast('event:refreshToken', response.config, deferred, responseHandler);
+                    
+                    $log.debug("isAuthenticated");
 
-            var refreshToken = response.headers('Authorization');
+                    authPrinciple.refreshToken().then(function(jwtToken) {
+                        $log.debug("refreshToken success");
+                        $log.debug("jwtToken = " + jwtToken);
 
-            $log.debug("refreshToken = " + refreshToken);
+                        authPrinciple.authenticate(jwtToken);
 
-            if (angular.isDefined(refreshToken)) {
-                // Set the refreshToken into local storage
-                $log.debug("=== Refresh token ===");
-                $log.debug("refreshToken = " +refreshToken);
-                //jwtLocalStorage.set();
+                        $log.debug("=== response.config ===");
+                        $log.debug(response.config);
+
+                        response.config.headers.Authorization = "Bearer " + jwtToken;
+
+                        $http(response.config).then(responseHandler, deferred.reject);
+                    }, function(){
+                        $log.debug("refreshToken failure");
+
+                        authPrinciple.authenticate(null);
+                        $state.go('login');
+                    });
+
+                    return false;
+                } else {
+                    $log.debug("401 isAuthenticated NOT FOUND");
+
+                    return true;
+                }
             }
 
-            return data;
-        })
-
+            return true;
+        });
 
         // Listen state check start event
         var authorizationDeregistrationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
             $log.debug("=== $stateChangeStart ===");
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
+
+            $log.debug("toState = ");
+            $log.debug(toState);
+            $log.debug("toStateParams = "); 
+            $log.debug(toStateParams);
 
             if (authPrinciple.isIdentityResolved()) {
                 $log.debug("==== isIdentityResolved true ====");

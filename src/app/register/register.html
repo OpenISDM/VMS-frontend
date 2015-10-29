@@ -88,12 +88,7 @@
 				<div class="row">
 					<label for="city" class="control-label col-md-3 col-lg-3">縣市</label>
 					<div class="col-md-9 col-lg-9">
-						<select class="form-control" name="city" ng-model="vm.volunteer.city.id">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+						<select class="form-control" name="city" ng-model="vm.volunteer.city.id" ng-options="city.id as city.name_zh_tw for city in vm.cities">
 						</select>
 					</div>
 				</div>

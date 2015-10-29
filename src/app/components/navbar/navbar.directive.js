@@ -24,12 +24,8 @@
     function NavbarController(authPrinciple, vmsClient, $state, $log) {
       var vm = this;
       vm.authPrinciple = authPrinciple;
-      $log.debug("=== vm.isAuthenticated ===");
-      $log.debug(vm.authPrinciple.isAuthenticated());
 
       vm.logout = function () {
-        $log.debug("logout...");
-
         vmsClient.logout(function(response){
           $log.debug("logout success");
 
@@ -41,7 +37,7 @@
           authPrinciple.authenticate(null);
           $state.go('login');
         })
-      }
+      };
     }
   }
 

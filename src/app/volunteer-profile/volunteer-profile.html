@@ -55,6 +55,7 @@
     <h3 class="modal-title">注意！您的帳號即將被刪除</h3>
 </div>
 <div class="modal-body">
+    <div class="alert alert-danger" role="alter" ng-show="vm.deleteMsg">{{vm.deleteMsg}}</div>
     <div class="alert alert-warning" role="alert">{{vm.remind}}</div>
     <div class="form-group">
         <label for="password" class="control-label">請輸入您的密碼：</label>
