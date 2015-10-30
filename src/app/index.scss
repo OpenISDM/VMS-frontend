@@ -68,6 +68,10 @@ hr.color {
   border-top: 1px solid darken($grey-color, 6.5%);
 }
 
+#navbar-profile-menu > li > a {
+  color: #000000 !important;
+}
+
 #main-content {
     background-color: #FFFFFF;
     min-height: 80%;

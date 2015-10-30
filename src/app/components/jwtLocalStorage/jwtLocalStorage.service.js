@@ -8,6 +8,7 @@
     /** @ngInject */
     function jwtLocalStorage($log, localStorageService) {
         var tokenKey = 'jwt_token';
+        var lastNameKey = 'lastName';
         var service = {
             set: set,
             get: get,
@@ -28,6 +29,15 @@
 
         function remove() {
             return localStorageService.remove(tokenKey);
+        }
+
+        function setLastName(lastName) {
+            return localStorageService.set(lastNameKey, lastName);
+        }
+
+        function getLastName() {
+            $log.debug("getLastName");
+            return localStorageService.get(lastNameKey);
         }
 
         function tokenKeyExists() {
