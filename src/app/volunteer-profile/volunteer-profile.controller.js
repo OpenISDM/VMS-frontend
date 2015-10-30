@@ -7,7 +7,7 @@
 
     /** @ngInject */
 
-    function ProfileController($uibModal, vmsClient, $log) {
+    function ProfileController($uibModal, vmsClient, cities, $log) {
 
         var vm = this;
 
@@ -31,6 +31,18 @@
                 $log.debug(response.data);
 
                 vm.profile = response.data;
+
+                cities.forEach(function(city) {
+                    $log.debug("== city ==");
+
+                    if (city.id == vm.profile.city.id) {
+                        $log.debug("found city");
+                        $log.debug("=== city name ===");
+                        $log.debug(city.name_zh_tw);
+                        
+                        vm.profile.city.name_zh_tw = city.name_zh_tw;
+                    }
+                });
             }, function(response) {
                 $log.debug('error');
                 $log.debug(response);

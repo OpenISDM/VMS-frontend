@@ -27,14 +27,17 @@
                         if (angular.isDefined($rootScope.returnToState)) {
                             if ($rootScope.returnToState.name != 'login') {
                                 $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
+                            } else {
+                                $state.go('profile');
                             }
+                        } else {
+                            $state.go('profile');
                         }
                     } else {
                         $state.go($rootScope.toState.name, $rootScope.returnToStateParams);
                     }
                 }
 
-                $state.go('profile');
             }, function(response) {
                 $log.debug('login error');
                 $log.debug(response);

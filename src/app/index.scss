@@ -79,7 +79,15 @@ hr.color {
 
 #avatar-input {
   margin-top: 10px;
-  margin-left: 30px;
+
+  @media screen and (min-width: $screen-md-min) {
+     margin-left: 30px;
+  }
+
+  @media screen and (max-width: $screen-xs-max) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .top-line {
@@ -242,6 +250,13 @@ select {
     }
 }
 
+@media screen and (max-width: $screen-xs-max) {
+  #profile-main {
+    margin-top: 15px;
+    background-color: #ffffff;
+  }
+}
+
 #profile-participate > div > div {
     @media screen and (min-width: $screen-lg-min) {
         padding: 0 50px;
@@ -258,9 +273,16 @@ select {
     margin-bottom: 15px;
 }
 
-#profle-introduction {
+#profile-introduction {
     background: white;
-    padding: 30px 20px;
+
+    @media screen and (min-width: $screen-md-min) {
+        padding: 30px 20px;
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+      padding-bottom: 10px;
+    }
 }
 
 #profile-self-introduction {
@@ -275,7 +297,13 @@ select {
 }
 
 #profile-avatar {
-    padding: 40px;
+    @media screen and (min-width: $screen-sm-min) {
+      padding: 40px;
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+      padding: 10px;
+    }
 }
 
 #profile-container {
