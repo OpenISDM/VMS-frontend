@@ -3,14 +3,13 @@
 </div>
 <div id="main-content" class="col-md-8 col-md-offset-2">
   <div class="email-verification" ng-show="vm.verification">
-  	請稍候，目前正在進行驗證...
+  	<p class="lead">請稍候，目前正在進行驗證...</p>
   </div>
   <div class="email-verification-success" ng-show="vm.verificationSuccess">
-  	{{vm.volunteer.email}} 電子信箱已經通過驗證
+  	<p class="lead">{{vm.volunteer.email}} 電子信箱已經通過驗證</p>
   </div>
   <div class="email-verification-success" ng-hide="vm.verificationStatus">
-  	{{vm.volunteer.email}} 電子信箱無法驗證
-  	<br>
-  	<button class="btn btn-primary btn-lg">重新驗證</button>
+  	<p class="lead">{{vm.volunteer.email}} 電子信箱無法驗證</p>
+  	<!--<button class="btn btn-primary btn-lg">重新驗證</button>-->
   </div>
 </div>
