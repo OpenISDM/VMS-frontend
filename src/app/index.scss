@@ -54,8 +54,8 @@ footer {
   color: darken($grey-color, 30%);
 }
 
-footer p {
-    margin: 20px 0;
+footer > .container > .row {
+  margin-bottom: 20px;
 }
 
 hr.color {

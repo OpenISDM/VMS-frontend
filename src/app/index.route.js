@@ -130,6 +130,18 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            .state('copyright', {
+                parent: 'site',
+                url: '/copyright',
+                data: {
+                    needAuth: false
+                },
+                views: {
+                    'mainContent@': {
+                        templateUrl: 'app/copyrightPage/copyright.html'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
