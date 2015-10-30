@@ -7,7 +7,7 @@
 
     /** @ngInject */
 
-    function ProfileController($uibModal, vmsClient, cities, $log) {
+    function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath) {
 
         var vm = this;
 
@@ -43,6 +43,11 @@
                         vm.profile.city.name_zh_tw = city.name_zh_tw;
                     }
                 });
+
+                if (vm.profile.avatar_url == "http://vms-openisdm.s3-website-ap-northeast-1.amazonaws.com/upload/avatars/") {
+                    vm.profile.avatar_url = defaultAvatarPath;
+                }
+
             }, function(response) {
                 $log.debug('error');
                 $log.debug(response);
