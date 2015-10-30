@@ -16,7 +16,7 @@
             password: '密碼',
             email: '電子郵件'
         })
-        .constant('defaultAvatarPath', '/assets/images/profile-default-avatar.png')
+        .constant('defaultAvatarPath', './assets/images/profile-default-avatar.png')
         .constant('cities', [{
                 id: 2,
                 name_zh_tw: '臺北市'
