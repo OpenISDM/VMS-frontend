@@ -14,7 +14,7 @@ $ npm install -g yo gulp bower
 
 ```
 $ cd vms-frontend
-$ bower install
+$ bower install && npm install
 ```
 
 ## Build command
