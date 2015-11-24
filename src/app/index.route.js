@@ -142,6 +142,16 @@
                         templateUrl: 'app/copyrightPage/copyright.html'
                     }
                 }
+            })
+            .state('projects', {
+                url: '/projects',
+                views: {
+                    'mainContent@': {
+                        templateUrl: 'app/volunteer-project/project-details.html',
+                        controller: 'testController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
