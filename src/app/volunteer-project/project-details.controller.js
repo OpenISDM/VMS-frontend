@@ -3,10 +3,10 @@
 
     angular
         .module('vmsFrontend')
-        .controller('testController', testController);
+        .controller('projectController', projectController);
 
 
-    function testController() {
+    function projectController() {
         var vm = this;
         vm.projects = "Earthquake Hazards";
         vm.volunteers = "43";
