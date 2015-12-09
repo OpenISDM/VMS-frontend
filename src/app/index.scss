@@ -5,16 +5,15 @@
 
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-
-$primary-color:         #E74C40;
-$grey-color:            #EDEDEE;
-$brand-primary:         $primary-color;
-$body-bg:               $grey-color !default;
-$input-border-focus:             #5AA9D9 !default;
-$navbar-default-bg:                $primary-color !default;
-$top-line-color:        $primary-color;
-$link-color:            $primary-color !default;
-$navbar-default-link-hover-bg:    darken($primary-color, 6.5%);
+$primary-color: #E74C40;
+$grey-color: #EDEDEE;
+$brand-primary: $primary-color;
+$body-bg: $grey-color !default;
+$input-border-focus: #5AA9D9 !default;
+$navbar-default-bg: $primary-color !default;
+$top-line-color: $primary-color;
+$link-color: $primary-color !default;
+$navbar-default-link-hover-bg: darken($primary-color, 6.5%);
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -29,7 +28,6 @@ $navbar-default-link-hover-bg:    darken($primary-color, 6.5%);
     color: #000;
     padding: 0.2em 0;
 }
-
 
 html {
     position: relative;
@@ -47,23 +45,23 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  color: darken($grey-color, 30%);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    color: darken($grey-color, 30%);
 }
 
 footer > .container > .row {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 hr.color {
-  border-top: 1px solid darken($grey-color, 6.5%);
+    border-top: 1px solid darken($grey-color, 6.5%);
 }
 
 #navbar-profile-menu > li > a {
-  color: #000000 !important;
+    color: #000000 !important;
 }
 
 #main-content {
@@ -73,27 +71,25 @@ hr.color {
 }
 
 #avatar-image {
-  height: 180px;
-  width: 180px;
+    height: 180px;
+    width: 180px;
 }
 
 #avatar-input {
-  margin-top: 10px;
-
-  @media screen and (min-width: $screen-md-min) {
-     margin-left: 30px;
-  }
-
-  @media screen and (max-width: $screen-xs-max) {
-    margin-left: auto;
-    margin-right: auto;
-  }
+    margin-top: 10px;
+    @media screen and (min-width: $screen-md-min) {
+        margin-left: 30px;
+    }
+    @media screen and (max-width: $screen-xs-max) {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .top-line {
-  border-top-style: solid;
-  border-top-width: 5px;
-  border-top-color: $top-line-color;
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-top-color: $top-line-color;
 }
 
 .profile-section {
@@ -109,76 +105,75 @@ select {
     width: 100% !important;
 }
 
-.header-basic{
-  background-attachment: fixed;
-  background-color: #2b323a;
-  background-image: url(https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg);
-  background-repeat: repeat;
-  box-sizing: border-box;
-  color: #C7CCD4;
-  display: block;
-  line-height: 15px;
-  margin-top: -50px;
-  padding-bottom: 30px;
-  padding-top: 30px;
-  text-align: center;
-  width: 100%;
+.header-basic {
+    background-attachment: fixed;
+    background-color: #2b323a;
+    background-image: url(https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg);
+    background-repeat: repeat;
+    box-sizing: border-box;
+    color: #C7CCD4;
+    display: block;
+    line-height: 15px;
+    margin-top: -50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: center;
+    width: 100%;
 }
 
-.flex-container{
-  background-attachment: fixed;
-  background-color: #EFECE8;
-  background-repeat: repeat;
-  box-sizing: border-box;
-  display: block;
-  position: static;
-  width: 100%;
-  padding: 35px ;
+.flex-container {
+    background-attachment: fixed;
+    background-color: #EFECE8;
+    background-repeat: repeat;
+    box-sizing: border-box;
+    display: block;
+    position: static;
+    width: 100%;
+    padding: 35px;
 }
 
-.flex-container-image{
-  background-color: #EFECE8;
-  padding-top: 100px;
-  padding-left: 35px;
-  margin-left: -15px;
-  padding-bottom: 10px;
+.flex-container-image {
+    background-color: #EFECE8;
+    padding-top: 100px;
+    padding-left: 35px;
+    margin-left: -15px;
+    padding-bottom: 10px;
 }
 
-.photo{
-  border: 5px solid #fff;
-  box-shadow: 5px 5px 10px 0 rgba(0,0,0,.1);
-  transform: rotate(-3deg);
+.photo {
+    border: 5px solid #fff;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .1);
+    transform: rotate(-3deg);
 }
 
 #introduction {
-  line-height: 30px;
-  color: #1E232A;
-  font-size: 1.25em;
-  text-align: left;
+    line-height: 30px;
+    color: #1E232A;
+    font-size: 1.25em;
+    text-align: left;
 }
 
 #feature-text {
-  line-height: 30px;
-  color: #1E232A;
-  font-size: 1.25em;
-  text-align: left;
+    line-height: 30px;
+    color: #1E232A;
+    font-size: 1.25em;
+    text-align: left;
 }
 
-.ad-container{
-  background-image: url(http://img11.deviantart.net/bbe3/i/2008/266/4/e/texture_dark_5_by_fioletta_stock.jpg);
-  background-color: #1E232A;
-  padding: 35px;
-  width: 100%;
+.ad-container {
+    background-image: url(http://img11.deviantart.net/bbe3/i/2008/266/4/e/texture_dark_5_by_fioletta_stock.jpg);
+    background-color: #1E232A;
+    padding: 35px;
+    width: 100%;
 }
 
-.ad-container-text{
-  line-height: 30px;
-  width: 100%;
-  color: #F8F9F6;
-  font-size: 1.25em;
-  text-align: left;
+.ad-container-text {
+    line-height: 30px;
+    width: 100%;
+    color: #F8F9F6;
+    font-size: 1.25em;
+    text-align: left;
 }
-
 
 @media (max-width: $screen-sm-max) {
     form label {
@@ -217,7 +212,8 @@ select {
     color: grey;
 }
 
-.profile-content span, #profile-participate > div > span {
+.profile-content span,
+#profile-participate > div > span {
     font-weight: bold;
 }
 
@@ -251,19 +247,17 @@ select {
 }
 
 @media screen and (max-width: $screen-xs-max) {
-  #profile-main {
-    margin-top: 15px;
-    background-color: #ffffff;
-  }
+    #profile-main {
+        margin-top: 15px;
+        background-color: #ffffff;
+    }
 }
 
 #profile-participate > div > div {
     @media screen and (min-width: $screen-lg-min) {
         padding: 0 50px;
     }
-
     margin-bottom: 10px;
-
     div > span {
         font-weight: bold;
     }
@@ -275,22 +269,18 @@ select {
 
 #profile-introduction {
     background: white;
-
     @media screen and (min-width: $screen-md-min) {
         padding: 30px 20px;
     }
-
     @media screen and (max-width: $screen-xs-max) {
-      padding-bottom: 10px;
+        padding-bottom: 10px;
     }
 }
 
 #profile-self-introduction {
-    
     @media screen and (min-width: $screen-md-max) {
         padding: 20px 0px;
     }
-
     @media screen and (max-width: $screen-sm-max) {
         padding: 20px 0px;
     }
@@ -298,11 +288,10 @@ select {
 
 #profile-avatar {
     @media screen and (min-width: $screen-sm-min) {
-      padding: 40px;
+        padding: 40px;
     }
-
     @media screen and (max-width: $screen-xs-max) {
-      padding: 10px;
+        padding: 10px;
     }
 }
 
@@ -317,9 +306,62 @@ select {
 }
 
 #introduction-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
+.projects-head-rightbar {
+    padding-top: 10px;
+}
+
+.projects-font-color {
+    color: #E74C40;
+}
+
+.projects-projects-icon {
+    padding-right: 10px;
+}
+
+.projects-font-volunteers-count {
+    font-weight: bold;
+}
+
+.projects-font-volunteers {
+    color: grey;
+    font-weight: bold;
+}
+
+#project-content > div > div > div:nth-child(2) {
+    padding-top: 15px;
+}
+
+#project-content-description > div:nth-child(2) {
+    padding-left: 60px;
+    padding-top: 15px;
+}
+
+#project-content-description > div:nth-child(2) >button:nth-child(1) {
+    background-color: $primary-color;
+}
+
+#project-content-description > div:nth-child(2) >button:nth-child(2) {
+    background-color: yellow;
+}
+
+#project-content-profile > div > div:nth-child(1) > h5 {
+    color: grey;
+    font-weight: bold;
+}
+
+#project-content-profile > div > div:nth-child(2) > h5 {
+    color: black;
+    font-weight: bold;
+}
+
+#table-padding{
+  padding-top:10px;
+}
+
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
