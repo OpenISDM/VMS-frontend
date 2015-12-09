@@ -144,10 +144,14 @@
                 }
             })
             .state('projects', {
+                parent: 'site',
                 url: '/projects',
+                data: {
+                    needAuth: true
+                },
                 views: {
                     'mainContent@': {
-                        templateUrl: 'app/volunteer-project/project-details.html',
+                        templateUrl: 'app/volunteerProject/projectDetails.html',
                         controller: 'projectController',
                         controllerAs: 'vm'
                     }
