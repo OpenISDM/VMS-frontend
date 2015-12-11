@@ -1,5 +1,7 @@
 # VMS Frontend
 
+[![Build Status](https://travis-ci.org/OpenISDM/VMS-frontend.svg?branch=develop)](https://travis-ci.org/OpenISDM/VMS-frontend)
+
 ## Installation
 
 ### Install `npm`, `bower`, `gulp` and `yo`
