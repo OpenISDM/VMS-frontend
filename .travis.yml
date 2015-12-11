@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - "5.2"
-  - "4.2"
-  - "4.1"
-before_script: 
-  - npm install -g gulp bower
-  - bower install
+- '5.2'
+- '4.2'
+- '4.1'
+before_script:
+- npm install -g gulp bower
+- bower install
 script: gulp test
+notifications:
+  slack:
+    secure: Veq19F+K/PQwyEFmiV3NMUYllcbag4NmPBEIiaAKuJ0Y7yJwS5l2T40qGRNydCQatdT7yCbqNrhRm8J7beu9LX06sMqSsm8WPJdhwNgPCFGzR+lhY0X9MWIt9Y9eGyDLZIxbdBn2tq3Io7dr+FwFbaOOd9bgMsG6VrRQzLy/Z4vQUz9WWxGBb5HtVZjPV/xtFYxri9TfH3VOzX1UQK2xsyI1Iki05ocpddh95F78ufJfKHNjolLlP8J/xW+gX8bcSdK1+b9zPC83RtrIgoI+QW5GjDEbP1ugeJztjlgmcowu1IivVQIwljhnW3MHlataD7ULaUWAuEx7Gb9PePVwT0EAMzHiSVF6d80234XThGvpsvdnfkwnmCR6avhUUB6gqVZQO5ohdFXB2+INaaY/U4IBgR3AdDQ8Av7IMR1WLlchrvp8fsO74RmJjbJ5Sq8S8MQffE8TFp9nk5l7qTi/8EzYn79zBpggctGv955BFmoV4f+FeyrgvkB9Ed8PQv/HLinYgrKTUjeLb/VbA/Y/cBy2qVYUnz4RmmxU4W+FYdF38/UGXgVLr/V+MJXYbXS/lVUCZp7ZAto740yB2ovf9urA68ZAri4aVSdE/Q3hL2TXEw55lSWjuya5m0Xc6R/M8lRkg5eJDP4mZ6zFO5ZWnWhfEfaQdCGgWDEM0kF2v5Y=
