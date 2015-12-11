@@ -8,7 +8,8 @@
     /** @ngInject */
     function vmsErrorMessage($log, fieldName) {
         var service = {
-            getErrorMsg: getErrorMsg
+            getErrorMsg: getErrorMsg,
+            fieldMsg: fieldMsg
         };
 
         return service;
@@ -32,18 +33,9 @@
         }
 
         function fieldMsg(error) {
-            $log.log(error.fields);
-            $log.log('== fieldName ==');
-            $log.log(fieldName);
-
             var fields = error.fields;
-            var fieldArray = [];
 
-            fields.forEach(function(field) {
-                fieldArray.push(fieldName[field]);
-            });
-
-            return fieldArray.join(", ");
+            return fields.join(", ");
         }
     }
 })();
