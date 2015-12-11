@@ -25,4 +25,4 @@ $ bower install && npm install
 - `gulp` or `gulp build` are enable to build the project in `/dist` directory
 
 
-For more details, please see [https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md]()
+For more details, please see [https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
