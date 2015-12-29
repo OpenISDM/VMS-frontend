@@ -7,7 +7,7 @@
 
     /** @ngInject */
 
-    function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath) {
+    function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath, volunteerProfile) {
 
         var vm = this;
 
@@ -26,32 +26,14 @@
         angular.element(document).ready(getProfile());
 
         function getProfile() {
-            vmsClient.getProfile(function(response) {
-                $log.debug("success");
-                $log.debug(response.data);
-
-                vm.profile = response.data;
-
-                cities.forEach(function(city) {
-                    $log.debug("== city ==");
-
-                    if (city.id == vm.profile.city.id) {
-                        $log.debug("found city");
-                        $log.debug("=== city name ===");
-                        $log.debug(city.name_zh_tw);
-                        
-                        vm.profile.city.name_zh_tw = city.name_zh_tw;
-                    }
-                });
-
-                if (vm.profile.avatar_url == "http://vms-openisdm.s3-website-ap-northeast-1.amazonaws.com/upload/avatars/") {
-                    vm.profile.avatar_url = defaultAvatarPath;
-                }
-
-            }, function(response) {
-                $log.debug('error');
+            var doneCallbacks = function(profile) {
+                vm.profile = profile;
+            },
+            failCallbacks = function(response) {
                 $log.debug(response);
-            })
+            };
+
+            volunteerProfile.get().then(doneCallbacks, failCallbacks)
         }
     }
 

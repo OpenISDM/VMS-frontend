@@ -1,0 +1,123 @@
+<div class="row">
+	<h2>關於</h2>
+	<hr>
+	<div class="col-lg-12 col-md-12">
+		<div id="profile-avatar" class="pull-left">
+			<img ng-src={{vm.profile.avatar_url}} id="profile-avatar" width="200" class="img-responsive img-circle center-block">
+			<input id="avatar-input" type="file" ng-model="vm.profile.avatar_url" onloadend="vm.selectAvatar" base-sixty-four-input>
+		</div>
+	</div>
+</div>
+<form class="form-inline">
+	<div class="row profile-section">
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class=" row">
+				<label for="first-name" class="control-label col-md-4 col-lg-4">姓氏</label>
+				<div class="col-md-8 col-lg-8">
+					<input type="text" class="form-control" id="first-name" placeholder="姓氏" ng-model="vm.profile.first_name" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class=" row">
+				<label for="last-name" class="control-label col-md-4 col-lg-4">名字</label>
+				<div class="col-md-8 col-lg-8">
+					<input type="text" class="form-control" id="first-name" placeholder="名字" ng-model="vm.profile.last_name" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="username" class="control-label col-md-4 col-lg-4">帳號</label>
+				<div class="col-md-8 col-lg-8">
+					<input type="text" minlength="6" class="form-control" id="username" placeholder="帳號" ng-model="vm.profile.username" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="birth-year" class="control-label col-md-4 col-lg-4">出生年份</label>
+				<div class="col-md-8 col-lg-8">
+					<div class="input-group">
+						<input id="birth-year" type="text" class="form-control" uib-datepicker-popup="{{vm.datePicker.format}}" ng-model="vm.profile.birth_year" is-open="vm.datePicker.status.opened" datepicker-options="vm.datePicker.dateOptions" ng-required="true" close-text="Close" format-year />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="vm.openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="gender" class="control-label col-md-4 col-lg-4">性別</label>
+				<div class="col-md-8 col-lg-8">
+					<label class="radio-inline">
+						<input type="radio" name="gender" id="gender" value="female" ng-model="vm.profile.gender"> 女
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" id="gender" value="male" ng-model="vm.profile.gender"> 男
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="city" class="control-label col-md-4 col-lg-4">縣市</label>
+				<div class="col-md-8 col-lg-8">
+					<select class="form-control" name="city" ng-model="vm.profile.city.id" ng-options="city.id as city.name_zh_tw for city in vm.cities">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+			<div class="row">
+				<label for="address" class="control-label col-md-2 col-lg-2">地址</label>
+				<div class="col-md-10 col-lg-10">
+					<input name="address" type="text" class="form-control" id="address" placeholder="地址" ng-model="vm.profile.address">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row profile-section">
+		<h2>聯絡資訊</h2>
+		<hr>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="email" class="control-label col-md-4 col-lg-4">電子郵件</label>
+				<div class="col-md-8 col-lg-8">
+					<input type="email" name="email" type="text" class="form-control" id="email" placeholder="電子郵件" ng-model="vm.profile.email" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="phone-number" class="control-label col-md-4 col-lg-4">電話號碼</label>
+				<div class="col-md-8 col-lg-8">
+					<input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="電話號碼" ng-model="vm.profile.phone_number">
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="emergency-contact" class="control-label col-md-4 col-lg-4">緊急聯絡人</label>
+				<div class="col-md-8 col-lg-8">
+					<input name="emergency-contact" type="text" class="form-control" id="emergency-contact" placeholder="緊急聯絡人" ng-model="vm.profile.emergency_contact">
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="row">
+				<label for="emergency-contact-phone" class="control-label col-md-4 col-lg-4">緊急聯絡人電話</label>
+				<div class="col-md-8 col-lg-8">
+					<input name="emergency-contact-phone" type="text" class="form-control" id="emergency-contact-phone" placeholder="緊急聯絡人電話" ng-model="vm.profile.emergency_phone">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row profile-section">
+			<div class="col-md-2 col-md-offset-5">
+				<button class="btn btn-primary btn-lg" ng-click="vm.updateAboutAndContact()">送出</button>
+			</div>
+			<div class="col-md-5"></div>
+	</div>
+</form>
