@@ -96,7 +96,6 @@
                 }
             })
             .state('editProfile', {
-                abstract: true,
                 parent: 'site',
                 data: {
                     needAuth: true
