@@ -22,7 +22,8 @@
     "angular-jwt": "~0.0.9",
     "angular-base64-upload": "~0.1.13",
     "angular-loading-bar": "~0.8.0",
-    "angular-ui-router-anim-in-out": "master"
+    "angular-ui-router-anim-in-out": "master",
+    "lodash": "~3.10.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

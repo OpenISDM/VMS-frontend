@@ -132,6 +132,19 @@
                     }
                 }
             })
+            .state('editProfile.skillEquipment', {
+                url: '/profile/edit/skill_equipment',
+                data: {
+                    needAuth: true
+                },
+                views: {
+                    'profileContent@editProfile': {
+                        templateUrl: 'app/editVolunteerProfile/skillAndEquipment.html',
+                        controller: 'EditVolunteerProfileController',
+                        controllerAs: 'vm'
+                    }
+                }
+            })
             .state('emailVerification', {
                 parent: 'site',
                 url: '/email_verification?email&verification_token',
@@ -168,7 +181,7 @@
                     }
                 }
             })
-            .state('copyright', {
+            .state('copyrightPage', {
                 parent: 'site',
                 url: '/copyright',
                 data: {
