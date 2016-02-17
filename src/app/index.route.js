@@ -101,8 +101,11 @@
                     needAuth: true
                 },
                 views: {
+                    /**
+                    @TODO: blank page 
+                    */
                     'mainContent@': {
-                        templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html',
+                        templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
                     }
                 }
             })
