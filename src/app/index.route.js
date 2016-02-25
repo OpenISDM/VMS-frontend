@@ -101,8 +101,11 @@
                     needAuth: true
                 },
                 views: {
+                    /**
+                    @TODO: blank page 
+                    */
                     'mainContent@': {
-                        templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html',
+                        templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
                     }
                 }
             })
@@ -127,6 +130,19 @@
                 views: {
                     'profileContent@editProfile': {
                         templateUrl: 'app/editVolunteerProfile/experienceAndEducation.html',
+                        controller: 'EditVolunteerProfileController',
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('editProfile.skillEquipment', {
+                url: '/profile/edit/skill_equipment',
+                data: {
+                    needAuth: true
+                },
+                views: {
+                    'profileContent@editProfile': {
+                        templateUrl: 'app/editVolunteerProfile/skillAndEquipment.html',
                         controller: 'EditVolunteerProfileController',
                         controllerAs: 'vm'
                     }
@@ -168,7 +184,7 @@
                     }
                 }
             })
-            .state('copyright', {
+            .state('copyrightPage', {
                 parent: 'site',
                 url: '/copyright',
                 data: {
