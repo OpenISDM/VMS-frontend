@@ -1,108 +1,100 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('vmsFrontend')
-        .run(runBlock);
+  angular
+    .module('vmsFrontend')
+    .run(runBlock);
 
-    /** @ngInject */
-    function runBlock($log, jwtLocalStorage, Restangular, $rootScope, $state, $stateParams, authorization, authPrinciple, $urlRouter, $http) {
-        $rootScope.$on('event:refreshToken', function(responseConfig, deferred, responseHandler) {
-            authPrinciple.refreshToken(responseConfig, deferred, responseHandler);
-        });
+  /** @ngInject */
+  function runBlock($log, vmsLocalStorage, Restangular, $rootScope, $state, $stateParams, auth, authPrinciple, $urlRouter, $http) {
+    Restangular.setFullResponse(true);
 
-        Restangular.setFullResponse(true);
+    // Set a request interceptor
+    Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
+      var customHeaders = {};
+      customHeaders['X-VMS-API-Key'] = '581dba93a4dbafa42a682d36b015d8484622f8e3543623bec5a291f67f5ddff1';
 
-        // Set a request interceptor
-        Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
-            $log.log('== what ==');
-            $log.log(what);
+      if (angular.isDefined($state.current.data)) {
+        if ($state.current.data.needAuth) {
+          if (authPrinciple.identity()) {
+            $log.debug('token key exists');
 
-            var customHeaders = {};
-            customHeaders['X-VMS-API-Key'] = '581dba93a4dbafa42a682d36b015d8484622f8e3543623bec5a291f67f5ddff1';
+            customHeaders['Authorization'] = 'Bearer ' + vmsLocalStorage.getJwt();
+          } else {
+            $log.debug('token key is not found');
+          }
+        }
+      }
 
-            if (jwtLocalStorage.tokenKeyExists()) {
-                $log.log('token key exists');
+      return {
+        headers: customHeaders,
+        params: params,
+        element: element,
+        httpConfig: httpConfig
+      }
+    });
 
-                customHeaders['Authorization'] = 'Bearer ' + jwtLocalStorage.get();
-            }
+    Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+      if (response.status === 401) {
+        $log.debug("=== 401 ===");
 
-            return {
-                headers: customHeaders,
-                params: params,
-                element: element,
-                httpConfig: httpConfig
-            }
-        });
+        var successCallback = function(jwtToken) {
+          response.config.headers.Authorization = "Bearer " + jwtToken;
+          $http(response.config).then(responseHandler, deferred.reject);
+        };
+        var failureCallback = function() {
+          $state.go('login');
+        };
 
-        Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-            if (response.status === 401) {
-                $log.debug("=== 401 ===");
+        auth.refreshToken(successCallback, failureCallback);
 
-                if (authPrinciple.isAuthenticated()) {
-                    //$log.debug("fired event:refreshToken");
-                    //$rootScope.$broadcast('event:refreshToken', response.config, deferred, responseHandler);
-                    
-                    $log.debug("isAuthenticated");
+        return false;
+      }
 
-                    authPrinciple.refreshToken().then(function(jwtToken) {
-                        $log.debug("refreshToken success");
-                        $log.debug("jwtToken = " + jwtToken);
+      return true;
+    });
 
-                        authPrinciple.authenticate(jwtToken);
+    // Listen state check start event
+    $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+      $log.debug("=== $stateChangeStart ===");
+      $rootScope.toState = toState;
 
-                        $log.debug("=== response.config ===");
-                        $log.debug(response.config);
+      if (toState.data.needAuth) {
+        var successCallback = function() {
+          $log.debug('pass...');
+          $state.go(toState.name);
+        };
+        var failureCallback = function() {
+          event.preventDefault();
+          $state.go('login');
+        };
 
-                        response.config.headers.Authorization = "Bearer " + jwtToken;
+        auth.authorize().then(successCallback, failureCallback);
+      }
+    })
 
-                        $http(response.config).then(responseHandler, deferred.reject);
-                    }, function(){
-                        $log.debug("refreshToken failure");
+    var urlRouterSyncDeregisteratinoCallback = $rootScope.$on('$locationChange', function(event) {
+      event.preventDefault();
+      $urlRouter.sync();
+    });
 
-                        authPrinciple.authenticate(null);
-                        $state.go('login');
-                    });
+    // $rootScope.$on('$destroy', authorizationDeregistrationCallback);
+    $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
 
-                    return false;
-                } else {
-                    $log.debug("401 isAuthenticated NOT FOUND");
-
-                    return true;
-                }
-            }
-
-            return true;
-        });
-
-        // Listen state check start event
-        var authorizationDeregistrationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
-            $log.debug("=== $stateChangeStart ===");
-            $rootScope.toState = toState;
-            $rootScope.toStateParams = toStateParams;
-
-            $log.debug("toState = ");
-            $log.debug(toState);
-            $log.debug("toStateParams = "); 
-            $log.debug(toStateParams);
-
-            if (authPrinciple.isIdentityResolved()) {
-                $log.debug("==== isIdentityResolved true ====");
-
-                authorization.authorize();
-            }
-        })
-
-        var urlRouterSyncDeregisteratinoCallback = $rootScope.$on('$locationChange', function(evt) {
-            evt.preventDefault();
-
-            $urlRouter.sync();
-        });
-
-        $rootScope.$on('$destroy', authorizationDeregistrationCallback);
-        $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
-
-        $log.debug('runBlock end');
+    // Assign global functions
+    $rootScope.postAuth = function() {
+      $log.debug('isAuthenticated()');
+      $log.debug(auth.isAuthenticated());
+      $log.debug($rootScope.toState.name);
+      if (auth.isAuthenticated() && $rootScope.toState.name == 'login') {
+        $log.debug('go to login');
+        $state.go('profile');
+      } else if (auth.isAuthenticated()) {
+        $state.go($rootScope.toState.name);
+      }
     }
+
+    $log.debug('runBlock end');
+  }
 
 })();

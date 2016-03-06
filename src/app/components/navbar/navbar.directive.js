@@ -11,7 +11,7 @@
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
       scope: {
-          creationDate: '='
+        creationDate: '='
       },
       controller: NavbarController,
       controllerAs: 'vm',
@@ -21,20 +21,20 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(authPrinciple, vmsClient, $state, $log) {
+    function NavbarController(auth, vmsClient, $state, $log) {
       var vm = this;
-      vm.authPrinciple = authPrinciple;
+      vm.auth = auth;
 
-      vm.logout = function () {
-        vmsClient.logout(function(response){
+      vm.logout = function() {
+        vmsClient.logout(function(response) {
           $log.debug("logout success");
 
-          authPrinciple.authenticate(null);
+          auth.logout();
 
           $state.go('login');
         }, function(response) {
           $log.debug("logout failure");
-          authPrinciple.authenticate(null);
+          auth.logout();
           $state.go('login');
         })
       };

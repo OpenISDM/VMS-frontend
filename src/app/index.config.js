@@ -7,9 +7,9 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, RestangularProvider, localStorageServiceProvider, apiBaseUrl) {
+  function config($logProvider, toastrConfig, localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('vms');
-    RestangularProvider.setBaseUrl(apiBaseUrl);
+    //RestangularProvider.setBaseUrl(apiBaseUrl);
 
     // Enable log
     $logProvider.debugEnabled(true);
