@@ -6,10 +6,13 @@
     .factory('jwtInjector', jwtInjector);
 
   /** @ngInject */
-  function jwtInjector($state, vmsLocalStorage, authPrinciple, $log) {
+  function jwtInjector($injector, $log) {
     var service = {
 
       request: function(config) {
+        var $state = $injector.get('$state');
+        var authPrinciple = $injector.get('authPrinciple');
+        var vmsLocalStorage = $injector.get('vmsLocalStorage');
 
         // Check the data attribute exists
         if (angular.isDefined($state.current.data)) {

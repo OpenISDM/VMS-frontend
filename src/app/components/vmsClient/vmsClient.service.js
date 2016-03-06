@@ -6,7 +6,7 @@
     .factory('vmsClient', vmsClient);
 
   /** @ngInject */
-  function vmsClient($log, Restangular, $http, apiBaseUrl) {
+  function vmsClient($log, $http, apiBaseUrl) {
     var service = {
       register: register,
       login: login,
@@ -19,48 +19,69 @@
 
     return service;
 
-    function register(volunteer, successCallback, failureCallback) {
-      Restangular.all('register').post(volunteer).then(function(response) {
-        successCallback(response);
-      }, function(response) {
-        failureCallback(response);
-      });
-    }
+    function register(volunteer) {
+      // Restangular.all('register').post(volunteer).then(function(response) {
+      //   successCallback(response);
+      // }, function(response) {
+      //   failureCallback(response);
+      // });
 
-    function login(credentials, successCallback, failureCallback) {
-      $http({
+      return $http({
         method: 'POST',
-        url: 'http://vms.app/api/auth',
-        data: credentials
-      }).then(successCallback, failureCallback);
-    }
-
-    function logout(successCallback, failureCallback) {
-      Restangular.all('auth').remove().then(function(response) {
-        successCallback(response);
-      }, function(response) {
-        failureCallback(response);
+        url: apiBaseUrl + '/register',
+        data: volunteer
       });
     }
 
-    function emailVerification(email, verification_token, successCallback, failureCallback) {
-      Restangular.one('email_verification/' + email + '/' + verification_token)
-        .get()
-        .then(function(response) {
-          successCallback(response);
-        }, function(response) {
-          failureCallback(response);
-        });
+    function login(credentials) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/auth',
+        data: credentials
+      });
     }
 
-    function getProfile(successCallback, failureCallback) {
-      Restangular.one('users/me')
-        .get()
-        .then(function(response) {
-          successCallback(response);
-        }, function(response) {
-          failureCallback(response);
-        });
+    function logout() {
+      // Restangular.all('auth').remove().then(function(response) {
+      //   successCallback(response);
+      // }, function(response) {
+      //   failureCallback(response);
+      // });
+
+      return $http({
+        method: 'DELETE',
+        url: apiBaseUrl + '/auth'
+      });
+    }
+
+    function emailVerification(email, verification_token) {
+      // Restangular.one('email_verification/' + email + '/' + verification_token)
+      //   .get()
+      //   .then(function(response) {
+      //     successCallback(response);
+      //   }, function(response) {
+      //     failureCallback(response);
+      //   });
+
+      return $http({
+        'method': 'GET',
+        'url': apiBaseUrl + '/email_verification/' + email + '/verification_token'
+      });
+    }
+
+    function getProfile() {
+      // Restangular.one('users/me')
+      //   .get()
+      //   .then(function(response) {
+      //     successCallback(response);
+      //   }, function(response) {
+      //     failureCallback(response);
+      //   });
+
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/users/me'
+      });
     }
 
     function refreshToken() {
@@ -70,10 +91,19 @@
       });
     }
 
-    function deleteAccount(credentials, successCallback, failureCallback) {
-      Restangular.all('users/me/delete')
-        .post(credentials)
-        .then(successCallback, failureCallback);
+    function deleteAccount(credentials) {
+      // Restangular.all('users/me/delete')
+      //   .post(credentials)
+      //   .then(successCallback, failureCallback);
+
+      /**
+       * @TODO: change the POST action into DELETE (?)
+       */
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/me/delete',
+        data: 'credentials'
+      });
     }
   }
 })();

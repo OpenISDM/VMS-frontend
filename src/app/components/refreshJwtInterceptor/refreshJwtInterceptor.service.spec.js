@@ -8,6 +8,7 @@
       $state,
       response,
       refreshJwtInterceptor,
+      apiKey,
       apiBaseUrl = 'http://fake.vms.app/api';
 
     beforeEach(function() {
@@ -17,18 +18,19 @@
     describe('when the reponse status is 401', function() {
 
       // create a fake response
-      beforeEach(function() {
+      function createFakeResponse() {
         response = {
           status: 401,
           config: {
             method: 'GET',
             url: apiBaseUrl + '/my_endpoint',
             headers: {
-              Authorization: 'FakeKeRKEr'
+              'Authorization': 'FakeKeRKEr',
+              'X-VMS-API-Key': apiKey
             }
           }
         }
-      });
+      }
 
       describe('and the refreshing token is successful', function() {
 
@@ -59,15 +61,19 @@
         });
 
         // get dependencies
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$httpBackend_) {
+        beforeEach(inject(function(_refreshJwtInterceptor_, _$httpBackend_, _apiKey_) {
           refreshJwtInterceptor = _refreshJwtInterceptor_;
           $httpBackend = _$httpBackend_;
+          apiKey = _apiKey_
         }));
+
+        beforeEach(createFakeResponse());
 
         it('should request again with the refreshed JWT', function() {
           $httpBackend.expectGET(apiBaseUrl + '/my_endpoint', {
             'Authorization': 'Bearer fooOpenFoO',
-            'Accept': 'application/json, text/plain, */*'
+            'Accept': 'application/json, text/plain, */*',
+            'X-VMS-API-Key': 'QLolLOlFooFooFooFoo'
           }).respond({
             'message': 'fakeerrr'
           });
@@ -105,11 +111,15 @@
         });
 
         // get dependencies
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _$state_) {
+        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _$state_,
+          _apiKey_) {
           refreshJwtInterceptor = _refreshJwtInterceptor_;
           $q = _$q_;
           $state = _$state_;
+          apiKey = _apiKey_;
         }));
+
+        beforeEach(createFakeResponse());
 
         // create spies for $q
         beforeEach(function() {
