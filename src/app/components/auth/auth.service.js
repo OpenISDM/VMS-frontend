@@ -49,13 +49,10 @@
     }
 
     function authenticate(credentials) {
-      console.log('authenticate() ~');
-      //var deferred = $q.defer();
+      var deferred = $q.defer();
+
       var successCallback = function(response) {
         $log.debug('login success');
-        $log.debug(response);
-        console.log('successCallback ~');
-
 
         var token = response.data.auth_access_token;
 
@@ -67,28 +64,29 @@
           // broadcast an event, there is a registered listener,
           // it will handle the event
           $rootScope.$broadcast(BROADCAST_EVENTS_LIST.AUTHENTICATED_SUCCESS_EVENT);
-        //deferred.resolve();
+          deferred.resolve();
         }
       };
       var failureCallback = function(response) {
         $log.debug('login error');
-        console.log('failureCallback ~');
 
         if (response.status === 401) {
           authenticated = false;
           $rootScope.$broadcast(BROADCAST_EVENTS_LIST.AUTHENTICATED_FAILURE_EVENT);
-        // deferred.reject();
+          deferred.reject();
         }
       };
 
-      vmsClient.httpLogin(credentials, successCallback, failureCallback);
+      vmsClient.login(credentials)
+        .then(successCallback, failureCallback);
 
-    //return deferred.promise;
+      return deferred.promise;
     }
 
     function refreshToken() {
       var deferred = $q.defer();
       var successCallback = function(response) {
+        console.log('successCallback ~');
         var token = response.headers('Authorization');
 
         if (angular.isDefined(token) && token != null) {
@@ -97,14 +95,18 @@
           vmsLocalStorage.setJwt(jwtToken);
           deferred.resolve(jwtToken);
         } else {
-          outFailureCallback();
+          deferred.reject();
         }
       };
       var failureCallback = function(response) {
+        console.log('failureCallback ~');
+        console.log(response);
         deferred.reject();
       };
 
-      vmsClient.refreshToken(successCallback, failureCallback);
+      vmsClient.refreshToken()
+        .then(successCallback)
+        .catch(failureCallback);
 
       return deferred.promise;
     }

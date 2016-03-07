@@ -20,12 +20,6 @@
     return service;
 
     function register(volunteer) {
-      // Restangular.all('register').post(volunteer).then(function(response) {
-      //   successCallback(response);
-      // }, function(response) {
-      //   failureCallback(response);
-      // });
-
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/register',
@@ -55,14 +49,6 @@
     }
 
     function emailVerification(email, verification_token) {
-      // Restangular.one('email_verification/' + email + '/' + verification_token)
-      //   .get()
-      //   .then(function(response) {
-      //     successCallback(response);
-      //   }, function(response) {
-      //     failureCallback(response);
-      //   });
-
       return $http({
         'method': 'GET',
         'url': apiBaseUrl + '/email_verification/' + email + '/' + verification_token
@@ -70,14 +56,6 @@
     }
 
     function getProfile() {
-      // Restangular.one('users/me')
-      //   .get()
-      //   .then(function(response) {
-      //     successCallback(response);
-      //   }, function(response) {
-      //     failureCallback(response);
-      //   });
-
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/users/me'
@@ -92,10 +70,6 @@
     }
 
     function deleteAccount(credentials) {
-      // Restangular.all('users/me/delete')
-      //   .post(credentials)
-      //   .then(successCallback, failureCallback);
-
       /**
        * @TODO: change the POST action into DELETE (?)
        */

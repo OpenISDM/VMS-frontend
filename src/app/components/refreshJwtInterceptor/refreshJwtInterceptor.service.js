@@ -19,7 +19,7 @@
 
         var deferred = $q.defer();
 
-        if (response.status === 401) {
+        if (response.status === 401 && auth.isAuthenticated()) {
           $log.debug("=== 401 ===");
 
           var successCallback = function(jwtToken) {

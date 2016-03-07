@@ -9,7 +9,8 @@
       response,
       refreshJwtInterceptor,
       apiKey,
-      apiBaseUrl = 'http://fake.vms.app/api';
+      apiBaseUrl = 'http://fake.vms.app/api',
+      isAuthenticated;
 
     beforeEach(function() {
       module('vmsFrontend');
@@ -32,120 +33,211 @@
         }
       }
 
-      describe('and the refreshing token is successful', function() {
+      describe('auth.isAuthenticated() is true', function() {
+        isAuthenticated = true;
 
-        // Mock auth service
-        beforeEach(function() {
-          authMock = {
-            refreshToken: function() {
+        describe('and the refreshing token is successful', function() {
 
-              return {
+          // Mock auth service
+          beforeEach(function() {
+            authMock = {
+              refreshToken: function() {
 
-                then: function(successCallback) {
-                  successCallback('fooOpenFoO');
+                return {
 
-                  return {
+                  then: function(successCallback) {
+                    successCallback('fooOpenFoO');
 
-                    catch: function(failureCallback) {
-                      //failureCallback();
-                    }
-                  };
-                }
-              };
-            }
-          };
+                    return {
 
-          module(function($provide) {
-            $provide.value('auth', authMock);
+                      catch: function(failureCallback) {
+                        //failureCallback();
+                      }
+                    };
+                  }
+                };
+              },
+              isAuthenticated: function() {
+                return isAuthenticated;
+              }
+            };
+
+            module(function($provide) {
+              $provide.value('auth', authMock);
+            });
+          });
+
+          // get dependencies
+          beforeEach(inject(function(_refreshJwtInterceptor_, _$httpBackend_, _apiKey_) {
+            refreshJwtInterceptor = _refreshJwtInterceptor_;
+            $httpBackend = _$httpBackend_;
+            apiKey = _apiKey_
+          }));
+
+          beforeEach(createFakeResponse());
+
+          it('should request again with the refreshed JWT', function() {
+            $httpBackend.expectGET(apiBaseUrl + '/my_endpoint', {
+              'Authorization': 'Bearer fooOpenFoO',
+              'Accept': 'application/json, text/plain, */*',
+              'X-VMS-API-Key': 'QLolLOlFooFooFooFoo'
+            }).respond({
+              'message': 'fakeerrr'
+            });
+            refreshJwtInterceptor.responseError(response);
+            $httpBackend.flush();
           });
         });
 
-        // get dependencies
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$httpBackend_, _apiKey_) {
-          refreshJwtInterceptor = _refreshJwtInterceptor_;
-          $httpBackend = _$httpBackend_;
-          apiKey = _apiKey_
-        }));
+        describe('and the refreshing token is failed', function() {
 
-        beforeEach(createFakeResponse());
+          // Mock auth service for calling failure callback
+          beforeEach(function() {
+            authMock = {
+              refreshToken: function() {
 
-        it('should request again with the refreshed JWT', function() {
-          $httpBackend.expectGET(apiBaseUrl + '/my_endpoint', {
-            'Authorization': 'Bearer fooOpenFoO',
-            'Accept': 'application/json, text/plain, */*',
-            'X-VMS-API-Key': 'QLolLOlFooFooFooFoo'
-          }).respond({
-            'message': 'fakeerrr'
+                return {
+
+                  then: function(successCallback) {
+                    // successCallback('fooOpenFoO');
+
+                    return {
+
+                      catch: function(failureCallback) {
+                        failureCallback();
+                      }
+                    };
+                  }
+                };
+              }
+            };
+
+            module(function($provide) {
+              $provide.value('auth', authMock);
+            });
           });
-          refreshJwtInterceptor.responseError(response);
-          $httpBackend.flush();
+
+          // get dependencies
+          beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _$state_,
+            _apiKey_) {
+            refreshJwtInterceptor = _refreshJwtInterceptor_;
+            $q = _$q_;
+            $state = _$state_;
+            apiKey = _apiKey_;
+          }));
+
+          beforeEach(createFakeResponse());
+
+          // create spies for $q
+          beforeEach(function() {
+            var deferredMock = {
+              resolve: jasmine.createSpy('resolve'),
+              reject: jasmine.createSpy('reject'),
+              promise: {
+                then: jasmine.createSpy('then')
+              }
+            };
+
+            spyOn($q, 'defer').and.returnValue(deferredMock);
+          });
+
+          // create a spy for $state
+          beforeEach(function() {
+            spyOn($state, 'go').and.callThrough();
+          });
+
+          it('should go login state', function() {
+            refreshJwtInterceptor.responseError(response);
+            expect($state.go).toHaveBeenCalledWith('login');
+          });
         });
       });
 
-      describe('and the refreshing token is failed', function() {
+      describe('auth.isAuthenticated() is false', function() {
 
-        // Mock auth service for calling failure callback
+        isAuthenticated = false
+
         beforeEach(function() {
           authMock = {
-            refreshToken: function() {
-
-              return {
-
-                then: function(successCallback) {
-                  // successCallback('fooOpenFoO');
-
-                  return {
-
-                    catch: function(failureCallback) {
-                      failureCallback();
-                    }
-                  };
-                }
-              };
+            isAuthenticated: function() {
+              return isAuthenticated;
             }
-          };
+          }
 
           module(function($provide) {
             $provide.value('auth', authMock);
           });
         });
 
-        // get dependencies
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _$state_,
-          _apiKey_) {
+        // get services
+        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _apiKey_) {
           refreshJwtInterceptor = _refreshJwtInterceptor_;
           $q = _$q_;
-          $state = _$state_;
           apiKey = _apiKey_;
         }));
 
         beforeEach(createFakeResponse());
 
-        // create spies for $q
+        // create a spy on $q service
         beforeEach(function() {
-          var deferredMock = {
-            resolve: jasmine.createSpy('resolve'),
-            reject: jasmine.createSpy('reject'),
-            promise: {
-              then: jasmine.createSpy('then')
+          spyOn($q, 'reject');
+        });
+
+        it('should reject the promise', function() {
+          refreshJwtInterceptor.responseError(response);
+          expect($q.reject).toHaveBeenCalledWith(response);
+        });
+
+      });
+
+    });
+
+
+    describe('and the response status is not 401', function() {
+
+      // create a fake response
+      function createFakeResponse() {
+        response = {
+          status: 400
+        };
+      }
+
+      describe('auth.isAuthenticated() is true', function() {
+
+        var $q;
+        isAuthenticated = true;
+
+        // mock the auth service and response
+        beforeEach(function() {
+          authMock = {
+            isAuthenticated: function() {
+              return isAuthenticated;
             }
           };
 
-          spyOn($q, 'defer').and.returnValue(deferredMock);
+          module(function($provide) {
+            $provide.value('auth', authMock);
+          });
+
+          createFakeResponse();
         });
 
-        // create a spy for $state
+        // get services
+        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_) {
+          refreshJwtInterceptor = _refreshJwtInterceptor_;
+          $q = _$q_;
+        }));
+
+        // create a spy on $q service
         beforeEach(function() {
-          spyOn($state, 'go').and.callThrough();
+          spyOn($q, 'reject');
         });
 
-        it('should go login state', function() {
+        it('should reject the promise', function() {
           refreshJwtInterceptor.responseError(response);
-          expect($state.go).toHaveBeenCalledWith('login');
+          expect($q.reject).toHaveBeenCalledWith(response);
         });
       });
     });
-
-    describe('and the response status is not 401', function() {});
   });
 })();

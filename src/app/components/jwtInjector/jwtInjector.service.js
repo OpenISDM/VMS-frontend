@@ -21,7 +21,6 @@
           if ($state.current.data.needAuth) {
 
             if (authPrinciple.identity()) {
-
               $log.debug('token key exists');
 
               if (vmsLocalStorage.jwtExists()) {
