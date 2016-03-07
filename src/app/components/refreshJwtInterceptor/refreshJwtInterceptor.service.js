@@ -12,7 +12,7 @@
       responseError: function(response) {
         // IMPORTANT!
         // If the service wants use other dependencies, it should use $injector
-        //to get the dependencies. Otherwise, the dependency will not be found
+        // to get the dependencies. Otherwise, the dependency will not be found
         var $state = $injector.get('$state');
         var auth = $injector.get('auth');
         var $http = $injector.get('$http');

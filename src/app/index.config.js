@@ -24,6 +24,7 @@
     //   $httpProvider.interceptors.push(interceptors[i]);
     // }
 
+    // @TODO MUST push the refreshJwtInterceptor
     $httpProvider.interceptors.push('apiKeyInjector');
     $httpProvider.interceptors.push('jwtInjector');
 

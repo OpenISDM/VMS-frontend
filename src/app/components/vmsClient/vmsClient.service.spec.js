@@ -1,27 +1,10 @@
 (function() {
   'use strict';
+
   describe('vmsClient', function() {
     var httpBackend,
       vmsClient,
       apiBaseUrl;
-
-    // function sanitizeRestangularAll(items) {
-      //   var all = _.map(items, function(item) {
-      //     return sanitizeRestangularOne(item);
-      //   });
-      //   return sanitizeRestangularOne(all);
-      // }
-      // // Remove all Restangular/AngularJS added methods in order to use Jasmine toEqual between the retrieve resource and the model
-      // function sanitizeRestangularOne(item) {
-      //   return _.omit(item, "route", "parentResource", "getList", "get", "post", "put", "remove",
-      //     "head", "trace", "options", "patch", "$get", "$save", "$query", "$remove", "$delete",
-      //     "$put", "$post", "$head", "$trace", "$options", "$patch", "$then", "$resolved",
-      //     "restangularCollection", "customOperation", "customGET", "customPOST", "customPUT",
-      //     "customDELETE", "customGETLIST", "$getList", "$resolved", "restangularCollection",
-      //     "one", "all", "doGET", "doPOST", "doPUT", "doDELETE", "doGETLIST", "addRestangularMethod",
-      //     "getRestangularUrl", "getRequestedUrl", "clone", "reqParams", "withHttpConfig", "plain",
-      //     "restangularized", "several", "oneUrl", "allUrl", "fromServer", "save", "singleOne");
-      // }
 
     beforeEach(function() {
       module('vmsFrontend', 'vmsFrontend.mock');
@@ -33,123 +16,138 @@
       apiBaseUrl = _apiBaseUrl_;
     }));
 
-    // it('should get volunteer\'s profile after successful registeration', function() {
-    //   var result,
-    //     data,
-    //     responseMock,
-    //     headerMock;
-    //   inject(function($injector) {
-    //     data = $injector.get('registerVolunteerPostMock');
-    //     responseMock = $injector.get('registerSuccessfulResponseMock');
-    //     headerMock = $injector.get('unauthorizedHeaderMock');
-    //   });
-    //   spyOn(Restangular, 'all').and.callThrough();
-    //   httpBackend.expectPOST('http://vms.app/api/register', data, headerMock).respond(201, responseMock);
-    //   vmsClient.register(data, function(response) {
-    //     result = response.data;
-    //   });
-    //   httpBackend.flush();
-    //   expect(Restangular.all).toHaveBeenCalledWith('register');
-    // });
-    it('should login successfully', function() {
-      var result,
-        headerMock;
-      var data = {
-        'username': 'jimlin',
-        'password': 'MYPASSW0RD'
-      };
-      var responseMock = {
-        'href': 'https://vms.app/api/users/me',
-        'auth_access_token': '56f4da226eb22caa0633023bfdd402658e5c6501c972e83bfb2866f2112b103f'
-      };
+    describe('with unauthorized request', function() {
 
-      inject(function($injector) {
-        headerMock = $injector.get('unauthorizedHeaderMock');
+      describe('register()', function() {
+        var result,
+          data,
+          responseMock,
+          headerMock;
+
+        // get mock data
+        beforeEach(inject(function(_registerVolunteerPostMock_,
+          _registerSuccessfulResponseMock_, _unauthorizedHeaderMock_) {
+          data = _registerVolunteerPostMock_;
+          responseMock = _registerSuccessfulResponseMock_;
+          headerMock = _unauthorizedHeaderMock_;
+        }));
+
+        it('should send a request successfully', function() {
+
+          httpBackend.expectPOST(apiBaseUrl + '/register', data, headerMock).respond(201, responseMock);
+          vmsClient.register(data).then(function(response) {
+            expect(response.data).toEqual(responseMock);
+          });
+          httpBackend.flush();
+        });
       });
-      httpBackend.expectPOST('http://vms.app/api/auth', data, headerMock).respond(responseMock);
-      vmsClient.login(data).then(function(response) {
-        expect(response.data).toEqual(responseMock);
+
+      describe('login()', function() {
+        var headerMock,
+          data,
+          responseMock;
+
+        beforeEach(inject(function(_unauthorizedHeaderMock_,
+          _correctCredentials_, _loginSuccessfulResponseMock_) {
+          headerMock = _unauthorizedHeaderMock_;
+          data = _correctCredentials_;
+          responseMock = _loginSuccessfulResponseMock_;
+        }));
+
+        it('should send a request successfully', function() {
+          httpBackend.expectPOST(apiBaseUrl + '/auth', data, headerMock).respond(responseMock);
+          vmsClient.login(data).then(function(response) {
+            expect(response.data).toEqual(responseMock);
+          });
+          httpBackend.flush();
+        });
       });
-      httpBackend.flush();
     });
-  // it('should logout successfully', function() {
-  //   var result,
-  //     headerMock;
-  //   inject(function($injector) {
-  //     headerMock = $injector.get('authorizedHeaderMock');
-  //   });
-  //   spyOn(Restangular, 'all').and.callThrough();
-  //   httpBackend.expectDELETE('http://vms.app/api/auth', headerMock).respond(204);
-  //   vmsClient.logout(function() {});
-  //   httpBackend.flush();
-  // });
-  // it('should verificate email successfully', function() {
-  //   var result,
-  //     headerMock;
-  //   var responseMock = {
-  //     'message': 'Successful email verification'
-  //   };
-  //   inject(function($injector) {
-  //     headerMock = $injector.get('authorizedHeaderMock');
-  //   });
-  //   spyOn(Restangular, 'one').and.callThrough();
-  //   httpBackend.expectGET('http://vms.app/api/email_verification/abc@abc.com/MYEMAIL1807', headerMock).respond(200, responseMock);
-  //   vmsClient.emailVerification('abc@abc.com', 'MYEMAIL1807', function(response) {
-  //     result = response.data;
-  //   });
-  //   httpBackend.flush();
-  //   expect(Restangular.one).toHaveBeenCalledWith('email_verification/abc@abc.com/MYEMAIL1807');
-  //   expect(sanitizeRestangularOne(result)).toEqual(responseMock);
-  // });
-  // it('should get volunteer profile successfully', function() {
-  //   var result,
-  //     headerMock,
-  //     responseMock;
-  //   inject(function($injector) {
-  //     headerMock = $injector.get('authorizedHeaderMock');
-  //     responseMock = $injector.get('volunteerProfileMock');
-  //   });
-  //   spyOn(Restangular, 'one').and.callThrough();
-  //   httpBackend.expectGET('http://vms.app/api/users/me', headerMock).respond(function(method, url, data, headers, params) {
-  //     return [200, responseMock];
-  //   });
-  //   vmsClient.getProfile(function(response) {
-  //     result = response.data;
-  //   });
-  //   httpBackend.flush();
-  //   expect(Restangular.one).toHaveBeenCalledWith('users/me');
-  //   expect(sanitizeRestangularOne(result)).toEqual(responseMock);
-  // });
-  //
-  // it('shoud refresh token successfully', function() {
-  //   var headerMock;
-  //
-  //   inject(function($injector) {
-  //     headerMock = $injector.get('authorizedHeaderMock');
-  //   });
-  //   httpBackend.expectPOST('http://vms.app/api/auth/refresh_token')
-  //     .respond(204);
-  //
-  //   vmsClient.refreshToken();
-  //   httpBackend.flush();
-  // });
-  //
-  // it('should delete an account successfully', function() {
-  //   var headerMock;
-  //   var data = {
-  //     'username': 'jimlin',
-  //     'password': 'MYPASSW0RD'
-  //   };
-  //
-  //   inject(function($injector) {
-  //     headerMock = $injector.get('authorizedHeaderMock');
-  //   });
-  //   spyOn(Restangular, 'all').and.callThrough();
-  //   httpBackend.expectPOST('http://vms.app/api/users/me/delete')
-  //     .respond(204);
-  //
-  //   vmsClient.deleteAccount(data, function() {});
-  //   expect(Restangular.all).toHaveBeenCalledWith('users/me/delete');
-  // });
+
+    // the begining of the authorized request
+    describe('with authorized request', function() {
+
+      var headerMock;
+
+      beforeEach(inject(function(_authorizedHeaderMock_) {
+        headerMock = _authorizedHeaderMock_;
+      }));
+
+      describe('logout()', function() {
+
+        it('should send a request successfully', function() {
+          httpBackend.expectDELETE(apiBaseUrl + '/auth', headerMock).respond(204);
+          vmsClient.logout();
+          httpBackend.flush();
+        });
+      });
+
+      describe('emailVerification()', function() {
+        var responseMock;
+
+        beforeEach(inject(function(_emailVerificationSuccessfulResponseMock_) {
+          responseMock = _emailVerificationSuccessfulResponseMock_;
+        }));
+
+        it('should send a request successfully', function() {
+
+          httpBackend.expectGET(apiBaseUrl + '/email_verification/abc@abc.com/MYEMAIL1807', headerMock).respond(200, responseMock);
+          vmsClient.emailVerification('abc@abc.com', 'MYEMAIL1807')
+            .then(function(response) {
+              expect(response.data).toEqual(responseMock);
+            });
+          httpBackend.flush();
+        });
+      });
+
+      describe('getProfile()', function() {
+
+        var responseMock;
+
+        beforeEach(inject(function(_volunteerProfileMock_) {
+          responseMock = _volunteerProfileMock_;
+        }));
+
+        it('should get volunteer profile successfully', function() {
+          httpBackend.expectGET(apiBaseUrl + '/users/me', headerMock).respond(function(method, url, data, headers, params) {
+            return [200, responseMock];
+          });
+          vmsClient.getProfile(function(response) {
+            expect(response.data).toEqual(responseMock);
+          });
+          httpBackend.flush();
+        });
+      });
+
+      describe('refreshToken', function() {
+
+        it('shoud refresh token successfully', function() {
+          httpBackend.expectPOST(apiBaseUrl + '/auth/refresh_token')
+            .respond(204);
+
+          vmsClient.refreshToken();
+          httpBackend.flush();
+        });
+      });
+
+      describe('deleteAccount', function() {
+
+        var data;
+
+        beforeEach(inject(function(_correctCredentials_) {
+          data = _correctCredentials_;
+        }));
+
+        it('should delete an account successfully', function() {
+          httpBackend.expectPOST(apiBaseUrl + '/users/me/delete')
+            .respond(204);
+
+          vmsClient.deleteAccount(data);
+        });
+      });
+
+    });
+    // the end of the authorized request
+
   });
 })();

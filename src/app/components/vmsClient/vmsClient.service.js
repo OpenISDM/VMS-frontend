@@ -65,7 +65,7 @@
 
       return $http({
         'method': 'GET',
-        'url': apiBaseUrl + '/email_verification/' + email + '/verification_token'
+        'url': apiBaseUrl + '/email_verification/' + email + '/' + verification_token
       });
     }
 
