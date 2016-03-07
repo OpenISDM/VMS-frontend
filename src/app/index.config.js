@@ -19,15 +19,9 @@
     ];
 
     // Add $http interceptors
-    // for (var i = 0; i < interceptors.length; i++) {
-    //   console.log(interceptors[i]);
-    //   $httpProvider.interceptors.push(interceptors[i]);
-    // }
-
-    // @TODO MUST push the refreshJwtInterceptor
-    $httpProvider.interceptors.push('apiKeyInjector');
-    $httpProvider.interceptors.push('jwtInjector');
-
+    for (var i = 0; i < interceptors.length; i++) {
+      $httpProvider.interceptors.push(interceptors[i]);
+    }
 
     // Enable log
     $logProvider.debugEnabled(true);
