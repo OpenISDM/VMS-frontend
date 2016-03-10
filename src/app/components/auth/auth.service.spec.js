@@ -7,6 +7,10 @@
       $httpBackend,
       $rootScope,
       $state,
+      $q,
+      deferred,
+      apiBaseUrl,
+      apiKey,
       BROADCAST_EVENTS_LIST,
       authenticationFailureResponse = {
         'message': 'Authentication failed',
@@ -48,12 +52,16 @@
 
     // get services
     beforeEach(inject(function(_auth_, _$httpBackend_, _$rootScope_,
-      _BROADCAST_EVENTS_LIST_, _$state_) {
+      _BROADCAST_EVENTS_LIST_, _$state_, _$q_, _apiBaseUrl_, _apiKey_) {
       auth = _auth_;
       $httpBackend = _$httpBackend_;
       $rootScope = _$rootScope_;
       BROADCAST_EVENTS_LIST = _BROADCAST_EVENTS_LIST_;
       $state = _$state_;
+      $q = _$q_;
+      deferred = _$q_.defer();
+      apiBaseUrl = _apiBaseUrl_;
+      apiKey = _apiKey_;
     }));
 
     // Spy $rootScope.$broadcast()
@@ -72,17 +80,94 @@
         .respond(function(method, url, data) {
           return [200, authenticationSuccessResponse];
         });
-      $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
-        .respond(function(method, url, data, headers) {
-          return [400];
-        });
     });
 
-    afterEach(function() {
-      $httpBackend = undefined;
+    describe('logout()', function() {
+
+      beforeEach(function() {
+        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+          .respond(function() {
+            return [400];
+          });
+      });
+
+      // create spies for vmsLocalStorageMock
+      beforeEach(function() {
+        vmsLocalStorageMock['removeJwt'] = jasmine.createSpy('removeJwt');
+      });
+
+      // Create spies for $q service
+      beforeEach(function() {
+        spyOn(deferred, 'resolve');
+        spyOn(deferred, 'reject');
+      });
+
+      describe('when HTTP response status is 204', function() {
+
+        // mock $httpBackend
+        beforeEach(function() {
+          $httpBackend.whenDELETE(apiBaseUrl + '/auth')
+            .respond(function() {
+              return [204];
+            });
+        });
+
+        beforeEach(function() {
+          vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
+        });
+
+        it('should remove JWT from local storage', function() {
+          auth.logout();
+          $httpBackend.flush();
+          expect(vmsLocalStorageMock.removeJwt).toHaveBeenCalled();
+        });
+
+        it('should the successful callback must be invoked', function() {
+          auth.logout().then(function(response) {
+            expect(response).toBeDefined();
+          });
+          $httpBackend.flush();
+        });
+      });
+
+      describe('when HTTP response status is 404', function() {
+
+        // mock $httpBackend
+        beforeEach(function() {
+          $httpBackend.whenDELETE(apiBaseUrl + '/auth')
+            .respond(function() {
+              return [404];
+            });
+        });
+
+        beforeEach(function() {
+          vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
+        });
+
+        it('should remove JWT from local storage', function() {
+          auth.logout();
+          $httpBackend.flush();
+          expect(vmsLocalStorageMock.removeJwt).toHaveBeenCalled();
+        });
+
+        it('should the failed callback must be invoked', function() {
+          auth.logout().catch(function(response) {
+            expect(response).toBeDefined();
+          });
+          $httpBackend.flush();
+        });
+      });
+
     });
 
     describe('authenticate() is called with successCallback', function() {
+
+      beforeEach(function() {
+        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+          .respond(function() {
+            return [400];
+          });
+      });
 
       it('should set proper values into local storage', function() {
         auth.authenticate(successfulCredentialsMock);
@@ -101,11 +186,17 @@
         auth.authenticate(successfulCredentialsMock);
         $httpBackend.flush();
         expect(auth.isAuthenticated()).toBe(true);
-        expect(vmsLocalStorageMock.jwtExists).not.toHaveBeenCalled();
       });
     });
 
     describe('authenticate() is called with failureCallback', function() {
+
+      beforeEach(function() {
+        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+          .respond(function() {
+            return [400];
+          });
+      });
 
       it('should set authenticated variable into false', function() {
         auth.authenticate(failedCredentialsMock);
@@ -122,6 +213,13 @@
     });
 
     describe('the promise of the authenticate()', function() {
+
+      beforeEach(function() {
+        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+          .respond(function() {
+            return [400];
+          });
+      });
 
       it('should call successful callback, when the deferred was resolved', function() {
         var success = false;
@@ -149,38 +247,10 @@
       var vmsLocalStorage,
         authPrinciple;
 
-      beforeEach(function() {
-        // successful response
-        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token', {}, {
-          'Authorization': 'Bearer FooFooLolKerKer0O.'
-        })
-          .respond(function(method, url, data) {
-            return [200, {}, {
-              'Authorization': 'Bearer NFoofO0Lo1Kk.099'
-            }];
-          });
-        // error response
-        $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token', {}, {
-          'Authorization': 'Bearer 0000000000000'
-        })
-          .respond(function(method, url, data) {
-            return [400, {
-              'error': 'token_expired'
-            }];
-          });
-      });
-
       // Get services
       beforeEach(inject(function(_authPrinciple_) {
         authPrinciple = _authPrinciple_;
       }));
-
-      // Create spies for $state
-      beforeEach(function() {
-        $state.current.data = {
-          data: jasmine.createSpy('needAuth').and.returnValue(true)
-        };
-      });
 
       // Create spies for authPrinciple
       beforeEach(function() {
@@ -188,6 +258,16 @@
       });
 
       describe('when refreshing token is successful', function() {
+
+        beforeEach(function() {
+          // successful response
+          $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+            .respond(function(method, url, data) {
+              return [200, {}, {
+                'Authorization': 'Bearer NFoofO0Lo1Kk.099'
+              }];
+            });
+        });
 
         beforeEach(function() {
           vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('FooFooLolKerKer0O');
@@ -199,6 +279,20 @@
           done();
           $httpBackend.flush();
           expect(vmsLocalStorageMock.setJwt).toHaveBeenCalledWith('NFoofO0Lo1Kk.099');
+        });
+
+      });
+
+      describe('when refreshing token is failed', function() {
+
+        beforeEach(function() {
+          // error response
+          $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
+            .respond(function(method, url, data) {
+              return [400, {
+                'error': 'token_expired'
+              }];
+            });
         });
 
       });

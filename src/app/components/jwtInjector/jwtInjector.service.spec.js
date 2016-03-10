@@ -102,26 +102,26 @@
       });
     });
 
-    describe('when the state does not need to be authenticated', function() {
-      beforeEach(function() {
-        stateMock = {
-          current: {
-            data: {
-              needAuth: false
-            }
-          }
-        };
-
-        module(function($provide) {
-          $provide.value('$state', stateMock);
-        });
-      });
-
-      it('should not contain JWT in Authorization field of the HTTP header', function() {
-        expect(jwtInjector.request(configMock).headers).not.toEqual(jasmine.objectContaining({
-          Authorization: 'Bearer fooFoofooKerKer'
-        }));
-      });
-    });
+  // describe('when the state does not need to be authenticated', function() {
+  //   beforeEach(function() {
+  //     stateMock = {
+  //       current: {
+  //         data: {
+  //           needAuth: false
+  //         }
+  //       }
+  //     };
+  //
+  //     module(function($provide) {
+  //       $provide.value('$state', stateMock);
+  //     });
+  //   });
+  //
+  //   it('should not contain JWT in Authorization field of the HTTP header', function() {
+  //     expect(jwtInjector.request(configMock).headers).not.toEqual(jasmine.objectContaining({
+  //       Authorization: 'Bearer fooFoofooKerKer'
+  //     }));
+  //   });
+  // });
   });
 })();

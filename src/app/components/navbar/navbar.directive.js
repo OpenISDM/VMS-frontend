@@ -26,17 +26,18 @@
       vm.auth = auth;
 
       vm.logout = function() {
-        vmsClient.logout(function(response) {
+        var onSuccess = function(response) {
           $log.debug("logout success");
-
           auth.logout();
-
           $state.go('login');
-        }, function(response) {
+        };
+        var onFailure = function(response) {
           $log.debug("logout failure");
           auth.logout();
           $state.go('login');
-        })
+        };
+
+        vmsClient.logout().then(onSuccess).catch(onFailure);
       };
     }
   }

@@ -44,8 +44,23 @@
     }
 
     function logout() {
-      authenticated = false;
-      vmsLocalStorage.removeJwt();
+      var deferred = $q.defer();
+      var callback = function() {
+        authenticated = false;
+        vmsLocalStorage.removeJwt();
+      };
+      var successCallback = function(response) {
+        callback();
+        deferred.resolve(response);
+      };
+      var failureCallback = function(response) {
+        callback();
+        deferred.reject(response);
+      };
+
+      vmsClient.logout().then(successCallback).catch(failureCallback);
+
+      return deferred.promise;
     }
 
     function authenticate(credentials) {
@@ -86,7 +101,6 @@
     function refreshToken() {
       var deferred = $q.defer();
       var successCallback = function(response) {
-        console.log('successCallback ~');
         var token = response.headers('Authorization');
 
         if (angular.isDefined(token) && token != null) {
@@ -99,8 +113,6 @@
         }
       };
       var failureCallback = function(response) {
-        console.log('failureCallback ~');
-        console.log(response);
         deferred.reject();
       };
 

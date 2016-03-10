@@ -10,27 +10,18 @@
     var service = {
 
       request: function(config) {
-        var $state = $injector.get('$state');
         var authPrinciple = $injector.get('authPrinciple');
         var vmsLocalStorage = $injector.get('vmsLocalStorage');
 
-        // Check the data attribute exists
-        if (angular.isDefined($state.current.data)) {
+        if (authPrinciple.identity()) {
+          $log.debug('token key exists');
 
-          // Does the state need to be authenticated ?
-          if ($state.current.data.needAuth) {
-
-            if (authPrinciple.identity()) {
-              $log.debug('token key exists');
-
-              if (vmsLocalStorage.jwtExists()) {
-                config.headers['Authorization'] = 'Bearer ' + vmsLocalStorage.getJwt();
-              }
-            } else {
-              $log.debug('token key is not found');
-            }
-          }
+          config.headers['Authorization'] = 'Bearer ' + vmsLocalStorage.getJwt();
+        } else {
+          $log.debug('token key is not found');
         }
+
+        // console.log(config);
 
         return config;
       }

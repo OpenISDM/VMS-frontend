@@ -36,12 +36,6 @@
     }
 
     function logout() {
-      // Restangular.all('auth').remove().then(function(response) {
-      //   successCallback(response);
-      // }, function(response) {
-      //   failureCallback(response);
-      // });
-
       return $http({
         method: 'DELETE',
         url: apiBaseUrl + '/auth'
@@ -65,7 +59,7 @@
     function refreshToken() {
       return $http({
         method: 'POST',
-        url: apiBaseUrl + '/auth/refresh_token',
+        url: apiBaseUrl + '/auth/refresh_token'
       });
     }
 
