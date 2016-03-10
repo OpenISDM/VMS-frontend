@@ -26,12 +26,12 @@
       vm.auth = auth;
 
       vm.logout = function() {
-        var onSuccess = function(response) {
+        var onSuccess = function() {
           $log.debug("logout success");
           auth.logout();
           $state.go('login');
         };
-        var onFailure = function(response) {
+        var onFailure = function() {
           $log.debug("logout failure");
           auth.logout();
           $state.go('login');

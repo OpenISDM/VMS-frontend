@@ -144,7 +144,7 @@
         views: {
           'mainContent@': {
             templateUrl: 'app/volunteerProject/projectDetails.html',
-            controller: 'projectController',
+            controller: 'ProjectController',
             controllerAs: 'vm'
           }
         }

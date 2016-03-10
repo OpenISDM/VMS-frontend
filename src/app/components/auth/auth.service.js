@@ -112,7 +112,7 @@
           deferred.reject();
         }
       };
-      var failureCallback = function(response) {
+      var failureCallback = function() {
         deferred.reject();
       };
 

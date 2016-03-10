@@ -6,7 +6,7 @@
     .factory('vmsLocalStorage', vmsLocalStorage);
 
   /** @ngInject */
-  function vmsLocalStorage(localStorageService, LOCAL_STORAGE_CONFIG, $log) {
+  function vmsLocalStorage(localStorageService, LOCAL_STORAGE_CONFIG) {
     var service = {
       setJwt: setJwt,
       getJwt: getJwt,

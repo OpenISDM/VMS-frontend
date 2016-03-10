@@ -6,7 +6,7 @@
     .factory('apiKeyInjector', apiKeyInjector);
 
   /** @ngInject */
-  function apiKeyInjector(apiKey, $log) {
+  function apiKeyInjector(apiKey) {
     var service = {
 
       request: function(config) {

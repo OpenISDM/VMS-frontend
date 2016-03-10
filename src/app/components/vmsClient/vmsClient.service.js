@@ -70,7 +70,7 @@
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/users/me/delete',
-        data: 'credentials'
+        data: credentials
       });
     }
   }

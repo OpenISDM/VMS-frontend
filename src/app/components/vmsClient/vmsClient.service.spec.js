@@ -19,8 +19,7 @@
     describe('with unauthorized request', function() {
 
       describe('register()', function() {
-        var result,
-          data,
+        var data,
           responseMock,
           headerMock;
 
@@ -109,7 +108,7 @@
         }));
 
         it('should get volunteer profile successfully', function() {
-          httpBackend.expectGET(apiBaseUrl + '/users/me', headerMock).respond(function(method, url, data, headers, params) {
+          httpBackend.expectGET(apiBaseUrl + '/users/me', headerMock).respond(function() {
             return [200, responseMock];
           });
           vmsClient.getProfile(function(response) {

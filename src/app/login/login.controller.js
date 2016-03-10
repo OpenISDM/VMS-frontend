@@ -10,7 +10,7 @@
     var vm = this;
 
     vm.login = function() {
-      var onSuccess = function(response) {
+      var onSuccess = function() {
         $log.debug('login success');
 
         vm.loginErrorMsg = undefined;
@@ -19,6 +19,8 @@
         if ($rootScope.toState.name == 'login') {
           $state.go('profile');
         } else {
+
+          // go to next with parameters
           if (angular.isDefined($rootScope.toStateParams)) {
             $state.go($rootScope.toState.name, $rootScope.toStateParams);
           } else {
@@ -35,6 +37,7 @@
           vm.loginErrorMsg = '伺服器錯誤';
         }
       };
+
       auth.authenticate(vm.credentials).then(onSuccess).catch(onFailure);
     }
   }

@@ -8,21 +8,17 @@
       $log,
       auth,
       $rootScope,
-      $state,
-      $httpBackend,
-      apiBaseUrl;
+      $state;
 
     beforeEach(module('vmsFrontend'));
 
     beforeEach(inject(function(_$controller_, _$log_, _auth_, _$rootScope_,
-      _$state_, _$httpBackend_, _apiBaseUrl_) {
+      _$state_) {
       $controller = _$controller_;
       $log = _$log_;
       auth = _auth_;
       $rootScope = _$rootScope_.$new();
       $state = _$state_;
-      $httpBackend = _$httpBackend_;
-      apiBaseUrl = _apiBaseUrl_;
     }));
 
     describe('login()', function() {
@@ -120,7 +116,7 @@
         beforeEach(function() {
           spyOn(auth, 'authenticate').and.callFake(function() {
             return {
-              then: function(onSuccess) {
+              then: function() {
 
                 return {
                   catch: function(onFailure) {

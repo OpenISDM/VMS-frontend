@@ -6,11 +6,8 @@
       auth,
       $httpBackend,
       $rootScope,
-      $state,
-      $q,
       deferred,
       apiBaseUrl,
-      apiKey,
       BROADCAST_EVENTS_LIST,
       authenticationFailureResponse = {
         'message': 'Authentication failed',
@@ -52,16 +49,13 @@
 
     // get services
     beforeEach(inject(function(_auth_, _$httpBackend_, _$rootScope_,
-      _BROADCAST_EVENTS_LIST_, _$state_, _$q_, _apiBaseUrl_, _apiKey_) {
+      _BROADCAST_EVENTS_LIST_, _$state_, _$q_, _apiBaseUrl_) {
       auth = _auth_;
       $httpBackend = _$httpBackend_;
       $rootScope = _$rootScope_;
       BROADCAST_EVENTS_LIST = _BROADCAST_EVENTS_LIST_;
-      $state = _$state_;
-      $q = _$q_;
       deferred = _$q_.defer();
       apiBaseUrl = _apiBaseUrl_;
-      apiKey = _apiKey_;
     }));
 
     // Spy $rootScope.$broadcast()
@@ -73,11 +67,11 @@
     beforeEach(function() {
 
       $httpBackend.whenPOST('http://vms.app/api/auth', failedCredentialsMock)
-        .respond(function(method, url, data) {
+        .respond(function() {
           return [401, authenticationFailureResponse];
         });
       $httpBackend.whenPOST('http://vms.app/api/auth', successfulCredentialsMock)
-        .respond(function(method, url, data) {
+        .respond(function() {
           return [200, authenticationSuccessResponse];
         });
     });
@@ -244,8 +238,7 @@
 
     describe('refreshToken()', function() {
 
-      var vmsLocalStorage,
-        authPrinciple;
+      var authPrinciple;
 
       // Get services
       beforeEach(inject(function(_authPrinciple_) {
@@ -262,7 +255,7 @@
         beforeEach(function() {
           // successful response
           $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
-            .respond(function(method, url, data) {
+            .respond(function() {
               return [200, {}, {
                 'Authorization': 'Bearer NFoofO0Lo1Kk.099'
               }];
@@ -288,7 +281,7 @@
         beforeEach(function() {
           // error response
           $httpBackend.whenPOST('http://vms.app/api/auth/refresh_token')
-            .respond(function(method, url, data) {
+            .respond(function() {
               return [400, {
                 'error': 'token_expired'
               }];

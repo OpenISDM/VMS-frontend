@@ -50,9 +50,7 @@
 
                     return {
 
-                      catch: function(failureCallback) {
-                        //failureCallback();
-                      }
+                      catch: function() {}
                     };
                   }
                 };
@@ -98,8 +96,7 @@
 
                 return {
 
-                  then: function(successCallback) {
-                    // successCallback('fooOpenFoO');
+                  then: function() {
 
                     return {
 
