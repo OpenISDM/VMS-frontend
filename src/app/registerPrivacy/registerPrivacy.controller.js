@@ -1,12 +1,11 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('vmsFrontend')
-        .controller('RegisterPrivacyController', RegisterPrivacyController);
+  angular
+    .module('vmsFrontend')
+    .controller('RegisterPrivacyController', RegisterPrivacyController);
 
-    /** @ngInject */
-    function RegisterPrivacyController() {
-        var vm = this;
-    }
+  /** @ngInject */
+  function RegisterPrivacyController() {
+  }
 })();

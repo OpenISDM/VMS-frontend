@@ -11,16 +11,16 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse" collapse="navCollapsed">
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-hide="vm.authPrinciple.isAuthenticated()" ui-sref="registerPrivacy">註冊</a></li>
-        <li><a ng-hide="vm.authPrinciple.isAuthenticated()" ui-sref="login">登入</a></li>
+        <li><a ng-hide="vm.auth.isAuthenticated()" ui-sref="registerPrivacy">註冊</a></li>
+        <li><a ng-hide="vm.auth.isAuthenticated()" ui-sref="login">登入</a></li>
         <!--<li ng-show="" uib-dropdown>
           <a id="navbar-profile" aria-labelledby="nav-profile-tempate-url" uib-dropdown-toggle>{{vm.lastName}}
             <span class="caret"></span>
           </a>
         <ul class="uib-dropdown-menu" template-url="/app/components/navbar/navbarProfileDropdown.html" aria-labelledby="navbar-profile"></ul>
       </li>-->
-      <li><a ng-show="vm.authPrinciple.isAuthenticated()" ui-sref="profile">我的資料</a></li>
-      <li><a ng-show="vm.authPrinciple.isAuthenticated()" ng-click="vm.logout()">登出</a></li>
+      <li><a ng-show="vm.auth.isAuthenticated()" ui-sref="profile">我的資料</a></li>
+      <li><a ng-show="vm.auth.isAuthenticated()" ng-click="vm.logout()">登出</a></li>
     </ul>
   </div>
 </div>

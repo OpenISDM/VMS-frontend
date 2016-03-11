@@ -7,9 +7,21 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, RestangularProvider, localStorageServiceProvider, apiBaseUrl) {
+  function config($logProvider, toastrConfig, localStorageServiceProvider, $httpProvider) {
+    // Set local storage prefix name
     localStorageServiceProvider.setPrefix('vms');
-    RestangularProvider.setBaseUrl(apiBaseUrl);
+
+    // Interceptors
+    var interceptors = [
+      'apiKeyInjector',
+      'jwtInjector',
+      'refreshJwtInterceptor'
+    ];
+
+    // Add $http interceptors
+    for (var i = 0; i < interceptors.length; i++) {
+      $httpProvider.interceptors.push(interceptors[i]);
+    }
 
     // Enable log
     $logProvider.debugEnabled(true);

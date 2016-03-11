@@ -1,51 +1,44 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('vmsFrontend')
-        .controller('LoginController', LoginController);
+  angular
+    .module('vmsFrontend')
+    .controller('LoginController', LoginController);
 
-    /** @ngInject */
-    function LoginController($log, $location, vmsClient, authPrinciple, $state, $rootScope, localStorageService) {
-        var vm = this;
+  /** @ngInject */
+  function LoginController($log, auth, $rootScope, $state) {
+    var vm = this;
 
-        vm.login = function() {
-            vmsClient.login(vm.credentials, function(response) {
-                $log.debug('login success');
-                $log.debug(response);
+    vm.login = function() {
+      var onSuccess = function() {
+        $log.debug('login success');
 
-                vm.loginErrorMsg = undefined;
-                var token = response.data.auth_access_token;
+        vm.loginErrorMsg = undefined;
 
-                $log.debug('token = ' + token);
+        // if the next state is login, it will go to profile state
+        if ($rootScope.toState.name == 'login') {
+          $state.go('profile');
+        } else {
 
-                localStorageService.set('username', vm.credentials.username);
-                authPrinciple.authenticate(token);
-
-                if (angular.isDefined($rootScope.toState)) {
-                    if ($rootScope.toState.name == 'login') {
-                        if (angular.isDefined($rootScope.returnToState)) {
-                            if ($rootScope.returnToState.name != 'login') {
-                                $state.go($rootScope.returnToState.name, $rootScope.returnToStateParams);
-                            } else {
-                                $state.go('profile');
-                            }
-                        } else {
-                            $state.go('profile');
-                        }
-                    } else {
-                        $state.go($rootScope.toState.name, $rootScope.returnToStateParams);
-                    }
-                }
-
-            }, function(response) {
-                $log.debug('login error');
-                $log.debug(response);
-
-                if (response.status === 401) {
-                    vm.loginErrorMsg = "帳號或密碼錯誤";
-                }
-            });
+          // go to next with parameters
+          if (angular.isDefined($rootScope.toStateParams)) {
+            $state.go($rootScope.toState.name, $rootScope.toStateParams);
+          } else {
+            $state.go($rootScope.toState.name);
+          }
         }
+      };
+      var onFailure = function(response) {
+        $log.debug('login error');
+
+        if (response.status == 401) {
+          vm.loginErrorMsg = '帳號或密碼錯誤';
+        } else {
+          vm.loginErrorMsg = '伺服器錯誤';
+        }
+      };
+
+      auth.authenticate(vm.credentials).then(onSuccess).catch(onFailure);
     }
+  }
 })();
