@@ -99,12 +99,12 @@
       describe('when HTTP response status is 204', function() {
 
         // mock $httpBackend
-        beforeEach(function() {
-          $httpBackend.whenDELETE(apiBaseUrl + '/auth')
-            .respond(function() {
-              return [204];
-            });
-        });
+        // beforeEach(function() {
+        //   $httpBackend.whenDELETE(apiBaseUrl + '/auth')
+        //     .respond(function() {
+        //       return [204];
+        //     });
+        // });
 
         beforeEach(function() {
           vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
@@ -112,27 +112,24 @@
 
         it('should remove JWT from local storage', function() {
           auth.logout();
-          $httpBackend.flush();
           expect(vmsLocalStorageMock.removeJwt).toHaveBeenCalled();
         });
 
-        it('should the successful callback must be invoked', function() {
-          auth.logout().then(function(response) {
-            expect(response).toBeDefined();
-          });
-          $httpBackend.flush();
-        });
+      // it('should the successful callback must be invoked', function() {
+      //   auth.logout();
+      //   $httpBackend.flush();
+      // });
       });
 
       describe('when HTTP response status is 404', function() {
 
         // mock $httpBackend
-        beforeEach(function() {
-          $httpBackend.whenDELETE(apiBaseUrl + '/auth')
-            .respond(function() {
-              return [404];
-            });
-        });
+        // beforeEach(function() {
+        //   $httpBackend.whenDELETE(apiBaseUrl + '/auth')
+        //     .respond(function() {
+        //       return [404];
+        //     });
+        // });
 
         beforeEach(function() {
           vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
@@ -140,16 +137,15 @@
 
         it('should remove JWT from local storage', function() {
           auth.logout();
-          $httpBackend.flush();
           expect(vmsLocalStorageMock.removeJwt).toHaveBeenCalled();
         });
 
-        it('should the failed callback must be invoked', function() {
-          auth.logout().catch(function(response) {
-            expect(response).toBeDefined();
-          });
-          $httpBackend.flush();
-        });
+      // it('should the failed callback must be invoked', function() {
+      //   auth.logout().catch(function(response) {
+      //     expect(response).toBeDefined();
+      //   });
+      //   $httpBackend.flush();
+      // });
       });
 
     });

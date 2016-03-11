@@ -106,7 +106,8 @@
                     };
                   }
                 };
-              }
+              },
+              logout: jasmine.createSpy()
             };
 
             module(function($provide) {
@@ -145,7 +146,7 @@
 
           it('should go login state', function() {
             refreshJwtInterceptor.responseError(response);
-            expect($state.go).toHaveBeenCalledWith('login');
+            expect(authMock.logout).toHaveBeeCalled();
           });
         });
       });

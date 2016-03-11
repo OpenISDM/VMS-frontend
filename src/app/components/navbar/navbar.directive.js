@@ -21,23 +21,13 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(auth, vmsClient, $state, $log) {
+    function NavbarController(auth, vmsClient, $state) {
       var vm = this;
       vm.auth = auth;
 
       vm.logout = function() {
-        var onSuccess = function() {
-          $log.debug("logout success");
-          auth.logout();
-          $state.go('login');
-        };
-        var onFailure = function() {
-          $log.debug("logout failure");
-          auth.logout();
-          $state.go('login');
-        };
-
-        vmsClient.logout().then(onSuccess).catch(onFailure);
+        auth.logout();
+        $state.go('login');
       };
     }
   }

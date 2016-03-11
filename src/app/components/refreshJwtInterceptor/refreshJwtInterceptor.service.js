@@ -13,10 +13,8 @@
         // IMPORTANT!
         // If the service wants use other dependencies, it should use $injector
         // to get the dependencies. Otherwise, the dependency will not be found
-        var $state = $injector.get('$state');
         var auth = $injector.get('auth');
         var $http = $injector.get('$http');
-
         var deferred = $q.defer();
 
         if (response.status === 401 && auth.isAuthenticated()) {
@@ -27,7 +25,6 @@
             deferred.resolve();
           };
           var failureCallback = function() {
-            $state.go('login');
             deferred.reject();
           };
 

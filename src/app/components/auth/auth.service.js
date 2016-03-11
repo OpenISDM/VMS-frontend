@@ -44,23 +44,8 @@
     }
 
     function logout() {
-      var deferred = $q.defer();
-      var callback = function() {
-        authenticated = false;
-        vmsLocalStorage.removeJwt();
-      };
-      var successCallback = function(response) {
-        callback();
-        deferred.resolve(response);
-      };
-      var failureCallback = function(response) {
-        callback();
-        deferred.reject(response);
-      };
-
-      vmsClient.logout().then(successCallback).catch(failureCallback);
-
-      return deferred.promise;
+      authenticated = false;
+      vmsLocalStorage.removeJwt();
     }
 
     function authenticate(credentials) {
@@ -113,6 +98,7 @@
         }
       };
       var failureCallback = function() {
+        logout();
         deferred.reject();
       };
 
