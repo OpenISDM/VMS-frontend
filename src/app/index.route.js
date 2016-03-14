@@ -81,7 +81,7 @@
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/volunteer-profile/volunteer-profile.html',
+            templateUrl: 'app/volunteerProfile/volunteerProfile.html',
             controller: 'ProfileController',
             controllerAs: 'vm'
           }
