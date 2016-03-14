@@ -7,7 +7,7 @@
 
   /** @ngInject */
 
-  function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath) {
+  function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath, volunteerProfile) {
 
     var vm = this;
 
@@ -26,34 +26,14 @@
     angular.element(document).ready(getProfile());
 
     function getProfile() {
-      var successCallback = function(response) {
-        $log.debug("success");
-        $log.debug(response.data);
+      var doneCallbacks = function(profile) {
+          vm.profile = profile;
+        },
+        failCallbacks = function(response) {
+          $log.debug(response);
+        };
 
-        vm.profile = response.data;
-
-        cities.forEach(function(city) {
-          $log.debug("== city ==");
-
-          if (city.id == vm.profile.city.id) {
-            $log.debug("found city");
-            $log.debug("=== city name ===");
-            $log.debug(city.name_zh_tw);
-
-            vm.profile.city.name_zh_tw = city.name_zh_tw;
-          }
-        });
-
-        if (vm.profile.avatar_url == "http://vms-openisdm.s3-website-ap-northeast-1.amazonaws.com/upload/avatars/") {
-          vm.profile.avatar_url = defaultAvatarPath;
-        }
-
-      };
-      var failureCallback = function(response) {
-        $log.debug('error');
-        $log.debug(response);
-      };
-      vmsClient.getProfile().then(successCallback).catch(failureCallback);
+      volunteerProfile.get().then(doneCallbacks, failCallbacks)
     }
   }
 
@@ -71,22 +51,18 @@
       $log.debug("username = " + credentials.username);
       $log.debug("password = " + credentials.password);
 
-      var successCallback = function(response) {
+      vmsClient.deleteAccount(credentials, function(response) {
         $log.debug("delete success");
         $uibModalInstance.close();
-      };
-      var failureCallback = function(response) {
+      }, function(response) {
         $log.debug("delete failure");
         $log.debug(response);
 
         if (response.status == 401) {
           vm.deleteMsg = "您的密碼輸入錯誤，請重新輸入";
         }
-      };
+      });
 
-      vmsClient.deleteAccount(credentials)
-        .then(successCallback)
-        .catch(failureCallback);
 
     };
 

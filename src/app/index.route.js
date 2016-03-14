@@ -87,6 +87,59 @@
           }
         }
       })
+      .state('editProfile', {
+        parent: 'site',
+        data: {
+          needAuth: true
+        },
+        views: {
+          /**
+          @TODO: blank page
+          */
+          'mainContent@': {
+            templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
+          }
+        }
+      })
+      .state('editProfile.aboutContact', {
+        url: '/profile/edit',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'profileContent@editProfile': {
+            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
+            controller: 'EditVolunteerProfileController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('editProfile.experienceEducation', {
+        url: '/profile/edit/experience_education',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'profileContent@editProfile': {
+            templateUrl: 'app/editVolunteerProfile/experienceAndEducation.html',
+            controller: 'EditVolunteerProfileController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('editProfile.skillEquipment', {
+        url: '/profile/edit/skill_equipment',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'profileContent@editProfile': {
+            templateUrl: 'app/editVolunteerProfile/skillAndEquipment.html',
+            controller: 'EditVolunteerProfileController',
+            controllerAs: 'vm'
+          }
+        }
+      })
       .state('emailVerification', {
         parent: 'site',
         url: '/email_verification?email&verification_token',
