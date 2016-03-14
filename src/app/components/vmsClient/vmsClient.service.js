@@ -13,6 +13,7 @@
       logout: logout,
       emailVerification: emailVerification,
       getProfile: getProfile,
+      updateProfile: updateProfile,
       refreshToken: refreshToken,
       deleteAccount: deleteAccount
     };
@@ -56,6 +57,14 @@
       });
     }
 
+    function updateProfile(profile) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/users/me',
+        data: profile
+      });
+    }
+
     function refreshToken() {
       return $http({
         method: 'POST',
@@ -73,5 +82,6 @@
         data: credentials
       });
     }
+
   }
 })();
