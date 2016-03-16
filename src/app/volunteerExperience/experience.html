@@ -1,0 +1,102 @@
+<div class="profile-section">
+  <span class="h2-inline">經驗</span>
+  <button class="btn btn-default pull-right" ng-click="vm.setAddExperienceVisible()">新增經驗</button>
+  <hr>
+  <div ng-show="vm.isShowAddExperience">
+    <form id="new-experience" class="form-inline experience-section">
+      <div class="row">
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="company" class="control-label col-md-4 col-lg-4">公司名稱</label>
+            <div class="col-md-8 col-lg-8">
+              <input type="text" class="form-control" id="company" placeholder="公司名稱" ng-model="vm.sExperience.company" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="job-title" class="control-label col-md-4 col-lg-4">工作職稱</label>
+            <div class="col-md-8 col-lg-8">
+              <input type="text" class="form-control" id="job-title" placeholder="工作職稱" ng-model="vm.sExperience.job_title" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="start-year" class="control-label col-md-4 col-lg-4">開始期間</label>
+            <div class="col-md-8 col-lg-8">
+              <select name="start-years" class="form-control" id="start-year" placeholder="起始年" ng-model="vm.sExperience.start_year" ng-options="y.value as y.text for y in vm.years" required>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="end-year" class="control-label col-md-4 col-lg-4">結束期間</label>
+            <div class="col-md-8 col-lg-8">
+              <select name="end-year" class="form-control" id="end-year" placeholder="結束年" ng-model="vm.sExperience.end_year" ng-options="y.value as y.text for y in vm.years">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <button type="button" class="btn btn-primary" ng-click="vm.addExperience()">儲存</button>
+              <button type="button" class="btn btn-default" ng-click="vm.setAddExperienceInvisible()">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div ng-show="vm.experiences != undefined && vm.experiences.length != 0">
+    <div ng-repeat="(index, experience) in vm.experiences">
+      <form editable-form name="vm.experience{{experience.id}}" class="form-inline experience-section" onaftersave="vm.updateExperience(experience.id)" onshow="vm.onShowEditableForm(experience.id)" onhide="vm.onHideEditableForm(experience.id)">
+        <div class="row">
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="company" class="control-label col-md-4 col-lg-4">公司名稱</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-text="vm.experiences[{{ index }}].company" e-name="company" ng-click="vm.editableFormShow(experience.id)" e-required>{{ vm.experiences[index].company }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="job-title" class="control-label col-md-4 col-lg-4">工作職稱</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-text="vm.experiences[{{ index }}].job_title" e-nmae="job-title" ng-click="vm.editableFormShow(experience.id)" e-required>{{ vm.experiences[index].job_title }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="start-year" class="control-label col-md-4 col-lg-4">開始期間</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-select="vm.experiences[{{ index }}].start_year" e-ng-options="y.value as y.text for y in vm.years" ng-click="vm.editableFormShow(experience.id)">{{ vm.experiences[index].start_year }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="end-year" class="control-label col-md-4 col-lg-4">結束期間</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-select="vm.experiences[{{ index }}].end_year" e-ng-options="y.value as y.text for y in vm.years" ng-click="vm.editableFormShow(experience.id)">{{ vm.experiences[index].end_year }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-12 col-sm-6 col-xs-12">
+            <div class="row">
+              <div class="col-lg-12" ng-show="vm.editableIsVisible(experience.id)">
+                <button type="submit" class="btn btn-primary">儲存</button>
+                <button type="button" class="btn btn-default" ng-click="vm.editableFormCancel(experience.id)">取消</button>
+                <a ng-click="vm.deleteExperience(experience.id)">刪除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

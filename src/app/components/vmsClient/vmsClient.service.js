@@ -15,7 +15,15 @@
       getProfile: getProfile,
       updateProfile: updateProfile,
       refreshToken: refreshToken,
-      deleteAccount: deleteAccount
+      deleteAccount: deleteAccount,
+      getExperiences: getExperiences,
+      addExperience: addExperience,
+      updateExperience: updateExperience,
+      deleteExperience: deleteExperience,
+      getEducations: getEducations,
+      addEducation: addEducation,
+      updateEducation: updateEducation,
+      deleteEducation: deleteEducation
     };
 
     return service;
@@ -80,6 +88,90 @@
         method: 'POST',
         url: apiBaseUrl + '/users/me/delete',
         data: credentials
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function getExperiences() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/users/me/experiences',
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function addExperience(experience) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/me/experiences',
+        data: experience
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function updateExperience(experience) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/users/me/experiences',
+        data: experience
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function deleteExperience(experienceId) {
+      return $http({
+        method: 'DELETE',
+        url: apiBaseUrl + '/users/me/experiences/' + experienceId
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function getEducations() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/users/me/educations',
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function addEducation(education) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/me/educations',
+        data: education
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function updateEducation(education) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/users/me/educations',
+        data: education
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function deleteEducation(educationId) {
+      return $http({
+        method: 'DELETE',
+        url: apiBaseUrl + '/users/me/educations/' + educationId
       });
     }
 

@@ -7,7 +7,7 @@
 
   /** @ngInject */
 
-  function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath, volunteerProfile) {
+  function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath, volunteer) {
 
     var vm = this;
 
@@ -19,9 +19,9 @@
       });
     };
 
-    vm.edit = function() {
-      // ...
-    };
+    // vm.edit = function() {
+    //   // ...
+    // };
 
     angular.element(document).ready(getProfile());
 
@@ -33,7 +33,7 @@
           $log.debug(response);
         };
 
-      volunteerProfile.get().then(doneCallbacks, failCallbacks)
+      volunteer.getProfile().then(doneCallbacks, failCallbacks)
     }
   }
 

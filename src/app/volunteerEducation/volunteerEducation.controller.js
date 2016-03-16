@@ -1,0 +1,188 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('vmsFrontend')
+    .controller('VolunteerEducationController', VolunteerEducationController);
+
+  function VolunteerEducationController($log, volunteer, $filter) {
+    var vm = this;
+    var beginYear = 1970;
+    vm.years = new Array();
+    vm.isShowAddEducation = false;
+
+    angular.element(document).ready(getEducations);
+    angular.element(document).ready(setYear);
+    angular.element(document).ready(setDegree);
+
+    function getEducations() {
+      var onSuccess = function(data) {
+        $log.debug(data);
+
+        vm.educations = data;
+
+        if (angular.isDefined(data)) {
+          $log.debug('vm.educations.length');
+          $log.debug(vm.educations.length);
+
+          if (vm.educations.length == 0) {
+            vm.isShowAddEducation = true;
+          }
+        } else {
+          $log.debug('education data is not defined');
+
+          vm.isShowAddEducation = true;
+        }
+
+      };
+
+      volunteer.getEducations()
+        .then(onSuccess);
+    }
+
+    function setYear() {
+      var nowDate = new Date();
+
+      for (var year = beginYear; year <= nowDate.getFullYear(); year++) {
+        vm.years.push({
+          value: year,
+          text: year + ' 年'
+        });
+      }
+    }
+
+    function setDegree() {
+      vm.degrees = [
+        {
+          value: 1,
+          text: '國小'
+        },
+        {
+          value: 2,
+          text: '國中'
+        },
+        {
+          value: 3,
+          text: '高中'
+        },
+        {
+          value: 4,
+          text: '大學'
+        },
+        {
+          value: 5,
+          text: '碩士'
+        },
+        {
+          value: 6,
+          text: '博士'
+        }
+      ]
+    }
+
+    function getEditableObject(id) {
+      var objName = 'education' + id;
+      var editableObj = vm[objName];
+
+      return editableObj;
+    }
+
+    function transformToDate(year) {
+      return new Date(year, 1);
+    }
+
+    vm.addEducation = function() {
+
+      var onSuccess = function(data) {
+        getEducations();
+        vm.isShowAddEducation = false;
+      };
+      var onFailure = function(data) {};
+
+      $log.debug('addEducations()');
+      $log.debug(vm.sEducation);
+
+      volunteer.addEducation(vm.sEducation)
+        .then(onSuccess)
+        .catch(onFailure);
+    };
+
+    vm.updateEducation = function(id) {
+      var getByIdFilter = $filter('getById');
+      var education = getByIdFilter(vm.educations, id);
+
+      $log.debug(education);
+
+      var onSuccess = function() {
+        getEditableObject(id).$hide();
+      };
+      var onFailure = function() {
+        /**
+         * TODO: show error msg
+         */
+      };
+
+      volunteer.updateEducation(education)
+        .then(onSuccess)
+        .catch(onFailure);
+    };
+
+    vm.deleteEducation = function(id) {
+      var onSuccess = function() {
+        getEditableObject(id).$hide();
+        getEducations();
+      };
+      var onFailure = function() {
+        /**
+         * TODO: show error msg
+         */
+      };
+
+      volunteer.deleteEducation(id)
+        .then(onSuccess)
+        .catch(onFailure);
+    };
+
+    vm.editableFormShow = function(id) {
+
+      getEditableObject(id).$show();
+    };
+
+    vm.editableIsVisible = function(id) {
+
+      $log.debug('vm.editableIsVisible()');
+
+      var editableObj = getEditableObject(id);
+
+      if (editableObj == null) {
+        return false;
+      }
+
+      var visible = editableObj.$visible;
+
+      return visible;
+    };
+
+    vm.editableFormCancel = function(id) {
+      getEditableObject(id).$cancel();
+    };
+
+    vm.setAddEducationVisible = function() {
+      vm.isShowAddEducation = true;
+    };
+
+    vm.setAddEducationInvisible = function() {
+      vm.isShowAddEducation = false;
+    };
+
+    vm.onShowEditableForm = function(id) {
+      var formElement = angular.element(document).find('form[name="vm.education' + id + '"]');
+      formElement.addClass('editable-form-section');
+    };
+
+    vm.onHideEditableForm = function(id) {
+      var formElement = angular.element(document).find('form[name="vm.education' + id + '"]');
+      formElement.removeClass('editable-form-section');
+    }
+  }
+})();

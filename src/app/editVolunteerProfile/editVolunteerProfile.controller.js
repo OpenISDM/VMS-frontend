@@ -1,25 +1,36 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('vmsFrontend')
-        .controller('EditVolunteerProfileController', EditVolunteerProfileController);
+  angular
+    .module('vmsFrontend')
+    .controller('EditVolunteerProfileController', EditVolunteerProfileController);
 
-    /** @ngInject */
-    function EditVolunteerProfileController($log, vmsClient, volunteerProfile, cities) {
-        var vm = this;
-        vm.cities = cities;
-        angular.element(document).ready(getProfile());
+  /** @ngInject */
+  function EditVolunteerProfileController($log, vmsClient, volunteer, cities) {
+    var vm = this;
+    vm.cities = cities;
 
-        function getProfile() {
-            var doneCallbacks = function(profile) {
-                vm.profile = profile;
-            },
-            failCallbacks = function(response) {
-                $log.debug(response);
-            };
+    // In the begining, it gets the volunteer's profile
+    angular.element(document).ready(getProfile());
 
-            volunteerProfile.get().then(doneCallbacks, failCallbacks)
-        }
+    function getProfile() {
+      var doneCallbacks = function(profile) {
+          vm.profile = profile;
+        },
+        failCallbacks = function(response) {
+          $log.debug(response);
+        };
+
+      volunteer.getProfile().then(doneCallbacks, failCallbacks)
     }
+
+    vm.updateAboutAndContact = function() {
+      var onSuccess = function(data) {
+        vm.profile = data;
+      };
+
+      volunteer.updateProfile(vm.profile)
+        .then(onSuccess);
+    };
+  }
 })();

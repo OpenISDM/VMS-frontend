@@ -6,7 +6,8 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, vmsLocalStorage, $rootScope, $state, $stateParams, auth, authPrinciple, $urlRouter) {
+  function runBlock($log, vmsLocalStorage, $rootScope, $state, $stateParams, auth, authPrinciple, $urlRouter, editableOptions) {
+    editableOptions.theme = 'bs3';
 
     // Listen state check start event
     var stateChangeForAuthorizationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {

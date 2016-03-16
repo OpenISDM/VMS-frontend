@@ -129,8 +129,16 @@
         },
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/experienceAndEducation.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
+          },
+          'experienceContent@rootEditProfile.experienceEducation': {
+            templateUrl: 'app/volunteerExperience/experience.html',
+            controller: 'VolunteerExperienceController',
+            controllerAs: 'vm'
+          },
+          'educationContent@rootEditProfile.experienceEducation': {
+            templateUrl: 'app/volunteerEducation/education.html',
+            controller: 'VolunteerEducationController',
             controllerAs: 'vm'
           }
         }

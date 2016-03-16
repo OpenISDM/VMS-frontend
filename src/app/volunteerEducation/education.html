@@ -1,0 +1,119 @@
+<div class="profile-section">
+  <span class="h2-inline">教育</span>
+  <button class="btn btn-default pull-right" ng-click="vm.setAddEducationVisible()">新增教育</button>
+  <hr>
+  <div ng-show="vm.isShowAddEducation">
+    <form id="new-education" class="form-inline education-section">
+      <div class="row">
+        <div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row">
+            <label for="school" class="control-label col-md-2 col-lg-2">學校名稱</label>
+            <div class="col-md-8 col-lg-8">
+              <input type="text" class="form-control" id="school" placeholder="學校名稱" ng-model="vm.sEducation.school" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="field-of-study" class="control-label col-md-4 col-lg-4">科系</label>
+            <div class="col-md-8 col-lg-8">
+              <input type="text" class="form-control" id="field-of-study" placeholder="科系" ng-model="vm.sEducation.field_of_study" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="degree" class="control-label col-md-4 col-lg-4">學歷</label>
+            <div class="col-md-8 col-lg-8">
+              <select class="form-control" id="degree" placeholder="學歷" ng-model="vm.sEducation.degree" ng-options="d.value as d.text for d in vm.degrees" required>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="start-year" class="control-label col-md-4 col-lg-4">開始期間</label>
+            <div class="col-md-8 col-lg-8">
+              <select name="start-years" class="form-control" id="start-year" placeholder="起始年" ng-model="vm.sEducation.start_year" ng-options="y.value as y.text for y in vm.years" required>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+          <div class="row">
+            <label for="end-year" class="control-label col-md-4 col-lg-4">結束期間</label>
+            <div class="col-md-8 col-lg-8">
+              <select name="end-year" class="form-control" id="end-year" placeholder="結束年" ng-model="vm.sEducation.end_year" ng-options="y.value as y.text for y in vm.years">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <button type="button" class="btn btn-primary" ng-click="vm.addEducation()">儲存</button>
+              <button type="button" class="btn btn-default" ng-click="vm.setAddEducationInvisible()">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div ng-show="vm.educations != undefined && vm.educations.length != 0">
+    <div ng-repeat="(index, education) in vm.educations">
+      <form editable-form name="vm.education{{education.id}}" class="form-inline education-section" onaftersave="vm.updateEducation(education.id)" onshow="vm.onShowEditableForm(education.id)" onhide="vm.onHideEditableForm(education.id)">
+        <div class="row">
+          <div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="school" class="control-label col-md-2 col-lg-2">學校名稱</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-text="vm.educations[{{ index }}].school" e-name="school" ng-click="vm.editableFormShow(education.id)" e-required>{{ vm.educations[index].school }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="field-of-study" class="control-label col-md-4 col-lg-4">科系</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-text="vm.educations[{{ index }}].field_of_study" e-nmae="field-of-study" ng-click="vm.editableFormShow(education.id)" e-required>{{ vm.educations[index].field_of_study }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="degree" class="control-label col-md-4 col-lg-4">學歷</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-text="vm.educations[{{ index }}].degree" e-nmae="degree" ng-click="vm.editableFormShow(education.id)" e-required>{{ vm.educations[index].degree }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="start-year" class="control-label col-md-4 col-lg-4">開始期間</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-select="vm.educations[{{ index }}].start_year" e-ng-options="y.value as y.text for y in vm.years" ng-click="vm.editableFormShow(education.id)">{{ vm.educations[index].start_year }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <div class="row grid-vertical-align">
+              <label for="end-year" class="control-label col-md-4 col-lg-4">結束期間</label>
+              <div class="col-md-8 col-lg-8">
+                <a editable-select="vm.educations[{{ index }}].end_year" e-ng-options="y.value as y.text for y in vm.years" ng-click="vm.editableFormShow(education.id)">{{ vm.educations[index].end_year }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-12 col-sm-6 col-xs-12">
+            <div class="row">
+              <div class="col-lg-12" ng-show="vm.editableIsVisible(education.id)">
+                <button type="submit" class="btn btn-primary">儲存</button>
+                <button type="button" class="btn btn-default" ng-click="vm.editableFormCancel(education.id)">取消</button>
+                <a ng-click="vm.deleteEducation(education.id)">刪除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
