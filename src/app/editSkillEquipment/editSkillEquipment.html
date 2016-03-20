@@ -1,0 +1,31 @@
+<div class="row profile-section">
+  <h2>技能</h2>
+  <hr>
+  <form>
+  <div class="col-lg-12 col-mg-12">
+    <tags-input class="bootstrap" ng-model="vm.skills" min-length="1" display-property="name" placeholder="新增技能" replace-spaces-with-dashes="false">
+      <auto-complete source="vm.refreshSkillCandidatedKeywords($query)" min-length="1" debounce-delay="1000" max-results="10" display-property="name">
+      </auto-complete>
+    </tags-input>
+  </div>
+  <div class="col-lg-12 col-mg-12">
+      <button type="submit" ng-click="vm.updateSkills()" class="btn btn-primary">儲存</button>
+  </div>
+  </form>
+
+  </div>
+  <div class="row profile-section">
+    <h2>裝備</h2>
+    <hr>
+    <form>
+    <div class="col-lg-12 col-mg-12">
+      <tags-input class="bootstrap" ng-model="vm.equipment" min-length="1" display-property="name" placeholder="新增設備" replace-spaces-with-dashes="false">
+        <auto-complete source="vm.refreshEquipmentCandidateKeywords($query)" min-length="1" debounce-delay="1000" max-results="10" display-property="name">
+        </auto-complete>
+      </tags-input>
+    </div>
+    <div class="col-lg-12 col-mg-12">
+        <button type="submit" ng-click="vm.updateEquipment()" class="btn btn-primary">儲存</button>
+    </div>
+    </form>
+  </div>

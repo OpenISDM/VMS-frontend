@@ -138,20 +138,20 @@
           },
           'educationContent@rootEditProfile.experienceEducation': {
             templateUrl: 'app/volunteerEducation/education.html',
-            controller: 'VolunteerEducationController',
+            controller: 'VolunteerEduationController',
             controllerAs: 'vm'
           }
         }
       })
       .state('rootEditProfile.skillEquipment', {
-        url: '/profile/edit/skill_equipment',
+        url: '/edit/skill_equipment',
         data: {
           needAuth: true
         },
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/skillAndEquipment.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/editSkillEquipment/editSkillEquipment.html',
+            controller: 'EditSkillEquipmentController',
             controllerAs: 'vm'
           }
         }

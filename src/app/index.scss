@@ -15,6 +15,7 @@ $top-line-color: $primary-color;
 $link-color: $primary-color !default;
 $navbar-default-link-hover-bg: darken($primary-color, 6.5%);
 $block-grey-color: #F5F5F5;
+$label-primary-bg: #5bc0de;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -396,6 +397,22 @@ select {
 .grid-vertical-align > [class*=" col-"] {
   display: flex;
   align-items: center;
+}
+
+/**
+ * Tags
+ */
+.bootstrap .tags {
+    @extend .form-control;
+    height: 100%;
+}
+
+.bootstrap .tags .tag-item {
+    @extend .label;
+    @extend .label-primary;
+    padding: 4px 5px;
+    background: $label-primary-bg;
+    font-size: 12px;
 }
 
 /**

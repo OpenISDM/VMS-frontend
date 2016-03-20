@@ -13,7 +13,13 @@
       getEducations: getEducations,
       addEducation: addEducation,
       updateEducation: updateEducation,
-      deleteEducation: deleteEducation
+      deleteEducation: deleteEducation,
+      getSkillCandidatedKeywords: getSkillCandidatedKeywords,
+      getEquipmentCandidatedKeywords: getEquipmentCandidatedKeywords,
+      getSkills: getSkills,
+      updateSkills: updateSkills,
+      getEquipment: getEquipment,
+      updateEquipment: updateEquipment
     };
     return service;
 
@@ -244,6 +250,159 @@
       };
 
       vmsClient.deleteEducation(id)
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function getSkillCandidatedKeywords(keyword) {
+      var deferred = $q.defer();
+
+      $log.debug('volunteer.getSkillCandidatedKeywords()');
+
+      if (angular.isDefined(keyword) && keyword != '') {
+
+        var onSuccess = function(response) {
+          $log.debug('get skill candidated keywords successfully');
+
+          deferred.resolve(response.data.result);
+        };
+        var onFailure = function(response) {
+          $log.debug('get skill candidated keywords failed');
+
+          deferred.reject(response.data);
+        };
+
+        vmsClient.getSkillCandidatedKeywords(keyword)
+          .then(onSuccess)
+          .catch(onFailure);
+      } else {
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    }
+
+    function getEquipmentCandidatedKeywords(keyword) {
+      var deferred = $q.defer();
+
+      var onSuccess = function(response) {
+        $log.debug('get equipment candidated keywords successfully');
+
+        deferred.resolve(response.data.result);
+      };
+      var onFailure = function(response) {
+        $log.debug('get equipment candidated keywords failed');
+
+        deferred.reject(response.data);
+      };
+
+      vmsClient.getEquipmentCandidatedKeywords(keyword)
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function getSkills() {
+      var deferred = $q.defer();
+
+      var onSuccess = function(response) {
+        $log.debug('get skills successfully');
+
+        deferred.resolve(response.data.skills);
+      };
+      var onFailure = function(response) {
+        $log.debug('get skills failed');
+
+        deferred.reject(response.data);
+      };
+
+      vmsClient.getSkills()
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function updateSkills(skills, existingIndexes) {
+      var deferred = $q.defer();
+
+      var onSuccess = function() {
+        $log.debug('update skills successfully');
+
+        deferred.resolve();
+      };
+      var onFailure = function(response) {
+        $log.debug('update skills failed');
+
+        deferred.reject(response.data);
+      };
+
+      var sSkills = [];
+      angular.forEach(skills, function(value) {
+        sSkills.push(value.name);
+      });
+
+      var updateSkills = {
+        'skills': sSkills,
+        'existing_skill_indexes': existingIndexes
+      }
+
+      vmsClient.updateSkills(updateSkills)
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function getEquipment() {
+      var deferred = $q.defer();
+
+      var onSuccess = function(response) {
+        $log.debug('get equipment successfully');
+
+        deferred.resolve(response.data.equipment);
+      };
+      var onFailure = function(response) {
+        $log.debug('get equipment failed');
+
+        deferred.reject(response.data);
+      };
+
+      vmsClient.getEquipment()
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function updateEquipment(equipment, existingIndexes) {
+      var deferred = $q.defer();
+
+      var onSuccess = function() {
+        $log.debug('update equipment successfully');
+
+        deferred.resolve();
+      };
+      var onFailure = function(response) {
+        $log.debug('update equipment failed');
+
+        deferred.reject(response.data);
+      };
+
+      var sEquipment = [];
+      angular.forEach(equipment, function(value) {
+        sEquipment.push(value.name);
+      });
+
+      var updateEquipment = {
+        'equipment': sEquipment,
+        'existing_equipment_indexes': existingIndexes
+      }
+
+      vmsClient.updateEquipment(updateEquipment)
         .then(onSuccess)
         .catch(onFailure);
 
