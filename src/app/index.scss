@@ -14,6 +14,8 @@ $navbar-default-bg: $primary-color !default;
 $top-line-color: $primary-color;
 $link-color: $primary-color !default;
 $navbar-default-link-hover-bg: darken($primary-color, 6.5%);
+$block-grey-color: #F5F5F5;
+$label-primary-bg: #5bc0de;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -86,6 +88,18 @@ hr.color {
     }
 }
 
+#new-experience, #new-education, .editable-form-section {
+    background: $block-grey-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+}
+
+.h2-inline {
+    @extend h2;
+    display: inline;
+}
+
 .top-line {
     border-top-style: solid;
     border-top-width: 5px;
@@ -97,6 +111,15 @@ hr.color {
 }
 
 .profile-section > div {
+    margin: 10px 0;
+}
+
+.experience-section, .education-section {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.experience-section > div > div, .education-section > div > div {
     margin: 10px 0;
 }
 
@@ -362,6 +385,35 @@ select {
   padding-top:10px;
 }
 
+/**
+ * Vertical align for non-form elements in <form> element
+ */
+.grid-vertical-align {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-vertical-align > [class^="col-"],
+.grid-vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * Tags
+ */
+.bootstrap .tags {
+    @extend .form-control;
+    height: 100%;
+}
+
+.bootstrap .tags .tag-item {
+    @extend .label;
+    @extend .label-primary;
+    padding: 4px 5px;
+    background: $label-primary-bg;
+    font-size: 12px;
+}
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

@@ -118,6 +118,30 @@
         });
       });
 
+      describe('updateProfile()', function() {
+        var responseMock,
+          updatedProfile = {
+            'phone_number': '0988123456',
+            'emergency_contact': 'Johnson Su',
+            'emergency_phone': '0978123456'
+          };
+
+        beforeEach(inject(function(_volunteerProfileMock_) {
+          responseMock = _volunteerProfileMock_;
+        }));
+
+        it('should update volunteer profile successfully', function() {
+          httpBackend.expectPUT(apiBaseUrl + '/users/me',
+            updatedProfile).respond(function() {
+            return [200, responseMock];
+          });
+          vmsClient.updateProfile(updatedProfile).then(function(response) {
+            expect(response.data).toEqual(responseMock);
+          });
+          httpBackend.flush();
+        });
+      });
+
       describe('refreshToken', function() {
 
         it('shoud refresh token successfully', function() {

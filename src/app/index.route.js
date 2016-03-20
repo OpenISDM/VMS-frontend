@@ -87,55 +87,71 @@
           }
         }
       })
-      .state('editProfile', {
+      .state('rootEditProfile', {
         parent: 'site',
-        data: {
-          needAuth: true
-        },
+        url: '/profile',
         views: {
-          /**
-          @TODO: blank page
-          */
           'mainContent@': {
             templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
           }
         }
       })
-      .state('editProfile.aboutContact', {
-        url: '/profile/edit',
+      .state('rootEditProfile.edit', {
+        url: '/edit',
         data: {
           needAuth: true
         },
         views: {
-          'profileContent@editProfile': {
+          'profileContent': {
             templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
             controller: 'EditVolunteerProfileController',
             controllerAs: 'vm'
           }
         }
       })
-      .state('editProfile.experienceEducation', {
-        url: '/profile/edit/experience_education',
+      .state('rootEditProfile.aboutContact', {
+        url: '/edit/about',
         data: {
           needAuth: true
         },
         views: {
-          'profileContent@editProfile': {
-            templateUrl: 'app/editVolunteerProfile/experienceAndEducation.html',
+          'profileContent': {
+            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
             controller: 'EditVolunteerProfileController',
             controllerAs: 'vm'
           }
         }
       })
-      .state('editProfile.skillEquipment', {
-        url: '/profile/edit/skill_equipment',
+      .state('rootEditProfile.experienceEducation', {
+        url: '/edit/experience_education',
         data: {
           needAuth: true
         },
         views: {
-          'profileContent@editProfile': {
-            templateUrl: 'app/editVolunteerProfile/skillAndEquipment.html',
-            controller: 'EditVolunteerProfileController',
+          'profileContent': {
+            templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
+          },
+          'experienceContent@rootEditProfile.experienceEducation': {
+            templateUrl: 'app/volunteerExperience/experience.html',
+            controller: 'VolunteerExperienceController',
+            controllerAs: 'vm'
+          },
+          'educationContent@rootEditProfile.experienceEducation': {
+            templateUrl: 'app/volunteerEducation/education.html',
+            controller: 'VolunteerEduationController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('rootEditProfile.skillEquipment', {
+        url: '/edit/skill_equipment',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'profileContent': {
+            templateUrl: 'app/editSkillEquipment/editSkillEquipment.html',
+            controller: 'EditSkillEquipmentController',
             controllerAs: 'vm'
           }
         }
