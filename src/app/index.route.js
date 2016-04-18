@@ -204,16 +204,72 @@
           }
         }
       })
-      .state('projects', {
+      .state('createProject', {
         parent: 'site',
-        url: '/projects',
+        url: '/projects/create',
         data: {
           needAuth: true
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/volunteerProject/projectDetails.html',
-            controller: 'ProjectController',
+            templateUrl: 'app/project/createProject.html',
+            controller: 'CreateProjectController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('managedProjectList', {
+        parent: 'site',
+        url: '/projects/show/managed',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/managedProjectList.html',
+            controller: 'ManagedProjectListController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('editProject', {
+        parent: 'site',
+        url: '/projects/edit?id',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/editProject.html',
+            controller: 'EditProjectController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('projectDetail', {
+        parent: 'site',
+        url: '/projects/show?id',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/projectDetail.html',
+            controller: 'ProjectDetailController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('manageProjectCustomField', {
+        parent: 'site',
+        url: '/projects/:projectId/custom_fields',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/projectCustomFields/manageProjectCustomFields.html',
+            controller: 'ManageProjectCustomFieldsController',
             controllerAs: 'vm'
           }
         }

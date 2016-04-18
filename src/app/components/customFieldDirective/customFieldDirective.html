@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="project-custom-field-preview left-line col-md-12 col-lg-12">
+    <custom-field-type-preview type="vm.type.typeName" attribute="vm.data.attributes"></custom-field-type-preview>
+  </div>
+  <div class="project-custom-field-wrapper col-md-12 col-lg-12">
+    <div class="project-custom-field-content">
+      <form>
+        <div class="row">
+          <div class="form-group col-md-12 col-lg-12">
+            <div class="row">
+              <label class="control-label col-md-2 col-lg-2" for="field-name">
+                欄位名稱
+              </label>
+              <div class="col-md-10 col-lg-10">
+                <input id="field-name" type="text" class="form-control" placeholder="欄位名稱" ng-model="vm.data.attributes.name" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12 col-lg-12">
+            <div class="row">
+              <label class="col-md-2 col-lg-2 control-label" for="field-description">
+                欄位描述
+              </label>
+              <div class="col-md-10 col-lg-10">
+                <input id="field-description" type="text" class="form-control" placeholder="欄位描述" ng-model="vm.data.attributes.description" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="form-group col-md-6 col-lg-6">
+            <div class="row">
+              <label class="col-md-4 col-lg-4 control-label" for="field-type">
+                欄位類型
+              </label>
+              <div class="col-md-8 col-lg-8">
+                <select name="field-type" id="field-type" class="form-control" ng-options="option.label for option in vm.typeOptions" ng-model="vm.type">
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6 col-lg-6">
+            <div class="row">
+              <label class="col-md-4 col-lg-4 control-label" for="field-required">
+                是否必填
+              </label>
+              <div class="col-md-8 col-lg-8">
+                <label class="radio-inline">
+                  <input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="true"> 是
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="false"> 否
+                </label>
+              </div>
+            </div>
+          </div>
+          <custom-field-type type="vm.type.typeName" metadata="vm.data.attributes.metadata"></custom-field-type>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <button class="btn btn-sm btn-primary pull-right" ng-click="vm.store()">
+              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 儲存
+            </button>
+            <button class="btn btn-sm btn-danger pull-right">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 移除
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

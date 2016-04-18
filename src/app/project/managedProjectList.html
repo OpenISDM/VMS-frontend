@@ -1,0 +1,39 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	<h1>專案列表</h1>
+</div>
+<div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>專案名稱</th>
+				<th>組織名稱</th>
+				<th>權限</th>
+				<th>是否發布</th>
+				<th>建立時間</th>
+				<th>編輯</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="project in vm.projects.data">
+				<td>
+					{{ project.attributes.name }}
+				</td>
+				<td>
+					{{ project.attributes.organization }}
+				</td>
+				<td>
+					{{ project.attributes.permission }}
+				</td>
+				<td>
+					{{ project.attributes.is_published }}
+				</td>
+				<td>
+					{{ project.attributes.created_at.date }}
+				</td>
+				<td>
+					<span class="glyphicon glyphicon-pencil" ui-sref="editProject({ id: project.id })" aria-hidden="true"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,77 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	<h1>瀏覽專案</h1>
+</div>
+<div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span> {{ vm.errorMsg }}
+	</div>
+		<span class="h2-inline">基本資訊</span>
+		<button class="btn btn-default pull-right" ng-click="vm.attend()" ng-show="vm.isGuest()">加入</button>
+		<button class="btn btn-default pull-right" ui-sref="editProject({ id: vm.project.data.id })" ng-show="vm.isCreator()">編輯</button>
+		<hr>
+		<div id="project-basic" class="project-section row">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="name" class="col-md-2 col-lg-4">名稱</label>
+					<div class="col-md-10 col-lg-8">
+						<span id="name">{{ vm.project.data.attributes.name }}</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="organization" class="col-md-2 col-lg-4">組織名稱</label>
+					<div class="col-md-10 col-lg-8">
+						<span id="organization">{{ vm.project.data.attributes.organization }}</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="permission" class="col-md-2 col-lg-4">權限</label>
+					<div class="col-md-10 col-lg-8">
+						<span>{{ vm.project.data.attributes.permission }}</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="permission" class="col-md-2 col-lg-4">是否發布</label>
+					<div class="col-md-10 col-lg-8">
+							<span id="permission" aria-label="ABC" ng-true-value="true" ng-false-value="false">
+                {{ vm.project.data.attributes.is_published }}
+              </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<label for="hyperlinks" class="col-md-1 col-lg-2">相關連結</label>
+					<div class="col-md-10 col-lg-8" ng-repeat="hyperlink in vm.hyperlinks">
+						<div class="row">
+							<div class="col-md-5 col-lg-5">
+								<span placeholder="連結名稱" ng-model="hyperlink.name" required />
+							</div>
+							<div class="col-md-7 col-lg-7">
+								<span placeholder="連結網址" ng-model="hyperlink.link" required />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<label for="description" class="col-md-1 col-lg-1">說明</label>
+					<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+						<div id="description">{{ vm.project.data.attributes.description }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="project-section">
+			<span class="h2-inline">專案成員</span>
+			<button class="btn btn-default pull-right" ng-click="vm.manageMembers()" ng-show="vm.isCreator()">管理成員</button>
+			<hr>
+		</div>
+</div>

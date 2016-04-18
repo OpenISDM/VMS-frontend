@@ -40,6 +40,10 @@ nav a {
     color: #ffffff !important;
 }
 
+nav .dropdown-menu > li > a {
+    color: #333333 !important;
+}
+
 body {
     padding-top: 100px;
     min-height: 100%;
@@ -95,9 +99,14 @@ hr.color {
     height: auto;
 }
 
+.h1-inline {
+    @extend h1;
+    display: inline-block;
+}
+
 .h2-inline {
     @extend h2;
-    display: inline;
+    display: inline-block;
 }
 
 .top-line {
@@ -106,12 +115,49 @@ hr.color {
     border-top-color: $top-line-color;
 }
 
-.profile-section {
+.left-line {
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: $top-line-color;
+}
+
+.v-center {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.profile-section, .project-section {
     margin-top: 30px;
 }
 
-.profile-section > div {
-    margin: 10px 0;
+.profile-section, .project-section {
+    > div {
+        margin: 10px 0;
+    }
+}
+
+#poject-custom-fields-section {
+    padding: 10px 0;
+}
+
+.project-custom-field-preview {
+    .project-custom-field-preview-section {
+        margin-top: 20px;
+        margin-bottom: 5px
+    }
+}
+
+.project-custom-field-wrapper {
+    background-color: $grey-color;
+
+    > .project-custom-field-content {
+        margin: 20px 8px;
+    }
+}
+
+.add-new-option-section {
+    padding-top: 10px;
 }
 
 .experience-section, .education-section {
@@ -123,9 +169,21 @@ hr.color {
     margin: 10px 0;
 }
 
-.profile-section input:not([type='radio']),
-select {
-    width: 100% !important;
+// .profile-section input:not([type='radio']),
+// select {
+//     width: 100% !important;
+// }
+
+.profile-section  {
+    input:not([type='radio']),
+    input:not([type='checkbox']),
+    select {
+        width: 100% !important;
+    }
+}
+
+.message {
+    padding: 15px;
 }
 
 .header-basic {

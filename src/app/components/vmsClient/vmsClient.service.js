@@ -29,7 +29,13 @@
       getSkills: getSkills,
       updateSkills: updateSkills,
       getEquipment: getEquipment,
-      updateEquipment: updateEquipment
+      updateEquipment: updateEquipment,
+      addProject: addProject,
+      getManagedProjects: getManagedProjects,
+      getProject: getProject,
+      updateProject: updateProject,
+      getProjectCustomFields: getProjectCustomFields,
+      updateProjectCustomField: updateProjectCustomField
     };
 
     return service;
@@ -246,5 +252,55 @@
       });
     }
 
+    /**
+     * @TODO: Unit testing
+     */
+    function addProject(project) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects',
+        data: project
+      });
+    }
+
+    /**
+     * @TODO: Unit testing
+     */
+    function getManagedProjects() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/managed_projects',
+      });
+    }
+
+    function getProject(id) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + id,
+      });
+    }
+
+    function updateProject(value) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/projects/' + value.data.id,
+        data: value
+      });
+    }
+
+    function getProjectCustomFields(id) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + id + '/custom_fields',
+      });
+    }
+
+    function updateProjectCustomField(projectId, data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/custom_fields',
+        data: data
+      })
+    }
   }
 })();
