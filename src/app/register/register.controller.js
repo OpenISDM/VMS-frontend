@@ -6,7 +6,7 @@
     .controller('RegisterController', RegisterController);
 
   /** @ngInject */
-  function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, authPrinciple, $scope, cities, localStorageService) {
+  function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, authPrinciple, $scope, cities, vmsLocalStorage) {
     var vm = this;
     vm.cities = cities;
 
@@ -38,11 +38,10 @@
       }
 
       var onSuccess = function(response) {
-        $log.debug('success');
-        $log.debug(response);
 
-        localStorageService.set('username', vm.volunteer.username);
-        authPrinciple.authenticate(response.data.auth_access_token);
+        vmsLocalStorage.setUsername(vm.volunteer.username);
+        vmsLocalStorage.setJwt(response.data.auth_access_token);
+        vmsLocalStorage.setRole('volunteer');
 
         $state.go('registerSuccess', {
           last_name: vm.volunteer.last_name,

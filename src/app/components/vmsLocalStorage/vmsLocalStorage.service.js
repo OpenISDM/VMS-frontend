@@ -17,7 +17,10 @@
       removeLastName: removeLastName,
       setUsername: setUsername,
       getUsername: getUsername,
-      removeUsername: removeUsername
+      removeUsername: removeUsername,
+      getRole: getRole,
+      setRole: setRole,
+      removeRole: removeRole
     };
 
     return service;
@@ -60,6 +63,18 @@
 
     function removeUsername() {
       return localStorageService.remove(LOCAL_STORAGE_CONFIG.keys.userName);
+    }
+
+    function setRole(token) {
+      return localStorageService.set(LOCAL_STORAGE_CONFIG.keys.role, token);
+    }
+
+    function getRole() {
+      return localStorageService.get(LOCAL_STORAGE_CONFIG.keys.role);
+    }
+
+    function removeRole() {
+      return localStorageService.remove(LOCAL_STORAGE_CONFIG.keys.role);
     }
 
     function keyExists(keyName) {

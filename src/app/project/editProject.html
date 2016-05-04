@@ -1,0 +1,98 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	<h1>編輯專案</h1>
+</div>
+<div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span> {{ vm.errorMsg }}
+	</div>
+	<form class="form-inline">
+		<span class="h2-inline">基本資訊</span>
+		<span class="dropdown pull-right" uib-dropdown>
+			<button class="btn btn-default dropdown-toggle" type="button" id="action-dropdown" uib-dropdown-toggle aria-haspopup="true" aria-expanded="true">
+				動作
+				<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="action-dropdown">
+			<li><a ui-sref="editProject({ id: vm.projectId })">編輯</a></li>
+			<li><a ui-sref="manageProjectCustomField({ projectId: vm.projectId })">自訂欄位管理</a></li>
+			<li><a href="#">刪除</a></li>
+		</ul>
+		</span>
+		<hr>
+		<div id="profile-basic" class="profile-section row">
+			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="name" class="control-label col-md-2 col-lg-4">名稱</label>
+					<div class="col-md-10 col-lg-8">
+						<input type="text" class="form-control" id="name" placeholder="名稱" ng-model="vm.project.data.attributes.name" required>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="organization" class="control-label col-md-2 col-lg-4">組織名稱</label>
+					<div class="col-md-10 col-lg-8">
+						<input type="text" class="form-control" id="organization" placeholder="組織名稱" ng-model="vm.project.data.attributes.organization" required>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="permission" class="control-label col-md-2 col-lg-4">權限</label>
+					<div class="col-md-10 col-lg-8">
+						<select name="permission" id="permission" class="form-control" ng-options="option.value as option.name for option in vm.permissionOptions" ng-model="vm.project.data.attributes.permission">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="permission" class="control-label col-md-2 col-lg-4"></label>
+					<!-- <div class="col-md-10 col-lg-8 checkbox">
+						<label>
+							<input type="checkbox" id="permission" aria-label="ABC" ng-true-value="true" ng-false-value="false" ng-model="vm.project.data.attributes.is_published">
+						</label>
+					</div> -->
+					<div class="col-md-10 col-lg-8">
+						<label class="radio-inline">
+							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.data.attributes.is_published"> 發布
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="permission" ng-value="false" ng-model="vm.project.data.attributes.is_published"> 不發佈
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<label for="hyperlinks" class="control-label col-md-1 col-lg-2">相關連結</label>
+					<div class="col-md-10 col-lg-8" ng-repeat="hyperlink in vm.hyperlinks">
+						<div class="row">
+							<div class="col-md-5 col-lg-5">
+								<input type="text" class="form-control" placeholder="連結名稱" ng-model="hyperlink.name" required />
+							</div>
+							<div class="col-md-7 col-lg-7">
+								<input type="text" class="form-control" placeholder="連結網址" ng-model="hyperlink.link" required />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<label for="description" class="control-label col-md-1 col-lg-1">說明</label>
+					<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+						<textarea class="form-control" id="description" ng-model="vm.project.data.attributes.description" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row profile-section">
+				<div class="col-md-2 col-md-offset-5">
+					<button class="btn btn-primary btn-lg" ng-click="vm.update()">送出</button>
+				</div>
+				<div class="col-md-5"></div>
+			</div>
+		</div>
+	</form>
+</div>

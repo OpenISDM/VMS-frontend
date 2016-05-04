@@ -1,0 +1,53 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	<h1>我的專案</h1>
+</div>
+<div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>專案名稱</th>
+				<th>組織名稱</th>
+				<th>是否發布</th>
+				<th>建立時間</th>
+				<th>管理</th>
+				<th>刪除</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="project in vm.projects.data">
+				<td>
+					<a ui-sref="projectDetail({ id: project.id })">{{ project.attributes.name }}</a>
+				</td>
+				<td>
+					{{ project.attributes.organization }}
+				</td>
+				<td>
+					{{ project.attributes.is_published | yesNo }}
+				</td>
+				<td>
+					{{ project.attributes.created_at.date | formatDateTime }}
+				</td>
+				<td>
+					<span class="glyphicon glyphicon-cog" ui-sref="project.edit({ projectId: project.id })" aria-hidden="true"></span>
+				</td>
+				<td>
+					<span class="glyphicon glyphicon-trash" ng-click="vm.delete(project.id)" aria-hidden="true"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!--angular ui modal-->
+<script type="text/ng-template" id="deleteProject.html">
+<div class="modal-header">
+    <h3 class="modal-title">注意！您的專案即將被刪除</h3>
+</div>
+<div class="modal-body">
+    <div class="alert alert-danger" role="alter" ng-show="vm.deleteMsg">{{vm.deleteMsg}}</div>
+    <div class="alert alert-warning" role="alert">{{vm.remind}}</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="vm.ok()">確認刪除專案</button>
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()">取消</button>
+</div>
+</script>

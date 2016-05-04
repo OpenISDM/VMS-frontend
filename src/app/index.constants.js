@@ -21,7 +21,8 @@
       keys: {
         jwt: 'jwt_token',
         userName: 'user_name',
-        lastName: 'last_name'
+        lastName: 'last_name',
+        role: 'role'
       }
     })
     .constant('BROADCAST_EVENTS_LIST', {
@@ -96,6 +97,36 @@
       name_zh_tw: '澎湖縣'
     }
 
+    ])
+    .constant('PERMISSION_OPTIONS', [
+      {
+        name: '選擇權限',
+        value: ''
+      },
+      {
+        name: '公開的',
+        value: 0
+      },
+      {
+        name: '已經註冊的',
+        value: 1
+      },
+      {
+        name: '專案成員',
+        value: 2
+      }
+    ])
+    .constant('CUSTOM_FIELD_TYPES', [
+      {
+        label: '文字',
+        typeName: 'text',
+        value: 'TEXT'
+      },
+      {
+        label: '單選按鈕',
+        typeName: 'radioButton',
+        value: 'RADIO_BUTTON'
+      }
     ]);
 
 })();

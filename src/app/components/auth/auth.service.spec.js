@@ -108,6 +108,10 @@
 
         beforeEach(function() {
           vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
+          vmsLocalStorageMock['removeJwt'] = jasmine.createSpy('removeJwt').and.returnValue(true);
+          vmsLocalStorageMock['removeLastName'] = jasmine.createSpy('removeLastName').and.returnValue(true);
+          vmsLocalStorageMock['removeUsername'] = jasmine.createSpy('removeUsername').and.returnValue(true);
+          vmsLocalStorageMock['removeRole'] = jasmine.createSpy('removeRole').and.returnValue(true);
         });
 
         it('should remove JWT from local storage', function() {
@@ -133,6 +137,10 @@
 
         beforeEach(function() {
           vmsLocalStorageMock['getJwt'] = jasmine.createSpy('getJwt').and.returnValue('OUO0u0.0FooFoo');
+          vmsLocalStorageMock['removeJwt'] = jasmine.createSpy('removeJwt').and.returnValue(true);
+          vmsLocalStorageMock['removeLastName'] = jasmine.createSpy('removeLastName').and.returnValue(true);
+          vmsLocalStorageMock['removeUsername'] = jasmine.createSpy('removeUsername').and.returnValue(true);
+          vmsLocalStorageMock['removeRole'] = jasmine.createSpy('removeRole').and.returnValue(true);
         });
 
         it('should remove JWT from local storage', function() {

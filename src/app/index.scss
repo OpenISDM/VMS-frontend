@@ -2,7 +2,6 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
-
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $primary-color: #E74C40;
@@ -16,409 +15,408 @@ $link-color: $primary-color !default;
 $navbar-default-link-hover-bg: darken($primary-color, 6.5%);
 $block-grey-color: #F5F5F5;
 $label-primary-bg: #5bc0de;
-
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
  *  sass dependencies when defined in the bower.json of your dependencies
  */
-
 // bower:scss
 // endbower
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
-
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
-
 nav a {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
-
+nav .dropdown-menu > li > a {
+  color: #333333 !important;
+}
 body {
-    padding-top: 100px;
-    min-height: 100%;
-    margin-bottom: 59px;
+  padding-top: 100px;
+  min-height: 100%;
+  margin-bottom: 59px;
 }
-
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    color: darken($grey-color, 30%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  color: darken($grey-color, 30%);
 }
-
 footer > .container > .row {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-
 hr.color {
-    border-top: 1px solid darken($grey-color, 6.5%);
+  border-top: 1px solid darken($grey-color, 6.5%);
 }
-
 #navbar-profile-menu > li > a {
-    color: #000000 !important;
+  color: #000000 !important;
 }
-
 #main-content {
-    background-color: #FFFFFF;
-    min-height: 80%;
-    padding: 30px;
+  background-color: #FFFFFF;
+  min-height: 80%;
+  padding: 30px;
 }
-
 #avatar-image {
-    height: 180px;
-    width: 180px;
+  height: 180px;
+  width: 180px;
 }
-
 #avatar-input {
-    margin-top: 10px;
-    @media screen and (min-width: $screen-md-min) {
-        margin-left: 30px;
-    }
-    @media screen and (max-width: $screen-xs-max) {
-        margin-left: auto;
-        margin-right: auto;
-    }
+  margin-top: 10px;
+  @media screen and (min-width: $screen-md-min) {
+    margin-left: 30px;
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
-
-#new-experience, #new-education, .editable-form-section {
-    background: $block-grey-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: auto;
+#new-education,
+#new-experience,
+.editable-form-section {
+  background: $block-grey-color;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: auto;
 }
-
+.h1-inline {
+  @extend h1;
+  display: inline-block;
+}
 .h2-inline {
-    @extend h2;
-    display: inline;
+  @extend h2;
+  display: inline-block;
 }
-
 .top-line {
-    border-top-style: solid;
-    border-top-width: 5px;
-    border-top-color: $top-line-color;
+  border-top-style: solid;
+  border-top-width: 5px;
+  border-top-color: $top-line-color;
 }
-
+.left-line {
+  border-left-style: solid;
+  border-left-width: 5px;
+  border-left-color: $top-line-color;
+}
+.v-center {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+.profile-section,
+.project-section {
+  margin-top: 30px;
+}
+.profile-section,
+.project-section {
+  > div {
+    margin: 10px 0;
+  }
+}
+#poject-custom-fields-section {
+  padding: 10px 0;
+}
+.project-custom-field-preview {
+  .project-custom-field-preview-section {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
+.project-custom-field-wrapper {
+  background-color: $grey-color;
+  > .project-custom-field-content {
+    margin: 20px 8px;
+  }
+}
+.add-new-option-section {
+  padding-top: 10px;
+}
+.education-section,
+.experience-section {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.education-section > div > div,
+.experience-section > div > div {
+  margin: 10px 0;
+}
+// .profile-section input:not([type='radio']),
+// select {
+//     width: 100% !important;
+// }
 .profile-section {
-    margin-top: 30px;
-}
-
-.profile-section > div {
-    margin: 10px 0;
-}
-
-.experience-section, .education-section {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.experience-section > div > div, .education-section > div > div {
-    margin: 10px 0;
-}
-
-.profile-section input:not([type='radio']),
-select {
+  input:not([type='radio']):not([type='checkbox']),
+  select {
     width: 100% !important;
+  }
 }
-
+.message {
+  padding: 15px;
+}
 .header-basic {
-    background-attachment: fixed;
-    background-color: #2b323a;
-    background-image: url(https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg);
-    background-repeat: repeat;
-    box-sizing: border-box;
-    color: #C7CCD4;
-    display: block;
-    line-height: 15px;
-    margin-top: -50px;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    text-align: center;
-    width: 100%;
+  background-attachment: fixed;
+  background-color: #2b323a;
+  background-image: url("https://c2.staticflickr.com/4/3005/2689470945_f97a4af22b.jpg");
+  background-repeat: repeat;
+  box-sizing: border-box;
+  color: #C7CCD4;
+  display: block;
+  line-height: 15px;
+  margin-top: -50px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
 }
-
 .flex-container {
-    background-attachment: fixed;
-    background-color: #EFECE8;
-    background-repeat: repeat;
-    box-sizing: border-box;
-    display: block;
-    position: static;
-    width: 100%;
-    padding: 35px;
+  background-attachment: fixed;
+  background-color: #EFECE8;
+  background-repeat: repeat;
+  box-sizing: border-box;
+  display: block;
+  position: static;
+  width: 100%;
+  padding: 35px;
 }
-
 .flex-container-image {
-    background-color: #EFECE8;
-    padding-top: 100px;
-    padding-left: 35px;
-    margin-left: -15px;
-    padding-bottom: 10px;
+  background-color: #EFECE8;
+  padding-top: 100px;
+  padding-left: 35px;
+  margin-left: -15px;
+  padding-bottom: 10px;
 }
-
 .photo {
-    border: 5px solid #fff;
-    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .1);
-    transform: rotate(-3deg);
+  border: 5px solid #fff;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .1);
+  transform: rotate(-3deg);
 }
-
 #introduction {
-    line-height: 30px;
-    color: #1E232A;
-    font-size: 1.25em;
-    text-align: left;
+  line-height: 30px;
+  color: #1E232A;
+  font-size: 1.25em;
+  text-align: left;
 }
-
 #feature-text {
-    line-height: 30px;
-    color: #1E232A;
-    font-size: 1.25em;
-    text-align: left;
+  line-height: 30px;
+  color: #1E232A;
+  font-size: 1.25em;
+  text-align: left;
 }
-
 .ad-container {
-    background-image: url(http://img11.deviantart.net/bbe3/i/2008/266/4/e/texture_dark_5_by_fioletta_stock.jpg);
-    background-color: #1E232A;
-    padding: 35px;
-    width: 100%;
+  background-image: url("http://img11.deviantart.net/bbe3/i/2008/266/4/e/texture_dark_5_by_fioletta_stock.jpg");
+  background-color: #1E232A;
+  padding: 35px;
+  width: 100%;
 }
-
 .ad-container-text {
-    line-height: 30px;
-    width: 100%;
-    color: #F8F9F6;
-    font-size: 1.25em;
-    text-align: left;
+  line-height: 30px;
+  width: 100%;
+  color: #F8F9F6;
+  font-size: 1.25em;
+  text-align: left;
 }
-
 @media (max-width: $screen-sm-max) {
-    form label {
-        margin-bottom: 8px !important;
-    }
+  form label {
+    margin-bottom: 8px !important;
+  }
 }
-
 @media (min-width: $screen-md-min) {
-    form .control-label {
-        padding-top: 7px;
-        padding-left: 20px;
-    }
+  form .control-label {
+    padding-top: 7px;
+    padding-left: 20px;
+  }
 }
-
 @font-face {
-    font-family: 'cwTeXHei';
-    font-family: 'cwTeXHei';
-    font-style: normal;
-    font-weight: 500;
-    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot);
-    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
+  font-family: 'cwTeXHei';
+  font-family: 'cwTeXHei';
+  font-style: normal;
+  font-weight: 500;
+  src: url("//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot");
+  src: url("//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix") format('embedded-opentype'), url("//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2") format('woff2'), url("//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff") format('woff'), url("//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf") format('truetype');
 }
-
-
 /*MOH Edit*/
-
 #main-profile {
-    padding: 0 20px 20px 20px;
+  padding: 0 20px 20px;
 }
-
 .profile-header {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-
 .profile-content > div > span:first-child {
-    color: grey;
+  color: grey;
 }
-
-.profile-content span,
-#profile-participate > div > span {
-    font-weight: bold;
+#profile-participate > div > span,
+.profile-content span {
+  font-weight: bold;
 }
-
 .profile-content-list > div > span {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
-
 .profile-content-item {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
 .profile-content-list > div > span:nth-child(1) {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 .profile-content-list > div > span:nth-child(2) {
-    font-weight: bold;
-    color: $brand-primary;
+  font-weight: bold;
+  color: $brand-primary;
 }
-
 .profile-content-list > div > span:nth-child(3) {
-    font-style: italic;
-    color: grey;
+  font-style: italic;
+  color: grey;
 }
-
 @media (min-width: $screen-lg-min) {
-    #profile-main {
-        padding-left: 20px;
-        height: auto;
-    }
-}
-
-@media screen and (max-width: $screen-xs-max) {
-    #profile-main {
-        margin-top: 15px;
-        background-color: #ffffff;
-    }
-}
-
-#profile-participate > div > div {
-    @media screen and (min-width: $screen-lg-min) {
-        padding: 0 50px;
-    }
-    margin-bottom: 10px;
-    div > span {
-        font-weight: bold;
-    }
-}
-
-.profile-content > div {
-    margin-bottom: 15px;
-}
-
-#profile-introduction {
-    background: white;
-    @media screen and (min-width: $screen-md-min) {
-        padding: 30px 20px;
-    }
-    @media screen and (max-width: $screen-xs-max) {
-        padding-bottom: 10px;
-    }
-}
-
-#profile-self-introduction {
-    @media screen and (min-width: $screen-md-max) {
-        padding: 20px 0px;
-    }
-    @media screen and (max-width: $screen-sm-max) {
-        padding: 20px 0px;
-    }
-}
-
-#profile-avatar {
-    @media screen and (min-width: $screen-sm-min) {
-        padding: 20px;
-    }
-    @media screen and (max-width: $screen-xs-max) {
-        padding: 10px;
-    }
-}
-
-#profile-container {
-    background: white;
+  #profile-main {
+    padding-left: 20px;
     height: auto;
-    padding-top: 20px;
+  }
 }
-
+@media screen and (max-width: $screen-xs-max) {
+  #profile-main {
+    margin-top: 15px;
+    background-color: #ffffff;
+  }
+}
+#profile-participate > div > div {
+  @media screen and (min-width: $screen-lg-min) {
+    padding: 0 50px;
+  }
+  margin-bottom: 10px;
+  div > span {
+    font-weight: bold;
+  }
+}
+.profile-content > div {
+  margin-bottom: 15px;
+}
+#profile-introduction {
+  background: white;
+  @media screen and (min-width: $screen-md-min) {
+    padding: 30px 20px;
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    padding-bottom: 10px;
+  }
+}
+#profile-self-introduction {
+  @media screen and (min-width: $screen-md-max) {
+    padding: 20px 0;
+  }
+  @media screen and (max-width: $screen-sm-max) {
+    padding: 20px 0;
+  }
+}
+#profile-avatar {
+  @media screen and (min-width: $screen-sm-min) {
+    padding: 20px;
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    padding: 10px;
+  }
+}
+#profile-container {
+  background: white;
+  height: auto;
+  padding-top: 20px;
+}
 #profile-right-navbar {
-    margin: 0 20px 20px 20px;
+  margin: 0 20px 20px;
 }
-
 #introduction-container {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-
 .projects-head-rightbar {
-    padding-top: 10px;
+  padding-top: 10px;
 }
-
 .projects-font-color {
-    color: #E74C40;
+  color: #E74C40;
 }
-
 .projects-projects-icon {
-    padding-right: 10px;
+  padding-right: 10px;
 }
-
 .projects-font-volunteers-count {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 .projects-font-volunteers {
-    color: grey;
-    font-weight: bold;
+  color: grey;
+  font-weight: bold;
 }
-
 #project-content > div > div > div:nth-child(2) {
-    padding-top: 15px;
+  padding-top: 15px;
 }
-
 #project-content-description > div:nth-child(2) {
-    padding-left: 60px;
-    padding-top: 15px;
+  padding-left: 60px;
+  padding-top: 15px;
 }
-
-#project-content-description > div:nth-child(2) >button:nth-child(1) {
-    background-color: $primary-color;
+#project-content-description > div:nth-child(2) > button:nth-child(1) {
+  background-color: $primary-color;
 }
-
-#project-content-description > div:nth-child(2) >button:nth-child(2) {
-    background-color: yellow;
+#project-content-description > div:nth-child(2) > button:nth-child(2) {
+  background-color: yellow;
 }
-
 #project-content-profile > div > div:nth-child(1) > h5 {
-    color: grey;
-    font-weight: bold;
+  color: grey;
+  font-weight: bold;
 }
-
 #project-content-profile > div > div:nth-child(2) > h5 {
-    color: black;
-    font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
-
-#table-padding{
-  padding-top:10px;
+#table-padding {
+  padding-top: 10px;
 }
-
 /**
  * Vertical align for non-form elements in <form> element
  */
 .grid-vertical-align {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-
-.grid-vertical-align > [class^="col-"],
-.grid-vertical-align > [class*=" col-"] {
+.grid-vertical-align > [class*=" col-"],
+.grid-vertical-align > [class^="col-"] {
   display: flex;
   align-items: center;
 }
 
 /**
+ * Grid equal height
+ */
+ .row-eq-height {
+   @extend .row;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display:         flex;
+   flex-wrap: wrap;
+ }
+
+ .row-eq-height > [class*='col-'] {
+   display: flex;
+   flex-direction: column;
+ }
+/**
  * Tags
  */
 .bootstrap .tags {
-    @extend .form-control;
-    height: 100%;
+  @extend .form-control;
+  height: 100%;
 }
-
 .bootstrap .tags .tag-item {
-    @extend .label;
-    @extend .label-primary;
-    padding: 4px 5px;
-    background: $label-primary-bg;
-    font-size: 12px;
+  @extend .label;
+  @extend .label-primary;
+  padding: 4px 5px;
+  background: $label-primary-bg;
+  font-size: 12px;
 }
-
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
-
 // injector
 // endinjector

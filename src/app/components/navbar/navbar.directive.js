@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(auth, vmsClient, $state) {
+    function NavbarController(auth, vmsClient, vmsLocalStorage, $state, toastr) {
       var vm = this;
       vm.auth = auth;
 
@@ -29,6 +29,32 @@
         auth.logout();
         $state.go('login');
       };
+
+      vm.isManagerRole = function() {
+        return auth.getRole() == 'manager';
+      };
+
+      vm.isVolunteerRole = function() {
+        return auth.getRole() == 'volunteer';
+      };
+
+      vm.switchToVolunteer = function() {
+        vmsLocalStorage.setRole('volunteer');
+        toastr.clear();
+        toastr.success('現在身份為志工', {
+          closeButton: true
+        });
+        $state.go('showAllProjects');
+      };
+
+      vm.switchToManager = function() {
+        vmsLocalStorage.setRole('manager');
+        toastr.clear();
+        toastr.success('現在身份為專案管理員', {
+          closeButton: true
+        });
+        $state.go('managedProjectList');
+      }
     }
   }
 

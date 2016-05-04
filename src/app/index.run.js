@@ -18,7 +18,7 @@
       if (toState.data.needAuth) {
         var successCallback = function() {
           $log.debug('pass...');
-          $state.go(toState.name);
+          $state.go(toState, toStateParams);
         };
         var failureCallback = function() {
           event.preventDefault();
@@ -34,8 +34,14 @@
       $urlRouter.sync();
     });
 
+    var scrollToTopPageCallback = $rootScope.$on('$stateChangeSuccess', function() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+
+
     $rootScope.$on('$destroy', stateChangeForAuthorizationCallback);
     $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
+    $rootScope.$on('$destroy', scrollToTopPageCallback);
 
     $log.debug('runBlock end');
   }
