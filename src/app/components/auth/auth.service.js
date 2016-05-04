@@ -47,10 +47,10 @@
     function logout() {
       authenticated = false;
 
-      vmsLocalStorage.removeRole();
       vmsLocalStorage.removeLastName();
       vmsLocalStorage.removeUsername();
       vmsLocalStorage.removeJwt();
+      vmsLocalStorage.removeRole();
     }
 
     function authenticate(credentials) {
