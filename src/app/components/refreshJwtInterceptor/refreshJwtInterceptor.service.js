@@ -6,7 +6,7 @@
     .factory('refreshJwtInterceptor', refreshJwtInterceptor);
 
   /** @ngInject */
-  function refreshJwtInterceptor($injector, $q, $log) {
+  function refreshJwtInterceptor($injector, $q, $log, vmsLocalStorage) {
     var service = {
 
       responseError: function(response) {
@@ -25,6 +25,11 @@
             deferred.resolve();
           };
           var failureCallback = function() {
+            vmsLocalStorage.removeRole();
+            vmsLocalStorage.removeLastName();
+            vmsLocalStorage.removeUsername();
+            vmsLocalStorage.removeJwt();
+
             deferred.reject();
           };
 

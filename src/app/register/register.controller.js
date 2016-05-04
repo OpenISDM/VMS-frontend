@@ -38,11 +38,10 @@
       }
 
       var onSuccess = function(response) {
-        $log.debug('success');
-        $log.debug(response);
 
         vmsLocalStorage.setUsername(vm.volunteer.username);
         vmsLocalStorage.setJwt(response.data.auth_access_token);
+        vmsLocalStorage.setRole('volunteer');
 
         $state.go('registerSuccess', {
           last_name: vm.volunteer.last_name,

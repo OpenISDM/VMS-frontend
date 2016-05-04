@@ -7,7 +7,7 @@
       <form>
         <div class="row">
           <div class="form-group col-md-12 col-lg-12">
-            <div class="row">
+            <div class="row row-eq-height">
               <label class="control-label col-md-2 col-lg-2" for="field-name">
                 欄位名稱
               </label>
@@ -20,7 +20,7 @@
 
         <div class="row">
           <div class="form-group col-md-12 col-lg-12">
-            <div class="row">
+            <div class="row row-eq-height">
               <label class="col-md-2 col-lg-2 control-label" for="field-description">
                 欄位描述
               </label>
@@ -34,7 +34,7 @@
 
         <div class="row">
           <div class="form-group col-md-6 col-lg-6">
-            <div class="row">
+            <div class="row-eq-height">
               <label class="col-md-4 col-lg-4 control-label" for="field-type">
                 欄位類型
               </label>
@@ -45,17 +45,17 @@
             </div>
           </div>
           <div class="form-group col-md-6 col-lg-6">
-            <div class="row">
+            <div class="row-eq-height">
               <label class="col-md-4 col-lg-4 control-label" for="field-required">
                 是否必填
               </label>
               <div class="col-md-8 col-lg-8">
-                <label class="radio-inline">
-                  <input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="true"> 是
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="false"> 否
-                </label>
+                <div class="">
+                  <div class="radio row-eq-height ">
+                    <label class="col-lg-6 col-md-6"><input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="true"> 是</label>
+                    <label class="col-lg-6 col-md-6"><input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="false"> 否</label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -63,12 +63,14 @@
         </div>
         <div class="row">
           <div class="col-lg-12 col-md-12">
-            <button class="btn btn-sm btn-primary pull-right" ng-click="vm.store()">
-              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 儲存
-            </button>
-            <button class="btn btn-sm btn-danger pull-right">
-              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 移除
-            </button>
+            <div class="btn-group pull-right" role="group" aria-label="...">
+              <button class="btn btn-sm btn-primary" ng-click="vm.store()">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 儲存
+              </button>
+              <!-- <button class="btn btn-sm btn-danger">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 移除
+              </button> -->
+            </div>
           </div>
         </div>
       </form>

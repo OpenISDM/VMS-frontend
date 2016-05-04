@@ -3,14 +3,13 @@
 
   angular
     .module('vmsFrontend')
-    .controller('EditProjectController', EditProjectController);
+    .controller('MyEditProjectController', MyEditProjectController);
 
   /** @ngInject */
-  function EditProjectController($log, $stateParams, vmsClient, project, PERMISSION_OPTIONS) {
+  function MyEditProjectController($log, vmsClient, project, PERMISSION_OPTIONS) {
     var vm = this;
-    vm.permissionOptions = PERMISSION_OPTIONS;
-    vm.projectId = $stateParams.id;
     vm.project = project;
+    vm.permissionOptions = PERMISSION_OPTIONS;
 
     $log.debug('=== project ===');
     $log.debug(project);

@@ -32,10 +32,17 @@
       updateEquipment: updateEquipment,
       addProject: addProject,
       getManagedProjects: getManagedProjects,
+      getAttendingProject: getAttendingProject,
       getProject: getProject,
       updateProject: updateProject,
       getProjectCustomFields: getProjectCustomFields,
-      updateProjectCustomField: updateProjectCustomField
+      updateProjectCustomField: updateProjectCustomField,
+      attendProject: attendProject,
+      fillProjectCustomFieldData: fillProjectCustomFieldData,
+      getProjectCustomFieldData: getProjectCustomFieldData,
+      getProjectMembers: getProjectMembers,
+      getAllMembersCustomFieldData: getAllMembersCustomFieldData,
+      getAllProjects: getAllProjects
     };
 
     return service;
@@ -273,6 +280,13 @@
       });
     }
 
+    function getAttendingProject() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/attending_projects',
+      });
+    }
+
     function getProject(id) {
       return $http({
         method: 'GET',
@@ -300,7 +314,51 @@
         method: 'POST',
         url: apiBaseUrl + '/projects/' + projectId + '/custom_fields',
         data: data
-      })
+      });
+    }
+
+    function attendProject(projectId) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/attend',
+        data: []
+      });
+    }
+
+    function fillProjectCustomFieldData(projectId, data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/members/bulk_custom_field_data',
+        data: data
+      });
+    }
+
+    function getProjectCustomFieldData(projectId) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + projectId + '/members/custom_field_data'
+      });
+    }
+
+    function getProjectMembers(projectId) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + projectId + '/members'
+      });
+    }
+
+    function getAllMembersCustomFieldData(projectId) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + projectId + '/members/all_custom_field_data'
+      });
+    }
+
+    function getAllProjects() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects'
+      });
     }
   }
 })();

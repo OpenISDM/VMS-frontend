@@ -4,41 +4,77 @@
 </div>
 <div class="container">
 	<div id="introduction-container" class="row">
-		<div class="col-md-12">
-			<h3 class="text-center">透過網路，每個人都可以成為志工，透過網路救災，每個人都可以為這個世界貢獻一份心力。</h3>
-			<h3 class="text-center">資料、資訊、感知、決策、知識，我們透過世界傳遞智慧，透過傳遞智慧改變世界。</h3>
-		</div>
-		<div class="col-md-4 col-xs-12">
-			<div class="thumbnail">
+		<!-- <div class="col-md-12">
+			<h4 class="text-center">透過網路，每個人都可以成為志工，透過網路救災，每個人都可以為這個世界貢獻一份心力。</h4>
+			<h4 class="text-center">資料、資訊、感知、決策、知識，我們透過世界傳遞智慧，透過傳遞智慧改變世界。</h4>
+		</div> -->
+		<div class="col-md-6 col-xs-12">
+			<uib-carousel active="active" interval="2500" no-wrap="noWrapSlides">
+				<uib-slide>
+					<img ng-src="./assets/images/2004-tsunami.jpg" style="margin:auto; height: 290px;" >
+					<div class="carousel-caption">
+						<h4>蘇門答臘地震</h4>
+						<p>2004年12月26日，規模9.3大地震侵襲印尼，引發災難性大海嘯，造成逾29萬人喪命，印度與斯里蘭卡工程師開發自由開放軟體：SAHANA，以整合救災資源</p>
+					</div>
+				</uib-slide>
+				<uib-slide>
+					<img ng-src="https://c1.staticflickr.com/3/2363/1515287285_1c1fd6a9b1_o.jpg" style="margin:auto; height: 290px;">
+					<div class="carousel-caption">
+						<h4>肯亞災難</h4>
+						<p>2007年12月27日，肯亞總統選舉後發生暴動，逾千人喪命，25萬人流離失所，肯亞工程師開發自由開放系統：USHAHIDI，蒐集各類災情資訊</p>
+					</div>
+				</uib-slide>
+				<uib-slide>
+					<img ng-src="https://c1.staticflickr.com/1/513/19445213576_7e0d9312d1_b.jpg" style="margin:auto; height: 290px;">
+					<div class="carousel-caption">
+						<h4>海地、尼泊爾地震</h4>
+						<p>2010年1月12日，海地發生7級大地震、2015年5月12日，尼泊爾發生同樣7級大地震，這兩次大地震，各國網友透過開放街圖(OpenStreetMap)繪製地圖協助救災</p>
+					</div>
+				</uib-slide>
+			</uib-carousel>
+
+			<!-- <div class="thumbnail">
 				<img src="./assets/images/2004-tsunami.jpg">
 				<div class="caption">
-					<h3>蘇門答臘地震</h3>
+					<h4>蘇門答臘地震</h4>
 					<p>2004年12月26日，規模9.3大地震侵襲印尼，引發災難性大海嘯，造成逾29萬人喪命，印度與斯里蘭卡工程師開發自由開放軟體：SAHANA，以整合救災資源</p>
+				</div>
+			</div> -->
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<h4>透過網路，每個人都可以成為志工，透過網路救災，每個人都可以為這個世界貢獻一份心力。</h4>
+			<h4>資料、資訊、感知、決策、知識，我們透過世界傳遞智慧，透過傳遞智慧改變世界。</h4>
+			<div class="row">
+				<div class="col-md-12 col-xs-12">
+					<div style="margin-top: 30px;">
+						<button class="btn btn-lg btn-primary center-block" ui-sref="registerPrivacy">加入我們</button>
+						<p class="text-center"><em>點擊上面按鈕加入我們</em></p>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-xs-12">
-			<div class="thumbnail">
+		<!-- <div class="col-md-4 col-xs-12">
+	 		<div class="thumbnail">
 				<img src="https://c1.staticflickr.com/3/2363/1515287285_1c1fd6a9b1_o.jpg">
 				<div class="caption">
-					<h3>肯亞災難</h3>
+					<h4>肯亞災難</h4>
 					<p>2007年12月27日，肯亞總統選舉後發生暴動，逾千人喪命，25萬人流離失所，肯亞工程師開發自由開放系統：USHAHIDI，蒐集各類災情資訊</p>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4 col-xs-12">
-			<div class="thumbnail">
+		</div> -->
+		<!-- <div class="col-md-5 col-md-offset-1 col-xs-12">
+			 <div class="thumbnail">
 				<img src="https://c1.staticflickr.com/1/513/19445213576_7e0d9312d1_b.jpg">
 				<div class="caption">
-					<h3>海地、尼泊爾地震</h3>
+					<h4>海地、尼泊爾地震</h4>
 					<p>2010年1月12日，海地發生7級大地震、2015年5月12日，尼泊爾發生同樣7級大地震，這兩次大地震，各國網友透過開放街圖(OpenStreetMap)繪製地圖協助救災</p>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-12">
+		 </div> -->
+		<!-- <div class="col-md-12">
 			<button class="btn btn-lg btn-primary center-block" ui-sref="registerPrivacy">成為志工</button>
 			<p class="text-center"><em>點擊上面按鈕成為志工</em></p>
-		</div>
+		</div> -->
 	</div>
 </div>
 <div class="ad-container">
@@ -66,13 +102,11 @@
 	<h2>Volunteer Management System, VMS</h2>
 	<div id="feature-text">
 		<p>
-			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-			志工管理系統 (Volunteer Management System, VMS) 能協助專案管理員在志工外包專案中有效率且彈性的管理志工。每一位專案管理員對於志工的管理需求可能都不同，志工管理系統最大的特點將會是靈活與彈性，專案管理員將可以自由地定義需要的志工特點，也可以依照自己的管理需求選擇所需要的功能模組。
+			<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 志工管理系統 (Volunteer Management System, VMS) 能協助專案管理員在志工外包專案中有效率且彈性的管理志工。每一位專案管理員對於志工的管理需求可能都不同，志工管理系統最大的特點將會是靈活與彈性，專案管理員將可以自由地定義需要的志工特點，也可以依照自己的管理需求選擇所需要的功能模組。
 
 		</p>
 		<p>
-			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-			志工管理系統將會是開放原始碼軟體，有需求的單位可以自建版本之外，也可提供直接的網頁操作，若單位已擁有自己的災害平台，也可直接串接志工管理系統所提供的功能模組。
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 志工管理系統將會是開放原始碼軟體，有需求的單位可以自建版本之外，也可提供直接的網頁操作，若單位已擁有自己的災害平台，也可直接串接志工管理系統所提供的功能模組。
 		</p>
 	</div>
 </div>

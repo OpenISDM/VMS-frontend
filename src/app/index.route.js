@@ -232,9 +232,23 @@
           }
         }
       })
+      .state('attendingProjectList', {
+        parent: 'site',
+        url: '/projects/show/attending',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/attendingProjectList.html',
+            controller: 'AttendingProjectListController',
+            controllerAs: 'vm'
+          }
+        }
+      })
       .state('editProject', {
         parent: 'site',
-        url: '/projects/edit?id',
+        url: '/projects/:id/edit',
         data: {
           needAuth: true
         },
@@ -244,11 +258,175 @@
             controller: 'EditProjectController',
             controllerAs: 'vm'
           }
+        },
+        resolve: {
+          project: function($stateParams, $log, vmsClient) {
+
+            var id = $stateParams.id;
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getProject(id).then(onSuccess);
+          }
+        }
+      })
+      .state('project', {
+        parent: 'site',
+        url: '/manage-project',
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/projectTplPage.html'
+          }
+        }
+      })
+      .state('project.show', {
+        url: '/Nshow/:projectId',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'panel': {
+            templateUrl: 'app/project/projectPanel.html',
+            controller: 'ProjectPanelController',
+            controllerAs: 'vm'
+          },
+          'container': {
+            templateUrl: 'app/project/projectDetailTpl.html',
+            controller: 'MyProjectDetailController',
+            controllerAs: 'vm'
+          }
+        },
+        resolve: {
+          project: getProject,
+          members: function($stateParams, vmsClient) {
+            var id = $stateParams.projectId;
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getProjectMembers(id)
+              .then(onSuccess);
+          }
+        }
+      })
+      .state('project.edit', {
+        url: '/edit/:projectId',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'panel': {
+            templateUrl: 'app/project/projectPanel.html',
+            controller: 'ProjectPanelController',
+            controllerAs: 'vm'
+          },
+          'container': {
+            templateUrl: 'app/project/editProjectTpl.html',
+            controller: 'MyEditProjectController',
+            controllerAs: 'vm'
+          }
+        },
+        resolve: {
+          project: getProject,
+          members: function($stateParams, vmsClient) {
+            var id = $stateParams.projectId;
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getProjectMembers(id)
+              .then(onSuccess);
+          }
+        }
+      })
+      .state('project.manageCustomField', {
+        url: '/:projectId/manage-custom-field',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'panel': {
+            templateUrl: 'app/project/projectPanel.html',
+            controller: 'ProjectPanelController',
+            controllerAs: 'vm'
+          },
+          'container': {
+            templateUrl: 'app/projectCustomFields/manageProjectCustomFieldsTpl.html',
+            controller: 'MyManageProjectCustomFieldsController',
+            controllerAs: 'vm'
+          }
+        },
+        resolve: {
+          project: getProject,
+          members: function($stateParams, vmsClient) {
+            var id = $stateParams.projectId;
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getProjectMembers(id)
+              .then(onSuccess);
+          }
+        }
+      })
+      .state('project.manageMembers', {
+        url: '/:projectId/manage-members',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'panel': {
+            templateUrl: 'app/project/projectPanel.html',
+            controller: 'ProjectPanelController',
+            controllerAs: 'vm'
+          },
+          'container': {
+            templateUrl: 'app/projectMember/manageProjectMemberList.html',
+            controller: 'ManageProjectMemberController',
+            controllerAs: 'vm'
+          }
+        },
+        resolve: {
+          project: getProject,
+          membersData: function($stateParams, vmsClient) {
+            var id = $stateParams.projectId;
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getAllMembersCustomFieldData(id)
+              .then(onSuccess);
+          }
+        }
+      })
+      .state('showAllProjects', {
+        parent: 'site',
+        url: '/projects/show/all',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/project/showProjectList.html',
+            controller: 'ShowProjectListController',
+            controllerAs: 'vm'
+          }
+        },
+        resolve: {
+          projectList: function(vmsClient) {
+            var onSuccess = function(response) {
+              return response.data;
+            };
+
+            return vmsClient.getAllProjects()
+              .then(onSuccess);
+          }
         }
       })
       .state('projectDetail', {
         parent: 'site',
-        url: '/projects/show?id',
+        url: '/projects/:id/show',
         data: {
           needAuth: true
         },
@@ -273,9 +451,46 @@
             controllerAs: 'vm'
           }
         }
+      })
+      .state('fillProjectCustomFieldData', {
+        parent: 'site',
+        url: '/projects/:projectId/fill_custom_fields',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/projectCustomFields/fillCustomFields.html',
+            controller: 'FillCustomFieldsController',
+            controllerAs: 'vm'
+          },
+        }
+      })
+      .state('showAllMembersCustomFieldData', {
+        parent: 'site',
+        url: '/projects/:projectId/all_members_custom_fields_data',
+        data: {
+          needAuth: true
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/projectCustomFields/viewAllCustomFieldData.html',
+            controller: 'ViewAllCustomFieldDataController',
+            controllerAs: 'vm'
+          },
+        }
       });
 
     $urlRouterProvider.otherwise('/');
+
+    function getProject($stateParams, $log, vmsClient) {
+      var id = $stateParams.projectId;
+      var onSuccess = function(response) {
+        return response.data;
+      };
+
+      return vmsClient.getProject(id).then(onSuccess);
+    }
   }
 
 })();

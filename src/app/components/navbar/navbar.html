@@ -20,14 +20,23 @@
         <ul class="uib-dropdown-menu" template-url="/app/components/navbar/navbarProfileDropdown.html" aria-labelledby="navbar-profile"></ul>
       </li>-->
       <li><a ng-show="vm.auth.isAuthenticated()" ui-sref="profile">我的資料</a></li>
-      <li><a ng-show="vm.auth.isAuthenticated()" ng-click="vm.logout()">登出</a></li>
       <li ng-show="vm.auth.isAuthenticated()" uib-dropdown>
         <a uib-dropdown-toggle>專案<span class="caret"></span></a>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-          <li role="menuitem"><a ui-sref="createProject">新增專案</a></li>
-          <li role="menuitem"><a ui-sref="managedProjectList">我的專案</a></li>
+          <li ng-if="vm.isManagerRole()" role="menuitem"><a ui-sref="createProject">新增專案</a></li>
+          <li ng-if="vm.isManagerRole()" role="menuitem"><a ui-sref="managedProjectList">我的專案</a></li>
+          <li ng-if="vm.isVolunteerRole()"><a ui-sref="showAllProjects">所有專案</a></li>
+          <li ng-if="vm.isVolunteerRole()"><a ui-sref="attendingProjectList">已參與的專案</a></li>
         </ul>
       </li>
+      <li ng-show="vm.auth.isAuthenticated()" uib-dropdown>
+        <a uib-dropdown-toggle>切換身份<span class="caret"></span></a>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+          <li ng-if="vm.isManagerRole()" role="menuitem"><a ng-click="vm.switchToVolunteer()">切換為志工</a></li>
+          <li ng-if="vm.isVolunteerRole()"><a ng-click="vm.switchToManager()">切換為專案管理員</a></li>
+        </ul>
+      </li>
+      <li><a ng-show="vm.auth.isAuthenticated()" ng-click="vm.logout()">登出</a></li>
     </ul>
   </div>
 </div>

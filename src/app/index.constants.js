@@ -21,7 +21,8 @@
       keys: {
         jwt: 'jwt_token',
         userName: 'user_name',
-        lastName: 'last_name'
+        lastName: 'last_name',
+        role: 'role'
       }
     })
     .constant('BROADCAST_EVENTS_LIST', {
@@ -103,7 +104,7 @@
         value: ''
       },
       {
-        name: '所有人',
+        name: '公開的',
         value: 0
       },
       {

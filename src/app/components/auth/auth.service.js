@@ -12,7 +12,8 @@
       isAuthenticated: isAuthenticated,
       logout: logout,
       authenticate: authenticate,
-      refreshToken: refreshToken
+      refreshToken: refreshToken,
+      getRole: getRole
     };
 
     var authenticated = false;
@@ -45,6 +46,10 @@
 
     function logout() {
       authenticated = false;
+
+      vmsLocalStorage.removeRole();
+      vmsLocalStorage.removeLastName();
+      vmsLocalStorage.removeUsername();
       vmsLocalStorage.removeJwt();
     }
 
@@ -73,7 +78,7 @@
         if (response.status === 401) {
           authenticated = false;
           $rootScope.$broadcast(BROADCAST_EVENTS_LIST.AUTHENTICATED_FAILURE_EVENT);
-          deferred.reject();
+          deferred.reject(response);
         }
       };
 
@@ -107,6 +112,10 @@
         .catch(failureCallback);
 
       return deferred.promise;
+    }
+
+    function getRole() {
+      return vmsLocalStorage.getRole();
     }
   }
 })();

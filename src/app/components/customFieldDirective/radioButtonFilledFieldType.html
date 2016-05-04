@@ -1,0 +1,8 @@
+<label class="control-label col-md-2 col-lg-2">{{ vm.title }}</label>
+<div class="col-md-10 col-lg-10">
+  <div ng-repeat="option in vm.metadata.options">
+    <label class="radio-inline">
+      <input type="radio" name="{{ vm.title }}" ng-value="option.value" ng-model="vm.fieldData.option.value"> {{ option.display_name }}
+    </label>
+  </div>
+</div>
