@@ -72,12 +72,12 @@
 			<hr>
 			<div class="row">
 			  <div ng-repeat="member in vm.membersList.data track by $index">
-			    <div class="col-md-1 col-lg-1">
-			      {{ member.attributes.username }}
+			    <div class="col-md-2 col-lg-3">
+			      <span class="glyphicon glyphicon-user"></span> {{ member.attributes.username }}
 			    </div>
-			    <div class="col-md-1 col-lg-1">
-			      {{ member.first_name }} {{ member.last_name}}
-			    </div>
+			    <!-- <div class="col-md-1 col-lg-1">
+			      {{ member.attributes.first_name }} {{ member.attributes.last_name}}
+			    </div> -->
 			  </div>
 			</div>
 		</div>

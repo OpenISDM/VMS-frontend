@@ -281,7 +281,7 @@
         }
       })
       .state('project.show', {
-        url: '/Nshow/:projectId',
+        url: '/show/:projectId',
         data: {
           needAuth: true
         },

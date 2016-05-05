@@ -2,17 +2,22 @@
 	<h1>所有專案</h1>
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="alert alert-info" role="alert">參與您有興趣的專案！</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>專案名稱</th>
+				<th>管理員</th>
 				<th>組織名稱</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="project in vm.projectList.data">
 				<td>
-					<a ui-sref="projectDetail({ id: project.id })">{{ project.attributes.name }}</a>
+					<a uib-popover="{{ project.attributes.description }}" popover-title="專案說明" popover-trigger="mouseenter" popover-popup-delay="800" popover-placement="right" ui-sref="projectDetail({ id: project.id })">{{ project.attributes.name }}</a>
+				</td>
+				<td>
+					{{vm.getManager(project.relationships.managers.data[0].id).first_name}} {{ vm.getManager(project.relationships.managers.data[0].id).last_name }}
 				</td>
 				<td>
 					{{ project.attributes.organization }}

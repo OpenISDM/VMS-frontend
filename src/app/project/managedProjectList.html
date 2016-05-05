@@ -28,7 +28,7 @@
 					{{ project.attributes.created_at.date | formatDateTime }}
 				</td>
 				<td>
-					<span class="glyphicon glyphicon-cog" ui-sref="project.edit({ projectId: project.id })" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-cog" ui-sref="project.show({ projectId: project.id })" aria-hidden="true"></span>
 				</td>
 				<td>
 					<span class="glyphicon glyphicon-trash" ng-click="vm.delete(project.id)" aria-hidden="true"></span>

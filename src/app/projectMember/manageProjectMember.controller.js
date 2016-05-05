@@ -13,7 +13,10 @@
 
     // angular.element(document).ready(getAllMembersCustomFieldData);
 
+    $log.debug('=== vm.rawList ===');
     $log.debug(vm.rawList);
+    $log.debug('=== vm.memberCustomFieldDataList ===');
+    $log.debug(vm.memberCustomFieldDataList);
 
     function getAllMembersCustomFieldData() {
       var onSuccess = function(response) {
