@@ -15,11 +15,9 @@
             $log.debug("=== authorize === ");
             var successCallback = function() {
               $log.debug('successCallback()');
-            // $state.go(toState.name, toStateParams);
             };
             var failureCallback = function() {
               $log.debug("failureCallback()");
-              // event.preventDefault();
               $state.go('login');
             };
 
@@ -30,11 +28,7 @@
         }
       })
       .state('login', {
-        parent: 'site',
         url: '/login',
-        data: {
-          needAuth: false
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/login/login.html',
@@ -45,9 +39,6 @@
       })
       .state('registerPrivacy', {
         url: '/register-privacy',
-        data: {
-          needAuth: false
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/registerPrivacy/registerPrivacy.html',
@@ -58,9 +49,6 @@
       })
       .state('register', {
         url: '/register',
-        data: {
-          needAuth: false
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/register/register.html',
@@ -80,9 +68,6 @@
             value: "註冊" // default value
           }
         },
-        data: {
-          needAuth: false
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/registerSuccess/registerSuccess.html',
@@ -94,9 +79,6 @@
       .state('profile', {
         parent: 'site',
         url: '/profile',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/volunteerProfile/volunteerProfile.html',
@@ -116,9 +98,6 @@
       })
       .state('rootEditProfile.edit', {
         url: '/edit',
-        data: {
-          needAuth: true
-        },
         views: {
           'profileContent': {
             templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
@@ -129,9 +108,6 @@
       })
       .state('rootEditProfile.aboutContact', {
         url: '/edit/about',
-        data: {
-          needAuth: true
-        },
         views: {
           'profileContent': {
             templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
@@ -141,10 +117,7 @@
         }
       })
       .state('rootEditProfile.experienceEducation', {
-        url: '/edit/experience_education',
-        data: {
-          needAuth: true
-        },
+        url: '/edit/experience-education',
         views: {
           'profileContent': {
             templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
@@ -162,10 +135,7 @@
         }
       })
       .state('rootEditProfile.skillEquipment', {
-        url: '/edit/skill_equipment',
-        data: {
-          needAuth: true
-        },
+        url: '/edit/skill-equipment',
         views: {
           'profileContent': {
             templateUrl: 'app/editSkillEquipment/editSkillEquipment.html',
@@ -176,7 +146,7 @@
       })
       .state('emailVerification', {
         parent: 'site',
-        url: '/email_verification?email&verification_token',
+        url: '/email-verification?email&verification_token',
         params: {
           email: {
             value: ""
@@ -184,9 +154,6 @@
           verification_token: {
             value: ""
           }
-        },
-        data: {
-          needAuth: true
         },
         views: {
           'mainContent@': {
@@ -199,9 +166,6 @@
       .state('introduction', {
         parent: 'site',
         url: '/',
-        data: {
-          needAuth: false
-        },
         views: {
           'introductionContent@': {
             templateUrl: 'app/about/about.html',
@@ -213,9 +177,6 @@
       .state('copyright', {
         parent: 'site',
         url: '/copyright',
-        data: {
-          needAuth: false
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/copyrightPage/copyright.html'
@@ -225,9 +186,6 @@
       .state('createProject', {
         parent: 'site',
         url: '/projects/create',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/createProject.html',
@@ -239,9 +197,6 @@
       .state('managedProjectList', {
         parent: 'site',
         url: '/projects/show/managed',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/managedProjectList.html',
@@ -253,9 +208,6 @@
       .state('attendingProjectList', {
         parent: 'site',
         url: '/projects/show/attending',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/attendingProjectList.html',
@@ -267,9 +219,6 @@
       .state('editProject', {
         parent: 'site',
         url: '/projects/:id/edit',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/editProject.html',
@@ -300,9 +249,6 @@
       })
       .state('project.show', {
         url: '/show/:projectId',
-        data: {
-          needAuth: true
-        },
         views: {
           'panel': {
             templateUrl: 'app/project/projectPanel.html',
@@ -330,9 +276,6 @@
       })
       .state('project.edit', {
         url: '/edit/:projectId',
-        data: {
-          needAuth: true
-        },
         views: {
           'panel': {
             templateUrl: 'app/project/projectPanel.html',
@@ -360,9 +303,6 @@
       })
       .state('project.manageCustomField', {
         url: '/:projectId/manage-custom-field',
-        data: {
-          needAuth: true
-        },
         views: {
           'panel': {
             templateUrl: 'app/project/projectPanel.html',
@@ -390,9 +330,6 @@
       })
       .state('project.manageMembers', {
         url: '/:projectId/manage-members',
-        data: {
-          needAuth: true
-        },
         views: {
           'panel': {
             templateUrl: 'app/project/projectPanel.html',
@@ -421,9 +358,6 @@
       .state('showAllProjects', {
         parent: 'site',
         url: '/projects/show/all',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/showProjectList.html',
@@ -452,9 +386,6 @@
       .state('projectDetail', {
         parent: 'site',
         url: '/projects/:id/show',
-        data: {
-          needAuth: true
-        },
         views: {
           'mainContent@': {
             templateUrl: 'app/project/projectDetail.html',
@@ -465,10 +396,7 @@
       })
       .state('manageProjectCustomField', {
         parent: 'site',
-        url: '/projects/:projectId/custom_fields',
-        data: {
-          needAuth: true
-        },
+        url: '/projects/:projectId/custom-fields',
         views: {
           'mainContent@': {
             templateUrl: 'app/projectCustomFields/manageProjectCustomFields.html',
@@ -479,10 +407,7 @@
       })
       .state('fillProjectCustomFieldData', {
         parent: 'site',
-        url: '/projects/:projectId/fill_custom_fields',
-        data: {
-          needAuth: true
-        },
+        url: '/projects/:projectId/fill-custom-fields',
         views: {
           'mainContent@': {
             templateUrl: 'app/projectCustomFields/fillCustomFields.html',
@@ -493,10 +418,7 @@
       })
       .state('showAllMembersCustomFieldData', {
         parent: 'site',
-        url: '/projects/:projectId/all_members_custom_fields_data',
-        data: {
-          needAuth: true
-        },
+        url: '/projects/:projectId/all-members-custom-fields-data',
         views: {
           'mainContent@': {
             templateUrl: 'app/projectCustomFields/viewAllCustomFieldData.html',
