@@ -30,7 +30,6 @@
         }
       })
       .state('login', {
-        parent: 'site',
         url: '/login',
         data: {
           needAuth: false
