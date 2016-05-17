@@ -13,8 +13,8 @@
     $log.debug(vm.projectList);
 
     vm.getManager = function(id) {
-      $log.debug('=== vm.getManager() ===');
-      $log.debug(id);
+      // $log.debug('=== vm.getManager() ===');
+      // $log.debug(id);
 
       var manager;
 

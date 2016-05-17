@@ -12,22 +12,32 @@
     // Listen state check start event
     var stateChangeForAuthorizationCallback = $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
       $log.debug("=== $stateChangeStart ===");
+      $log.debug("###### state debug ######");
+      $log.debug(toState);
+      $log.debug(toStateParams);
+      $log.debug("##########");
+
 
       $rootScope.toState = toState;
 
-      if (toState.data.needAuth) {
-        var successCallback = function() {
-          $log.debug('pass...');
-          $state.go(toState, toStateParams);
-        };
-        var failureCallback = function() {
-          event.preventDefault();
-          $state.go('login');
-        };
+    // if (toState.data.needAuth) {
+    //   var successCallback = function() {
+    //     $log.debug('pass...');
+    //     $state.go(toState.name, toStateParams);
+    //   };
+    //   var failureCallback = function() {
+    //     event.preventDefault();
+    //     $state.go('login');
+    //   };
+    //
+    //   auth.authorize().then(successCallback, failureCallback);
+    // }
+    });
 
-        auth.authorize().then(successCallback, failureCallback);
-      }
-    })
+    var stateChangeLoggingError = $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      $log.debug("stateChangeLoggingError");
+      $log.debug(error);
+    });
 
     var urlRouterSyncDeregisteratinoCallback = $rootScope.$on('$locationChange', function(event) {
       event.preventDefault();
@@ -42,6 +52,7 @@
     $rootScope.$on('$destroy', stateChangeForAuthorizationCallback);
     $rootScope.$on('$destroy', urlRouterSyncDeregisteratinoCallback);
     $rootScope.$on('$destroy', scrollToTopPageCallback);
+    $rootScope.$on('$destroy', stateChangeLoggingError);
 
     $log.debug('runBlock end');
   }
