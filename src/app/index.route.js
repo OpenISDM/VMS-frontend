@@ -9,7 +9,25 @@
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('site', {
-        abstract: true
+        abstract: true,
+        resolve: {
+          authorize: function(auth, $log, $state) {
+            $log.debug("=== authorize === ");
+            var successCallback = function() {
+              $log.debug('successCallback()');
+            // $state.go(toState.name, toStateParams);
+            };
+            var failureCallback = function() {
+              $log.debug("failureCallback()");
+              // event.preventDefault();
+              $state.go('login');
+            };
+
+            return auth.authorize()
+              .then(successCallback)
+              .catch(failureCallback);
+          }
+        }
       })
       .state('login', {
         parent: 'site',
@@ -414,13 +432,20 @@
           }
         },
         resolve: {
-          projectList: function(vmsClient) {
+          projectList: function(vmsClient, $log) {
+            $log.debug("projectList resolve");
+
             var onSuccess = function(response) {
+              $log.debug("projectList onSuccess()");
               return response.data;
+            };
+            var onError = function() {
+              $log.debug("projectList onError()");
             };
 
             return vmsClient.getAllProjects()
-              .then(onSuccess);
+              .then(onSuccess)
+              .catch(onError);
           }
         }
       })

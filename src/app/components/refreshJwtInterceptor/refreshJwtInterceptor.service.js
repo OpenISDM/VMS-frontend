@@ -21,10 +21,17 @@
           $log.debug("=== 401 ===");
 
           var successCallback = function(jwtToken) {
+            $log.debug("successCallback()");
+            $log.debug(jwtToken);
+
             response.config.headers.Authorization = 'Bearer ' + jwtToken;
+
+            vmsLocalStorage.setJwt(jwtToken);
+
             deferred.resolve();
           };
           var failureCallback = function() {
+            $log.debug("failureCallback()");
             vmsLocalStorage.removeRole();
             vmsLocalStorage.removeLastName();
             vmsLocalStorage.removeUsername();
