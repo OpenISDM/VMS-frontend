@@ -32,7 +32,7 @@
         $log.debug("success");
         $log.debug(response.data);
 
-        profile = response.data;
+        profile = response.data.data;
 
         cities.forEach(function(city) {
           if (city.id == profile.city.id) {
