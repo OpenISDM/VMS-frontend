@@ -164,7 +164,6 @@
         }
       })
       .state('introduction', {
-        parent: 'site',
         url: '/',
         views: {
           'introductionContent@': {

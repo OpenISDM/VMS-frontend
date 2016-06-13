@@ -1,0 +1,13 @@
+<div class="col-md-11 col-lg-10" ng-repeat="hyperlink in vm.data track by $index">
+  <div class="row">
+    <div class="col-md-3 col-lg-4">
+      <input type="text" class="form-control" placeholder="連結名稱" ng-model="hyperlink.name" required />
+    </div>
+    <div class="col-md-7 col-lg-7">
+      <input type="text" class="form-control" placeholder="連結網址" ng-model="hyperlink.link" required />
+    </div>
+    <div col-md-2 col-lg-1>
+      <button ng-click="vm.remove($index)">Remove</button>
+    </div>
+  </div>
+</div>

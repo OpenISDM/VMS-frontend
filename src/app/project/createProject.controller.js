@@ -6,7 +6,7 @@
     .controller('CreateProjectController', CreateProjectController);
 
   /** @ngInject */
-  function CreateProjectController($log, $state, vmsClient, PERMISSION_OPTIONS) {
+  function CreateProjectController($log, $state, vmsClient, project, PERMISSION_OPTIONS) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.hyperlinks = [
@@ -28,11 +28,9 @@
         $log.debug(response);
 
         $log.debug('= projectId =');
-        $log.debug(response.data.data.id);
+        $log.debug(response.data.id);
 
-        $state.go('projectDetail', {
-          id: response.data.data.id
-        });
+        storeHyperlinks(response.data.id);
       };
       var onFailure = function(response) {
         $log.error('project create failure');
@@ -41,5 +39,20 @@
 
       vmsClient.addProject(value).then(onSuccess).catch(onFailure);
     };
+
+    function storeHyperlinks(projectId) {
+      project.storeHyperlinks(projectId)
+        .then(function() {
+          $log.debug("storeHyperlinks() success");
+          $log.debug("projectId = " + projectId);
+
+          $state.go('projectDetail', {
+            id: projectId
+          });
+        })
+        .catch(function() {
+          $log.debug("storeHyperlinks() failure");
+        })
+    }
   }
 })();

@@ -3,13 +3,17 @@
 
   angular
     .module('vmsFrontend')
-    .factory('projectService', projectService);
+    .factory('project', project);
 
   /** @ngInject */
-  function projectService(vmsClient, $q, $log) {
+  function project(vmsClient, projectEndpoint, $q, $log) {
     var service = {
-      getManagedProjects: getManagedProjects
+      getManagedProjects: getManagedProjects,
+      getHyperlinks: getHyperlinks,
+      storeHyperlinks: storeHyperlinks
     };
+
+    return service;
 
     function getManagedProjects() {
       var deferred = $q.defer();
@@ -19,6 +23,47 @@
       vmsClient.getManagedProjects().then().catch()
     }
 
-    return service;
+    function getHyperlinks(projectId) {
+      var deferred = $q.defer();
+
+      var onSuccess = function(response) {
+        $log.debug(response);
+
+        deferred.resolve(response);
+      };
+
+      var onFailure = function(response) {
+        $log.debug(response);
+
+        deferred.resolve(response);
+      }
+
+      projectEndpoint.getHyperlinks(projectId)
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function storeHyperlinks(projectId) {
+      var deferred = $q.defer();
+
+      var onSuccess = function(response) {
+        $log.debug(response);
+
+        deferred.resolve(response);
+      };
+      var onFailure = function(response) {
+        $log.debug(response);
+
+        deferred.reject(response);
+      };
+
+      projectEndpoint.storeHyperlinks(projectId)
+        .then(onSuccess)
+        .catch(onFailure);
+
+      return deferred.promise;
+    }
   }
 })();
