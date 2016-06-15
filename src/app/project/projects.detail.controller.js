@@ -6,7 +6,7 @@
     .controller('MyProjectDetailController', MyProjectDetailController);
 
   /** @ngInject */
-  function MyProjectDetailController($log, vmsClient, project, members, PERMISSION_OPTIONS) {
+  function MyProjectDetailController($log, vmsClient, project, members, PERMISSION_OPTIONS, $sce) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.project = project;
@@ -23,6 +23,10 @@
       vmsClient.attendProject(projectId)
         .then(onSuccess)
         .catch(onFailure);
+    };
+
+    vm.trustAsHtml = function(html) {
+      return $sce.trustAsHtml(html);
     }
   }
 })();

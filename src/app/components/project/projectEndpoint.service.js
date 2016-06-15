@@ -9,7 +9,9 @@
   function projectEndpoint($log, $http, apiBaseUrl) {
     var service = {
       getHyperlinks: getHyperlinks,
-      storeHyperlinks: storeHyperlinks
+      storeHyperlinks: storeHyperlinks,
+      deleteHyperlinks: deleteHyperlinks,
+      createOrUpdateHyperlinks: createOrUpdateHyperlinks
     };
 
     return service;
@@ -25,6 +27,21 @@
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks',
+        data: data
+      });
+    }
+
+    function deleteHyperlinks(projectId, hyperlinkId) {
+      return $http({
+        method: 'DELETE',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks/' + hyperlinkId
+      });
+    }
+
+    function createOrUpdateHyperlinks(projectId, data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks/create_or_update_bulk',
         data: data
       });
     }

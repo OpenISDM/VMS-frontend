@@ -11,8 +11,7 @@
       restrict: 'E',
       templateUrl: 'app/components/projectHyperlinksDirective/projectHyperlinksDirective.html',
       scope: {
-        projectId: '=',
-        data: '='
+        projectId: '='
       },
       controller: ProjectHyperlinksDirectiveController,
       controllerAs: 'vm',
@@ -23,29 +22,24 @@
   }
 
   /** @ngInject */
-  function ProjectHyperlinksDirectiveController($log, project) {
+  function ProjectHyperlinksDirectiveController($log, projectService) {
     var vm = this;
     vm.data = [];
 
-    if (vm.data.length == 0) {
-      vm.data.push({
-        name: "",
-        link: ""
-      });
-    }
-
     $log.debug("ProjectHyperlinksDirectiveController");
 
+    $log.debug("vm.projectId = " + vm.projectId);
+
     if (angular.isDefined(vm.projectId)) {
-      var onSuccess = function() {};
+      $log.debug("vm.projectId is defined.");
+      $log.debug("vm.projectId = " + vm.projectId);
 
-      project.getHyperlinks(vm.projectId)
+      var onSuccess = function(hyperlinks) {
+        vm.data = hyperlinks;
+      };
+
+      projectService.getHyperlinks(vm.projectId)
         .then(onSuccess);
-    }
-
-    vm.remove = function(index) {
-      $log.debug("remove a project hyperlink");
-      $log.debug(index);
     }
   }
 })();

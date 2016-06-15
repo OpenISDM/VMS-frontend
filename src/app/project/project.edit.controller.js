@@ -6,13 +6,12 @@
     .controller('MyEditProjectController', MyEditProjectController);
 
   /** @ngInject */
-  function MyEditProjectController($log, vmsClient, project, PERMISSION_OPTIONS) {
+  function MyEditProjectController($log, vmsClient, project, projectService, lodash, PERMISSION_OPTIONS) {
     var vm = this;
     vm.project = project;
+    vm.hyperlinks;
     vm.permissionOptions = PERMISSION_OPTIONS;
 
-    $log.debug('=== project ===');
-    $log.debug(project);
 
     vm.update = function() {
       var onSuccess = function(response) {
@@ -25,6 +24,28 @@
       };
 
       vmsClient.updateProject(vm.project).then(onSuccess).catch(onFailure);
+      createOrUpdateHyperlinks();
     };
+
+    function createOrUpdateHyperlinks() {
+      var newHyperlinks = lodash.filter(vm.hyperlinks, function(item) {
+        return !angular.isDefined(item.id);
+      });
+
+      var updateHyperlinks = lodash.filter(vm.hyperlinks, function(item) {
+        return angular.isDefined(item.id);
+      });
+
+      $log.debug("newHyperlinks");
+      $log.debug(newHyperlinks);
+
+      $log.debug("updateHyperlinks");
+      $log.debug(updateHyperlinks);
+
+      projectService.createOrUpdateHyperlinks(
+        vm.project.data.id,
+        newHyperlinks,
+        updateHyperlinks);
+    }
   }
 })();
