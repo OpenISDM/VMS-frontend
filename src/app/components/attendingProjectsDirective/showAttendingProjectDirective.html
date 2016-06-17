@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <table class="table table-striped">
+      <tr>
+        <th>
+          專案名稱
+        </th>
+        <th>
+          加入時間
+        </th>
+      </tr>
+      <tr ng-repeat="attending in vm.data">
+        <td>
+          {{ attending.project.name }}
+        </td>
+        <td>
+          {{ attending.attending_at.date | formatDateTime }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,8 +1,9 @@
 (function() {
   'use strict';
   angular.module('vmsFrontend').factory('volunteer', volunteer);
+
   /** @ngInject */
-  function volunteer($q, $log, vmsClient, defaultAvatarPath, cities) {
+  function volunteer($q, $log, vmsClient, volunteerProfileEndPoint, defaultAvatarPath, cities) {
     var service = {
       getProfile: getProfile,
       updateProfile: updateProfile,
@@ -19,7 +20,8 @@
       getSkills: getSkills,
       updateSkills: updateSkills,
       getEquipment: getEquipment,
-      updateEquipment: updateEquipment
+      updateEquipment: updateEquipment,
+      getAttendingProjects: getAttendingProjects
     };
     return service;
 
@@ -405,6 +407,25 @@
       vmsClient.updateEquipment(updateEquipment)
         .then(onSuccess)
         .catch(onFailure);
+
+      return deferred.promise;
+    }
+
+    function getAttendingProjects(userId) {
+      var deferred = $q.defer();
+
+      volunteerProfileEndPoint
+        .getAttendingProjects(userId)
+        .then(function(response) {
+          $log.debug(response);
+
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          $log.error(response);
+
+          deferred.reject(response);
+        });
 
       return deferred.promise;
     }

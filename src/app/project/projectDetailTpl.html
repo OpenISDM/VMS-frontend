@@ -73,7 +73,7 @@
 			<div class="row">
 			  <div ng-repeat="member in vm.membersList.data track by $index">
 			    <div class="col-md-2 col-lg-3">
-			      <span class="glyphicon glyphicon-user"></span> {{ member.attributes.username }}
+			      <span class="glyphicon glyphicon-user"></span> <a ng-click="vm.showMember(member)">{{ member.attributes.username }}</a>
 			    </div>
 			    <!-- <div class="col-md-1 col-lg-1">
 			      {{ member.attributes.first_name }} {{ member.attributes.last_name}}
