@@ -6,7 +6,7 @@
     .controller('RegisterController', RegisterController);
 
   /** @ngInject */
-  function RegisterController($log, $state, fieldName, defaultAvatarPath, vmsClient, vmsErrorMessage, authPrinciple, $scope, cities, vmsLocalStorage) {
+  function RegisterController($log, $state, fieldName, defaultAvatarPath, userProfile, vmsErrorMessage, authPrinciple, $scope, cities, vmsLocalStorage) {
     var vm = this;
     vm.cities = cities;
 
@@ -26,7 +26,7 @@
         opened: false
       },
       format: 'yyyy'
-    }
+    };
 
     vm.register = function() {
       $log.debug('=== register ===');
@@ -38,11 +38,6 @@
       }
 
       var onSuccess = function(response) {
-
-        vmsLocalStorage.setUsername(vm.volunteer.username);
-        vmsLocalStorage.setJwt(response.data.auth_access_token);
-        vmsLocalStorage.setRole('volunteer');
-
         $state.go('registerSuccess', {
           last_name: vm.volunteer.last_name,
           email: vm.volunteer.email
@@ -52,6 +47,10 @@
         $log.debug('error');
         $log.debug(response);
 
+        /*
+         * TODO: It should integrate with <vms-message> directive 
+         */
+
         if (response.status == 422) {
           $log.error(response.data);
 
@@ -60,7 +59,10 @@
         }
       };
 
-      vmsClient.register(vm.volunteer).then(onSuccess).catch(onFailure);
+      userProfile
+        .create(vm.volunteer, 'volunteer')
+        .then(onSuccess)
+        .catch(onFailure);
     };
 
     vm.selectAvatar = function(event, fileReader, file, fileList, fileObjects, object) {

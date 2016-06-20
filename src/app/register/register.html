@@ -2,11 +2,7 @@
 	<h1>註冊</h1>
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
-	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		<span class="sr-only">Error:</span>
-		{{ vm.errorMsg }}
-	</div>
+	<vms-message data="vm.alert"></vms-message>
 	<form class="form-inline">
 		<h2>關於</h2>
 		<hr>
@@ -39,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="password" class="control-label col-md-3 col-lg-3">密碼</label>

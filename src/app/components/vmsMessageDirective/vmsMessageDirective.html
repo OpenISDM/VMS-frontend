@@ -1,0 +1,12 @@
+  <uib-alert ng-repeat="alert in vm.data" type="{{alert.type}}" dismiss-on-timeout="alert.timeout">
+    <div ng-if="vm.isArray(alert.message)">
+      <ul>
+        <li ng-repeat="message in alert.message">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+    <div ng-if="!vm.isArray(alert.message)">
+        {{ alert.message }}
+    </div>
+  </uib-alert>

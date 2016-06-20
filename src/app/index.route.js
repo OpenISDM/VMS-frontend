@@ -129,7 +129,7 @@
           },
           'educationContent@rootEditProfile.experienceEducation': {
             templateUrl: 'app/volunteerEducation/education.html',
-            controller: 'VolunteerEduationController',
+            controller: 'VolunteerEducationController',
             controllerAs: 'vm'
           }
         }
