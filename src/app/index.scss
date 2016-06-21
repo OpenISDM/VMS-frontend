@@ -21,6 +21,13 @@ $label-primary-bg: #5bc0de;
  */
 // bower:scss
 // endbower
+
+/**
+ * Font awesome
+ */
+ $fa-font-path: "../../bower_components/font-awesome/fonts";
+ @import "../../bower_components/font-awesome/scss/font-awesome.scss";
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -231,6 +238,11 @@ hr.color {
     padding-left: 20px;
   }
 }
+
+.form-horizontal .x-form-group {
+  margin-bottom: 15px;
+}
+
 @font-face {
   font-family: 'cwTeXHei';
   font-family: 'cwTeXHei';

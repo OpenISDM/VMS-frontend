@@ -5,7 +5,7 @@
     .module('vmsFrontend')
     .controller('EditSkillEquipmentController', EditSkillEquipmentController);
 
-  function EditSkillEquipmentController(volunteer, arrayHelpersService, $scope, $log) {
+  function EditSkillEquipmentController(userEquipment, userSkill, arrayHelpersService, $scope, $log) {
     var vm = this;
     vm.equipment = [];
     vm.skills = [];
@@ -18,11 +18,11 @@
     angular.element(document).ready(getEquipment);
 
     function getSkills() {
-      var onSuccess = function(skills) {
-        $log.debug(skills);
+      var onSuccess = function(value) {
+        $log.debug(value.skills);
 
-        vm.skills = skills;
-        $scope.originSkills = angular.copy(skills);
+        vm.skills = value.skills;
+        $scope.originSkills = angular.copy(value.skills);
 
         $log.debug('### $scope.originSkills ###');
         $log.debug($scope.originSkills);
@@ -34,17 +34,17 @@
          */
       };
 
-      volunteer.getSkills()
+      userSkill.getAll()
         .then(onSuccess)
         .catch(onFailure);
     }
 
     function getEquipment() {
-      var onSuccess = function(equipment) {
-        $log.debug(equipment);
+      var onSuccess = function(value) {
+        $log.debug(value.equipment);
 
-        vm.equipment = equipment;
-        $scope.equipment = angular.copy(equipment);
+        vm.equipment = value.equipment;
+        $scope.equipment = angular.copy(value.equipment);
 
         $log.debug('### $scope.equipment ###');
         $log.debug($scope.equipment);
@@ -56,7 +56,8 @@
          */
       };
 
-      volunteer.getEquipment()
+      userEquipment
+        .getAll()
         .then(onSuccess)
         .catch(onFailure);
     }
@@ -69,7 +70,8 @@
         return result;
       };
 
-      return volunteer.getSkillCandidatedKeywords(skill)
+      return userSkill
+        .getCandidatedKeywords(skill)
         .then(onSuccess);
     };
 
@@ -81,7 +83,8 @@
         return result;
       };
 
-      return volunteer.getEquipmentCandidatedKeywords(equipment)
+      return userEquipment
+        .getCandidatedKeywords(equipment)
         .then(onSuccess);
     };
 
@@ -106,7 +109,7 @@
       $log.debug('existingIndexes');
       $log.debug(existingIndexes);
 
-      volunteer.updateSkills(vm.skills, existingIndexes)
+      userSkill.update(vm.skills, existingIndexes)
         .then(onSuccess)
         .catch(onFailure);
     };
@@ -132,7 +135,8 @@
       $log.debug('existingIndexes');
       $log.debug(existingIndexes);
 
-      volunteer.updateEquipment(vm.equipment, existingIndexes)
+      userEquipment
+        .update(vm.equipment, existingIndexes)
         .then(onSuccess)
         .catch(onFailure);
     };

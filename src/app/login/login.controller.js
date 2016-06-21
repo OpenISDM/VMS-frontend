@@ -6,8 +6,9 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, auth, vmsLocalStorage, $rootScope, $state) {
+  function LoginController($log, userAuthentication, $rootScope, $state) {
     var vm = this;
+    vm.alert = [];
 
     vm.login = function() {
 
@@ -16,10 +17,6 @@
 
       var onSuccess = function() {
         $log.debug('login success');
-
-        vm.loginErrorMsg = undefined;
-
-        vmsLocalStorage.setRole(vm.role);
 
         // if the next state is login, it will go to profile state
         if ($rootScope.toState.name == 'login') {
@@ -38,13 +35,25 @@
         $log.debug('login error');
 
         if (response.status == 401) {
-          vm.loginErrorMsg = '帳號或密碼錯誤';
+          vm.alert.push({
+            type: 'danger',
+            message: ['帳號或密碼錯誤']
+          });
         } else {
-          vm.loginErrorMsg = '伺服器錯誤';
+          vm.alert.push({
+            type: 'danger',
+            message: ['帳號或密碼錯誤']
+          });
         }
+
+        $log.debug('vm.alter');
+        $log.debug(vm.alter);
       };
 
-      auth.authenticate(vm.credentials).then(onSuccess).catch(onFailure);
+      userAuthentication
+        .login(vm.credentials, vm.role)
+        .then(onSuccess)
+        .catch(onFailure);
     }
   }
 })();

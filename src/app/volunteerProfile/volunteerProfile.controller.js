@@ -7,7 +7,7 @@
 
   /** @ngInject */
 
-  function ProfileController($uibModal, vmsClient, cities, $log, defaultAvatarPath, volunteer) {
+  function ProfileController($uibModal, cities, $log, defaultAvatarPath, userProfile) {
 
     var vm = this;
 
@@ -26,18 +26,21 @@
     angular.element(document).ready(getProfile());
 
     function getProfile() {
-      var doneCallbacks = function(profile) {
-          vm.profile = profile;
+      var doneCallbacks = function(result) {
+          $log.debug("getProfile() done");
+          $log.debug(result);
+
+          vm.profile = result.data;
         },
         failCallbacks = function(response) {
           $log.debug(response);
         };
 
-      volunteer.getProfile().then(doneCallbacks, failCallbacks)
+      userProfile.get().then(doneCallbacks, failCallbacks)
     }
   }
 
-  angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($uibModalInstance, $log, localStorageService, vmsClient) {
+  angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($uibModalInstance, $log, localStorageService, userProfile) {
 
     var vm = this;
     vm.remind = "提醒您，帳號刪除後無法再還原，如果您確定要刪除帳號。";
@@ -51,7 +54,7 @@
       $log.debug("username = " + credentials.username);
       $log.debug("password = " + credentials.password);
 
-      vmsClient.deleteAccount(credentials, function(response) {
+      userProfile.drop(credentials, function(response) {
         $log.debug("delete success");
         $uibModalInstance.close();
       }, function(response) {

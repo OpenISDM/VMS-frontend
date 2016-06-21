@@ -6,7 +6,7 @@
     .controller('MyProjectDetailController', MyProjectDetailController);
 
   /** @ngInject */
-  function MyProjectDetailController($log, vmsClient, project, members, PERMISSION_OPTIONS) {
+  function MyProjectDetailController($log, $uibModal, vmsClient, project, members, PERMISSION_OPTIONS, $sce) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.project = project;
@@ -23,6 +23,38 @@
       vmsClient.attendProject(projectId)
         .then(onSuccess)
         .catch(onFailure);
-    }
+    };
+
+    vm.trustAsHtml = function(html) {
+      return $sce.trustAsHtml(html);
+    };
+
+    vm.showMember = function(member) {
+      $log.debug("showMemeber");
+      $log.debug(member);
+
+      var templateString = '<div class="modal-header"><h4>{{ vm.member.attributes.username }} 已參加的專案</h4></div>' +
+        '<div class="modal-body"><show-attending-projects member-id="vm.member.id"></show-attending-projects></div>'
+
+      $uibModal.open({
+        animation: true,
+        template: templateString,
+        controller: function(member) {
+          $log.debug("modal Controller");
+
+          var vm = this;
+          vm.member = member;
+
+          $log.debug("vm.member");
+          $log.debug(vm.member);
+        },
+        controllerAs: 'vm',
+        resolve: {
+          member: function() {
+            return member;
+          }
+        }
+      });
+    };
   }
 })();

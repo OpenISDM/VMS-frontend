@@ -2,7 +2,7 @@
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span class="sr-only">Error:</span> {{ vm.errorMsg }}
 	</div>
-	<form class="form-inline">
+	<form class="">
 		<span class="h2-inline">修改</span>
 		<hr>
 		<div id="profile-basic" class="profile-section row">
@@ -33,10 +33,7 @@
 			</div>
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<div>
-
-					</div>
-					<div class="col-md-12 col-lg-8">
+					<div class="col-md-12 col-lg-8 col-lg-offset-4">
 						<label class="radio-inline">
 							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.data.attributes.is_published"> 發布
 						</label>
@@ -48,24 +45,15 @@
 			</div>
 			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
-					<label for="hyperlinks" class="control-label col-md-23 col-lg-2">相關連結</label>
-					<div class="col-md-12 col-lg-8" ng-repeat="hyperlink in vm.hyperlinks">
-						<div class="row">
-							<div class="col-md-5 col-lg-5">
-								<input type="text" class="form-control" placeholder="連結名稱" ng-model="hyperlink.name" required />
-							</div>
-							<div class="col-md-7 col-lg-7">
-								<input type="text" class="form-control" placeholder="連結網址" ng-model="hyperlink.link" required />
-							</div>
-						</div>
-					</div>
+					<label for="hyperlinks" class="control-label col-md-12 col-lg-2">相關連結</label>
+					<editable-project-hyperlinks class="col-md-12 col-lg-10" project-id="vm.project.data.id" data="vm.hyperlinks"></editable-project-hyperlinks>
 				</div>
 			</div>
 			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
-					<label for="description" class="control-label col-md-12 col-lg-1">說明</label>
-					<div class="col-md-12 col-lg-10 col-lg-offset-1">
-						<textarea class="form-control" id="description" style="min-width: 100%" ng-model="vm.project.data.attributes.description" rows="5"></textarea>
+					<label for="description" class="control-label col-md-12 col-lg-2">說明</label>
+					<div class="col-md-12 col-lg-10">
+						<textarea froala class="form-control" id="description" style="min-width: 100%" ng-model="vm.project.data.attributes.description" rows="5"></textarea>
 					</div>
 				</div>
 			</div>

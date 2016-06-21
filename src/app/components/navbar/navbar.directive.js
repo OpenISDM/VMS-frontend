@@ -21,25 +21,25 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(auth, vmsClient, vmsLocalStorage, $state, toastr) {
+    function NavbarController(userAuthentication, vmsLocalStorage, $state, toastr) {
       var vm = this;
-      vm.auth = auth;
+      vm.userAuthentication = userAuthentication;
 
       vm.logout = function() {
-        auth.logout();
+        userAuthentication.logout();
         $state.go('login');
       };
 
       vm.isManagerRole = function() {
-        return auth.getRole() == 'manager';
+        return userAuthentication.getRole() == 'manager';
       };
 
       vm.isVolunteerRole = function() {
-        return auth.getRole() == 'volunteer';
+        return userAuthentication.getRole() == 'volunteer';
       };
 
       vm.switchToVolunteer = function() {
-        vmsLocalStorage.setRole('volunteer');
+        userAuthentication.switchRole('volunteer');
         toastr.clear();
         toastr.success('現在身份為志工', {
           closeButton: true
@@ -48,7 +48,7 @@
       };
 
       vm.switchToManager = function() {
-        vmsLocalStorage.setRole('manager');
+        userAuthentication.switchRole('manager');
         toastr.clear();
         toastr.success('現在身份為專案管理員', {
           closeButton: true

@@ -10,10 +10,10 @@
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
 
-    var projectId = $stateParams.id;
+    vm.projectId = $stateParams.id;
 
-    angular.element(document).ready(getProject(projectId));
-    angular.element(document).ready(getProjectMembers(projectId));
+    angular.element(document).ready(getProject(vm.projectId));
+    angular.element(document).ready(getProjectMembers(vm.projectId));
 
     vm.isGuest = function() {
       if (angular.isDefined(vm.project)) {
@@ -49,7 +49,7 @@
         $log.debug('attendProject() failure');
       }
 
-      vmsClient.attendProject(projectId)
+      vmsClient.attendProject(vm.projectId)
         .then(onSuccess)
         .catch(onFailure);
     }
@@ -57,10 +57,10 @@
     function getProject(id) {
       var onSuccess = function(response) {
         vm.project = response.data;
-        console.log(response.data);
+        $log.debug(response.data);
       };
       var onFailure = function(response) {
-        console.log(response);
+        $log.debug(response);
       };
 
       vmsClient.getProject(id).then(onSuccess).catch(onFailure);

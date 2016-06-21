@@ -5,7 +5,7 @@
     .module('vmsFrontend')
     .controller('VolunteerEducationController', VolunteerEducationController);
 
-  function VolunteerEducationController($log, volunteer, $filter) {
+  function VolunteerEducationController($log, userEducation, $filter) {
     var vm = this;
     var beginYear = 1970;
     vm.years = new Array();
@@ -16,12 +16,12 @@
     angular.element(document).ready(setDegree);
 
     function getEducations() {
-      var onSuccess = function(data) {
-        $log.debug(data);
+      var onSuccess = function(value) {
+        $log.debug(value);
 
-        vm.educations = data;
+        vm.educations = value.educations;
 
-        if (angular.isDefined(data)) {
+        if (angular.isDefined(value)) {
           $log.debug('vm.educations.length');
           $log.debug(vm.educations.length);
 
@@ -29,14 +29,15 @@
             vm.isShowAddEducation = true;
           }
         } else {
-          $log.debug('education data is not defined');
+          $log.debug('education value is not defined');
 
           vm.isShowAddEducation = true;
         }
 
       };
 
-      volunteer.getEducations()
+      userEducation
+        .getAll()
         .then(onSuccess);
     }
 
@@ -102,7 +103,8 @@
       $log.debug('addEducations()');
       $log.debug(vm.sEducation);
 
-      volunteer.addEducation(vm.sEducation)
+      userEducation
+        .create(vm.sEducation)
         .then(onSuccess)
         .catch(onFailure);
     };
@@ -122,7 +124,8 @@
          */
       };
 
-      volunteer.updateEducation(education)
+      userEducation
+        .update(education)
         .then(onSuccess)
         .catch(onFailure);
     };
@@ -138,7 +141,8 @@
          */
       };
 
-      volunteer.deleteEducation(id)
+      userEducation
+        .dropById(id)
         .then(onSuccess)
         .catch(onFailure);
     };

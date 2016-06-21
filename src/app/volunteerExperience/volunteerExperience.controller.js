@@ -5,7 +5,7 @@
     .module('vmsFrontend')
     .controller('VolunteerExperienceController', VolunteerExperienceController);
 
-  function VolunteerExperienceController($log, volunteer, $filter) {
+  function VolunteerExperienceController($log, userExperience, $filter) {
     var vm = this;
     var beginYear = 1970;
     vm.years = new Array();
@@ -15,12 +15,12 @@
     angular.element(document).ready(setYear);
 
     function getExperiences() {
-      var onSuccess = function(data) {
-        $log.debug(data);
+      var onSuccess = function(value) {
+        $log.debug(value);
 
-        vm.experiences = data;
+        vm.experiences = value.experiences;
 
-        if (angular.isDefined(data)) {
+        if (angular.isDefined(value)) {
           $log.debug('vm.experiences.length');
           $log.debug(vm.experiences.length);
 
@@ -28,14 +28,15 @@
             vm.isShowAddExperience = true;
           }
         } else {
-          $log.debug('experience data is not defined');
+          $log.debug('experience value is not defined');
 
           vm.isShowAddExperience = true;
         }
 
       };
 
-      volunteer.getExperiences()
+      userExperience
+        .getAll()
         .then(onSuccess);
     }
 
@@ -72,7 +73,8 @@
       $log.debug('addExperiences()');
       $log.debug(vm.sExperience);
 
-      volunteer.addExperience(vm.sExperience)
+      userExperience
+        .create(vm.sExperience)
         .then(onSuccess)
         .catch(onFailure);
     };
@@ -92,7 +94,8 @@
          */
       };
 
-      volunteer.updateExperience(experience)
+      userExperience
+        .update(experience)
         .then(onSuccess)
         .catch(onFailure);
     };
@@ -108,7 +111,8 @@
          */
       };
 
-      volunteer.deleteExperience(id)
+      userExperience
+        .dropById(id)
         .then(onSuccess)
         .catch(onFailure);
     };

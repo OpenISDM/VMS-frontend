@@ -11,7 +11,7 @@
       .state('site', {
         abstract: true,
         resolve: {
-          authorize: function(auth, $log, $state) {
+          authorize: function(userAuthentication, $log, $state) {
             $log.debug("=== authorize === ");
             var successCallback = function() {
               $log.debug('successCallback()');
@@ -21,7 +21,7 @@
               $state.go('login');
             };
 
-            return auth.authorize()
+            return userAuthentication.authorize()
               .then(successCallback)
               .catch(failureCallback);
           }
@@ -129,7 +129,7 @@
           },
           'educationContent@rootEditProfile.experienceEducation': {
             templateUrl: 'app/volunteerEducation/education.html',
-            controller: 'VolunteerEduationController',
+            controller: 'VolunteerEducationController',
             controllerAs: 'vm'
           }
         }
@@ -164,7 +164,6 @@
         }
       })
       .state('introduction', {
-        parent: 'site',
         url: '/',
         views: {
           'introductionContent@': {
