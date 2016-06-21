@@ -56,7 +56,7 @@
 
           // create a spy
           beforeEach(function() {
-            spyOn(vmsLocalStorageMock, 'getJwt').and.returnValue('fooFoofooKerKer');
+            spyOn(vmsLocalStorageMock, 'getJwt').and.returnValue('Bearer fooFoofooKerKer');
             spyOn(vmsLocalStorageMock, 'jwtExists').and.returnValue(true);
 
             module(function($provide) {

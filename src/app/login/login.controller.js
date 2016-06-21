@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, userAuthentication, vmsLocalStorage, $rootScope, $state) {
+  function LoginController($log, userAuthentication, $rootScope, $state) {
     var vm = this;
     vm.alert = [];
 
