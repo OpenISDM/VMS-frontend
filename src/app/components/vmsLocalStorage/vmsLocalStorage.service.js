@@ -6,7 +6,7 @@
     .factory('vmsLocalStorage', vmsLocalStorage);
 
   /** @ngInject */
-  function vmsLocalStorage(localStorageService, LOCAL_STORAGE_CONFIG) {
+  function vmsLocalStorage($log, localStorageService, LOCAL_STORAGE_CONFIG) {
     var service = {
       setJwt: setJwt,
       getJwt: getJwt,
@@ -21,8 +21,9 @@
       getRole: getRole,
       setRole: setRole,
       removeRole: removeRole,
+      getAvatarPath: getAvatarPath,
       setAvatarPath: setAvatarPath,
-      removeAvatarPath: removeAvatarPath
+      removeAvatarPath: removeAvatarPath,
     };
 
     return service;
@@ -89,8 +90,12 @@
       return false;
     }
 
+    function getAvatarPath() {
+      return localStorageService.get(LOCAL_STORAGE_CONFIG.keys.avatarPath);
+    }
+
     function setAvatarPath(path) {
-      return localStorageService.set(LOCAL_STORAGE_CONFIG.keys.avatarPath);
+      return localStorageService.set(LOCAL_STORAGE_CONFIG.keys.avatarPath, path);
     }
 
     function removeAvatarPath() {

@@ -39,22 +39,25 @@
           $log.debug(response.headers('Authorization'));
 
           var jsonWebToken = response.headers('Authorization');
-          var profile = response.data;
+          var value = response.data;
 
           if (angular.isDefined(jsonWebToken)) {
             authenticated = true;
+
+            $log.debug(value);
+            $log.debug('avatar_url = ' + value.data.avatar_url);
 
             // Store JSON Web Token into local storage for attching into each request
             vmsLocalStorage.setJwt(jsonWebToken);
 
             // Store username into local storage for displaying username on navbar
-            vmsLocalStorage.setUsername(profile.username);
+            vmsLocalStorage.setUsername(value.data.username);
 
             // Store last name into local storage for display last name on navbar
-            vmsLocalStorage.setLastName(profile.last_name);
+            vmsLocalStorage.setLastName(value.data.last_name);
 
             // Store avatar path into local storage for displaying avatar image on navbar
-            vmsLocalStorage.setAvatarPath(profile.avatar_url);
+            vmsLocalStorage.setAvatarPath(value.data.avatar_url);
 
             // Switch into role
             switchRole(role);
