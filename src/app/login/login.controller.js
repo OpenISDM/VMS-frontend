@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, auth, vmsLocalStorage, $rootScope, $state) {
+  function LoginController($log, userAuthentication, vmsLocalStorage, $rootScope, $state) {
     var vm = this;
     vm.alert = [];
 
@@ -17,8 +17,6 @@
 
       var onSuccess = function() {
         $log.debug('login success');
-
-        vmsLocalStorage.setRole(vm.role);
 
         // if the next state is login, it will go to profile state
         if ($rootScope.toState.name == 'login') {
@@ -52,7 +50,10 @@
         $log.debug(vm.alter);
       };
 
-      auth.authenticate(vm.credentials).then(onSuccess).catch(onFailure);
+      userAuthentication
+        .login(vm.credentials, vm.role)
+        .then(onSuccess)
+        .catch(onFailure);
     }
   }
 })();

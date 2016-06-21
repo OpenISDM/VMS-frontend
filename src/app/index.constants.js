@@ -22,7 +22,8 @@
         jwt: 'jwt_token',
         userName: 'user_name',
         lastName: 'last_name',
-        role: 'role'
+        role: 'role',
+        avatarPath: 'avatar_auth'
       }
     })
     .constant('BROADCAST_EVENTS_LIST', {

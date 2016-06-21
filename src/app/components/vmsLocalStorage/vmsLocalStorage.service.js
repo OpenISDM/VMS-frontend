@@ -20,7 +20,9 @@
       removeUsername: removeUsername,
       getRole: getRole,
       setRole: setRole,
-      removeRole: removeRole
+      removeRole: removeRole,
+      setAvatarPath: setAvatarPath,
+      removeAvatarPath: removeAvatarPath
     };
 
     return service;
@@ -85,6 +87,14 @@
       }
 
       return false;
+    }
+
+    function setAvatarPath(path) {
+      return localStorageService.set(LOCAL_STORAGE_CONFIG.keys.avatarPath);
+    }
+
+    function removeAvatarPath() {
+      return localStorageService.remove(LOCAL_STORAGE_CONFIG.keys.avatarPath);
     }
   }
 })();

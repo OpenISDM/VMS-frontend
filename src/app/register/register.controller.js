@@ -6,7 +6,7 @@
     .controller('RegisterController', RegisterController);
 
   /** @ngInject */
-  function RegisterController($log, $state, fieldName, defaultAvatarPath, userProfile, vmsErrorMessage, authPrinciple, $scope, cities, vmsLocalStorage) {
+  function RegisterController($log, $state, fieldName, defaultAvatarPath, userProfile, vmsErrorMessage, $scope, cities, vmsLocalStorage) {
     var vm = this;
     vm.cities = cities;
 
@@ -48,7 +48,7 @@
         $log.debug(response);
 
         /*
-         * TODO: It should integrate with <vms-message> directive 
+         * TODO: It should integrate with <vms-message> directive
          */
 
         if (response.status == 422) {

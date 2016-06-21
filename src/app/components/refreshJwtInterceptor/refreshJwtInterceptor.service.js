@@ -13,34 +13,29 @@
         // IMPORTANT!
         // If the service wants use other dependencies, it should use $injector
         // to get the dependencies. Otherwise, the dependency will not be found
-        var auth = $injector.get('auth');
+        var userAuthentication = $injector.get('userAuthentication');
         var $http = $injector.get('$http');
         var deferred = $q.defer();
 
-        if (response.status === 401 && auth.isAuthenticated()) {
+        if (response.status === 401 && userAuthentication.isAuthenticated()) {
           $log.debug("=== 401 ===");
 
-          var successCallback = function(jwtToken) {
+          var successCallback = function(authorizationToken) {
             $log.debug("successCallback()");
-            $log.debug(jwtToken);
+            $log.debug(authorizationToken);
 
-            response.config.headers.Authorization = 'Bearer ' + jwtToken;
-
-            vmsLocalStorage.setJwt(jwtToken);
+            response.config.headers.Authorization = authorizationToken;
 
             deferred.resolve();
           };
           var failureCallback = function() {
             $log.debug("failureCallback()");
-            vmsLocalStorage.removeRole();
-            vmsLocalStorage.removeLastName();
-            vmsLocalStorage.removeUsername();
-            vmsLocalStorage.removeJwt();
+            userAuthentication.logout();
 
             deferred.reject();
           };
 
-          auth.refreshToken().then(successCallback).catch(failureCallback);
+          userAuthentication.refreshToken().then(successCallback).catch(failureCallback);
 
           return deferred.promise.then(function() {
             return $http(response.config);

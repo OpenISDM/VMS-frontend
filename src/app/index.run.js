@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, vmsLocalStorage, $rootScope, $state, $stateParams, auth, authPrinciple, $urlRouter, editableOptions) {
+  function runBlock($log, vmsLocalStorage, $rootScope, $state, $stateParams, $urlRouter, editableOptions) {
     editableOptions.theme = 'bs3';
 
     // Listen state check start event
@@ -17,21 +17,7 @@
       $log.debug(toStateParams);
       $log.debug("##########");
 
-
       $rootScope.toState = toState;
-
-    // if (toState.data.needAuth) {
-    //   var successCallback = function() {
-    //     $log.debug('pass...');
-    //     $state.go(toState.name, toStateParams);
-    //   };
-    //   var failureCallback = function() {
-    //     event.preventDefault();
-    //     $state.go('login');
-    //   };
-    //
-    //   auth.authorize().then(successCallback, failureCallback);
-    // }
     });
 
     var stateChangeLoggingError = $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
@@ -47,6 +33,8 @@
     var scrollToTopPageCallback = $rootScope.$on('$stateChangeSuccess', function() {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
+
+
 
 
     $rootScope.$on('$destroy', stateChangeForAuthorizationCallback);
