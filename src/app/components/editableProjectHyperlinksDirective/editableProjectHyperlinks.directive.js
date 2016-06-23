@@ -23,7 +23,7 @@
   }
 
   /** @ngInject */
-  function EditableProjectHyperlinksDirectiveController($log, projectService) {
+  function EditableProjectHyperlinksDirectiveController($log, projectHyperlink) {
     var vm = this;
     vm.data = [];
 
@@ -42,11 +42,12 @@
       $log.debug("vm.projectId is defined.");
       $log.debug("vm.projectId = " + vm.projectId);
 
-      var onSuccess = function(hyperlinks) {
-        vm.data = hyperlinks;
+      var onSuccess = function(value) {
+        vm.data = value.data;
       };
 
-      projectService.getHyperlinks(vm.projectId)
+      projectHyperlink
+        .getByProjectId(vm.projectId)
         .then(onSuccess);
     }
 
@@ -65,7 +66,8 @@
       };
 
       if (angular.isDefined(vm.data[index].id)) {
-        projectService.deleteHyperlinks(vm.projectId, vm.data[index].id)
+        projectHyperlink
+          .dropByProjectIdAndHyperlinkId(vm.projectId, vm.data[index].id)
           .then(onSuccess)
           .catch(onFailure);
       } else {

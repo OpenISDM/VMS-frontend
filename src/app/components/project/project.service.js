@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .factory('projectService', projectService);
+    .factory('project', project);
 
   /** @ngInject */
-  function projectService(vmsClient, projectEndpoint, $q, $log) {
+  function project(vmsClient, projectEndpoint, $q, $log) {
     var service = {
       getManagedProjects: getManagedProjects,
       getHyperlinks: getHyperlinks,
@@ -26,7 +26,7 @@
     }
 
     function getHyperlinks(projectId) {
-      $log.debug("projectService.getHyperlinks()");
+      $log.debug("projectHyperlink.get()");
 
       var deferred = $q.defer();
 

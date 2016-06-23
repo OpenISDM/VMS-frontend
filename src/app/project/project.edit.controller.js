@@ -6,7 +6,7 @@
     .controller('MyEditProjectController', MyEditProjectController);
 
   /** @ngInject */
-  function MyEditProjectController($log, vmsClient, project, projectService, lodash, PERMISSION_OPTIONS) {
+  function MyEditProjectController($log, vmsClient, project, projectHyperlink, lodash, PERMISSION_OPTIONS) {
     var vm = this;
     vm.project = project;
     vm.hyperlinks;
@@ -42,7 +42,7 @@
       $log.debug("updateHyperlinks");
       $log.debug(updateHyperlinks);
 
-      projectService.createOrUpdateHyperlinks(
+      projectHyperlink.createOrUpdate(
         vm.project.data.id,
         newHyperlinks,
         updateHyperlinks);

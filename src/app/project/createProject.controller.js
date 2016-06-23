@@ -6,7 +6,7 @@
     .controller('CreateProjectController', CreateProjectController);
 
   /** @ngInject */
-  function CreateProjectController($log, $state, vmsClient, projectService, PERMISSION_OPTIONS) {
+  function CreateProjectController($log, $state, vmsClient, projectHyperlink, PERMISSION_OPTIONS) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.hyperlinks = [
@@ -41,7 +41,8 @@
     };
 
     function storeHyperlinks(projectId) {
-      projectService.storeHyperlinks(projectId, vm.hyperlinks)
+      projectHyperlink
+        .create(projectId, vm.hyperlinks)
         .then(function() {
           $log.debug("storeHyperlinks() success");
           $log.debug("projectId = " + projectId);

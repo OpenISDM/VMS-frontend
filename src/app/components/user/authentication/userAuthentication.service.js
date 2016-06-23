@@ -81,6 +81,8 @@
     }
 
     function logout() {
+      $log.debug("authenticated was set into false");
+
       authenticated = false;
 
       clearAllLocalStorageKeys();
@@ -103,6 +105,8 @@
           }
         })
         .catch(function(response) {
+          $log.error("refreshToken catch()");
+
           logout();
 
           deferred.reject();
@@ -150,6 +154,8 @@
           authenticated = true;
           deferred.resolve();
         } else {
+          $log.debug("authenticated was set into false");
+
           authenticated = false;
           deferred.reject();
         }

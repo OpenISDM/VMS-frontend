@@ -22,7 +22,7 @@
   }
 
   /** @ngInject */
-  function ProjectHyperlinksDirectiveController($log, projectService) {
+  function ProjectHyperlinksDirectiveController($log, projectHyperlink) {
     var vm = this;
     vm.data = [];
 
@@ -38,7 +38,8 @@
         vm.data = hyperlinks;
       };
 
-      projectService.getHyperlinks(vm.projectId)
+      projectHyperlink
+        .getByProjectId(vm.projectId)
         .then(onSuccess);
     }
   }

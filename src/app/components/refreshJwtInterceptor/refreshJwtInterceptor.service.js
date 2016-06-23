@@ -7,6 +7,8 @@
 
   /** @ngInject */
   function refreshJwtInterceptor($injector, $q, $log, vmsLocalStorage) {
+    $log.debug("### refreshJwtInterceptor ###");
+
     var service = {
 
       responseError: function(response) {
@@ -16,12 +18,17 @@
         var userAuthentication = $injector.get('userAuthentication');
         var $http = $injector.get('$http');
         var deferred = $q.defer();
+        var isAuthenticated = userAuthentication.isAuthenticated();
 
-        if (response.status === 401 && userAuthentication.isAuthenticated()) {
+        $log.debug("### responseError ###");
+        $log.debug(response);
+        $log.debug('isAuthenticated = ' + isAuthenticated);
+
+        if (response.status === 401 && isAuthenticated) {
           $log.debug("=== 401 ===");
 
           var successCallback = function(authorizationToken) {
-            $log.debug("successCallback()");
+            $log.debug("refresh successCallback()");
             $log.debug(authorizationToken);
 
             response.config.headers.Authorization = authorizationToken;
@@ -29,7 +36,7 @@
             deferred.resolve();
           };
           var failureCallback = function() {
-            $log.debug("failureCallback()");
+            $log.error("refresh failureCallback()");
             userAuthentication.logout();
 
             deferred.reject();
