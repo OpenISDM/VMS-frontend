@@ -40,14 +40,14 @@
     }
   }
 
-  angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($uibModalInstance, $log, localStorageService, userProfile) {
+  angular.module('vmsFrontend').controller('ModalInstanceCtrl', function($state, $uibModalInstance, $log, vmsLocalStorage, userProfile) {
 
     var vm = this;
     vm.remind = "提醒您，帳號刪除後無法再還原，如果您確定要刪除帳號。";
 
     vm.ok = function() {
       var credentials = {
-        username: localStorageService.get("username"),
+        username: vmsLocalStorage.getUsername(),
         password: vm.password
       };
 
@@ -57,6 +57,8 @@
       userProfile.drop(credentials, function(response) {
         $log.debug("delete success");
         $uibModalInstance.close();
+
+        $state.go('login');
       }, function(response) {
         $log.debug("delete failure");
         $log.debug(response);

@@ -7,6 +7,8 @@
 
   /** @ngInject */
   function vmsNavbar() {
+    var avatarPath;
+    var lastName;
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
@@ -21,7 +23,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(userAuthentication, vmsLocalStorage, $state, toastr) {
+    function NavbarController($log, userAuthentication, vmsLocalStorage, $state, toastr) {
       var vm = this;
       vm.userAuthentication = userAuthentication;
 
@@ -54,7 +56,22 @@
           closeButton: true
         });
         $state.go('managedProjectList');
-      }
+      };
+
+      vm.getAvatarPath = function() {
+        if (!angular.isDefined(avatarPath)) {
+          avatarPath = vmsLocalStorage.getAvatarPath()
+        }
+        return avatarPath;
+      };
+
+      vm.getLastName = function() {
+        if (!angular.isDefined(lastName)) {
+          lastName = vmsLocalStorage.getLastName();
+        }
+
+        return lastName;
+      };
     }
   }
 

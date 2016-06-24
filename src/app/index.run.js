@@ -21,8 +21,9 @@
     });
 
     var stateChangeLoggingError = $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-      $log.debug("stateChangeLoggingError");
-      $log.debug(error);
+      $log.error("stateChangeLoggingError");
+      $log.error(event)
+      $log.error(error);
     });
 
     var urlRouterSyncDeregisteratinoCallback = $rootScope.$on('$locationChange', function(event) {

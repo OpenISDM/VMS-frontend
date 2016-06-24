@@ -75,6 +75,6 @@
       $event.preventDefault();
       $event.stopPropagation();
       vm.datePicker.status.opened = true;
-    }
+    };
   }
 })();

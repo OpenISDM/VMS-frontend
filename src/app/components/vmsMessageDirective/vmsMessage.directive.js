@@ -29,16 +29,18 @@
 
     $log.debug('VmsMessageController');
 
-    vm.data.forEach(function(element, index, array) {
-      $log.debug('forEach');
-      $log.debug(element);
+    if (vm.data instanceof Array) {
+      vm.data.forEach(function(element, index, array) {
+        $log.debug('forEach');
+        $log.debug(element);
 
-      if (vm.data[index].type === 'info') {
-        array[index]['timeout'] = 6500;
-      } else {
-        array[index]['timeout'] = 'none';
-      }
-    });
+        if (vm.data[index].type === 'info') {
+          array[index]['timeout'] = 6500;
+        } else {
+          array[index]['timeout'] = 'none';
+        }
+      });
+    }
 
     function isArray(value) {
       return angular.isArray(value);

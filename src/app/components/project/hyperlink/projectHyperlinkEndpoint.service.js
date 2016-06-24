@@ -8,15 +8,15 @@
   /** @ngInject */
   function projectHyperlinkEndpoint($log, $http, apiBaseUrl) {
     var service = {
-      get: get,
+      getByProjectId: getByProjectId,
       create: create,
-      drop: drop,
+      dropByProjectIdAndHyperlinkId: dropByProjectIdAndHyperlinkId,
       createOrUpdate: createOrUpdate
     };
 
     return service;
 
-    function get(projectId) {
+    function getByProjectId(projectId) {
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks'
@@ -31,7 +31,7 @@
       });
     }
 
-    function drop(projectId, id) {
+    function dropByProjectIdAndHyperlinkId(projectId, id) {
       return $http({
         method: 'DELETE',
         url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks/' + id
