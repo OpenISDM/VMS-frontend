@@ -6,27 +6,10 @@
     .controller('ShowProjectListController', ShowProjectListController);
 
   /** @ngInject */
-  function ShowProjectListController($log, projectList) {
+  function ShowProjectListController($log, projects) {
     var vm = this;
-    vm.projectList = projectList;
+    vm.projects = projects;
 
-    $log.debug(vm.projectList);
-
-    vm.getManager = function(id) {
-      // $log.debug('=== vm.getManager() ===');
-      // $log.debug(id);
-
-      var manager;
-
-      angular.forEach(projectList.included, function(value) {
-        if (value.type == 'managers') {
-          if (value.id == id) {
-            manager = value.attributes;
-          }
-        }
-      });
-
-      return manager;
-    }
+    $log.debug(vm.projects);
   }
 })();

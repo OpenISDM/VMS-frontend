@@ -3,26 +3,40 @@
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
 	<div class="alert alert-info" role="alert">參與您有興趣的專案！</div>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>專案名稱</th>
-				<th>管理員</th>
-				<th>組織名稱</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="project in vm.projectList.data">
-				<td>
-					<a uib-popover="{{ project.attributes.description }}" popover-title="專案說明" popover-trigger="mouseenter" popover-popup-delay="800" popover-placement="right" ui-sref="projectDetail({ id: project.id })">{{ project.attributes.name }}</a>
-				</td>
-				<td>
-					{{vm.getManager(project.relationships.managers.data[0].id).first_name}} {{ vm.getManager(project.relationships.managers.data[0].id).last_name }}
-				</td>
-				<td>
-					{{ project.attributes.organization }}
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+          <div class="row project-item" ng-repeat="project in vm.projects">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4><a ui-sref="projectDetail({ id: project.id })">{{ project.name }}</a></h4>
+                </div>
+                <div class="col-md-6">
+                  {{ project.organization }}
+                </div>
+                <div class="col-md-6">
+                  {{ project.updated_at }}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <span class="fa fa-user fa-lg" aria-hidden="true"></span>
+                  {{ project.member_number }}
+                </div>
+                <div class="col-md-12 text-right">
+                  <span class="fa fa-cubes fa-lg" aria-hidden="true"></span>
+                  {{ project.process_number }}
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -365,18 +365,20 @@
           }
         },
         resolve: {
-          projectList: function(vmsClient, $log) {
+          projects: function(project, $log) {
             $log.debug("projectList resolve");
 
-            var onSuccess = function(response) {
+            var onSuccess = function(value) {
               $log.debug("projectList onSuccess()");
-              return response.data;
+              $log.debug(value);
+
+              return value.data;
             };
             var onError = function() {
               $log.debug("projectList onError()");
             };
 
-            return vmsClient.getAllProjects()
+            return project.getAll()
               .then(onSuccess)
               .catch(onError);
           }

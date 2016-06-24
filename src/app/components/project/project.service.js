@@ -6,9 +6,11 @@
     .factory('project', project);
 
   /** @ngInject */
-  function project(vmsClient, projectEndpoint, $q, $log) {
+  function project($log, $q, projectEndpoint) {
     var service = {
-      getManagedProjects: getManagedProjects,
+      getById: getById,
+      getAll: getAll,
+      update: update,
       getHyperlinks: getHyperlinks,
       storeHyperlinks: storeHyperlinks,
       deleteHyperlinks: deleteHyperlinks,
@@ -17,111 +19,64 @@
 
     return service;
 
-    function getManagedProjects() {
-      var deferred = $q.defer();
-      var onSuccess = function() {};
-      var onFailure = function() {};
-
-      vmsClient.getManagedProjects().then().catch()
+    function getById(id) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + id,
+      });
     }
 
-    function getHyperlinks(projectId) {
-      $log.debug("projectHyperlink.get()");
-
+    function getAll() {
       var deferred = $q.defer();
 
-      var onSuccess = function(response) {
-        $log.debug(response);
-
-        deferred.resolve(response.data.data);
-      };
-
-      var onFailure = function(response) {
-        $log.error(response);
-
-        deferred.reject(response);
-      }
-
-      projectEndpoint.getHyperlinks(projectId)
-        .then(onSuccess)
-        .catch(onFailure);
-
-      return deferred.promise;
-    }
-
-    function storeHyperlinks(projectId, data) {
-      var deferred = $q.defer();
-
-      var onSuccess = function(response) {
-        $log.debug(response);
-
-        deferred.resolve(response);
-      };
-      var onFailure = function(response) {
-        $log.debug(response);
-
-        deferred.reject(response);
-      };
-
-      projectEndpoint.storeHyperlinks(projectId, data)
-        .then(onSuccess)
-        .catch(onFailure);
-
-      return deferred.promise;
-    }
-
-    function deleteHyperlinks(projectId, hyperlinkId) {
-      var deferred = $q.defer();
-
-      projectEndpoint.deleteHyperlinks(projectId, hyperlinkId)
-        .then(function() {
-          $log.debug("deleteHyperlinks success");
-
-          deferred.resolve();
-        })
-        .catch(function(response) {
-          $log.error("deleteHyperlinks failure");
-
-          deferred.reject(response);
-        });
-
-      return deferred.promise;
-    }
-
-    function createOrUpdateHyperlinks(projectId, newHyperlinks, updateHyperlinks) {
-      var deferred = $q.defer();
-      var data = {};
-
-      if (angular.isDefined(newHyperlinks) && newHyperlinks.length > 0) {
-        $log.debug("newHyperlinks is defined");
-        $log.debug(newHyperlinks);
-
-        data["create"] = newHyperlinks;
-      }
-
-      if (angular.isDefined(updateHyperlinks) && updateHyperlinks.length > 0) {
-        $log.debug("updateHyperlinks is defined");
-        $log.debug(updateHyperlinks);
-
-        data["update"] = updateHyperlinks;
-      }
-
-      $log.debug("data");
-      $log.debug(data);
-
-      projectEndpoint.createOrUpdateHyperlinks(projectId, data)
+      projectEndpoint
+        .getAll()
         .then(function(response) {
-          $log.debug(response);
-
           deferred.resolve(response.data);
         })
         .catch(function(response) {
-          $log.error(response);
-
           deferred.reject(response);
         });
 
       return deferred.promise;
+    }
+
+    function update(id, data) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/projects/' + id,
+        data: data
+      });
+    }
+
+    function getHyperlinks(projectId) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks'
+      });
+    }
+
+    function storeHyperlinks(projectId, data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks',
+        data: data
+      });
+    }
+
+    function deleteHyperlinks(projectId, hyperlinkId) {
+      return $http({
+        method: 'DELETE',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks/' + hyperlinkId
+      });
+    }
+
+    function createOrUpdateHyperlinks(projectId, data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/hyperlinks/create_or_update_bulk',
+        data: data
+      });
     }
   }
 })();

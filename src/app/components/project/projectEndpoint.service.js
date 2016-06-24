@@ -8,7 +8,8 @@
   /** @ngInject */
   function projectEndpoint($log, $http, apiBaseUrl) {
     var service = {
-      get: get,
+      getById: getById,
+      getAll: getAll,
       update: update,
       getHyperlinks: getHyperlinks,
       storeHyperlinks: storeHyperlinks,
@@ -18,10 +19,17 @@
 
     return service;
 
-    function get(id) {
+    function getById(id) {
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/projects/' + id,
+      });
+    }
+
+    function getAll() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects'
       });
     }
 

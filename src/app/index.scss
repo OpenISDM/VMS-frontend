@@ -15,18 +15,19 @@ $link-color: $primary-color !default;
 $navbar-default-link-hover-bg: darken($primary-color, 6.5%);
 $block-grey-color: #F5F5F5;
 $label-primary-bg: #5bc0de;
-/**
- *  Do not remove the comments below. It's the markers used by wiredep to inject
- *  sass dependencies when defined in the bower.json of your dependencies
- */
-// bower:scss
-// endbower
 
 /**
  * Font awesome
  */
  $fa-font-path: "../../bower_components/font-awesome/fonts";
  @import "../../bower_components/font-awesome/scss/font-awesome.scss";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
 
 .browsehappy {
   margin: 0.2em 0;
@@ -122,8 +123,14 @@ hr.color {
 .profile-section,
 .project-section {
   > div {
-    margin: 10px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
+}
+.project-item {
+  line-height: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $grey-color;
 }
 #poject-custom-fields-section {
   padding: 10px 0;

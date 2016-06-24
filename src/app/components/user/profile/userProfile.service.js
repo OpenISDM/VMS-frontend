@@ -52,7 +52,11 @@
       userProfileEndpoint
         .get()
         .then(function(response) {
-          deferred.resolve(response.data);
+          var value = response.data;
+          var year = value.data.birth_year;
+          value.data.birth_year = new Date(year, 1);
+
+          deferred.resolve(value);
         })
         .catch(function(response) {
           deferred.reject(response.data);
@@ -64,9 +68,18 @@
     function update(data) {
       var deferred = $q.defer();
 
+      if (data.birth_year instanceof Date) {
+        var date = data.birth_year;
+        data.birth_year = date.getFullYear();
+      }
+
       userProfileEndpoint
         .update(data)
         .then(function(response) {
+          var value = response.data;
+          var year = value.data.birth_year;
+          value.data.birth_year = new Date(year, 1);
+
           deferred.resolve(response.data);
         })
         .catch(function(response) {
