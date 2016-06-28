@@ -34,8 +34,8 @@
       $log.debug("vm.projectId is defined.");
       $log.debug("vm.projectId = " + vm.projectId);
 
-      var onSuccess = function(hyperlinks) {
-        vm.data = hyperlinks;
+      var onSuccess = function(value) {
+        vm.data = value.data;
       };
 
       projectHyperlink

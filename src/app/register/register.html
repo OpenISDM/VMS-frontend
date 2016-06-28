@@ -3,15 +3,47 @@
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
 	<vms-message data="vm.alert"></vms-message>
-	<form class="form-inline">
+	<form class="form-inline" autocomplete="off" ng-submit="vm.register()">
 		<h2>基本資料</h2>
 		<hr>
 		<div id="profile-avatar">
 			<img id="avatar-image" alt="Bootstrap Image Preview" ng-src="{{vm.showAvatar}}" class="img-circle"/>
 			<input id="avatar-input" type="file" ng-model="vm.avatar" onloadend="vm.selectAvatar" base-sixty-four-input>
 		</div>
-		<div id="profile-basic" class="profile-section row">
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+		<div id="profile-basic" class="profile-section row-eq-height">
+
+			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+						<div class="row">
+							<label for="username" class="control-label col-md-3 col-lg-3">帳號*</label>
+							<div class="col-md-9 col-lg-9">
+								<input type="text" minlength="6" class="form-control" id="username" placeholder="帳號" ng-model="vm.volunteer.username" required>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="password" class="control-label col-md-3 col-lg-3">密碼*</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="password" name="password" minlength="6" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label for="confirm-passowrd" class="control-label col-md-3 col-lg-3">確認密碼*</label>
+					<div class="col-md-9 col-lg-9">
+						<input type="password" name="confirm-passowrd" ng-model="vm.passwordConfirm" minlength="6" class="form-control" id="confirm-passowrd" placeholder="確認密碼" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="first-name" class="control-label col-md-3 col-lg-3">姓氏*</label>
 					<div class="col-md-9 col-lg-9">
@@ -19,7 +51,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="last-name" class="control-label col-md-3 col-lg-3">名字*</label>
 					<div class="col-md-9 col-lg-9">
@@ -27,34 +59,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-				<div class="row">
-					<label for="username" class="control-label col-md-3 col-lg-3">帳號</label>
-					<div class="col-md-9 col-lg-9">
-						<input type="text" minlength="6" class="form-control" id="username" placeholder="帳號" ng-model="vm.volunteer.username" required>
-					</div>
-				</div>
-			</div>
 
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-				<div class="row">
-					<label for="password" class="control-label col-md-3 col-lg-3">密碼*</label>
-					<div class="col-md-9 col-lg-9">
-						<input type="password" minlength="6" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password" required>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-				<div class="row">
-					<label for="confirm-passowrd" class="control-label col-md-3 col-lg-3">確認密碼*</label>
-					<div class="col-md-9 col-lg-9">
-						<input type="password" minlength="6" class="form-control" id="confirm-passowrd" placeholder="確認密碼" required>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="birth-year" class="control-label col-md-3 col-lg-3">出生年份*</label>
 					<div class="col-md-9 col-lg-9">
@@ -67,7 +73,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="gender" class="control-label col-md-3 col-lg-3">性別*</label>
 					<div class="col-md-9 col-lg-9">
@@ -80,7 +86,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="city" class="control-label col-md-3 col-lg-3">縣市*</label>
 					<div class="col-md-9 col-lg-9">
@@ -89,7 +95,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 				<div class="row">
 					<label for="address" class="control-label col-md-3 col-lg-3">鄉鎮市區*</label>
 					<div class="col-md-9 col-lg-9">
@@ -101,7 +107,7 @@
 		<div id="profile-contact" class="profile-section row">
 			<h2>聯絡資料</h2>
 			<hr>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="email" class="control-label col-md-3 col-lg-3">電子郵件*</label>
 					<div class="col-md-9 col-lg-9">
@@ -109,7 +115,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="phone-number" class="control-label col-md-3 col-lg-3">電話號碼</label>
 					<div class="col-md-9 col-lg-9">
@@ -117,7 +123,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="emergency-contact" class="control-label col-md-3 col-lg-3">緊急聯絡人</label>
 					<div class="col-md-9 col-lg-9">
@@ -125,7 +131,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="emergency-contact-phone" class="control-label col-md-3 col-lg-3">緊急聯絡人電話</label>
 					<div class="col-md-9 col-lg-9">
@@ -136,7 +142,7 @@
 		</div>
 		<div class="row profile-section">
 			<div class="col-md-2 col-md-offset-5">
-				<button class="btn btn-primary btn-lg" ng-click="vm.register()">送出</button>
+				<button class="btn btn-primary btn-lg">送出</button>
 			</div>
 			<div class="col-md-5"></div>
 		</div>

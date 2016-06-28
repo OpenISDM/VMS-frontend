@@ -7,14 +7,14 @@
     </div>
     <div class="col-md-4 col-lg-4">
       <div class="row">
-        <div class="col-md-12 col-lg-12" ng-repeat="option in vm.metadata.options track by $index">
+        <div class="col-md-12 col-lg-12" ng-repeat="option in vm.metadata.options track by $index" ng-mouseenter="visible=true" ng-mouseleave="visible=false">
           <div class="row">
             <div class="col-md-9 col-lg-9 v-center">
               <input id="field-meta" type="text" class="form-control" placeholder="選項" ng-model="vm.metadata.options[$index].display_name" required />
             </div>
             <div class="col-md-2 col-lg-2 v-center">
               <div>
-                <span ng-click="vm.delete($index)" class="glyphicon glyphicon-remove"></span>
+                <span ng-show="visible" ng-click="vm.delete($index)" class="glyphicon glyphicon-remove"></span>
               </div>
             </div>
           </div>

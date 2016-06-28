@@ -32,6 +32,10 @@
         $state.go('login');
       };
 
+      vm.getRole = function() {
+        return userAuthentication.getRole();
+      };
+
       vm.isManagerRole = function() {
         return userAuthentication.getRole() == 'manager';
       };

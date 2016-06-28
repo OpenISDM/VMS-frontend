@@ -34,6 +34,8 @@
       var onFailure = function(response) {
         $log.debug('login error');
 
+        vm.alert = [];
+
         if (response.status == 401) {
           vm.alert.push({
             type: 'danger',

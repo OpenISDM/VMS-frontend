@@ -5,7 +5,7 @@
         {{ hyperlink.name }}
       </div>
       <div class="col-md-8 col-lg-8">
-        {{ hyperlink.link }}
+        <span ng-bind-html="hyperlink.link | linky"></span>
       </div>
     </div>
   </div>

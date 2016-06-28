@@ -59,6 +59,16 @@
         }
       };
 
+      // Password confirmation
+      if (vm.volunteer.password != vm.passwordConfirm) {
+        vm.alert = [];
+        vm.alert.push({
+          type: 'danger',
+          message: ['密碼不相符']
+        });
+
+        return;
+      }
       userProfile
         .create(vm.volunteer, 'volunteer')
         .then(onSuccess)
