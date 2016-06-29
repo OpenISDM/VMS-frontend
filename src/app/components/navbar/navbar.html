@@ -34,7 +34,7 @@
           </li>
           <li role="separator" class="divider"></li>
           <li class="disabled">
-            <a>身份：{{ vm.getRole() }}</a>
+            <a>身份：{{ vm.getRole() | translate }}</a>
           </li>
           <li ng-if="vm.isManagerRole()" role="menuitem"><a ng-click="vm.switchToVolunteer()">切換為志工</a></li>
           <li ng-if="vm.isVolunteerRole()"><a ng-click="vm.switchToManager()">切換為專案管理員</a></li>

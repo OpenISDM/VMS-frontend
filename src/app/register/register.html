@@ -2,8 +2,8 @@
 	<h1>註冊</h1>
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
-	<vms-message data="vm.alert"></vms-message>
-	<form class="form-inline" autocomplete="off" ng-submit="vm.register()">
+	<vms-message data="vm.alerts"></vms-message>
+	<form name="register" class="form-inline" autocomplete="off" ng-submit="vm.register()">
 		<h2>基本資料</h2>
 		<hr>
 		<div id="profile-avatar">
@@ -16,7 +16,7 @@
 				<div class="row">
 					<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 						<div class="row">
-							<label for="username" class="control-label col-md-3 col-lg-3">帳號*</label>
+							<label required-label for="username" class="control-label col-md-3 col-lg-3">帳號</label>
 							<div class="col-md-9 col-lg-9">
 								<input type="text" minlength="6" class="form-control" id="username" placeholder="帳號" ng-model="vm.volunteer.username" required>
 							</div>
@@ -27,25 +27,41 @@
 
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="password" class="control-label col-md-3 col-lg-3">密碼*</label>
+					<label required-label for="password" class="control-label col-md-3 col-lg-3">密碼</label>
 					<div class="col-md-9 col-lg-9">
-						<input type="password" name="password" minlength="6" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password" required>
+						<input ng-class="{'has-error':register.confirmPassowrd.$error.match}" type="password" name="password" minlength="6" class="form-control" id="password" placeholder="密碼" ng-model="vm.volunteer.password" required>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="confirm-passowrd" class="control-label col-md-3 col-lg-3">確認密碼*</label>
-					<div class="col-md-9 col-lg-9">
-						<input type="password" name="confirm-passowrd" ng-model="vm.passwordConfirm" minlength="6" class="form-control" id="confirm-passowrd" placeholder="確認密碼" required>
+					<div class="col-md-12 col-lg-12">
+						<!-- <p class="text-danger">...</p> -->
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="first-name" class="control-label col-md-3 col-lg-3">姓氏*</label>
+					<label required-label for="confirmPassowrd" class="control-label col-md-3 col-lg-3">確認密碼</label>
+					<div class="col-md-9 col-lg-9">
+						<input ng-class="{'has-error':register.confirmPassowrd.$error.match}" type="password" match="vm.volunteer.password" match-caseless="true" name="confirmPassowrd" ng-model="vm.passwordConfirm" minlength="6" class="form-control" id="confirm-passowrd" placeholder="確認密碼" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+						<p class="text-danger" ng-show="register.confirmPassowrd.$error.match">{{ 'alert.danger.password_not_match' | translate }}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+				<div class="row">
+					<label required-label for="first-name" class="control-label col-md-3 col-lg-3">姓氏</label>
 					<div class="col-md-9 col-lg-9">
 						<input type="text" class="form-control" id="first-name" placeholder="姓氏" ng-model="vm.volunteer.first_name" required>
 					</div>
@@ -53,7 +69,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="last-name" class="control-label col-md-3 col-lg-3">名字*</label>
+					<label required-label for="last-name" class="control-label col-md-3 col-lg-3">名字</label>
 					<div class="col-md-9 col-lg-9">
 						<input type="text" class="form-control" id="last-name" placeholder="名字" ng-model="vm.volunteer.last_name" required>
 					</div>
@@ -62,7 +78,7 @@
 
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="birth-year" class="control-label col-md-3 col-lg-3">出生年份*</label>
+					<label required-label for="birth-year" class="control-label col-md-3 col-lg-3">出生年份</label>
 					<div class="col-md-9 col-lg-9">
 						<div class="input-group">
 							<input id="birth-year" type="text" class="form-control" uib-datepicker-popup="{{vm.datePicker.format}}" ng-model="vm.volunteer.birth_year" is-open="vm.datePicker.status.opened" datepicker-options="vm.datePicker.dateOptions" ng-required="true" close-text="Close" format-year />
@@ -75,7 +91,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="gender" class="control-label col-md-3 col-lg-3">性別*</label>
+					<label required-label for="gender" class="control-label col-md-3 col-lg-3">性別</label>
 					<div class="col-md-9 col-lg-9">
 						<label class="radio-inline">
 							<input type="radio" name="gender" id="gender" value="female" ng-model="vm.volunteer.gender"> 女
@@ -88,7 +104,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="city" class="control-label col-md-3 col-lg-3">縣市*</label>
+					<label required-label for="city" class="control-label col-md-3 col-lg-3">縣市</label>
 					<div class="col-md-9 col-lg-9">
 						<select class="form-control" name="city" ng-model="vm.volunteer.city.id" ng-options="city.id as city.name_zh_tw for city in vm.cities">
 						</select>
@@ -97,7 +113,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 				<div class="row">
-					<label for="address" class="control-label col-md-3 col-lg-3">鄉鎮市區*</label>
+					<label required-label for="address" class="control-label col-md-3 col-lg-3">鄉鎮市區</label>
 					<div class="col-md-9 col-lg-9">
 						<input name="address" type="text" class="form-control" id="address" placeholder="鄉鎮市區" ng-model="vm.volunteer.location">
 					</div>
@@ -109,7 +125,7 @@
 			<hr>
 			<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="email" class="control-label col-md-3 col-lg-3">電子郵件*</label>
+					<label required-label for="email" class="control-label col-md-3 col-lg-3">電子郵件</label>
 					<div class="col-md-9 col-lg-9">
 						<input type="email" name="email" type="text" class="form-control" id="email" placeholder="電子郵件" ng-model="vm.volunteer.email" required>
 					</div>

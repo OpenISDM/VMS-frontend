@@ -93,6 +93,15 @@ hr.color {
   padding-bottom: 10px;
   height: auto;
 }
+
+form .required-star {
+  color: #FF0000;
+}
+
+input.has-error {
+  border-color: $brand-danger;
+}
+
 .h1-inline {
   @extend h1;
   display: inline-block;

@@ -13,7 +13,8 @@
     userAuthenticationEndpoint,
     authPrinciple,
     vmsLocalStorage,
-    BROADCAST_EVENTS_LIST) {
+    BROADCAST_EVENTS_LIST,
+    alertMessage) {
     var authenticated = false;
     var currentRole = 'volunteer';
     var service = {
@@ -70,11 +71,19 @@
           }
         })
         .catch(function(response) {
-          $log.debug('login error');
+          var errors;
 
           logout();
 
-          deferred.reject(response);
+          if (response.status === 401) {
+            errors = ['incorrect_username_or_password'];
+          } else {
+            errors = response.data.errors;
+          }
+
+          var alert = alertMessage.convertToDanger(errors);
+
+          deferred.reject(alert);
         });
 
       return deferred.promise;

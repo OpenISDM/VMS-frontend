@@ -31,25 +31,12 @@
           }
         }
       };
-      var onFailure = function(response) {
+      var onFailure = function(alert) {
         $log.debug('login error');
+        $log.debug(alert);
 
         vm.alert = [];
-
-        if (response.status == 401) {
-          vm.alert.push({
-            type: 'danger',
-            message: ['帳號或密碼錯誤']
-          });
-        } else {
-          vm.alert.push({
-            type: 'danger',
-            message: ['帳號或密碼錯誤']
-          });
-        }
-
-        $log.debug('vm.alter');
-        $log.debug(vm.alter);
+        vm.alert.push(alert);
       };
 
       userAuthentication

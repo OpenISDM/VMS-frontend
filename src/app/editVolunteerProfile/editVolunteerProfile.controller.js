@@ -52,6 +52,14 @@
       var onSuccess = function(value) {
         $log.debug(value);
         vm.profile = value.data;
+
+        vm.alert = [];
+        vm.alert.push({
+          type: 'success',
+          data: {
+            message: 'alert.success.update_successfully'
+          }
+        });
       };
 
       $log.debug(vm.profile);
@@ -59,6 +67,11 @@
       userProfile
         .update(vm.profile)
         .then(onSuccess);
+    };
+
+    vm.selectAvatar = function(event, fileReader, file, fileList, fileObjects, object) {
+      var base64Image = "data:" + object.filetype + ';base64,' + object.base64
+      vm.showAvatar = base64Image;
     };
   }
 })();

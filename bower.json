@@ -28,7 +28,10 @@
     "ng-tags-input": "^3.0.0",
     "ng-lodash": "^0.5.0",
     "angular-froala": "^2.3.2",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "angular-translate": "^2.11.0",
+    "angular-translate-loader-static-files": "^2.11.0",
+    "angular-validation-match": "^1.9.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

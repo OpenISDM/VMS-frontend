@@ -5,7 +5,7 @@
     .factory('userProfile', userProfile);
 
   /** @ngInject */
-  function userProfile($log, $q, userProfileEndpoint, vmsLocalStorage) {
+  function userProfile($log, $q, userProfileEndpoint, vmsLocalStorage, alertMessage) {
     var service = {
       create: create,
       get: get,
@@ -40,7 +40,11 @@
           deferred.resolve(response.data);
         })
         .catch(function(response) {
-          deferred.reject(response.data);
+          var value = response.data;
+          var errors = value.errors;
+          var alerts = alertMessage.convertToValidationDanger(errors);
+
+          deferred.reject(alerts);
         });
 
       return deferred.promise;

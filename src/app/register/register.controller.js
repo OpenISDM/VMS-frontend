@@ -43,20 +43,12 @@
           email: vm.volunteer.email
         });
       };
-      var onFailure = function(response) {
-        $log.debug('error');
-        $log.debug(response);
+      var onFailure = function(alert) {
+        $log.debug(alert);
+        vm.alerts = [];
+        vm.alerts.push(alert);
 
-        /*
-         * TODO: It should integrate with <vms-message> directive
-         */
-
-        if (response.status == 422) {
-          $log.error(response.data);
-
-          var errors = response.data.errors;
-          vm.errorMsg = vmsErrorMessage.getErrorMsg(errors);
-        }
+        $log.debug(vm.alerts);
       };
 
       // Password confirmation
@@ -64,7 +56,7 @@
         vm.alert = [];
         vm.alert.push({
           type: 'danger',
-          message: ['密碼不相符']
+          message: '密碼不相符'
         });
 
         return;
