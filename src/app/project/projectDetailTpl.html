@@ -12,7 +12,7 @@
 				<div class="row">
 					<label for="name" class="col-md-2 col-lg-4">名稱</label>
 					<div class="col-md-10 col-lg-8">
-						<span id="name">{{ vm.project.data.attributes.name }}</span>
+						<span id="name">{{ vm.project.name }}</span>
 					</div>
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 				<div class="row">
 					<label for="organization" class="col-md-2 col-lg-4">組織名稱</label>
 					<div class="col-md-10 col-lg-8">
-						<span id="organization">{{ vm.project.data.attributes.organization }}</span>
+						<span id="organization">{{ vm.project.organization }}</span>
 					</div>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="row">
 					<label for="permission" class="col-md-2 col-lg-4">權限</label>
 					<div class="col-md-10 col-lg-8">
-						<span>{{ vm.project.data.attributes.permission | permissionText }}</span>
+						<span>{{ vm.project.permission | permissionText }}</span>
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 					<label for="permission" class="col-md-2 col-lg-4">是否發布</label>
 					<div class="col-md-10 col-lg-8">
 							<span id="permission" aria-label="ABC" ng-true-value="true" ng-false-value="false">
-                {{ vm.project.data.attributes.is_published | yesNo}}
+                {{ vm.project.is_published | yesNo}}
               </span>
 					</div>
 				</div>
@@ -45,14 +45,14 @@
 			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
 					<label for="hyperlinks" class="col-md-1 col-lg-2">相關連結</label>
-					<project-hyperlinks class="col-md-11 col-lg-10" project-id="vm.project.data.id"></project-hyperlinks>
+					<project-hyperlinks class="col-md-11 col-lg-10" project-id="vm.project.id"></project-hyperlinks>
 				</div>
 			</div>
 			<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
 					<label for="description" class="col-md-1 col-lg-1">說明</label>
-					<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
-						<div id="description" ng-bind-html="vm.trustAsHtml(vm.project.data.attributes.description)"></div>
+					<div class="col-md-10 col-lg-10">
+						<div id="description" ng-bind-html="vm.project.description | htmlize"></div>
 					</div>
 				</div>
 			</div>

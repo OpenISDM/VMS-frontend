@@ -6,7 +6,13 @@
     .controller('CreateProjectController', CreateProjectController);
 
   /** @ngInject */
-  function CreateProjectController($log, $state, vmsClient, projectHyperlink, PERMISSION_OPTIONS) {
+  function CreateProjectController(
+    $log,
+    $state,
+    $translate,
+    vmsClient,
+    projectHyperlink,
+    PERMISSION_OPTIONS) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.hyperlinks = [

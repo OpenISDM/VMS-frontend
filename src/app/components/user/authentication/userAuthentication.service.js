@@ -15,11 +15,12 @@
     vmsLocalStorage,
     BROADCAST_EVENTS_LIST,
     alertMessage) {
-    var authenticated = false;
-    var currentRole = 'volunteer';
+    var authenticated = vmsLocalStorage.jwtExists();
+    var currentRole;
     var service = {
       login: login,
       logout: logout,
+      setAuthentication: setAuthentication,
       refreshToken: refreshToken,
       verifyEmail: verifyEmail,
       isAuthenticated: isAuthenticated,
@@ -97,6 +98,16 @@
       clearAllLocalStorageKeys();
     }
 
+    function setAuthentication(user, jwt, role) {
+      authenticated = true;
+
+      vmsLocalStorage.setUsername(user.username);
+      vmsLocalStorage.setLastName(user.last_name);
+      vmsLocalStorage.setJwt(jwt);
+      vmsLocalStorage.setAvatarPath(user.avatar_url);
+      switchRole(role);
+    }
+
     function refreshToken() {
       var deferred = $q.defer();
 
@@ -152,6 +163,10 @@
     }
 
     function getRole() {
+      if (!angular.isDefined(currentRole)) {
+        currentRole = vmsLocalStorage.getRole();
+      }
+
       return currentRole;
     }
 

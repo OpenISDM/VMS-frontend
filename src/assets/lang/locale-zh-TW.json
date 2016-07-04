@@ -15,5 +15,39 @@
   "username": "使用者名稱",
   "email": "電子郵件",
   "male": "男性",
-  "female": "女性"
+  "female": "女性",
+  "search": "搜尋",
+  "input_project_name": "輸入專案名稱",
+  "explanation": "說明",
+  "field": "欄位",
+  "search_keyword": "搜尋關鍵字",
+  "created_date": "建立日期",
+  "description": "說明",
+  "related_links": "相關連結",
+  "project": {
+    "search": {
+      "fields": {
+        "name": "專案名稱",
+        "organization": "發起組織"
+      }
+    },
+    "name": "名稱",
+    "member": "成員",
+    "organization": "組織",
+    "permission_explanation": {
+      "body": "哪些人可以瀏覽此專案",
+      "all_users": "所有人：公開給所有人瀏覽",
+      "registered_users": "已註冊的使用者：已登入系統的使用者",
+      "members": "專案成員：只有專案成員才能瀏覽"
+    },
+    "publish_explanation": {
+      "body": "選擇是否發布專案讓使用者瀏覽"
+    },
+    "permissions": {
+      "choose_permission": "選擇權限",
+      "all_users": "所有人",
+      "registered_users": "已註冊的使用者",
+      "members": "專案成員"
+    }
+  }
 }

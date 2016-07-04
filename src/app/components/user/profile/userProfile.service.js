@@ -5,7 +5,7 @@
     .factory('userProfile', userProfile);
 
   /** @ngInject */
-  function userProfile($log, $q, userProfileEndpoint, vmsLocalStorage, alertMessage) {
+  function userProfile($log, $q, userProfileEndpoint, userAuthentication, vmsLocalStorage, alertMessage) {
     var service = {
       create: create,
       get: get,
@@ -24,18 +24,13 @@
       userProfileEndpoint
         .create(user)
         .then(function(response) {
-          var data = response.data;
+          var value = response.data;
+          var jsonWebToken = response.headers('Authorization');
 
-          $log.debug(data);
+          $log.debug(value);
 
-          vmsLocalStorage.setUsername(data.username);
-          vmsLocalStorage.setJwt(data.auth_access_token);
-
-          switch (role) {
-            case 'volunteer':
-              vmsLocalStorage.setRole('volunteer');
-              break;
-          }
+          userAuthentication
+            .setAuthentication(value.data, jsonWebToken, role);
 
           deferred.resolve(response.data);
         })

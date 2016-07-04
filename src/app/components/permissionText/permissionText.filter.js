@@ -11,9 +11,6 @@
       var value = null;
 
       angular.forEach(PERMISSION_OPTIONS, function(item) {
-        $log.debug(item);
-        $log.debug(input);
-
         if (item.value == input) {
           value = item.name;
         }

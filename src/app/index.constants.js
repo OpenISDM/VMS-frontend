@@ -23,7 +23,7 @@
         userName: 'user_name',
         lastName: 'last_name',
         role: 'role',
-        avatarPath: 'avatar_auth'
+        avatarPath: 'avatar_path'
       }
     })
     .constant('BROADCAST_EVENTS_LIST', {
@@ -101,19 +101,19 @@
     ])
     .constant('PERMISSION_OPTIONS', [
       {
-        name: '選擇權限',
+        name: 'project.permissions.choose_permission',
         value: ''
       },
       {
-        name: '公開的',
+        name: 'project.permissions.all_users',
         value: 0
       },
       {
-        name: '已經註冊的',
+        name: 'project.permissions.registered_users',
         value: 1
       },
       {
-        name: '專案成員',
+        name: 'project.permissions.members',
         value: 2
       }
     ])

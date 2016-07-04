@@ -297,7 +297,7 @@
     function updateProject(value) {
       return $http({
         method: 'PUT',
-        url: apiBaseUrl + '/projects/' + value.data.id,
+        url: apiBaseUrl + '/projects/' + value.id,
         data: value
       });
     }

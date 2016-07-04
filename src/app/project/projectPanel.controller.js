@@ -6,15 +6,16 @@
     .controller('ProjectPanelController', ProjectPanelController);
 
   /** @ngInject */
-  function ProjectPanelController($log, project) {
+  function ProjectPanelController($log, projectData) {
     var vm = this;
-    vm.project = project;
+    vm.project = projectData.data;
+    vm.meta = projectData.meta;
 
     $log.debug(vm.project);
 
     vm.isGuest = function() {
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'guest';
+        return vm.meta.role.name == 'guest';
       }
 
       return false;
@@ -23,7 +24,7 @@
     vm.isCreator = function() {
       $log.debug('isCreator()');
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'creator';
+        return vm.meta.role.name == 'creator';
       }
 
       return false;
@@ -31,7 +32,7 @@
 
     vm.isMember = function() {
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'member';
+        return vm.meta.role.name == 'member';
       }
 
       return false;

@@ -2,6 +2,19 @@
 	<h1>我的專案</h1>
 </div>
 <div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<div id="search-section" class="row-eq-height">
+		<div class="col-md-6 col-lg-6">
+			<form class="form-inline">
+				<div class="form-group">
+					<label>{{ 'search' | translate }}</label>
+					<input class="form-control" ng-model="vm.searchProjectName.name" type="text" name="search" id="search" placeholder="{{ 'input_project_name' | translate }}" />
+				</div>
+			</form>
+		</div>
+		<div class="col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-4">
+			<button class="btn btn-primary" role="button" ui-sref="createProject">新增專案</button>
+		</div>
+	</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -14,18 +27,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="project in vm.projects.data">
+			<tr ng-repeat="project in vm.projects | filter: vm.searchProjectName">
 				<td>
-					<a ui-sref="projectDetail({ id: project.id })">{{ project.attributes.name }}</a>
+					<a ui-sref="projectDetail({ id: project.id })">{{ project.name }}</a>
 				</td>
 				<td>
-					{{ project.attributes.organization }}
+					{{ project.organization }}
 				</td>
 				<td>
-					{{ project.attributes.is_published | yesNo }}
+					{{ project.is_published | yesNo }}
 				</td>
 				<td>
-					{{ project.attributes.created_at.date | formatDateTime }}
+					{{ project.created_at | formatDateTime }}
 				</td>
 				<td>
 					<span class="glyphicon glyphicon-cog" ui-sref="project.show({ projectId: project.id })" aria-hidden="true"></span>

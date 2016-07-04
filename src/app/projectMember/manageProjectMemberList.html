@@ -2,7 +2,12 @@
 
 <div ng-repeat="item in vm.memberCustomFieldDataList track by $index" class="row">
 	<div class="col-md-12 col-lg-12" ng-show="item">
-		<h4> <span class="glyphicon glyphicon-user"></span> 成員：{{ vm.getIncludedMember($index).username }}</h4>
+		<h4> <span class="glyphicon glyphicon-user"></span> 成員：{{ vm.getIncludedMember($index).first_name }}{{ vm.getIncludedMember($index).last_name }} ({{ vm.getIncludedMember($index).username }})</h4>
+	</div>
+	<div class="col-md-12 col-lg-12">
+		<p class="text-muted">
+			{{ vm.getIncludedMember($index).attending_at.date | date:'yyyy-MM-dd HH:mm' }}
+		</p>
 	</div>
 	<div class="col-md-12 col-lg-12" ng-show="item">
 		<!-- <fill-custom-field-type type="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).type" title="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).name" field-data="value.attributes.data" metadata="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).metadata"></fill-custom-field-type> -->

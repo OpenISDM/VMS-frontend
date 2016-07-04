@@ -5,12 +5,12 @@
 	<form class="">
 		<span class="h2-inline">修改</span>
 		<hr>
-		<div id="profile-basic" class="profile-section row">
+		<div id="profile-basic" class="profile-section row-eq-height">
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="name" class="control-label col-md-12 col-lg-4">名稱</label>
 					<div class="col-md-12 col-lg-8">
-						<input type="text" class="form-control" id="name" placeholder="名稱" ng-model="vm.project.data.attributes.name" required>
+						<input type="text" class="form-control" id="name" placeholder="名稱" ng-model="vm.project.name" required>
 					</div>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 				<div class="row">
 					<label for="organization" class="control-label col-md-12 col-lg-4">組織名稱</label>
 					<div class="col-md-12 col-lg-8">
-						<input type="text" class="form-control" id="organization" placeholder="組織名稱" ng-model="vm.project.data.attributes.organization" required>
+						<input type="text" class="form-control" id="organization" placeholder="組織名稱" ng-model="vm.project.organization" required>
 					</div>
 				</div>
 			</div>
@@ -26,19 +26,19 @@
 				<div class="row">
 					<label for="permission" class="control-label col-md-12 col-lg-4">權限</label>
 					<div class="col-md-12 col-lg-8">
-						<select name="permission" id="permission" class="form-control" ng-options="option.value as option.name for option in vm.permissionOptions" ng-model="vm.project.data.attributes.permission">
+						<select name="permission" id="permission" class="form-control" ng-options="option.value as option.name | translate for option in vm.permissionOptions" ng-model="vm.project.permission">
 						</select>
 					</div>
 				</div>
 			</div>
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<div class="col-md-12 col-lg-8 col-lg-offset-4">
+					<div class="col-md-12 col-lg-8 col-lg-offset-4 center-block">
 						<label class="radio-inline">
-							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.data.attributes.is_published"> 發布
+							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.is_published"> 發布
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="permission" ng-value="false" ng-model="vm.project.data.attributes.is_published"> 不發佈
+							<input type="radio" name="permission" ng-value="false" ng-model="vm.project.is_published"> 不發佈
 						</label>
 					</div>
 				</div>
@@ -46,14 +46,14 @@
 			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
 					<label for="hyperlinks" class="control-label col-md-12 col-lg-2">相關連結</label>
-					<editable-project-hyperlinks class="col-md-12 col-lg-10" project-id="vm.project.data.id" data="vm.hyperlinks"></editable-project-hyperlinks>
+					<editable-project-hyperlinks class="col-md-12 col-lg-10" project-id="vm.project.id" data="vm.hyperlinks"></editable-project-hyperlinks>
 				</div>
 			</div>
 			<div class="form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				<div class="row">
 					<label for="description" class="control-label col-md-12 col-lg-2">說明</label>
 					<div class="col-md-12 col-lg-10">
-						<textarea froala class="form-control" id="description" style="min-width: 100%" ng-model="vm.project.data.attributes.description" rows="5"></textarea>
+						<textarea froala class="form-control" id="description" style="min-width: 100%" ng-model="vm.project.description" rows="5"></textarea>
 					</div>
 				</div>
 			</div>

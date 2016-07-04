@@ -261,7 +261,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -288,7 +288,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -315,7 +315,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -342,7 +342,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           membersData: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -431,13 +431,13 @@
 
     $urlRouterProvider.otherwise('/');
 
-    function getProject($stateParams, $log, vmsClient) {
+    function getProject($stateParams, $log, project) {
       var id = $stateParams.projectId;
-      var onSuccess = function(response) {
-        return response.data;
+      var onSuccess = function(value) {
+        return value;
       };
 
-      return vmsClient.getProject(id).then(onSuccess);
+      return project.getById(id).then(onSuccess);
     }
   }
 
