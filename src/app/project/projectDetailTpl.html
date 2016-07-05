@@ -28,7 +28,7 @@
 				<div class="row">
 					<label for="permission" class="col-md-2 col-lg-4">權限</label>
 					<div class="col-md-10 col-lg-8">
-						<span>{{ vm.project.permission | permissionText }}</span>
+						<span>{{ vm.project.permission | permissionText | translate }}</span>
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 					<label for="permission" class="col-md-2 col-lg-4">是否發布</label>
 					<div class="col-md-10 col-lg-8">
 							<span id="permission" aria-label="ABC" ng-true-value="true" ng-false-value="false">
-                {{ vm.project.is_published | yesNo}}
+                {{ vm.project.is_published | yesNo }}
               </span>
 					</div>
 				</div>

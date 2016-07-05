@@ -23,59 +23,75 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($log, userAuthentication, vmsLocalStorage, $state, toastr) {
+    function NavbarController(
+      $log,
+      userAuthentication,
+      vmsLocalStorage,
+      $state,
+      toastr
+    ) {
       var vm = this;
       vm.userAuthentication = userAuthentication;
+      vm.logout = logout;
+      vm.getRole = getRole;
+      vm.isManagerRole = isManagerRole;
+      vm.isVolunteerRole = isVolunteerRole;
+      vm.switchToVolunteer = switchToVolunteer;
+      vm.switchToManager = switchToManager;
+      vm.getAvatarPath = getAvatarPath;
+      vm.getLastName = getLastName;
 
-      vm.logout = function() {
+      function logout() {
         userAuthentication.logout();
+        avatarPath = undefined;
+        lastName = undefined;
         $state.go('login');
-      };
+      }
 
-      vm.getRole = function() {
+      function getRole() {
         return userAuthentication.getRole();
-      };
+      }
 
-      vm.isManagerRole = function() {
+      function isManagerRole() {
         return userAuthentication.getRole() == 'manager';
-      };
+      }
 
-      vm.isVolunteerRole = function() {
+      function isVolunteerRole() {
         return userAuthentication.getRole() == 'volunteer';
-      };
+      }
 
-      vm.switchToVolunteer = function() {
+      function switchToVolunteer() {
         userAuthentication.switchRole('volunteer');
         toastr.clear();
         toastr.success('現在身份為志工', {
           closeButton: true
         });
         $state.go('showAllProjects');
-      };
+      }
 
-      vm.switchToManager = function() {
+      function switchToManager() {
         userAuthentication.switchRole('manager');
         toastr.clear();
         toastr.success('現在身份為專案管理員', {
           closeButton: true
         });
         $state.go('managedProjectList');
-      };
+      }
 
-      vm.getAvatarPath = function() {
+      function getAvatarPath() {
         if (!angular.isDefined(avatarPath)) {
           avatarPath = vmsLocalStorage.getAvatarPath()
         }
         return avatarPath;
-      };
+      }
 
-      vm.getLastName = function() {
+      function getLastName() {
         if (!angular.isDefined(lastName)) {
           lastName = vmsLocalStorage.getLastName();
         }
 
         return lastName;
-      };
+      }
     }
   }
 
