@@ -11,12 +11,21 @@
     apiBaseUrl
   ) {
     var service = {
+      update: update,
       forgotPassword: forgotPassword,
       verifyPasswordReset: verifyPasswordReset,
       resetPassword: resetPassword
     };
 
     return service;
+
+    function update(data) {
+      return $http({
+        method: 'PUT',
+        url: apiBaseUrl + '/users/me/password',
+        data: data
+      });
+    }
 
     function forgotPassword(data) {
       return $http({
@@ -26,12 +35,7 @@
       });
     }
 
-    function verifyPasswordReset(email, token) {
-      var data = {
-        email: email,
-        token: token
-      };
-
+    function verifyPasswordReset(data) {
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/users/password_reset/verify',
@@ -39,14 +43,7 @@
       });
     }
 
-    function resetPassword(email, token, password, passwordConfirmation) {
-      var data = {
-        email: email,
-        token: token,
-        password: password,
-        password_confirmation: passwordConfirmation
-      };
-
+    function resetPassword(data) {
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/users/password_reset',

@@ -176,6 +176,16 @@
           }
         }
       })
+      .state('rootEditProfile.changePassword', {
+        url: '/change-password',
+        views: {
+          'profileContent': {
+            templateUrl: 'app/user/changePassword/changePassword.html',
+            controller: 'ChangePasswordController',
+            controllerAs: 'vm'
+          }
+        }
+      })
       .state('emailVerification', {
         parent: 'site',
         url: '/email-verification?email&verification_token',

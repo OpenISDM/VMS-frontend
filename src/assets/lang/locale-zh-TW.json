@@ -12,7 +12,8 @@
     "success": {
       "update_successfully": "更新成功",
       "sent_password_reset": "已發出密碼重設信件到您的信箱",
-      "reset_password_success": "重設密碼成功，請重新登入"
+      "reset_password_success": "重設密碼成功，請重新登入",
+      "change_password": "成功變更密碼"
     }
   },
   "volunteer": "志工",
@@ -29,6 +30,9 @@
   "created_date": "建立日期",
   "description": "說明",
   "related_links": "相關連結",
+  "existing_password": "原密碼",
+  "new_password": "新密碼",
+  "change_password": "變更密碼",
   "project": {
     "search": {
       "fields": {
