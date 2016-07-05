@@ -61,7 +61,7 @@
       userSkillEndpoint
         .getCandidatedKeywords(keyword)
         .then(function(response) {
-          deferred.resolve(response.data);
+          deferred.resolve(response.data.result);
         })
         .catch(function(response) {
           deferred.reject(response.data);

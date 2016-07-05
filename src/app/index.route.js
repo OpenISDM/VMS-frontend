@@ -27,6 +27,10 @@
           }
         }
       })
+      .state('user', {
+        parent: 'site',
+        url: '/user',
+      })
       .state('login', {
         url: '/login',
         views: {
@@ -72,6 +76,34 @@
           'mainContent@': {
             templateUrl: 'app/registerSuccess/registerSuccess.html',
             controller: 'RegisterSuccessController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('forgotPassword', {
+        url: '/forgot-password',
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/user/forgotPassword/forgotPassword.html',
+            controller: 'ForgotPasswordController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('resetPassword', {
+        url: '/reset-password?token&email',
+        params: {
+          token: {
+            value: "none"
+          },
+          email: {
+            value: "none"
+          }
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/user/resetPassword/resetPassword.html',
+            controller: 'ResetPasswordController',
             controllerAs: 'vm'
           }
         }

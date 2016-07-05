@@ -4,10 +4,15 @@
       "not_enough_password_strength": "密碼強度不足",
       "password_not_match": "密碼不相符",
       "used_field": "已被使用",
-      "incorrect_username_or_password": "不正確的帳號或密碼"
+      "missing_field": "未輸入",
+      "incorrect_username_or_password": "不正確的帳號或密碼",
+      "password_reset_verification_failure": "重設密碼驗證失敗",
+      "inexistence_email": "不存在的電子郵件"
     },
     "success": {
-      "update_successfully": "更新成功"
+      "update_successfully": "更新成功",
+      "sent_password_reset": "已發出密碼重設信件到您的信箱",
+      "reset_password_success": "重設密碼成功，請重新登入"
     }
   },
   "volunteer": "志工",
@@ -48,6 +53,16 @@
       "all_users": "所有人",
       "registered_users": "已註冊的使用者",
       "members": "專案成員"
+    }
+  },
+  "education": {
+    "degrees": {
+      "elementary": "國小",
+      "junior": "國中",
+      "high": "高中",
+      "bachelor": "大學",
+      "master": "碩士",
+      "phd": "博士"
     }
   }
 }

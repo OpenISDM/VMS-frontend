@@ -25,7 +25,7 @@
     "angular-ui-router-anim-in-out": "master",
     "lodash": "~3.10.1",
     "angular-xeditable": "~0.1.10",
-    "ng-tags-input": "^3.0.0",
+    "ng-tags-input": "^3.1.1",
     "ng-lodash": "^0.5.0",
     "angular-froala": "^2.3.2",
     "font-awesome": "^4.6.3",

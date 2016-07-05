@@ -117,6 +117,32 @@
         value: 2
       }
     ])
+    .constant('EDUCATION_DEGREES', [
+      {
+        value: 1,
+        text: 'education.degrees.elementary'
+      },
+      {
+        value: 2,
+        text: 'education.degrees.junior'
+      },
+      {
+        value: 3,
+        text: 'education.degrees.high'
+      },
+      {
+        value: 4,
+        text: 'education.degrees.bachelor'
+      },
+      {
+        value: 5,
+        text: 'education.degrees.master'
+      },
+      {
+        value: 6,
+        text: 'education.degrees.phd'
+      }
+    ])
     .constant('CUSTOM_FIELD_TYPES', [
       {
         label: '文字',
@@ -128,6 +154,11 @@
         typeName: 'radioButton',
         value: 'RADIO_BUTTON'
       }
-    ]);
+    ])
+    .constant('FROALA_OPTIONS', {
+      language: 'en_gb',
+      heightMin: 200,
+      heightMax: 500
+    });
 
 })();

@@ -5,13 +5,21 @@
     .factory('userProfile', userProfile);
 
   /** @ngInject */
-  function userProfile($log, $q, userProfileEndpoint, userAuthentication, vmsLocalStorage, alertMessage) {
+  function userProfile(
+    $log,
+    $q,
+    userProfileEndpoint,
+    userAuthentication,
+    vmsLocalStorage,
+    alertMessage
+  ) {
     var service = {
       create: create,
       get: get,
       update: update,
       drop: drop,
-      getAttendingProjects: getAttendingProjects
+      getAttendingProjects: getAttendingProjects,
+      forgotPassword: forgotPassword
     };
 
     $log.debug('userProfile');
@@ -113,6 +121,29 @@
         })
         .catch(function(response) {
           deferred.reject(response.data);
+        });
+
+      return deferred.promise;
+    }
+
+    function forgotPassword(data) {
+
+      $log.debug("forgotPassword data");
+      $log.debug(data);
+
+      var deferred = $q.defer();
+
+      userProfileEndpoint
+        .passwordReset(data)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var value = response.data;
+          var errors = value.errors;
+          var alerts = alertMessage.convertToValidationDanger(errors);
+
+          deferred.reject(alerts);
         });
 
       return deferred.promise;

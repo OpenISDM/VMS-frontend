@@ -5,7 +5,11 @@
     .module('vmsFrontend')
     .controller('VolunteerEducationController', VolunteerEducationController);
 
-  function VolunteerEducationController($log, userEducation, $filter) {
+  function VolunteerEducationController(
+    $log,
+    userEducation,
+    EDUCATION_DEGREES,
+    $filter) {
     var vm = this;
     var beginYear = 1970;
     vm.years = new Array();
@@ -53,32 +57,7 @@
     }
 
     function setDegree() {
-      vm.degrees = [
-        {
-          value: 1,
-          text: '國小'
-        },
-        {
-          value: 2,
-          text: '國中'
-        },
-        {
-          value: 3,
-          text: '高中'
-        },
-        {
-          value: 4,
-          text: '大學'
-        },
-        {
-          value: 5,
-          text: '碩士'
-        },
-        {
-          value: 6,
-          text: '博士'
-        }
-      ]
+      vm.degrees = EDUCATION_DEGREES;
     }
 
     function getEditableObject(id) {

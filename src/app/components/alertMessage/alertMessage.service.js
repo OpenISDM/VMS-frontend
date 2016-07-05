@@ -6,7 +6,9 @@
     .factory('alertMessage', alertMessage);
 
   /** @ngInject */
-  function alertMessage($log) {
+  function alertMessage(
+    $log
+  ) {
     var service = {
       convertToValidationDanger: convertToValidationDanger,
       convertToDanger: convertToDanger
@@ -15,6 +17,8 @@
     return service;
 
     function convertToValidationDanger(errors) {
+      $log.debug("convertToValidationDanger()");
+
       var data = [];
 
       angular.forEach(errors, function(messages, fieldName) {
@@ -39,6 +43,8 @@
     }
 
     function convertToDanger(errors) {
+      $log.debug("convertToDanger()");
+
       var message = [];
 
       errors.forEach(function(item) {
@@ -51,6 +57,8 @@
           message: message
         }
       };
+
+      $log.debug(danger);
 
       return danger;
     }

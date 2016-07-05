@@ -11,7 +11,8 @@
       get: get,
       update: update,
       drop: drop,
-      getAttendingProjects: getAttendingProjects
+      getAttendingProjects: getAttendingProjects,
+      passwordReset: passwordReset
     };
 
     return service;
@@ -54,6 +55,14 @@
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/users/' + id + '/attending_projects'
+      });
+    }
+
+    function passwordReset(data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/forgot_password',
+        data: data
       });
     }
   }

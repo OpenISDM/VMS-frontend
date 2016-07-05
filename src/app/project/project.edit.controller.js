@@ -12,11 +12,13 @@
     projectData,
     projectHyperlink,
     lodash,
-    PERMISSION_OPTIONS) {
+    PERMISSION_OPTIONS,
+    FROALA_OPTIONS) {
     var vm = this;
     vm.project = projectData.data;
     vm.hyperlinks;
     vm.permissionOptions = PERMISSION_OPTIONS;
+    vm.froalaOptions = FROALA_OPTIONS;
 
     vm.update = function() {
       var onSuccess = function(response) {

@@ -12,9 +12,11 @@
     $translate,
     vmsClient,
     projectHyperlink,
-    PERMISSION_OPTIONS) {
+    PERMISSION_OPTIONS,
+    FROALA_OPTIONS) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
+    vm.froalaOptions = FROALA_OPTIONS;
     vm.hyperlinks = [
       {
         name: '',

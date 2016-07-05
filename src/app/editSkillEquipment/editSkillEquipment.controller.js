@@ -67,6 +67,8 @@
       $log.debug(skill);
 
       var onSuccess = function(result) {
+        $log.debug('refreshSkillCandidatedKeywords onSuccess()');
+        $log.debug(result);
         return result;
       };
 
@@ -80,6 +82,8 @@
       $log.debug(equipment);
 
       var onSuccess = function(result) {
+        $log.debug('refreshEquipmentCandidateKeywords onSuccess()');
+        $log.debug(result);
         return result;
       };
 
