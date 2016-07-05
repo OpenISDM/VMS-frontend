@@ -6,8 +6,14 @@
     .controller('MyManageProjectCustomFieldsController', MyManageProjectCustomFieldsController);
 
   /** @ngInject */
-  function MyManageProjectCustomFieldsController($log, $stateParams, vmsClient) {
+  function MyManageProjectCustomFieldsController(
+    $log,
+    $stateParams,
+    $uibModal,
+    vmsClient
+  ) {
     var vm = this;
+    vm.preview = preview;
     vm.projectCustomFields = {
       data: []
     };
@@ -52,5 +58,23 @@
       $log.debug('=== appendCustomField ===');
       $log.debug(vm.projectCustomFields.data);
     };
+
+    function preview(data) {
+      $log.debug("preview()");
+      $log.debug(data);
+
+      var modal = $uibModal.open({
+        animation: true,
+        templateUrl: 'customFieldPreview.html',
+        controller: function($uibModalInstance) {
+          var vm = this;
+          vm.data = data;
+          vm.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
+          };
+        },
+        controllerAs: 'vm'
+      });
+    }
   }
 })();

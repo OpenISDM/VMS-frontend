@@ -2,7 +2,7 @@
 <span class="btn-group pull-right" role="group">
 	<button class="btn btn-default" ng-click="vm.appendCustomField()"><span class="glyphicon glyphicon-plus"></span> 新增欄位</button>
 	<!-- <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> 完成</button> -->
-	<button class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> 瀏覽</button>
+	<button class="btn btn-default" ng-click="vm.preview(vm.projectCustomFields.data)"><span class="glyphicon glyphicon-eye-open"></span> 瀏覽</button>
 </span>
 <hr>
 <div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
@@ -15,3 +15,13 @@
 <div id="poject-custom-fields-section" ng-repeat="customField in vm.projectCustomFields.data">
 	<custom-field data="customField"></custom-field>
 </div>
+
+<!--angular ui modal-->
+<script type="text/ng-template" id="customFieldPreview.html">
+<div class="modal-header">
+    <h3 class="modal-title">瀏覽</h3>
+</div>
+<div class="modal-body">
+    <custom-field-preview data="vm.data"></custom-field-preview>
+</div>
+</script>
