@@ -6,26 +6,32 @@
     .controller('FillCustomFieldsController', FillCustomFieldsController);
 
   /** @ngInject */
-  function FillCustomFieldsController($log, $stateParams, vmsClient) {
+  function FillCustomFieldsController(
+    $log,
+    $stateParams,
+    projectCustomField
+  ) {
     var vm = this;
     var projectId = $stateParams.projectId;
 
     angular.element(document).ready(init);
 
     function init() {
-      vmsClient.getProjectCustomFields(projectId)
-        .then(function(response) {
+      projectCustomField
+        .getAllByProjectId(projectId)
+        .then(function(data) {
           $log.debug('=== getProjectCustomFields ===');
 
-          var customFields = response.data;
+          var customFields = data;
 
           $log.debug(customFields);
 
-          vmsClient.getProjectCustomFieldData(projectId)
-            .then(function(response) {
+          projectCustomField
+            .getMemberDataByProjectId(projectId)
+            .then(function(data) {
               $log.debug('=== getProjectCustomFieldData ===');
 
-              var customFieldData = response.data;
+              var customFieldData = data;
 
               $log.debug(customFieldData);
 
@@ -127,7 +133,9 @@
       var onFailure = function(response) {
         $log.debug(response);
       };
-      vmsClient.fillProjectCustomFieldData(projectId, updatedData)
+
+      projectCustomField
+        .storeOrUpdateMemberDataByProjectId(updatedData, projectId)
         .then(onSuccess)
         .catch(onFailure);
     };

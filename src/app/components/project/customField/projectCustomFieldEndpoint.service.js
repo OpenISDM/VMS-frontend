@@ -13,7 +13,9 @@
   ) {
     var service = {
       getAllByProjectId: getAllByProjectId,
-      storeOrUpdateByProjectId: storeOrUpdateByProjectId
+      getMemberDataByProjectId: getMemberDataByProjectId,
+      storeOrUpdateByProjectId: storeOrUpdateByProjectId,
+      storeOrUpdateMemberDataByProjectId: storeOrUpdateMemberDataByProjectId
     };
 
     return service;
@@ -25,10 +27,25 @@
       });
     }
 
+    function getMemberDataByProjectId(projectId) {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/projects/' + projectId + '/members/custom_field_data'
+      });
+    }
+
     function storeOrUpdateByProjectId(data, projectId) {
       return $http({
         method: 'POST',
         url: apiBaseUrl + '/projects/' + projectId + '/custom_fields',
+        data: data
+      });
+    }
+
+    function storeOrUpdateMemberDataByProjectId(data, projectId) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects/' + projectId + '/members/bulk_custom_field_data',
         data: data
       });
     }

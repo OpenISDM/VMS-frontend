@@ -13,7 +13,7 @@
 	<form>
 		<div id="profile-basic" class="profile-section row">
       <div class="col-md-12 col-lg-12" ng-repeat="set in vm.sets track by $index">
-        <fill-custom-field-type type="set.customField.attributes.type" title="set.customField.attributes.name" field-data="vm.sets[$index].customFieldData.data" metadata="set.customField.attributes.metadata"></fill-custom-field-type>
+        <fill-custom-field-type type="set.customField.type" title="set.customField.name" field-data="vm.sets[$index].customFieldData.data" metadata="set.customField.metadata"></fill-custom-field-type>
       </div>
 		</div>
 		<div class="row profile-section">
