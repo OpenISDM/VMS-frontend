@@ -22,30 +22,36 @@
   }
 
   /** @ngInject */
-  function CustomFieldDirectiveController($log, $stateParams, vmsClient, CUSTOM_FIELD_TYPES) {
+  function CustomFieldDirectiveController(
+    $log,
+    $stateParams,
+    projectCustomField,
+    CUSTOM_FIELD_TYPES
+  ) {
     var vm = this;
+    var projectId = $stateParams.projectId;
     vm.typeOptions = CUSTOM_FIELD_TYPES;
+    vm.store = store;
 
     angular.element(document).ready(setFieldType);
 
-    vm.store = function() {
-      vm.data['type'] = 'project_custom_field';
-      vm.data.attributes['type'] = vm.type.value;
+    function store() {
+      // vm.data['type'] = 'project_custom_field';
+      vm.data['type'] = vm.type.value;
       $log.debug('customFieldData');
       $log.debug(vm.data);
 
       switch (vm.type.value) {
         case 'RADIO_BUTTON':
-          setRadioButtonMetadataValue(vm.data.attributes.metadata);
+          setRadioButtonMetadataValue(vm.data.metadata);
           break;
       }
 
       removeDateTime();
 
-      vmsClient.updateProjectCustomField($stateParams.projectId, {
-        data: vm.data
-      });
-    };
+      projectCustomField
+        .storeOrUpdateByProjectId(vm.data, projectId);
+    }
 
     function setRadioButtonMetadataValue(metadata) {
       angular.forEach(metadata.options, function(item, key) {
@@ -54,23 +60,23 @@
     }
 
     function removeDateTime() {
-      if (angular.isDefined(vm.data.attributes.created_at)) {
-        delete vm.data.attributes.created_at;
+      if (angular.isDefined(vm.data.created_at)) {
+        delete vm.data.created_at;
       }
 
-      if (angular.isDefined(vm.data.attributes.updated_at)) {
-        delete vm.data.attributes.updated_at;
+      if (angular.isDefined(vm.data.updated_at)) {
+        delete vm.data.updated_at;
       }
     }
 
     function setFieldType() {
       $log.debug('=== setFieldType() ===');
-      $log.debug(vm.data.attributes);
-      if (angular.isDefined(vm.data.attributes.type)) {
+      $log.debug(vm.data);
+      if (angular.isDefined(vm.data.type)) {
         $log.debug('=== type is defined ===');
 
         angular.forEach(CUSTOM_FIELD_TYPES, function(type) {
-          if (vm.data.attributes.type == type.value) {
+          if (vm.data.type == type.value) {
             vm.type = type;
           }
         });
