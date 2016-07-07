@@ -18,29 +18,12 @@
 
     function init() {
       projectCustomField
-        .getAllByProjectId(projectId)
-        .then(function(data) {
-          $log.debug('=== getProjectCustomFields ===');
-
-          var customFields = data;
-
-          $log.debug(customFields);
-
-          projectCustomField
-            .getMemberDataByProjectId(projectId)
-            .then(function(data) {
-              $log.debug('=== getProjectCustomFieldData ===');
-
-              var customFieldData = data;
-
-              $log.debug(customFieldData);
-
-              combinedCustomFieldData(customFields.data, customFieldData.data);
-            })
-            .catch(function(response) {});
+        .getMemberDataByProjectId(projectId)
+        .then(function(value) {
+          vm.data = value.data
         })
-        .catch(function(response) {
-          $log.error('=== getProjectCustomFields error ===');
+        .catch(function(alert) {
+          vm.alert = [alert];
         });
     }
 

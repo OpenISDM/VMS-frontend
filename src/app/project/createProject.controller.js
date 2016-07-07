@@ -10,10 +10,11 @@
     $log,
     $state,
     $translate,
-    vmsClient,
+    project,
     projectHyperlink,
     PERMISSION_OPTIONS,
-    FROALA_OPTIONS) {
+    FROALA_OPTIONS
+  ) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.froalaOptions = FROALA_OPTIONS;
@@ -25,27 +26,20 @@
     ];
 
     vm.create = function() {
-      var value = {
-        data: {
-          type: 'projects',
-          attributes: vm.project
-        }
-      };
-      var onSuccess = function(response) {
-        $log.debug('project create successfully');
-        $log.debug(response);
+      vm.alert = [];
 
-        $log.debug('= projectId =');
-        $log.debug(response.data.id);
+      project
+        .create(vm.project)
+        .then(function(value) {
+          $log.debug(value);
 
-        storeHyperlinks(response.data.id);
-      };
-      var onFailure = function(response) {
-        $log.error('project create failure');
-        $log.error(response);
-      };
+          var projectId = value.data.id;
 
-      vmsClient.addProject(value).then(onSuccess).catch(onFailure);
+          storeHyperlinks(projectId);
+        })
+        .catch(function(alert) {
+          vm.alert.push(alert);
+        });
     };
 
     function storeHyperlinks(projectId) {

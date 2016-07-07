@@ -15,6 +15,7 @@
       getById: getById,
       getAll: getAll,
       getManagedProjectList: getManagedProjectList,
+      create: create,
       update: update,
       getHyperlinks: getHyperlinks,
       storeHyperlinks: storeHyperlinks,
@@ -61,6 +62,23 @@
 
       projectEndpoint
         .getManagedProjectList()
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var alert = alertMessage.convertToDanger(response.data);
+
+          deferred.reject(alert);
+        });
+
+      return deferred.promise;
+    }
+
+    function create(data) {
+      var deferred = $q.defer();
+
+      projectEndpoint
+        .create(data)
         .then(function(response) {
           deferred.resolve(response.data);
         })
