@@ -1,6 +1,6 @@
 <span class="h2-inline">成員管理</span>
 
-<div ng-repeat="item in vm.memberCustomFieldDataList track by $index" class="row">
+<!-- <div ng-repeat="item in vm.memberCustomFieldDataList track by $index" class="row">
 	<div class="col-md-12 col-lg-12" ng-show="item">
 		<h4> <span class="glyphicon glyphicon-user"></span> 成員：{{ vm.getIncludedMember($index).first_name }}{{ vm.getIncludedMember($index).last_name }} ({{ vm.getIncludedMember($index).username }})</h4>
 	</div>
@@ -10,7 +10,7 @@
 		</p>
 	</div>
 	<div class="col-md-12 col-lg-12" ng-show="item">
-		<!-- <fill-custom-field-type type="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).type" title="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).name" field-data="value.attributes.data" metadata="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).metadata"></fill-custom-field-type> -->
+		<fill-custom-field-type type="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).type" title="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).name" field-data="value.attributes.data" metadata="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).metadata"></fill-custom-field-type>
 		<table class="table">
 			<thead>
 				<tr>
@@ -29,6 +29,42 @@
 					</th>
 					<td class="col-md-10">
 						{{ value.attributes.data | customFieldDataToText: vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).type:vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).metadata}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div> -->
+
+<div ng-repeat="member in vm.members" class="row">
+	<div class="col-md-12 col-lg-12" ng-show="member">
+		<h4> <span class="glyphicon glyphicon-user"></span> 成員：{{ member.first_name }}{{ member.last_name }} ({{ member.username }})</h4>
+	</div>
+	<div class="col-md-12 col-lg-12">
+		<p class="text-muted">
+			{{ member.attending_at.date | date:'yyyy-MM-dd HH:mm' }}
+		</p>
+	</div>
+	<div class="col-md-12 col-lg-12" ng-show="member">
+		<!-- <fill-custom-field-type type="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).type" title="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).name" field-data="value.attributes.data" metadata="vm.getIncludedCustomField(value.relationships.project_custom_field.data.id).metadata"></fill-custom-field-type> -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-md-2">
+						欄位名稱
+					</th>
+					<th class="col-md-2">
+						內容
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="customFieldData in member.custom_field_data">
+					<th class="col-md-2">
+						{{ vm.getCustomFieldById(customFieldData.project_custom_field.data.id).name }}
+					</th>
+					<td class="col-md-10">
+						{{ customFieldData.data | customFieldDataToText: vm.getCustomFieldById(customFieldData.project_custom_field.data.id).type:vm.getCustomFieldById(customFieldData.project_custom_field.data.id).metadata}}
 					</td>
 				</tr>
 			</tbody>

@@ -6,79 +6,33 @@
     .controller('ManageProjectMemberController', ManageProjectMemberController);
 
   /** @ngInject */
-  function ManageProjectMemberController($log, membersData, vmsClient) {
+  function ManageProjectMemberController(
+    $log,
+    membersData,
+    vmsClient
+  ) {
     var vm = this;
-    vm.rawList = membersData;
-    vm.memberCustomFieldDataList = mapping(membersData);
+    var customFields = membersData.data.custom_fields.data;
+    vm.getCustomFieldById = getCustomFieldById;
 
-    // angular.element(document).ready(getAllMembersCustomFieldData);
+    vm.members = membersData.data.members.data;
 
-    $log.debug('=== vm.rawList ===');
-    $log.debug(vm.rawList);
-    $log.debug('=== vm.memberCustomFieldDataList ===');
-    $log.debug(vm.memberCustomFieldDataList);
+    $log.debug('vm.members');
 
-    function getAllMembersCustomFieldData() {
-      var onSuccess = function(response) {
-        $log.debug(response.data);
-        vm.rawList = response.data;
-        vm.memberCustomFieldDataList = mapping(response.data);
-      };
-      var onFailure = function(response) {
-        $log.debug(response);
-      };
+    $log.debug(vm.members);
 
-      vmsClient.getAllMembersCustomFieldData(projectId)
-        .then(onSuccess)
-        .catch(onFailure);
+    function getCustomFieldById(id) {
+      var customField;
+      angular.forEach(customFields, function(item, key) {
+        if (item.id == id) {
+          customField = item;
+        }
+      });
+
+      $log.debug('getCustomFieldById');
+      $log.debug(customField);
+
+      return customField;
     }
-
-    function mapping(list) {
-      $log.debug('### mapping() ###');
-      var result = [];
-
-      angular.forEach(list.data, function(item) {
-        var memberId = item.relationships.member.data.id;
-        $log.debug(item);
-
-        if (!angular.isDefined(result[memberId])) {
-          result[memberId] = [];
-        }
-
-        result[memberId].push(item);
-      });
-
-      $log.debug('=== result ===');
-      $log.debug(result);
-
-      return result;
-    }
-
-    vm.getIncludedMember = function(id) {
-      var result = false;
-
-      $log.debug('=== getIncludedMember ===');
-      $log.debug(id);
-
-      angular.forEach(vm.rawList.included, function(value) {
-        if (value.type == 'members' && value.id == id) {
-          result = value.attributes;
-        }
-      });
-
-      return result;
-    };
-
-    vm.getIncludedCustomField = function(id) {
-      var result = false;
-
-      angular.forEach(vm.rawList.included, function(value) {
-        if (value.type == 'project_custom_fields' && value.id == id) {
-          result = value.attributes;
-        }
-      });
-
-      return result;
-    };
   }
 })();
