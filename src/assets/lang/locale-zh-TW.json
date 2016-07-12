@@ -19,6 +19,10 @@
       "no_yet_custom_field": "尚未有自訂欄位"
     }
   },
+  "placeholder": {
+    "add_a_new_skill": "新增技能 (新增請按 Enter 鍵)",
+    "add_a_new_equipment": "新增裝備 (新增請按 Enter 鍵)"
+  },
   "volunteer": "志工",
   "manager": "管理員",
   "username": "使用者名稱",

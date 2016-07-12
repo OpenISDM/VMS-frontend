@@ -5,18 +5,35 @@
     .module('vmsFrontend')
     .factory('arrayHelpersService', arrayHelpersService);
 
-  function arrayHelpersService() {
+  function arrayHelpersService(
+    $log,
+    lodash
+  ) {
     var service = {
       getExistingIndexes: getExistingIndexes
     };
 
     function getExistingIndexes(origin, update) {
+      $log.debug('getExistingIndexes');
+      $log.debug(origin);
+      $log.debug(update);
+
       var existingIndexes = [];
 
       angular.forEach(origin, function(value) {
-        var index = update.indexOf(value);
+        $log.debug('value');
+        $log.debug(value);
 
-        if (index !== -1) {
+        var index = lodash.findIndex(update, function(item) {
+          return item.name == value.name;
+        });
+
+        $log.debug('index');
+        $log.debug(index);
+
+        if (index != -1) {
+          $log.debug('found');
+          $log.debug(index);
           existingIndexes.push(index);
         }
       });
