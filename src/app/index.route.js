@@ -351,8 +351,8 @@
             controllerAs: 'vm'
           },
           'container': {
-            templateUrl: 'app/projectCustomFields/manageProjectCustomFieldsTpl.html',
-            controller: 'MyManageProjectCustomFieldsController',
+            templateUrl: 'app/project/customField/manage/manageProjectCustomField.html',
+            controller: 'ManageProjectCustomFieldsController',
             controllerAs: 'vm'
           }
         },
@@ -437,23 +437,12 @@
           }
         }
       })
-      .state('manageProjectCustomField', {
-        parent: 'site',
-        url: '/projects/:projectId/custom-fields',
-        views: {
-          'mainContent@': {
-            templateUrl: 'app/projectCustomFields/manageProjectCustomFields.html',
-            controller: 'ManageProjectCustomFieldsController',
-            controllerAs: 'vm'
-          }
-        }
-      })
       .state('fillProjectCustomFieldData', {
         parent: 'site',
         url: '/projects/:projectId/fill-custom-fields',
         views: {
           'mainContent@': {
-            templateUrl: 'app/projectCustomFields/fillCustomFields.html',
+            templateUrl: 'app/project/customField/fill/fillCustomFields.html',
             controller: 'FillCustomFieldsController',
             controllerAs: 'vm'
           },

@@ -12,8 +12,8 @@
 	</div>
 	<form>
 		<div id="profile-basic" class="profile-section row">
-      <div class="col-md-12 col-lg-12" ng-repeat="set in vm.data track by $index">
-        <fill-custom-field-type type="set.custom_field.data.type" title="set.custom_field.data.name" field-data="set.data" metadata="set.custom_field.data.metadata"></fill-custom-field-type>
+      <div class="col-md-12 col-lg-12" ng-repeat="set in vm.data">
+        <fill-custom-field-type type="set.type" title="set.name" field-data="set.custom_field_data.data" metadata="set.metadata"></fill-custom-field-type>
       </div>
 		</div>
 		<div class="row profile-section">

@@ -14,6 +14,9 @@
       "sent_password_reset": "已發出密碼重設信件到您的信箱",
       "reset_password_success": "重設密碼成功，請重新登入",
       "change_password": "成功變更密碼"
+    },
+    "info": {
+      "no_yet_custom_field": "尚未有自訂欄位"
     }
   },
   "volunteer": "志工",

@@ -49,6 +49,9 @@
 
       removeDateTime();
 
+      $log.debug('vm.data');
+      $log.debug(vm.data);
+
       projectCustomField
         .storeOrUpdateByProjectId(vm.data, projectId);
     }
