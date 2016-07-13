@@ -10,6 +10,7 @@
       create: create,
       get: get,
       update: update,
+      updateAvatar: updateAvatar,
       drop: drop,
       getAttendingProjects: getAttendingProjects,
       passwordReset: passwordReset
@@ -36,6 +37,19 @@
       return $http({
         method: 'PUT',
         url: apiBaseUrl + '/users/me',
+        data: data
+      });
+    }
+
+    function updateAvatar(avatar, skipProfile) {
+      var data = {
+        avatar: avatar,
+        skip_profile: skipProfile
+      };
+
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/me/avatar',
         data: data
       });
     }

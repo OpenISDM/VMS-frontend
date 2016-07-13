@@ -6,7 +6,11 @@
     .controller('EditVolunteerProfileController', EditVolunteerProfileController);
 
   /** @ngInject */
-  function EditVolunteerProfileController($log, userProfile, cities) {
+  function EditVolunteerProfileController(
+    $log,
+    userProfile,
+    cities
+  ) {
     var vm = this;
     vm.cities = cities;
 
@@ -70,8 +74,17 @@
     };
 
     vm.selectAvatar = function(event, fileReader, file, fileList, fileObjects, object) {
-      var base64Image = "data:" + object.filetype + ';base64,' + object.base64
-      vm.showAvatar = base64Image;
+      var base64Image = "data:" + object.filetype + ';base64,' + object.base64;
+
+      userProfile
+        .updateAvatar(base64Image, true)
+        .then(function(value) {
+          var data = value.data;
+
+          vm.profile.avatar_url = data.avatar_url;
+        })
+
+      vm.avatar = base64Image;
     };
   }
 })();

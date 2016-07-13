@@ -17,6 +17,7 @@
       create: create,
       get: get,
       update: update,
+      updateAvatar: updateAvatar,
       drop: drop,
       getAttendingProjects: getAttendingProjects,
       forgotPassword: forgotPassword
@@ -92,6 +93,19 @@
         .catch(function(response) {
           deferred.reject(response.data);
         });
+
+      return deferred.promise;
+    }
+
+    function updateAvatar(avatar, skipProfile) {
+      var deferred = $q.defer();
+
+      userProfileEndpoint
+        .updateAvatar(avatar, skipProfile)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {});
 
       return deferred.promise;
     }
