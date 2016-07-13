@@ -41,7 +41,7 @@
     // translation
     $translateProvider
       .useStaticFilesLoader({
-        'prefix': '/assets/lang/locale-',
+        'prefix': 'assets/lang/locale-',
         'suffix': '.json'
       });
 
