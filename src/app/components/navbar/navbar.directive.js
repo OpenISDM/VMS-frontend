@@ -79,9 +79,13 @@
       }
 
       function getAvatarPath() {
-        if (!angular.isDefined(avatarPath)) {
-          avatarPath = vmsLocalStorage.getAvatarPath()
+        if (!angular.isDefined(avatarPath) || avatarPath == null) {
+          avatarPath = vmsLocalStorage.getAvatarPath();
         }
+
+        $log.debug('avatarPath in getAvatarPath()');
+        $log.debug(avatarPath);
+
         return avatarPath;
       }
 
