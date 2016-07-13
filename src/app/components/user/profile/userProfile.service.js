@@ -116,6 +116,9 @@
       userProfileEndpoint
         .drop(credentials)
         .then(function(response) {
+          userAuthentication
+            .logout();
+
           deferred.resolve(response.data);
         })
         .catch(function(response) {

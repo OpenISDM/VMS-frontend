@@ -83,14 +83,11 @@
           avatarPath = vmsLocalStorage.getAvatarPath();
         }
 
-        $log.debug('avatarPath in getAvatarPath()');
-        $log.debug(avatarPath);
-
         return avatarPath;
       }
 
       function getLastName() {
-        if (!angular.isDefined(lastName)) {
+        if (!angular.isDefined(lastName) || lastName == null) {
           lastName = vmsLocalStorage.getLastName();
         }
 
