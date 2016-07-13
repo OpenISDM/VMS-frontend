@@ -1,0 +1,26 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+	<h2>自訂欄位資料</h2>
+</div>
+<div id="main-content" class="top-line col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span> {{ vm.errorMsg }}
+	</div>
+	<div class="alert alert-info" role="alert" ng-show="vm.msg">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">訊息：</span> {{ vm.msg }}
+	</div>
+	<form>
+		<div id="profile-basic" class="profile-section row">
+      <div class="col-md-12 col-lg-12" ng-repeat="set in vm.data">
+        <fill-custom-field-type type="set.type" title="set.name" field-data="set.custom_field_data.data" metadata="set.metadata"></fill-custom-field-type>
+      </div>
+		</div>
+		<div class="row profile-section">
+			<div class="col-md-2 col-md-offset-5">
+				<button class="btn btn-primary btn-lg" ng-click="vm.update()">送出</button>
+			</div>
+			<div class="col-md-5"></div>
+		</div>
+	</form>
+</div>

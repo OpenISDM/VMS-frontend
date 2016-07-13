@@ -6,7 +6,13 @@
     .controller('ProjectDetailController', ProjectDetailController);
 
   /** @ngInject */
-  function ProjectDetailController($log, $state, $stateParams, vmsClient, PERMISSION_OPTIONS) {
+  function ProjectDetailController(
+    $log,
+    $state,
+    $stateParams,
+    vmsClient,
+    project,
+    PERMISSION_OPTIONS) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
 
@@ -17,7 +23,7 @@
 
     vm.isGuest = function() {
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'guest';
+        return vm.meta.role.name == 'guest';
       }
 
       return false;
@@ -26,7 +32,7 @@
     vm.isCreator = function() {
       $log.debug('isCreator()');
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'creator';
+        return vm.meta.role.name == 'creator';
       }
 
       return false;
@@ -34,7 +40,7 @@
 
     vm.isMember = function() {
       if (angular.isDefined(vm.project)) {
-        return vm.project.meta.role.name == 'member';
+        return vm.meta.role.name == 'member';
       }
 
       return false;
@@ -55,15 +61,20 @@
     }
 
     function getProject(id) {
-      var onSuccess = function(response) {
-        vm.project = response.data;
-        $log.debug(response.data);
+      $log.debug("getProject()");
+
+      var onSuccess = function(value) {
+        vm.project = value.data;
+        vm.meta = value.meta;
       };
       var onFailure = function(response) {
         $log.debug(response);
       };
 
-      vmsClient.getProject(id).then(onSuccess).catch(onFailure);
+      project
+        .getById(id)
+        .then(onSuccess)
+        .catch(onFailure);
     }
 
     function getProjectMembers(id) {

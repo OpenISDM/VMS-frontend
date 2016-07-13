@@ -1,12 +1,24 @@
   <uib-alert ng-repeat="alert in vm.data" type="{{alert.type}}" dismiss-on-timeout="alert.timeout">
-    <div ng-if="vm.isArray(alert.message)">
+    <div ng-if="vm.isArray(alert.data)" ng-repeat="data in alert.data">
       <ul>
-        <li ng-repeat="message in alert.message">
-          {{ message }}
+        <li>
+          {{ data.field | translate }}
+          <ng-repeat ng-repeat="message in data.message">
+            {{ message | translate }}{{ $last ? '' : ', ' }}
+          </ng-repeat>
         </li>
       </ul>
     </div>
-    <div ng-if="!vm.isArray(alert.message)">
-        {{ alert.message }}
+    <div ng-if="!vm.isArray(alert.data)">
+      <ul ng-if="vm.isArray(alert.data.message)">
+        <ng-repeat ng-repeat="message in alert.data.message">
+          <li>
+            {{ alert.data.field | translate }} {{ message | translate }}
+          </li>
+        </ng-repeat>
+      </ul>
+      <p ng-if="!vm.isArray(alert.data.message)">
+        {{ alert.data.field | translate }} {{ alert.data.message | translate }}
+      </p>
     </div>
   </uib-alert>

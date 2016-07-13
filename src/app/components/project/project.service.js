@@ -6,10 +6,16 @@
     .factory('project', project);
 
   /** @ngInject */
-  function project($log, $q, projectEndpoint) {
+  function project(
+    $log,
+    $q,
+    projectEndpoint,
+    alertMessage) {
     var service = {
       getById: getById,
       getAll: getAll,
+      getManagedProjectList: getManagedProjectList,
+      create: create,
       update: update,
       getHyperlinks: getHyperlinks,
       storeHyperlinks: storeHyperlinks,
@@ -20,10 +26,20 @@
     return service;
 
     function getById(id) {
-      return $http({
-        method: 'GET',
-        url: apiBaseUrl + '/projects/' + id,
-      });
+      var deferred = $q.defer();
+
+      projectEndpoint
+        .getById(id)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var alert = alertMessage.convertToDanger(response.data);
+
+          deferred.reject(alert);
+        })
+
+      return deferred.promise;
     }
 
     function getAll() {
@@ -41,12 +57,55 @@
       return deferred.promise;
     }
 
-    function update(id, data) {
-      return $http({
-        method: 'PUT',
-        url: apiBaseUrl + '/projects/' + id,
-        data: data
-      });
+    function getManagedProjectList() {
+      var deferred = $q.defer();
+
+      projectEndpoint
+        .getManagedProjectList()
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var alert = alertMessage.convertToDanger(response.data);
+
+          deferred.reject(alert);
+        });
+
+      return deferred.promise;
+    }
+
+    function create(data) {
+      var deferred = $q.defer();
+
+      projectEndpoint
+        .create(data)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var alert = alertMessage.convertToDanger(response.data);
+
+          deferred.reject(alert);
+        });
+
+      return deferred.promise;
+    }
+
+    function update(data) {
+      var deferred = $q.defer();
+
+      projectEndpoint
+        .update(data.id, data)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var alert = alertMessage.convertToDanger(response.data);
+
+          deferred.reject(alert);
+        });
+
+      return deferred.promise;
     }
 
     function getHyperlinks(projectId) {

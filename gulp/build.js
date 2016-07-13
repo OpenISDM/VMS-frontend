@@ -61,6 +61,7 @@ gulp.task('html', ['inject', 'partials'], function() {
     .pipe(cssFilter)
     .pipe($.sourcemaps.init())
     .pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
+    .pipe($.replace('../../bower_components/font-awesome/fonts', '../fonts'))
     .pipe($.minifyCss({
       processImport: false
     }))
@@ -81,8 +82,7 @@ gulp.task('html', ['inject', 'partials'], function() {
     .pipe($.size({
       title: path.join(conf.paths.dist, '/'),
       showFiles: true
-    }))
-    .pipe($.replace('../../bower_components/font-awesome/fonts', '../fonts'));
+    }));
 });
 
 // Only applies for fonts from bower dependencies

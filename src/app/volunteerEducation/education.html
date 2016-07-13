@@ -25,7 +25,7 @@
           <div class="row">
             <label for="degree" class="control-label col-md-4 col-lg-4">學歷</label>
             <div class="col-md-8 col-lg-8">
-              <select class="form-control" id="degree" placeholder="學歷" ng-model="vm.sEducation.degree" ng-options="d.value as d.text for d in vm.degrees" required>
+              <select class="form-control" id="degree" placeholder="學歷" ng-model="vm.sEducation.degree" ng-options="d.value as d.text | translate for d in vm.degrees" required>
               </select>
             </div>
           </div>
@@ -83,7 +83,7 @@
             <div class="row grid-vertical-align">
               <label for="degree" class="control-label col-md-4 col-lg-4">學歷</label>
               <div class="col-md-8 col-lg-8">
-                <a editable-text="vm.educations[{{ index }}].degree" e-nmae="degree" ng-click="vm.editableFormShow(education.id)" e-required>{{ vm.educations[index].degree }}</a>
+                <a editable-select="vm.educations[{{ index }}].degree" e-nmae="degree" e-ng-options="d.value as d.text | translate for d in vm.degrees" ng-click="vm.editableFormShow(education.id)" e-required>{{ vm.educations[index].degree | educationDegree | translate }}</a>
               </div>
             </div>
           </div>

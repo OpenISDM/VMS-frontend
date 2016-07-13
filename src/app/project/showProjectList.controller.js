@@ -8,8 +8,14 @@
   /** @ngInject */
   function ShowProjectListController($log, projects) {
     var vm = this;
+    vm.setSearchField = setSearchField;
+
+    vm.searchField = 'name';
     vm.projects = projects;
 
-    $log.debug(vm.projects);
+    function setSearchField(field) {
+      vm.searchProject = undefined;
+      vm.searchField = field;
+    }
   }
 })();

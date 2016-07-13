@@ -23,13 +23,6 @@
         </ul>
       </li>
       <li ng-show="vm.userAuthentication.isAuthenticated()" uib-dropdown>
-        <a uib-dropdown-toggle>切換身份<span class="caret"></span></a>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-          <li ng-if="vm.isManagerRole()" role="menuitem"><a ng-click="vm.switchToVolunteer()">切換為志工</a></li>
-          <li ng-if="vm.isVolunteerRole()"><a ng-click="vm.switchToManager()">切換為專案管理員</a></li>
-        </ul>
-      </li>
-      <li ng-show="vm.userAuthentication.isAuthenticated()" uib-dropdown>
         <a id="navbar-profile" aria-labelledby="nav-profile-tempate-url" uib-dropdown-toggle>
           <img src="{{ vm.getAvatarPath() }}" class="img-circle" width="20px" height="20px" />
           {{ vm.getLastName() }}
@@ -39,6 +32,13 @@
           <li>
             <a ui-sref="profile">我的資料</a>
           </li>
+          <li role="separator" class="divider"></li>
+          <li class="disabled">
+            <a>身份：{{ vm.getRole() | translate }}</a>
+          </li>
+          <li ng-if="vm.isManagerRole()" role="menuitem"><a ng-click="vm.switchToVolunteer()">切換為志工</a></li>
+          <li ng-if="vm.isVolunteerRole()"><a ng-click="vm.switchToManager()">切換為專案管理員</a></li>
+          <li role="separator" class="divider"></li>
           <li>
             <a ng-click="vm.logout()">登出</a>
           </li>

@@ -10,6 +10,8 @@
     var service = {
       getById: getById,
       getAll: getAll,
+      getManagedProjectList: getManagedProjectList,
+      create: create,
       update: update,
       getHyperlinks: getHyperlinks,
       storeHyperlinks: storeHyperlinks,
@@ -30,6 +32,21 @@
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/projects'
+      });
+    }
+
+    function getManagedProjectList() {
+      return $http({
+        method: 'GET',
+        url: apiBaseUrl + '/managed_projects'
+      });
+    }
+
+    function create(data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/projects',
+        data: data
       });
     }
 

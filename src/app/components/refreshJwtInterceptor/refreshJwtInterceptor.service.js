@@ -49,6 +49,8 @@
           });
         }
 
+        $log.debug("### refreshJwtInterceptor reject");
+
         return $q.reject(response);
       }
     };

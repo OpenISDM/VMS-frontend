@@ -83,7 +83,7 @@
                                 出生年份
                             </span>
                             <span class="col-sm-7 col-xs-7 ">
-                                {{vm.profile.birth_year}}
+                                {{vm.profile.birth_year | date : 'yyyy'}}
                             </span>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 性別
                             </span>
                             <span class="col-sm-7 col-xs-7">
-                                {{vm.profile.gender}}
+                                {{vm.profile.gender | translate}}
                             </span>
                         </div>
                     </div>
@@ -103,14 +103,14 @@
                                 縣市
                             </span>
                             <span class="col-sm-7 col-xs-7 ">
-                                {{ vm.profile.city.name_zh_tw }}
+                                {{ vm.profile.city.name_en }}
                             </span>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="row">
                             <span class="col-sm-5 col-xs-12">
-                                地址
+                                鄉鎮市區
                             </span>
                             <span class="col-sm-7 col-xs-12">
                                 {{vm.profile.location}}

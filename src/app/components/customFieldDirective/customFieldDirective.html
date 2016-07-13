@@ -1,8 +1,15 @@
-<div class="row">
+<div class="row" ng-mouseenter="actionVisible=true" ng-mouseleave="actionVisible=false">
   <div class="project-custom-field-preview left-line col-md-12 col-lg-12">
-    <custom-field-type-preview type="vm.type.typeName" attribute="vm.data.attributes"></custom-field-type-preview>
+    <div class="row-eq-height">
+      <custom-field-type-preview class="col-md-10 col-lg-10" type="vm.type.typeName" attribute="vm.data"></custom-field-type-preview>
+      <div class="col-md-2 col-lg-2">
+        <div class="custom-field-action" ng-show="actionVisible">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="contentVisible=true"></span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="project-custom-field-wrapper col-md-12 col-lg-12">
+  <div class="project-custom-field-wrapper col-md-12 col-lg-12" ng-show="contentVisible">
     <div class="project-custom-field-content">
       <form>
         <div class="row">
@@ -12,7 +19,7 @@
                 欄位名稱
               </label>
               <div class="col-md-10 col-lg-10">
-                <input id="field-name" type="text" class="form-control" placeholder="欄位名稱" ng-model="vm.data.attributes.name" required />
+                <input id="field-name" type="text" class="form-control" placeholder="欄位名稱" ng-model="vm.data.name" required />
               </div>
             </div>
           </div>
@@ -25,7 +32,7 @@
                 欄位描述
               </label>
               <div class="col-md-10 col-lg-10">
-                <input id="field-description" type="text" class="form-control" placeholder="欄位描述" ng-model="vm.data.attributes.description" required />
+                <input id="field-description" type="text" class="form-control" placeholder="欄位描述" ng-model="vm.data.description" required />
               </div>
             </div>
           </div>
@@ -52,18 +59,23 @@
               <div class="col-md-8 col-lg-8">
                 <div class="">
                   <div class="radio row-eq-height ">
-                    <label class="col-lg-6 col-md-6"><input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="true"> 是</label>
-                    <label class="col-lg-6 col-md-6"><input type="radio" name="field-required" ng-model="vm.data.attributes.required" ng-value="false"> 否</label>
+                    <label class="col-lg-6 col-md-6">
+                      <input type="radio" name="field-required" ng-model="vm.data.required" ng-value="true"> 是</label>
+                    <label class="col-lg-6 col-md-6">
+                      <input type="radio" name="field-required" ng-model="vm.data.required" ng-value="false"> 否</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <custom-field-type type="vm.type.typeName" metadata="vm.data.attributes.metadata"></custom-field-type>
+          <custom-field-type type="vm.type.typeName" metadata="vm.data.metadata"></custom-field-type>
         </div>
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="btn-group pull-right" role="group" aria-label="...">
+              <button class="btn btn-sm btn-primary" ng-click="contentVisible=false">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消
+              </button>
               <button class="btn btn-sm btn-primary" ng-click="vm.store()">
                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 儲存
               </button>

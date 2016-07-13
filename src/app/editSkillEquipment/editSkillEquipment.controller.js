@@ -67,6 +67,8 @@
       $log.debug(skill);
 
       var onSuccess = function(result) {
+        $log.debug('refreshSkillCandidatedKeywords onSuccess()');
+        $log.debug(result);
         return result;
       };
 
@@ -80,6 +82,8 @@
       $log.debug(equipment);
 
       var onSuccess = function(result) {
+        $log.debug('refreshEquipmentCandidateKeywords onSuccess()');
+        $log.debug(result);
         return result;
       };
 
@@ -104,12 +108,16 @@
       $log.debug('$scope.originSkills');
       $log.debug($scope.originSkills);
 
+      $log.debug('vm.skills');
+      $log.debug(vm.skills);
+
       var existingIndexes = arrayHelpersService.getExistingIndexes($scope.originSkills, vm.skills);
 
       $log.debug('existingIndexes');
       $log.debug(existingIndexes);
 
-      userSkill.update(vm.skills, existingIndexes)
+      userSkill
+        .update(vm.skills, existingIndexes)
         .then(onSuccess)
         .catch(onFailure);
     };

@@ -13,12 +13,14 @@
     userAuthenticationEndpoint,
     authPrinciple,
     vmsLocalStorage,
-    BROADCAST_EVENTS_LIST) {
-    var authenticated = false;
-    var currentRole = 'volunteer';
+    BROADCAST_EVENTS_LIST,
+    alertMessage) {
+    var authenticated = vmsLocalStorage.jwtExists();
+    var currentRole;
     var service = {
       login: login,
       logout: logout,
+      setAuthentication: setAuthentication,
       refreshToken: refreshToken,
       verifyEmail: verifyEmail,
       isAuthenticated: isAuthenticated,
@@ -70,11 +72,19 @@
           }
         })
         .catch(function(response) {
-          $log.debug('login error');
+          var errors;
 
           logout();
 
-          deferred.reject(response);
+          if (response.status === 401) {
+            errors = ['incorrect_username_or_password'];
+          } else {
+            errors = response.data.errors;
+          }
+
+          var alert = alertMessage.convertToDanger(errors);
+
+          deferred.reject(alert);
         });
 
       return deferred.promise;
@@ -86,6 +96,16 @@
       authenticated = false;
 
       clearAllLocalStorageKeys();
+    }
+
+    function setAuthentication(user, jwt, role) {
+      authenticated = true;
+
+      vmsLocalStorage.setUsername(user.username);
+      vmsLocalStorage.setLastName(user.last_name);
+      vmsLocalStorage.setJwt(jwt);
+      vmsLocalStorage.setAvatarPath(user.avatar_url);
+      switchRole(role);
     }
 
     function refreshToken() {
@@ -143,6 +163,10 @@
     }
 
     function getRole() {
+      if (!angular.isDefined(currentRole)) {
+        currentRole = vmsLocalStorage.getRole();
+      }
+
       return currentRole;
     }
 

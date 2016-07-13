@@ -3,7 +3,7 @@
   <hr>
   <form>
   <div class="col-lg-12 col-mg-12">
-    <tags-input class="bootstrap" ng-model="vm.skills" min-length="1" display-property="name" placeholder="新增技能" replace-spaces-with-dashes="false">
+    <tags-input class="bootstrap" ng-model="vm.skills" min-length="1" display-property="name" placeholder="{{ 'placeholder.add_a_new_skill' | translate }}" replace-spaces-with-dashes="false">
       <auto-complete source="vm.refreshSkillCandidatedKeywords($query)" min-length="1" debounce-delay="1000" max-results="10" display-property="name">
       </auto-complete>
     </tags-input>
@@ -19,7 +19,7 @@
     <hr>
     <form>
     <div class="col-lg-12 col-mg-12">
-      <tags-input class="bootstrap" ng-model="vm.equipment" min-length="1" display-property="name" placeholder="新增設備" replace-spaces-with-dashes="false">
+      <tags-input class="bootstrap" ng-model="vm.equipment" min-length="1" display-property="name" placeholder="{{ 'placeholder.add_a_new_equipment' | translate }}" replace-spaces-with-dashes="false">
         <auto-complete source="vm.refreshEquipmentCandidateKeywords($query)" min-length="1" debounce-delay="1000" max-results="10" display-property="name">
         </auto-complete>
       </tags-input>

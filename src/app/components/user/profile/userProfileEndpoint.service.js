@@ -10,8 +10,10 @@
       create: create,
       get: get,
       update: update,
+      updateAvatar: updateAvatar,
       drop: drop,
-      getAttendingProjects: getAttendingProjects
+      getAttendingProjects: getAttendingProjects,
+      passwordReset: passwordReset
     };
 
     return service;
@@ -39,6 +41,19 @@
       });
     }
 
+    function updateAvatar(avatar, skipProfile) {
+      var data = {
+        avatar: avatar,
+        skip_profile: skipProfile
+      };
+
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/me/avatar',
+        data: data
+      });
+    }
+
     function drop(credentials) {
       /**
        * @TODO: change the POST action into DELETE (?)
@@ -54,6 +69,14 @@
       return $http({
         method: 'GET',
         url: apiBaseUrl + '/users/' + id + '/attending_projects'
+      });
+    }
+
+    function passwordReset(data) {
+      return $http({
+        method: 'POST',
+        url: apiBaseUrl + '/users/forgot_password',
+        data: data
       });
     }
   }

@@ -23,7 +23,7 @@
         userName: 'user_name',
         lastName: 'last_name',
         role: 'role',
-        avatarPath: 'avatar_auth'
+        avatarPath: 'avatar_path'
       }
     })
     .constant('BROADCAST_EVENTS_LIST', {
@@ -101,20 +101,46 @@
     ])
     .constant('PERMISSION_OPTIONS', [
       {
-        name: '選擇權限',
+        name: 'project.permissions.choose_permission',
         value: ''
       },
       {
-        name: '公開的',
+        name: 'project.permissions.all_users',
         value: 0
       },
       {
-        name: '已經註冊的',
+        name: 'project.permissions.registered_users',
         value: 1
       },
       {
-        name: '專案成員',
+        name: 'project.permissions.members',
         value: 2
+      }
+    ])
+    .constant('EDUCATION_DEGREES', [
+      {
+        value: 1,
+        text: 'education.degrees.elementary'
+      },
+      {
+        value: 2,
+        text: 'education.degrees.junior'
+      },
+      {
+        value: 3,
+        text: 'education.degrees.high'
+      },
+      {
+        value: 4,
+        text: 'education.degrees.bachelor'
+      },
+      {
+        value: 5,
+        text: 'education.degrees.master'
+      },
+      {
+        value: 6,
+        text: 'education.degrees.phd'
       }
     ])
     .constant('CUSTOM_FIELD_TYPES', [
@@ -128,6 +154,11 @@
         typeName: 'radioButton',
         value: 'RADIO_BUTTON'
       }
-    ]);
+    ])
+    .constant('FROALA_OPTIONS', {
+      language: 'en_gb',
+      heightMin: 200,
+      heightMax: 500
+    });
 
 })();

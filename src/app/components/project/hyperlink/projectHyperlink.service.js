@@ -76,7 +76,7 @@
       }
 
       projectHyperlinkEndpoint
-        .createOrUpdate(projectId)
+        .createOrUpdate(projectId, data)
         .then(function(response) {
           deferred.resolve(response.data);
         })

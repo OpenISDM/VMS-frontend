@@ -7,19 +7,22 @@
 
   /** @ngInject */
   function permissionText($log, PERMISSION_OPTIONS) {
+    $log.debug('permissionText');
+
     var filter = function(input) {
-      var value = null;
+      var text = null;
+
+      $log.debug(input);
 
       angular.forEach(PERMISSION_OPTIONS, function(item) {
-        $log.debug(item);
-        $log.debug(input);
-
         if (item.value == input) {
-          value = item.name;
+          text = item.name;
         }
       });
 
-      return value;
+      $log.debug(text);
+
+      return text;
     };
 
     return filter;

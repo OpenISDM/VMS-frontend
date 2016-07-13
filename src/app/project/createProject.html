@@ -28,11 +28,12 @@
 			</div>
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
-					<label for="permission" class="control-label col-md-2 col-lg-4">權限</label>
+					<label for="permission" class="control-label col-md-2 col-lg-4">瀏覽權限<span class="glyphicon glyphicon-info-sign
+" aria-hidden="true" popover-title="{{ 'explanation' | translate }}" uib-popover-template="'projectPermissionExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter"></span></label>
 					<div class="col-md-10 col-lg-8">
 						<select name="permission" id="permission" class="form-control" ng-model="vm.project.permission">
 							<option ng-repeat="option in vm.permissionOptions" value="{{ option.value }}">
-								{{ option.name }}
+								{{ option.name | translate }}
 							</option>
 						</select>
 					</div>
@@ -41,7 +42,7 @@
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="permission" class="control-label col-md-2 col-lg-4"></label>
-					<div class="col-md-10 col-lg-8">
+					<div class="col-md-10 col-lg-8" popover-title="{{ 'explanation' | translate }}" uib-popover-template="'projectPublishExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter">
 						<label class="radio-inline">
 							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.is_published"> 發布
 						</label>
@@ -61,7 +62,7 @@
 				<div class="row">
 					<label for="description" class="control-label col-md-1 col-lg-1">說明</label>
 					<div class="col-md-11 col-lg-10 col-lg-offset-1">
-							<textarea class="form-control" id="description" ng-model="vm.project.description" rows="4"></textarea>
+							<textarea froala="vm.froalaOptions" class="form-control" id="description" ng-model="vm.project.description" rows="4"></textarea>
 					</div>
 				</div>
 			</div>
@@ -74,3 +75,19 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/ng-template" id="projectPermissionExplanationBody.html">
+    <div>
+			{{ 'project.permission_explanation.body' | translate }}
+			<ul>
+				<li>{{ 'project.permission_explanation.all_users' | translate }}</li>
+				<li>{{ 'project.permission_explanation.registered_users' | translate }}</li>
+				<li>{{ 'project.permission_explanation.members' | translate }}</li>
+			</ul>
+    </div>
+</script>
+<script type="text/ng-template" id="projectPublishExplanationBody.html">
+    <div>
+			{{ 'project.publish_explanation.body' | translate }}
+    </div>
+</script>

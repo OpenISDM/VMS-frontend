@@ -6,7 +6,7 @@
     .controller('ManagedProjectListController', ManagedProjectListController);
 
   /** @ngInject */
-  function ManagedProjectListController($log, $uibModal, vmsClient) {
+  function ManagedProjectListController($log, $uibModal, vmsClient, project) {
     var vm = this;
 
     angular.element(document).ready(getProjects());
@@ -18,8 +18,15 @@
       };
       var onFailure = function() {};
 
-      vmsClient.getManagedProjects()
-        .then(onSuccess).catch(onFailure);
+      project
+        .getManagedProjectList()
+        .then(function(value) {
+          $log.debug(value);
+          vm.projects = value.data;
+        })
+        .catch(function(alert) {
+          vm.alert = alert;
+        });
     }
 
     // Modal

@@ -27,6 +27,10 @@
           }
         }
       })
+      .state('user', {
+        parent: 'site',
+        url: '/user',
+      })
       .state('login', {
         url: '/login',
         views: {
@@ -72,6 +76,34 @@
           'mainContent@': {
             templateUrl: 'app/registerSuccess/registerSuccess.html',
             controller: 'RegisterSuccessController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('forgotPassword', {
+        url: '/forgot-password',
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/user/forgotPassword/forgotPassword.html',
+            controller: 'ForgotPasswordController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('resetPassword', {
+        url: '/reset-password?token&email',
+        params: {
+          token: {
+            value: "none"
+          },
+          email: {
+            value: "none"
+          }
+        },
+        views: {
+          'mainContent@': {
+            templateUrl: 'app/user/resetPassword/resetPassword.html',
+            controller: 'ResetPasswordController',
             controllerAs: 'vm'
           }
         }
@@ -140,6 +172,16 @@
           'profileContent': {
             templateUrl: 'app/editSkillEquipment/editSkillEquipment.html',
             controller: 'EditSkillEquipmentController',
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('rootEditProfile.changePassword', {
+        url: '/change-password',
+        views: {
+          'profileContent': {
+            templateUrl: 'app/user/changePassword/changePassword.html',
+            controller: 'ChangePasswordController',
             controllerAs: 'vm'
           }
         }
@@ -261,7 +303,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -288,7 +330,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -309,13 +351,13 @@
             controllerAs: 'vm'
           },
           'container': {
-            templateUrl: 'app/projectCustomFields/manageProjectCustomFieldsTpl.html',
-            controller: 'MyManageProjectCustomFieldsController',
+            templateUrl: 'app/project/customField/manage/manageProjectCustomField.html',
+            controller: 'ManageProjectCustomFieldsController',
             controllerAs: 'vm'
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           members: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -342,7 +384,7 @@
           }
         },
         resolve: {
-          project: getProject,
+          projectData: getProject,
           membersData: function($stateParams, vmsClient) {
             var id = $stateParams.projectId;
             var onSuccess = function(response) {
@@ -395,23 +437,12 @@
           }
         }
       })
-      .state('manageProjectCustomField', {
-        parent: 'site',
-        url: '/projects/:projectId/custom-fields',
-        views: {
-          'mainContent@': {
-            templateUrl: 'app/projectCustomFields/manageProjectCustomFields.html',
-            controller: 'ManageProjectCustomFieldsController',
-            controllerAs: 'vm'
-          }
-        }
-      })
       .state('fillProjectCustomFieldData', {
         parent: 'site',
         url: '/projects/:projectId/fill-custom-fields',
         views: {
           'mainContent@': {
-            templateUrl: 'app/projectCustomFields/fillCustomFields.html',
+            templateUrl: 'app/project/customField/fill/fillCustomFields.html',
             controller: 'FillCustomFieldsController',
             controllerAs: 'vm'
           },
@@ -431,13 +462,13 @@
 
     $urlRouterProvider.otherwise('/');
 
-    function getProject($stateParams, $log, vmsClient) {
+    function getProject($stateParams, $log, project) {
       var id = $stateParams.projectId;
-      var onSuccess = function(response) {
-        return response.data;
+      var onSuccess = function(value) {
+        return value;
       };
 
-      return vmsClient.getProject(id).then(onSuccess);
+      return project.getById(id).then(onSuccess);
     }
   }
 

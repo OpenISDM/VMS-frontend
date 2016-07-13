@@ -1,14 +1,15 @@
 <div class="row">
+	<vms-message data="vm.alert"></vms-message>
 	<h2>關於</h2>
 	<hr>
 	<div class="col-lg-12 col-md-12">
 		<div id="profile-avatar" class="pull-left">
-			<img ng-src={{vm.profile.avatar_url}} id="profile-avatar" width="200" class="img-responsive img-circle center-block">
-			<input id="avatar-input" type="file" ng-model="vm.profile.avatar_url" onloadend="vm.selectAvatar" base-sixty-four-input>
+			<img ng-src="{{vm.profile.avatar_url}}" id="profile-avatar" width="200" class="img-responsive img-circle center-block">
+			<input id="avatar-input" type="file" ng-model="vm.avatar" onloadend="vm.selectAvatar" base-sixty-four-input>
 		</div>
 	</div>
 </div>
-<form class="form-inline">
+<form>
 	<div class="row-eq-height profile-section">
 		<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 			<div class=" row">

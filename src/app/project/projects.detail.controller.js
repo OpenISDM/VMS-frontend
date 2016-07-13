@@ -6,10 +6,10 @@
     .controller('MyProjectDetailController', MyProjectDetailController);
 
   /** @ngInject */
-  function MyProjectDetailController($log, $uibModal, vmsClient, project, members, PERMISSION_OPTIONS, $sce) {
+  function MyProjectDetailController($log, $uibModal, vmsClient, projectData, members, PERMISSION_OPTIONS, $sce) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
-    vm.project = project;
+    vm.project = projectData.data;
     vm.membersList = members;
 
     vm.attend = function() {

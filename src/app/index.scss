@@ -93,12 +93,25 @@ hr.color {
   padding-bottom: 10px;
   height: auto;
 }
+
+form .required-star {
+  color: #FF0000;
+}
+
+input.has-error {
+  border-color: $brand-danger;
+}
+
 .h1-inline {
   @extend h1;
   display: inline-block;
 }
 .h2-inline {
   @extend h2;
+  display: inline-block;
+}
+.h3-inline {
+  @extend h3;
   display: inline-block;
 }
 .top-line {
@@ -127,10 +140,16 @@ hr.color {
     margin-bottom: 10px;
   }
 }
+#search-section {
+  margin-bottom: 20px;
+}
 .project-item {
   line-height: 40px;
   padding-bottom: 10px;
   border-bottom: 1px solid $grey-color;
+}
+.popover {
+    min-width: 310px;
 }
 #poject-custom-fields-section {
   padding: 10px 0;

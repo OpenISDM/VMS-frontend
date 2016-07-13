@@ -6,12 +6,19 @@
     .controller('MyEditProjectController', MyEditProjectController);
 
   /** @ngInject */
-  function MyEditProjectController($log, vmsClient, project, projectHyperlink, lodash, PERMISSION_OPTIONS) {
+  function MyEditProjectController(
+    $log,
+    project,
+    projectData,
+    projectHyperlink,
+    lodash,
+    PERMISSION_OPTIONS,
+    FROALA_OPTIONS) {
     var vm = this;
-    vm.project = project;
+    vm.project = projectData.data;
     vm.hyperlinks;
     vm.permissionOptions = PERMISSION_OPTIONS;
-
+    vm.froalaOptions = FROALA_OPTIONS;
 
     vm.update = function() {
       var onSuccess = function(response) {
@@ -23,7 +30,11 @@
         $log.error(response);
       };
 
-      vmsClient.updateProject(vm.project).then(onSuccess).catch(onFailure);
+      project
+        .update(vm.project)
+        .then(onSuccess)
+        .catch(onFailure);
+
       createOrUpdateHyperlinks();
     };
 
@@ -43,7 +54,7 @@
       $log.debug(updateHyperlinks);
 
       projectHyperlink.createOrUpdate(
-        vm.project.data.id,
+        vm.project.id,
         newHyperlinks,
         updateHyperlinks);
     }

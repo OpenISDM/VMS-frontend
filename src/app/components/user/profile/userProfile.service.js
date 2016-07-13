@@ -5,13 +5,22 @@
     .factory('userProfile', userProfile);
 
   /** @ngInject */
-  function userProfile($log, $q, userProfileEndpoint, vmsLocalStorage) {
+  function userProfile(
+    $log,
+    $q,
+    userProfileEndpoint,
+    userAuthentication,
+    vmsLocalStorage,
+    alertMessage
+  ) {
     var service = {
       create: create,
       get: get,
       update: update,
+      updateAvatar: updateAvatar,
       drop: drop,
-      getAttendingProjects: getAttendingProjects
+      getAttendingProjects: getAttendingProjects,
+      forgotPassword: forgotPassword
     };
 
     $log.debug('userProfile');
@@ -24,23 +33,22 @@
       userProfileEndpoint
         .create(user)
         .then(function(response) {
-          var data = response.data;
+          var value = response.data;
+          var jsonWebToken = response.headers('Authorization');
 
-          $log.debug(data);
+          $log.debug(value);
 
-          vmsLocalStorage.setUsername(data.username);
-          vmsLocalStorage.setJwt(data.auth_access_token);
-
-          switch (role) {
-            case 'volunteer':
-              vmsLocalStorage.setRole('volunteer');
-              break;
-          }
+          userAuthentication
+            .setAuthentication(value.data, jsonWebToken, role);
 
           deferred.resolve(response.data);
         })
         .catch(function(response) {
-          deferred.reject(response.data);
+          var value = response.data;
+          var errors = value.errors;
+          var alerts = alertMessage.convertToValidationDanger(errors);
+
+          deferred.reject(alerts);
         });
 
       return deferred.promise;
@@ -89,12 +97,28 @@
       return deferred.promise;
     }
 
+    function updateAvatar(avatar, skipProfile) {
+      var deferred = $q.defer();
+
+      userProfileEndpoint
+        .updateAvatar(avatar, skipProfile)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {});
+
+      return deferred.promise;
+    }
+
     function drop(credentials) {
       var deferred = $q.defer();
 
       userProfileEndpoint
         .drop(credentials)
         .then(function(response) {
+          userAuthentication
+            .logout();
+
           deferred.resolve(response.data);
         })
         .catch(function(response) {
@@ -114,6 +138,29 @@
         })
         .catch(function(response) {
           deferred.reject(response.data);
+        });
+
+      return deferred.promise;
+    }
+
+    function forgotPassword(data) {
+
+      $log.debug("forgotPassword data");
+      $log.debug(data);
+
+      var deferred = $q.defer();
+
+      userProfileEndpoint
+        .passwordReset(data)
+        .then(function(response) {
+          deferred.resolve(response.data);
+        })
+        .catch(function(response) {
+          var value = response.data;
+          var errors = value.errors;
+          var alerts = alertMessage.convertToValidationDanger(errors);
+
+          deferred.reject(alerts);
         });
 
       return deferred.promise;

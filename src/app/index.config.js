@@ -7,7 +7,12 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, localStorageServiceProvider, $httpProvider) {
+  function config(
+    $logProvider,
+    toastrConfig,
+    localStorageServiceProvider,
+    $httpProvider,
+    $translateProvider) {
     // Set local storage prefix name
     localStorageServiceProvider.setPrefix('vms');
 
@@ -32,6 +37,18 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+
+    // translation
+    $translateProvider
+      .useStaticFilesLoader({
+        'prefix': '/assets/lang/locale-',
+        'suffix': '.json'
+      });
+
+    if (angular.isDefined(window.navigator.language)) {
+      $translateProvider
+        .preferredLanguage(window.navigator.language);
+    }
   }
 
 })();
