@@ -146,12 +146,6 @@
           };
         });
 
-        it('should be assigned error message', function() {
-          vm.login();
-          expect(vm.alert[0].message[0]).toEqual('帳號或密碼錯誤');
-        });
-
-
       });
     });
   });

@@ -153,9 +153,6 @@
     }
 
     function isAuthenticated() {
-      $log.debug('isAuthenticated');
-      $log.debug(authenticated);
-
       return authenticated;
     }
 
