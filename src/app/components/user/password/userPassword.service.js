@@ -83,7 +83,7 @@
       };
 
       userPasswordEndpoint
-        .verifyPasswordReset(email, token)
+        .verifyPasswordReset(data)
         .then(function() {
           deferred.resolve();
         })
