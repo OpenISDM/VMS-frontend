@@ -72,8 +72,8 @@
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/registerSuccess/registerSuccess.html',
-            controller: 'RegisterSuccessController',
+            templateUrl: 'app/user/register/success/userRegisterSuccess.html',
+            controller: 'UserRegisterSuccessController',
             controllerAs: 'vm'
           }
         }
