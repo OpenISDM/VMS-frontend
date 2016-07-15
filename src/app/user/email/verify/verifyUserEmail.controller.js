@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('EmailVerificationController', EmailVerificationController);
+    .controller('VerifyUserEmailController', VerifyUserEmailController);
 
   /** @ngInject */
-  function EmailVerificationController($log, $location, vmsClient, authPrinciple, $state, $rootScope, $timeout) {
+  function VerifyUserEmailController($log, $location, vmsClient, authPrinciple, $state, $rootScope, $timeout) {
     var vm = this;
     vm.verification = true;
     vm.verificationSuccess = false;

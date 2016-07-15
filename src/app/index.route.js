@@ -197,8 +197,8 @@
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/emailVerification/emailVerification.html',
-            controller: 'EmailVerificationController',
+            templateUrl: 'app/user/email/verify/verifyUserEmail.html',
+            controller: 'VerifyUserEmailController',
             controllerAs: 'vm'
           }
         }
