@@ -31,7 +31,7 @@
   "female": "Female",
   "search": "Search",
   "enter_project_name": "Enter the project name",
-  "explanation": "Explanation",
+  "tips": "Tips",
   "field": "Field",
   "search_keyword": "Search by keyword",
   "created_date": "Created date",
@@ -39,7 +39,7 @@
   "related_links": "Related links",
   "original_password": "Original password",
   "new_password": "New password",
-  "change_password": "Chang password",
+  "change_password": "Change password",
   "project": {
     "search": {
       "fields": {
