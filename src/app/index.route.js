@@ -113,8 +113,8 @@
         url: '/profile',
         views: {
           'mainContent@': {
-            templateUrl: 'app/volunteerProfile/volunteerProfile.html',
-            controller: 'ProfileController',
+            templateUrl: 'app/user/profile/show/userProfile.html',
+            controller: 'UserProfileController',
             controllerAs: 'vm'
           }
         }
