@@ -45,9 +45,7 @@
         url: '/register-privacy',
         views: {
           'mainContent@': {
-            templateUrl: 'app/registerPrivacy/registerPrivacy.html',
-            controller: 'RegisterPrivacyController',
-            controllerAs: 'vm'
+            templateUrl: 'app/user/register/registerPrivacy.html'
           }
         }
       })
