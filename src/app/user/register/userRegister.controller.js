@@ -3,14 +3,14 @@
 
   angular
     .module('vmsFrontend')
-    .controller('RegisterController', RegisterController);
+    .controller('UserRegisterController', UserRegisterController);
 
   /** @ngInject */
-  function RegisterController($log, $state, fieldName, defaultAvatarPath, userProfile, vmsErrorMessage, $scope, cities, vmsLocalStorage) {
+  function UserRegisterController($log, $state, fieldName, defaultAvatarPath, userProfile, vmsErrorMessage, $scope, cities, vmsLocalStorage) {
     var vm = this;
     vm.cities = cities;
 
-    $log.log('RegisterController');
+    $log.log('UserRegisterController');
 
     vm.showAvatar = defaultAvatarPath;
 

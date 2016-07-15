@@ -53,8 +53,8 @@
         url: '/register',
         views: {
           'mainContent@': {
-            templateUrl: 'app/register/register.html',
-            controller: 'RegisterController',
+            templateUrl: 'app/user/register/userRegister.html',
+            controller: 'UserRegisterController',
             controllerAs: 'vm'
           }
         }
