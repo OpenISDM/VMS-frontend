@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  describe('LoginController', function() {
+  describe('UserLoginController', function() {
 
     var vm,
       $controller,
@@ -51,7 +51,7 @@
           });
 
           beforeEach(function() {
-            vm = $controller('LoginController', {
+            vm = $controller('UserLoginController', {
               $log: $log,
               userAuthentication: userAuthentication,
               $rootScope: $rootScope,
@@ -86,7 +86,7 @@
           });
 
           beforeEach(function() {
-            vm = $controller('LoginController', {
+            vm = $controller('UserLoginController', {
               $log: $log,
               userAuthentication: userAuthentication,
               $rootScope: $rootScope,
@@ -131,7 +131,7 @@
         });
 
         beforeEach(function() {
-          vm = $controller('LoginController', {
+          vm = $controller('UserLoginController', {
             $log: $log,
             userAuthentication: userAuthentication,
             $rootScope: $rootScope,

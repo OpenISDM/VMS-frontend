@@ -35,8 +35,8 @@
         url: '/login',
         views: {
           'mainContent@': {
-            templateUrl: 'app/login/login.html',
-            controller: 'LoginController',
+            templateUrl: 'app/user/login/userLogin.html',
+            controller: 'UserLoginController',
             controllerAs: 'vm'
           }
         }

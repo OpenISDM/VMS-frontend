@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('LoginController', LoginController);
+    .controller('UserLoginController', UserLoginController);
 
   /** @ngInject */
-  function LoginController($log, userAuthentication, $rootScope, $state) {
+  function UserLoginController($log, userAuthentication, $rootScope, $state) {
     var vm = this;
     vm.alert = [];
 
