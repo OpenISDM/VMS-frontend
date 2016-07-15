@@ -113,8 +113,8 @@
         url: '/profile',
         views: {
           'mainContent@': {
-            templateUrl: 'app/user/profile/show/userProfile.html',
-            controller: 'UserProfileController',
+            templateUrl: 'app/user/profile/show/showUserProfile.html',
+            controller: 'ShowUserProfileController',
             controllerAs: 'vm'
           }
         }
@@ -124,7 +124,7 @@
         url: '/profile',
         views: {
           'mainContent@': {
-            templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
+            templateUrl: 'app/user/profile/update/updateUserProfile.html'
           }
         }
       })
@@ -132,8 +132,8 @@
         url: '/edit',
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/user/profile/update/updateAboutAndContact.html',
+            controller: 'UpdateUserProfileController',
             controllerAs: 'vm'
           }
         }
@@ -142,8 +142,8 @@
         url: '/edit/about',
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/user/profile/update/updateAboutAndContact.html',
+            controller: 'UpdateUserProfileController',
             controllerAs: 'vm'
           }
         }
