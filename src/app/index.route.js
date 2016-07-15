@@ -155,8 +155,8 @@
             templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
           },
           'experienceContent@rootEditProfile.experienceEducation': {
-            templateUrl: 'app/volunteerExperience/experience.html',
-            controller: 'VolunteerExperienceController',
+            templateUrl: 'app/user/experience/userExperience.html',
+            controller: 'UserExperienceController',
             controllerAs: 'vm'
           },
           'educationContent@rootEditProfile.experienceEducation': {

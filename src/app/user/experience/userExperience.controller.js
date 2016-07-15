@@ -3,9 +3,13 @@
 
   angular
     .module('vmsFrontend')
-    .controller('VolunteerExperienceController', VolunteerExperienceController);
+    .controller('UserExperienceController', UserExperienceController);
 
-  function VolunteerExperienceController($log, userExperience, $filter) {
+  function UserExperienceController(
+    $log,
+    userExperience,
+    $filter
+  ) {
     var vm = this;
     var beginYear = 1970;
     vm.years = new Array();
