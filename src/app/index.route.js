@@ -160,8 +160,8 @@
             controllerAs: 'vm'
           },
           'educationContent@rootEditProfile.experienceEducation': {
-            templateUrl: 'app/volunteerEducation/education.html',
-            controller: 'VolunteerEducationController',
+            templateUrl: 'app/user/education/userEducation.html',
+            controller: 'UserEducationController',
             controllerAs: 'vm'
           }
         }

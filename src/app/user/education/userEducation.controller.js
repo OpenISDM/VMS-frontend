@@ -3,9 +3,9 @@
 
   angular
     .module('vmsFrontend')
-    .controller('VolunteerEducationController', VolunteerEducationController);
+    .controller('UserEducationController', UserEducationController);
 
-  function VolunteerEducationController(
+  function UserEducationController(
     $log,
     userEducation,
     EDUCATION_DEGREES,
