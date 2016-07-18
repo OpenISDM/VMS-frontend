@@ -7,7 +7,7 @@
     .constant('malarkey', malarkey)
     .constant('moment', moment)
     // .constant('apiBaseUrl', 'https://vms-dev.herokuapp.com/api')
-    .constant('apiBaseUrl', 'http://vms.app/api')
+    .constant('apiBaseUrl', 'http://vms.dev/api')
     .constant('apiKey', '581dba93a4dbafa42a682d36b015d8484622f8e3543623bec5a291f67f5ddff1')
     .constant('fieldName', {
       first_name: '姓氏',

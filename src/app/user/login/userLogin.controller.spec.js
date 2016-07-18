@@ -12,8 +12,13 @@
 
     beforeEach(module('vmsFrontend'));
 
-    beforeEach(inject(function(_$controller_, _$log_, _userAuthentication_, _$rootScope_,
-      _$state_) {
+    beforeEach(inject(function(
+      _$controller_,
+      _$log_,
+      _userAuthentication_,
+      _$rootScope_,
+      _$state_
+    ) {
       $controller = _$controller_;
       $log = _$log_;
       userAuthentication = _userAuthentication_;
