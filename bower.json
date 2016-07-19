@@ -1,5 +1,5 @@
 {
-  "name": "vmsFrontend",
+  "name": "vms-frontend",
   "version": "0.0.0",
   "dependencies": {
     "angular-animate": "~1.4.2",
@@ -22,7 +22,7 @@
     "angular-jwt": "~0.0.9",
     "angular-base64-upload": "~0.1.13",
     "angular-loading-bar": "~0.8.0",
-    "angular-ui-router-anim-in-out": "master",
+    "angular-ui-router-anim-in-out": "~1.0.2",
     "lodash": "~3.10.1",
     "angular-xeditable": "~0.1.10",
     "ng-tags-input": "^3.1.1",
