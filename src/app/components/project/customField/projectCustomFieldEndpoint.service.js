@@ -9,8 +9,9 @@
   function projectCustomFieldEndpoint(
     $log,
     $http,
-    apiBaseUrl
+    config
   ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       getAllByProjectId: getAllByProjectId,
       getMemberDataByProjectId: getMemberDataByProjectId,

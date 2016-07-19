@@ -7,6 +7,11 @@
  */
 
 var gutil = require('gulp-util');
+var gulp = require('gulp');
+
+var $ = require('gulp-load-plugins')({
+  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
 
 /**
  *  The main paths of your project handle these with care
@@ -39,3 +44,15 @@ exports.errorHandler = function(title) {
     this.emit('end');
   };
 };
+
+gulp.task('config', function() {
+  var configPath = 'configDev.json';
+
+  if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod') {
+    configPath = 'config.json';
+  }
+
+  return gulp.src(configPath)
+    .pipe($.ngConstant())
+    .pipe(gulp.dest('src/app/'));
+});

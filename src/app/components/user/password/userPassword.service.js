@@ -9,8 +9,7 @@
     $log,
     $q,
     userPasswordEndpoint,
-    alertMessage,
-    apiBaseUrl
+    alertMessage
   ) {
     var service = {
       update: update,

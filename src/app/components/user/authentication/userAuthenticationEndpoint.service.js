@@ -5,7 +5,12 @@
     .factory('userAuthenticationEndpoint', userAuthenticationEndpoint);
 
   /** @ngInject */
-  function userAuthenticationEndpoint($log, $http, apiBaseUrl) {
+  function userAuthenticationEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       login: login,
       logout: logout,

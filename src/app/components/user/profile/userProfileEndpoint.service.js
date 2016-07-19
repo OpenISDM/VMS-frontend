@@ -5,7 +5,12 @@
     .factory('userProfileEndpoint', userProfileEndpoint);
 
   /** @ngInject */
-  function userProfileEndpoint($log, $http, apiBaseUrl) {
+  function userProfileEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       create: create,
       get: get,

@@ -6,7 +6,12 @@
     .factory('projectEndpoint', projectEndpoint);
 
   /** @ngInject */
-  function projectEndpoint($log, $http, apiBaseUrl) {
+  function projectEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       getById: getById,
       getAll: getAll,
