@@ -1,0 +1,11 @@
+version: '2'
+services:
+  vms-frontend:
+    build: .
+    environment:
+      NODE_ENV: dev
+    volumes:
+      - ./:/var/www/html/app
+    ports:
+      - "3000:3000"
+    command: docker/init.sh
