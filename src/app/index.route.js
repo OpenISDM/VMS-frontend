@@ -35,8 +35,8 @@
         url: '/login',
         views: {
           'mainContent@': {
-            templateUrl: 'app/login/login.html',
-            controller: 'LoginController',
+            templateUrl: 'app/user/login/userLogin.html',
+            controller: 'UserLoginController',
             controllerAs: 'vm'
           }
         }
@@ -45,9 +45,7 @@
         url: '/register-privacy',
         views: {
           'mainContent@': {
-            templateUrl: 'app/registerPrivacy/registerPrivacy.html',
-            controller: 'RegisterPrivacyController',
-            controllerAs: 'vm'
+            templateUrl: 'app/user/register/registerPrivacy.html'
           }
         }
       })
@@ -55,8 +53,8 @@
         url: '/register',
         views: {
           'mainContent@': {
-            templateUrl: 'app/register/register.html',
-            controller: 'RegisterController',
+            templateUrl: 'app/user/register/userRegister.html',
+            controller: 'UserRegisterController',
             controllerAs: 'vm'
           }
         }
@@ -74,8 +72,8 @@
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/registerSuccess/registerSuccess.html',
-            controller: 'RegisterSuccessController',
+            templateUrl: 'app/user/register/success/userRegisterSuccess.html',
+            controller: 'UserRegisterSuccessController',
             controllerAs: 'vm'
           }
         }
@@ -113,8 +111,8 @@
         url: '/profile',
         views: {
           'mainContent@': {
-            templateUrl: 'app/volunteerProfile/volunteerProfile.html',
-            controller: 'ProfileController',
+            templateUrl: 'app/user/profile/show/showUserProfile.html',
+            controller: 'ShowUserProfileController',
             controllerAs: 'vm'
           }
         }
@@ -124,7 +122,7 @@
         url: '/profile',
         views: {
           'mainContent@': {
-            templateUrl: 'app/editVolunteerProfile/editVolunteerProfile.html'
+            templateUrl: 'app/user/profile/update/updateUserProfile.html'
           }
         }
       })
@@ -132,8 +130,8 @@
         url: '/edit',
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/user/profile/update/updateAboutAndContact.html',
+            controller: 'UpdateUserProfileController',
             controllerAs: 'vm'
           }
         }
@@ -142,8 +140,8 @@
         url: '/edit/about',
         views: {
           'profileContent': {
-            templateUrl: 'app/editVolunteerProfile/aboutAndContact.html',
-            controller: 'EditVolunteerProfileController',
+            templateUrl: 'app/user/profile/update/updateAboutAndContact.html',
+            controller: 'UpdateUserProfileController',
             controllerAs: 'vm'
           }
         }
@@ -155,13 +153,13 @@
             templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
           },
           'experienceContent@rootEditProfile.experienceEducation': {
-            templateUrl: 'app/volunteerExperience/experience.html',
-            controller: 'VolunteerExperienceController',
+            templateUrl: 'app/user/experience/userExperience.html',
+            controller: 'UserExperienceController',
             controllerAs: 'vm'
           },
           'educationContent@rootEditProfile.experienceEducation': {
-            templateUrl: 'app/volunteerEducation/education.html',
-            controller: 'VolunteerEducationController',
+            templateUrl: 'app/user/education/userEducation.html',
+            controller: 'UserEducationController',
             controllerAs: 'vm'
           }
         }
@@ -199,8 +197,8 @@
         },
         views: {
           'mainContent@': {
-            templateUrl: 'app/emailVerification/emailVerification.html',
-            controller: 'EmailVerificationController',
+            templateUrl: 'app/user/email/verify/verifyUserEmail.html',
+            controller: 'VerifyUserEmailController',
             controllerAs: 'vm'
           }
         }

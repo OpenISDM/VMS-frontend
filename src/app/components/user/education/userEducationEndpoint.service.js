@@ -5,7 +5,12 @@
     .factory('userEducationEndpoint', userEducationEndpoint);
 
   /** @ngInject */
-  function userEducationEndpoint($log, $http, apiBaseUrl) {
+  function userEducationEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       create: create,
       getAll: getAll,

@@ -6,7 +6,12 @@
     .factory('vmsClient', vmsClient);
 
   /** @ngInject */
-  function vmsClient($log, $http, apiBaseUrl) {
+  function vmsClient(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       register: register,
       login: login,

@@ -6,7 +6,12 @@
     .factory('projectHyperlinkEndpoint', projectHyperlinkEndpoint);
 
   /** @ngInject */
-  function projectHyperlinkEndpoint($log, $http, apiBaseUrl) {
+  function projectHyperlinkEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       getByProjectId: getByProjectId,
       create: create,

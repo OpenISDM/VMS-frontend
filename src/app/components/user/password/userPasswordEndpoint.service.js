@@ -8,8 +8,9 @@
   function userPasswordEndpoint(
     $log,
     $http,
-    apiBaseUrl
+    config
   ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       update: update,
       forgotPassword: forgotPassword,

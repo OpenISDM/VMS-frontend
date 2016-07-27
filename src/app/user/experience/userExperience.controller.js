@@ -3,44 +3,43 @@
 
   angular
     .module('vmsFrontend')
-    .controller('VolunteerEducationController', VolunteerEducationController);
+    .controller('UserExperienceController', UserExperienceController);
 
-  function VolunteerEducationController(
+  function UserExperienceController(
     $log,
-    userEducation,
-    EDUCATION_DEGREES,
-    $filter) {
+    userExperience,
+    $filter
+  ) {
     var vm = this;
     var beginYear = 1970;
     vm.years = new Array();
-    vm.isShowAddEducation = false;
+    vm.isShowAddExperience = false;
 
-    angular.element(document).ready(getEducations);
+    angular.element(document).ready(getExperiences);
     angular.element(document).ready(setYear);
-    angular.element(document).ready(setDegree);
 
-    function getEducations() {
+    function getExperiences() {
       var onSuccess = function(value) {
         $log.debug(value);
 
-        vm.educations = value.educations;
+        vm.experiences = value.experiences;
 
         if (angular.isDefined(value)) {
-          $log.debug('vm.educations.length');
-          $log.debug(vm.educations.length);
+          $log.debug('vm.experiences.length');
+          $log.debug(vm.experiences.length);
 
-          if (vm.educations.length == 0) {
-            vm.isShowAddEducation = true;
+          if (vm.experiences.length == 0) {
+            vm.isShowAddExperience = true;
           }
         } else {
-          $log.debug('education value is not defined');
+          $log.debug('experience value is not defined');
 
-          vm.isShowAddEducation = true;
+          vm.isShowAddExperience = true;
         }
 
       };
 
-      userEducation
+      userExperience
         .getAll()
         .then(onSuccess);
     }
@@ -56,12 +55,8 @@
       }
     }
 
-    function setDegree() {
-      vm.degrees = EDUCATION_DEGREES;
-    }
-
     function getEditableObject(id) {
-      var objName = 'education' + id;
+      var objName = 'experience' + id;
       var editableObj = vm[objName];
 
       return editableObj;
@@ -71,28 +66,28 @@
       return new Date(year, 1);
     }
 
-    vm.addEducation = function() {
+    vm.addExperience = function() {
 
       var onSuccess = function(data) {
-        getEducations();
-        vm.isShowAddEducation = false;
+        getExperiences();
+        vm.isShowAddExperience = false;
       };
       var onFailure = function(data) {};
 
-      $log.debug('addEducations()');
-      $log.debug(vm.sEducation);
+      $log.debug('addExperiences()');
+      $log.debug(vm.sExperience);
 
-      userEducation
-        .create(vm.sEducation)
+      userExperience
+        .create(vm.sExperience)
         .then(onSuccess)
         .catch(onFailure);
     };
 
-    vm.updateEducation = function(id) {
+    vm.updateExperience = function(id) {
       var getByIdFilter = $filter('getById');
-      var education = getByIdFilter(vm.educations, id);
+      var experience = getByIdFilter(vm.experiences, id);
 
-      $log.debug(education);
+      $log.debug(experience);
 
       var onSuccess = function() {
         getEditableObject(id).$hide();
@@ -103,16 +98,16 @@
          */
       };
 
-      userEducation
-        .update(education)
+      userExperience
+        .update(experience)
         .then(onSuccess)
         .catch(onFailure);
     };
 
-    vm.deleteEducation = function(id) {
+    vm.deleteExperience = function(id) {
       var onSuccess = function() {
         getEditableObject(id).$hide();
-        getEducations();
+        getExperiences();
       };
       var onFailure = function() {
         /**
@@ -120,7 +115,7 @@
          */
       };
 
-      userEducation
+      userExperience
         .dropById(id)
         .then(onSuccess)
         .catch(onFailure);
@@ -150,21 +145,21 @@
       getEditableObject(id).$cancel();
     };
 
-    vm.setAddEducationVisible = function() {
-      vm.isShowAddEducation = true;
+    vm.setAddExperienceVisible = function() {
+      vm.isShowAddExperience = true;
     };
 
-    vm.setAddEducationInvisible = function() {
-      vm.isShowAddEducation = false;
+    vm.setAddExperienceInvisible = function() {
+      vm.isShowAddExperience = false;
     };
 
     vm.onShowEditableForm = function(id) {
-      var formElement = angular.element(document).find('form[name="vm.education' + id + '"]');
+      var formElement = angular.element(document).find('form[name="vm.experience' + id + '"]');
       formElement.addClass('editable-form-section');
     };
 
     vm.onHideEditableForm = function(id) {
-      var formElement = angular.element(document).find('form[name="vm.education' + id + '"]');
+      var formElement = angular.element(document).find('form[name="vm.experience' + id + '"]');
       formElement.removeClass('editable-form-section');
     }
   }

@@ -5,7 +5,12 @@
     .factory('userEquipmentEndpoint', userEquipmentEndpoint);
 
   /** @ngInject */
-  function userEquipmentEndpoint($log, $http, apiBaseUrl) {
+  function userEquipmentEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       getAll: getAll,
       update: update,

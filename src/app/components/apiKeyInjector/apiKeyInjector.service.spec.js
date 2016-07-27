@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  describe('jwtInjector service', function() {
+  describe('apiKeyInjector service', function() {
     var apiKeyInjector,
-      apiKeyMock,
+      configConstantMock,
       configMock;
 
     beforeEach(function() {
@@ -17,10 +17,12 @@
     });
 
     beforeEach(function() {
-      apiKeyMock = 'fooWaHahAQQ';
+      configConstantMock = {
+        apiKey: 'fooWaHahAQQ'
+      };
 
       module(function($provide) {
-        $provide.constant('apiKey', apiKeyMock);
+        $provide.constant('config', configConstantMock);
       })
     });
 

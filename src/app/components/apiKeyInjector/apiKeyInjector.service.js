@@ -6,14 +6,14 @@
     .factory('apiKeyInjector', apiKeyInjector);
 
   /** @ngInject */
-  function apiKeyInjector(apiKey) {
+  function apiKeyInjector(config) {
     var service = {
 
-      request: function(config) {
+      request: function(configHeader) {
 
-        config.headers['X-VMS-API-Key'] = apiKey;
+        configHeader.headers['X-VMS-API-Key'] = config.apiKey;
 
-        return config;
+        return configHeader;
       }
     };
 

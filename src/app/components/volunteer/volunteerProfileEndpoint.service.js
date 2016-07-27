@@ -5,7 +5,12 @@
     .factory('volunteerProfileEndPoint', volunteerProfileEndPoint);
 
   /** @ngInject */
-  function volunteerProfileEndPoint($log, $http, apiBaseUrl) {
+  function volunteerProfileEndPoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       get: get,
       getAttendingProjects: getAttendingProjects

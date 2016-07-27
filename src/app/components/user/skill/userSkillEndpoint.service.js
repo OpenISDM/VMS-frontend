@@ -5,7 +5,12 @@
     .factory('userSkillEndpoint', userSkillEndpoint);
 
   /** @ngInject */
-  function userSkillEndpoint($log, $http, apiBaseUrl) {
+  function userSkillEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       getAll: getAll,
       update: update,

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  describe('LoginController', function() {
+  describe('UserLoginController', function() {
 
     var vm,
       $controller,
@@ -12,8 +12,13 @@
 
     beforeEach(module('vmsFrontend'));
 
-    beforeEach(inject(function(_$controller_, _$log_, _userAuthentication_, _$rootScope_,
-      _$state_) {
+    beforeEach(inject(function(
+      _$controller_,
+      _$log_,
+      _userAuthentication_,
+      _$rootScope_,
+      _$state_
+    ) {
       $controller = _$controller_;
       $log = _$log_;
       userAuthentication = _userAuthentication_;
@@ -51,7 +56,7 @@
           });
 
           beforeEach(function() {
-            vm = $controller('LoginController', {
+            vm = $controller('UserLoginController', {
               $log: $log,
               userAuthentication: userAuthentication,
               $rootScope: $rootScope,
@@ -86,7 +91,7 @@
           });
 
           beforeEach(function() {
-            vm = $controller('LoginController', {
+            vm = $controller('UserLoginController', {
               $log: $log,
               userAuthentication: userAuthentication,
               $rootScope: $rootScope,
@@ -131,7 +136,7 @@
         });
 
         beforeEach(function() {
-          vm = $controller('LoginController', {
+          vm = $controller('UserLoginController', {
             $log: $log,
             userAuthentication: userAuthentication,
             $rootScope: $rootScope,

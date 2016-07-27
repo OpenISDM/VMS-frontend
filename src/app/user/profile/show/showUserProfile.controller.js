@@ -3,11 +3,11 @@
 
   angular
     .module('vmsFrontend')
-    .controller('ProfileController', ProfileController);
+    .controller('ShowUserProfileController', ShowUserProfileController);
 
   /** @ngInject */
 
-  function ProfileController($uibModal, cities, $log, defaultAvatarPath, userProfile) {
+  function ShowUserProfileController($uibModal, cities, $log, defaultAvatarPath, userProfile) {
 
     var vm = this;
 

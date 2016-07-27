@@ -21,8 +21,6 @@
           $log.debug('token key is not found');
         }
 
-        // console.log(config);
-
         return config;
       }
     };

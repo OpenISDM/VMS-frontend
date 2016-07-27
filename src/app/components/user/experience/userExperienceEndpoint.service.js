@@ -5,7 +5,12 @@
     .factory('userExperienceEndpoint', userExperienceEndpoint);
 
   /** @ngInject */
-  function userExperienceEndpoint($log, $http, apiBaseUrl) {
+  function userExperienceEndpoint(
+    $log,
+    $http,
+    config
+  ) {
+    var apiBaseUrl = config.apiBaseUrl;
     var service = {
       create: create,
       getAll: getAll,

@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('EditVolunteerProfileController', EditVolunteerProfileController);
+    .controller('UpdateUserProfileController', UpdateUserProfileController);
 
   /** @ngInject */
-  function EditVolunteerProfileController(
+  function UpdateUserProfileController(
     $log,
     userProfile,
     cities

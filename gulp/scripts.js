@@ -14,7 +14,7 @@ gulp.task('scripts-reload', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['config'], function() {
   return buildScripts();
 });
 
@@ -23,4 +23,5 @@ function buildScripts() {
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.size())
-};
+}
+;
