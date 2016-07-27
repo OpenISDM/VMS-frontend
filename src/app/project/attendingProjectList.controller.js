@@ -13,7 +13,6 @@
 
     function getProjects() {
       var onSuccess = function(response) {
-        console.log(response.data);
         vm.projects = response.data;
       };
       var onFailure = function() {};

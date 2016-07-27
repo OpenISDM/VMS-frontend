@@ -31,9 +31,6 @@
         $log.debug('index');
         $log.debug(index);
 
-        console.log('index');
-        console.log(index);
-
         if (index != -1) {
           $log.debug('found');
           $log.debug(index);
