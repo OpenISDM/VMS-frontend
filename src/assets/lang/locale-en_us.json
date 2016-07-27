@@ -1,0 +1,79 @@
+{
+  "alert": {
+    "danger": {
+      "weak_password_strength": "Password strength is too weak",
+      "password_not_match": "Password does not match",
+      "used_field": "is in usage",
+      "missing_field": "is required",
+      "incorrect_username_or_password": "Incorrect user name or password",
+      "password_reset_verification_failure": "Verification failed (Password reset)",
+      "nonexistnt_email": "Non-existent email address"
+    },
+    "success": {
+      "updated_successfully": "Updated successfully",
+      "sent_password_reset": "If your email exists in our database, you will receive a password recovery email soon.",
+      "reset_password_successfully": "Your password has been reset. Please login again.",
+      "changed_password": "Your password has changed."
+    },
+    "info": {
+      "non_custom_field": "There is no costom field."
+    }
+  },
+  "placeholder": {
+    "add_a_new_skill": "Add a new skill (Press enter to add)",
+    "add_a_new_equipment": "Add a new equipment (Press enter to add)"
+  },
+  "volunteer": "Volunteer",
+  "manager": "Manager",
+  "username": "Username",
+  "email": "Email",
+  "male": "Male",
+  "female": "Female",
+  "search": "Search",
+  "enter_project_name": "Enter the project name",
+  "tips": "Tips",
+  "field": "Field",
+  "search_keyword": "Search by keyword",
+  "created_date": "Created date",
+  "description": "Description",
+  "related_links": "Related links",
+  "original_password": "Original password",
+  "new_password": "New password",
+  "change_password": "Change password",
+  "project": {
+    "search": {
+      "fields": {
+        "name": "Project name",
+        "organization": "Organization"
+      }
+    },
+    "name": "Name",
+    "member": "Member",
+    "organization": "Organization",
+    "permission_explanation": {
+      "body": "Who can browse this project",
+      "all_users": "All users: Public",
+      "registered_users": "Registered users: Users who have logined",
+      "members": "Project member: Only the members in this project"
+    },
+    "publish_explanation": {
+      "body": "Choose whether publish the project to other users"
+    },
+    "permissions": {
+      "choose_permission": "Choose permission",
+      "all_users": "All users",
+      "registered_users": "Registered users",
+      "members": "Project members"
+    }
+  },
+  "education": {
+    "degrees": {
+      "elementary": "Elementary",
+      "junior": "Junior High",
+      "high": "High",
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "phd": "Phd"
+    }
+  }
+}
