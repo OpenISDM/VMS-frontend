@@ -26,7 +26,7 @@
           vm.alert.push({
             type: 'success',
             data: {
-              message: 'alert.success.change_password'
+              message: 'alert.success.changed_password'
             }
           });
         })

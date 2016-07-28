@@ -1,22 +1,22 @@
 {
   "alert": {
     "danger": {
-      "not_enough_password_strength": "密碼強度不足",
+      "weak_password_strength": "密碼強度不足",
       "password_not_match": "密碼不相符",
       "used_field": "已被使用",
       "missing_field": "未輸入",
       "incorrect_username_or_password": "不正確的帳號或密碼",
       "password_reset_verification_failure": "重設密碼驗證失敗",
-      "inexistence_email": "不存在的電子郵件"
+      "nonexistent_email": "不存在的電子郵件"
     },
     "success": {
-      "update_successfully": "更新成功",
+      "updated_successfully": "更新成功",
       "sent_password_reset": "已發出密碼重設信件到您的信箱",
-      "reset_password_success": "重設密碼成功，請重新登入",
-      "change_password": "成功變更密碼"
+      "reset_password_successfully": "重設密碼成功，請重新登入",
+      "changed_password": "成功變更密碼"
     },
     "info": {
-      "no_yet_custom_field": "尚未有自訂欄位"
+      "non_custom_field": "尚未有自訂欄位"
     }
   },
   "placeholder": {
@@ -30,14 +30,14 @@
   "male": "男性",
   "female": "女性",
   "search": "搜尋",
-  "input_project_name": "輸入專案名稱",
-  "explanation": "說明",
+  "enter_project_name": "輸入專案名稱",
+  "tips": "說明",
   "field": "欄位",
   "search_keyword": "搜尋關鍵字",
   "created_date": "建立日期",
   "description": "說明",
   "related_links": "相關連結",
-  "existing_password": "原密碼",
+  "original_password": "原密碼",
   "new_password": "新密碼",
   "change_password": "變更密碼",
   "project": {

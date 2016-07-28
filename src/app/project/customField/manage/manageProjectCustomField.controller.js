@@ -29,7 +29,7 @@
               {
                 type: 'info',
                 data: {
-                  message: 'alert.info.no_yet_custom_field'
+                  message: 'alert.info.non_custom_field'
                 }
               }
             ];

@@ -29,7 +29,7 @@
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="permission" class="control-label col-md-2 col-lg-4">瀏覽權限<span class="glyphicon glyphicon-info-sign
-" aria-hidden="true" popover-title="{{ 'explanation' | translate }}" uib-popover-template="'projectPermissionExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter"></span></label>
+" aria-hidden="true" popover-title="{{ 'tips' | translate }}" uib-popover-template="'projectPermissionExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter"></span></label>
 					<div class="col-md-10 col-lg-8">
 						<select name="permission" id="permission" class="form-control" ng-model="vm.project.permission">
 							<option ng-repeat="option in vm.permissionOptions" value="{{ option.value }}">
@@ -42,7 +42,7 @@
 			<div class="form-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
 				<div class="row">
 					<label for="permission" class="control-label col-md-2 col-lg-4"></label>
-					<div class="col-md-10 col-lg-8" popover-title="{{ 'explanation' | translate }}" uib-popover-template="'projectPublishExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter">
+					<div class="col-md-10 col-lg-8" popover-title="{{ 'tips' | translate }}" uib-popover-template="'projectPublishExplanationBody.html'" popover-placement="bottom" popover-trigger="mouseenter">
 						<label class="radio-inline">
 							<input type="radio" name="permission" ng-value="true" ng-model="vm.project.is_published"> 發布
 						</label>

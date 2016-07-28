@@ -23,7 +23,7 @@
     function update(password, newPassword) {
       var deferred = $q.defer();
       var data = {
-        existing_password: password,
+        original_password: password,
         new_password: newPassword
       };
 
