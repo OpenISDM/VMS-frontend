@@ -33,7 +33,7 @@
         .then(function(value) {
           $log.debug(value);
 
-          var projectId = value.data.id;
+          var projectId = value.id;
 
           storeHyperlinks(projectId);
         })
