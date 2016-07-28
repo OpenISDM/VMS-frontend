@@ -7,7 +7,7 @@
       "missing_field": "is required",
       "incorrect_username_or_password": "Incorrect user name or password",
       "password_reset_verification_failure": "Verification failed (Password reset)",
-      "nonexistnt_email": "Non-existent email address"
+      "nonexistent_email": "Non-existent email address"
     },
     "success": {
       "updated_successfully": "Updated successfully",

@@ -34,7 +34,7 @@
           vm.alert.push({
             type: 'success',
             data: {
-              message: 'alert.success.reset_password_success'
+              message: 'alert.success.reset_password_successfully'
             }
           });
         })

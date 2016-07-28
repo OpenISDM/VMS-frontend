@@ -61,7 +61,7 @@
         vm.alert.push({
           type: 'success',
           data: {
-            message: 'alert.success.update_successfully'
+            message: 'alert.success.updated_successfully'
           }
         });
       };
