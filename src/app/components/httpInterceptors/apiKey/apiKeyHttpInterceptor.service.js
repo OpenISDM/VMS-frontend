@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .factory('apiKeyInjector', apiKeyInjector);
+    .factory('apiKeyHttpInterceptor', apiKeyHttpInterceptor);
 
   /** @ngInject */
-  function apiKeyInjector(config) {
+  function apiKeyHttpInterceptor(config) {
     var service = {
 
       request: function(configHeader) {

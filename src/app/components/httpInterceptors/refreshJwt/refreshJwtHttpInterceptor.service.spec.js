@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  describe('refreshJwtInterceptor', function() {
+  describe('refreshJwtHttpInterceptor', function() {
     var authMock,
       $q,
       $httpBackend,
       $state,
       response,
-      refreshJwtInterceptor,
+      refreshJwtHttpInterceptor,
       apiKey,
       apiBaseUrl = 'http://fake.vms.app/api',
       isAuthenticated;
@@ -66,8 +66,8 @@
           });
 
           // get dependencies
-          beforeEach(inject(function(_refreshJwtInterceptor_, _$httpBackend_, _apiKey_) {
-            refreshJwtInterceptor = _refreshJwtInterceptor_;
+          beforeEach(inject(function(_refreshJwtHttpInterceptor_, _$httpBackend_, _apiKey_) {
+            refreshJwtHttpInterceptor = _refreshJwtHttpInterceptor_;
             $httpBackend = _$httpBackend_;
             apiKey = _apiKey_
           }));
@@ -82,7 +82,7 @@
             }).respond({
               'message': 'fakeerrr'
             });
-            refreshJwtInterceptor.responseError(response);
+            refreshJwtHttpInterceptor.responseError(response);
             $httpBackend.flush();
           });
         });
@@ -116,9 +116,9 @@
           });
 
           // get dependencies
-          beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _$state_,
+          beforeEach(inject(function(_refreshJwtHttpInterceptor_, _$q_, _$state_,
             _apiKey_) {
-            refreshJwtInterceptor = _refreshJwtInterceptor_;
+            refreshJwtHttpInterceptor = _refreshJwtHttpInterceptor_;
             $q = _$q_;
             $state = _$state_;
             apiKey = _apiKey_;
@@ -145,7 +145,7 @@
           });
 
           it('should go login state', function() {
-            refreshJwtInterceptor.responseError(response);
+            refreshJwtHttpInterceptor.responseError(response);
             expect(authMock.logout).toHaveBeeCalled();
           });
         });
@@ -168,8 +168,8 @@
         });
 
         // get services
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_, _apiKey_) {
-          refreshJwtInterceptor = _refreshJwtInterceptor_;
+        beforeEach(inject(function(_refreshJwtHttpInterceptor_, _$q_, _apiKey_) {
+          refreshJwtHttpInterceptor = _refreshJwtHttpInterceptor_;
           $q = _$q_;
           apiKey = _apiKey_;
         }));
@@ -182,7 +182,7 @@
         });
 
         it('should reject the promise', function() {
-          refreshJwtInterceptor.responseError(response);
+          refreshJwtHttpInterceptor.responseError(response);
           expect($q.reject).toHaveBeenCalledWith(response);
         });
 
@@ -221,8 +221,8 @@
         });
 
         // get services
-        beforeEach(inject(function(_refreshJwtInterceptor_, _$q_) {
-          refreshJwtInterceptor = _refreshJwtInterceptor_;
+        beforeEach(inject(function(_refreshJwtHttpInterceptor_, _$q_) {
+          refreshJwtHttpInterceptor = _refreshJwtHttpInterceptor_;
           $q = _$q_;
         }));
 
@@ -232,7 +232,7 @@
         });
 
         it('should reject the promise', function() {
-          refreshJwtInterceptor.responseError(response);
+          refreshJwtHttpInterceptor.responseError(response);
           expect($q.reject).toHaveBeenCalledWith(response);
         });
       });

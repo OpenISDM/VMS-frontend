@@ -1,8 +1,8 @@
 (function() {
   'use strict';
 
-  describe('jwtInjector service', function() {
-    var jwtInjector,
+  describe('jwtHttpInterceptor service', function() {
+    var jwtHttpInterceptor,
       stateMock,
       authPrincipleMock,
       vmsLocalStorageMock,
@@ -65,12 +65,12 @@
           });
 
           // get service
-          beforeEach(inject(function(_jwtInjector_) {
-            jwtInjector = _jwtInjector_;
+          beforeEach(inject(function(_jwtHttpInterceptor_) {
+            jwtHttpInterceptor = _jwtHttpInterceptor_;
           }));
 
           it('should add JWT into Authorization field in the HTTP header', function() {
-            expect(jwtInjector.request(configMock).headers).toEqual(jasmine.objectContaining({
+            expect(jwtHttpInterceptor.request(configMock).headers).toEqual(jasmine.objectContaining({
               Authorization: 'Bearer fooFoofooKerKer'
             }));
           });
@@ -89,12 +89,12 @@
           });
 
           // get service
-          beforeEach(inject(function(_jwtInjector_) {
-            jwtInjector = _jwtInjector_;
+          beforeEach(inject(function(_jwtHttpInterceptor_) {
+            jwtHttpInterceptor = _jwtHttpInterceptor_;
           }));
 
           it('should not contain JWT in Authorization field of the HTTP header', function() {
-            expect(jwtInjector.request(configMock).headers).not.toEqual(jasmine.objectContaining({
+            expect(jwtHttpInterceptor.request(configMock).headers).not.toEqual(jasmine.objectContaining({
               Authorization: 'Bearer fooFoofooKerKer'
             }));
           });
@@ -118,7 +118,7 @@
   //   });
   //
   //   it('should not contain JWT in Authorization field of the HTTP header', function() {
-  //     expect(jwtInjector.request(configMock).headers).not.toEqual(jasmine.objectContaining({
+  //     expect(jwtHttpInterceptor.request(configMock).headers).not.toEqual(jasmine.objectContaining({
   //       Authorization: 'Bearer fooFoofooKerKer'
   //     }));
   //   });

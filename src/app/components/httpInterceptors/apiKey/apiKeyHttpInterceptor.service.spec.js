@@ -1,8 +1,8 @@
 (function() {
   'use strict';
 
-  describe('apiKeyInjector service', function() {
-    var apiKeyInjector,
+  describe('apiKeyHttpInterceptor service', function() {
+    var apiKeyHttpInterceptor,
       configConstantMock,
       configMock;
 
@@ -26,12 +26,12 @@
       })
     });
 
-    beforeEach(inject(function(_apiKeyInjector_) {
-      apiKeyInjector = _apiKeyInjector_;
+    beforeEach(inject(function(_apiKeyHttpInterceptor_) {
+      apiKeyHttpInterceptor = _apiKeyHttpInterceptor_;
     }));
 
     it('should contain API key in the X-VMS-API-Key of the HTTP header', function() {
-      expect(apiKeyInjector.request(configMock).headers).toEqual(jasmine.objectContaining({
+      expect(apiKeyHttpInterceptor.request(configMock).headers).toEqual(jasmine.objectContaining({
         'X-VMS-API-Key': 'fooWaHahAQQ'
       }));
     });
