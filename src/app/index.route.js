@@ -168,8 +168,8 @@
         url: '/edit/skill-equipment',
         views: {
           'profileContent': {
-            templateUrl: 'app/editSkillEquipment/editSkillEquipment.html',
-            controller: 'EditSkillEquipmentController',
+            templateUrl: 'app/user/skillEquipment/edit/userEditSkillEquipment.html',
+            controller: 'UserEditSkillEquipmentController',
             controllerAs: 'vm'
           }
         }
@@ -227,7 +227,7 @@
         url: '/projects/create',
         views: {
           'mainContent@': {
-            templateUrl: 'app/project/createProject.html',
+            templateUrl: 'app/project/create/createProject.html',
             controller: 'CreateProjectController',
             controllerAs: 'vm'
           }
@@ -238,7 +238,7 @@
         url: '/projects/show/managed',
         views: {
           'mainContent@': {
-            templateUrl: 'app/project/managedProjectList.html',
+            templateUrl: 'app/project/list/managed/managedProjectList.html',
             controller: 'ManagedProjectListController',
             controllerAs: 'vm'
           }
@@ -249,31 +249,9 @@
         url: '/projects/show/attending',
         views: {
           'mainContent@': {
-            templateUrl: 'app/project/attendingProjectList.html',
+            templateUrl: 'app/project/list/attending/attendingProjectList.html',
             controller: 'AttendingProjectListController',
             controllerAs: 'vm'
-          }
-        }
-      })
-      .state('editProject', {
-        parent: 'site',
-        url: '/projects/:id/edit',
-        views: {
-          'mainContent@': {
-            templateUrl: 'app/project/editProject.html',
-            controller: 'EditProjectController',
-            controllerAs: 'vm'
-          }
-        },
-        resolve: {
-          project: function($stateParams, $log, vmsClient) {
-
-            var id = $stateParams.id;
-            var onSuccess = function(response) {
-              return response.data;
-            };
-
-            return vmsClient.getProject(id).then(onSuccess);
           }
         }
       })
@@ -290,13 +268,13 @@
         url: '/show/:projectId',
         views: {
           'panel': {
-            templateUrl: 'app/project/projectPanel.html',
+            templateUrl: 'app/project/panel/projectPanel.html',
             controller: 'ProjectPanelController',
             controllerAs: 'vm'
           },
           'container': {
-            templateUrl: 'app/project/projectDetailTpl.html',
-            controller: 'MyProjectDetailController',
+            templateUrl: 'app/project/detail/managed/managedProjectDetail.html',
+            controller: 'ManagedProjectDetailController',
             controllerAs: 'vm'
           }
         },
@@ -317,13 +295,13 @@
         url: '/edit/:projectId',
         views: {
           'panel': {
-            templateUrl: 'app/project/projectPanel.html',
+            templateUrl: 'app/project/panel/projectPanel.html',
             controller: 'ProjectPanelController',
             controllerAs: 'vm'
           },
           'container': {
-            templateUrl: 'app/project/editProjectTpl.html',
-            controller: 'MyEditProjectController',
+            templateUrl: 'app/project/edit/editProject.html',
+            controller: 'EditProjectController',
             controllerAs: 'vm'
           }
         },
@@ -344,7 +322,7 @@
         url: '/:projectId/manage-custom-field',
         views: {
           'panel': {
-            templateUrl: 'app/project/projectPanel.html',
+            templateUrl: 'app/project/panel/projectPanel.html',
             controller: 'ProjectPanelController',
             controllerAs: 'vm'
           },
@@ -371,13 +349,13 @@
         url: '/:projectId/manage-members',
         views: {
           'panel': {
-            templateUrl: 'app/project/projectPanel.html',
+            templateUrl: 'app/project/panel/projectPanel.html',
             controller: 'ProjectPanelController',
             controllerAs: 'vm'
           },
           'container': {
-            templateUrl: 'app/projectMember/manageProjectMemberList.html',
-            controller: 'ManageProjectMemberController',
+            templateUrl: 'app/project/member/list/projectMemberList.html',
+            controller: 'ProjectMemberListController',
             controllerAs: 'vm'
           }
         },
@@ -399,8 +377,8 @@
         url: '/projects/show/all',
         views: {
           'mainContent@': {
-            templateUrl: 'app/project/showProjectList.html',
-            controller: 'ShowProjectListController',
+            templateUrl: 'app/project/list/all/allProjectList.html',
+            controller: 'AllProjectListController',
             controllerAs: 'vm'
           }
         },
@@ -429,7 +407,7 @@
         url: '/projects/:id/show',
         views: {
           'mainContent@': {
-            templateUrl: 'app/project/projectDetail.html',
+            templateUrl: 'app/project/detail/public/projectDetail.html',
             controller: 'ProjectDetailController',
             controllerAs: 'vm'
           }

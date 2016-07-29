@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('MyProjectDetailController', MyProjectDetailController);
+    .controller('ManagedProjectDetailController', ManagedProjectDetailController);
 
   /** @ngInject */
-  function MyProjectDetailController($log, $uibModal, vmsClient, projectData, members, PERMISSION_OPTIONS, $sce) {
+  function ManagedProjectDetailController($log, $uibModal, vmsClient, projectData, members, PERMISSION_OPTIONS, $sce) {
     var vm = this;
     vm.permissionOptions = PERMISSION_OPTIONS;
     vm.project = projectData.data;

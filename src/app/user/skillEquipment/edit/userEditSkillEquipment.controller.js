@@ -3,9 +3,9 @@
 
   angular
     .module('vmsFrontend')
-    .controller('EditSkillEquipmentController', EditSkillEquipmentController);
+    .controller('UserEditSkillEquipmentController', UserEditSkillEquipmentController);
 
-  function EditSkillEquipmentController(userEquipment, userSkill, arrayHelpersService, $scope, $log) {
+  function UserEditSkillEquipmentController(userEquipment, userSkill, arrayHelpersService, $scope, $log) {
     var vm = this;
     vm.equipment = [];
     vm.skills = [];
