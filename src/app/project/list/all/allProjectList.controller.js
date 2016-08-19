@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('ShowProjectListController', ShowProjectListController);
+    .controller('AllProjectListController', AllProjectListController);
 
   /** @ngInject */
-  function ShowProjectListController($log, projects) {
+  function AllProjectListController($log, projects) {
     var vm = this;
     vm.setSearchField = setSearchField;
 

@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('MyEditProjectController', MyEditProjectController);
+    .controller('EditProjectController', EditProjectController);
 
   /** @ngInject */
-  function MyEditProjectController(
+  function EditProjectController(
     $log,
     project,
     projectData,

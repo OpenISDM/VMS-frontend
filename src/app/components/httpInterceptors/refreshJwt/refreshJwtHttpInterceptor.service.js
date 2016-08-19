@@ -3,11 +3,11 @@
 
   angular
     .module('vmsFrontend')
-    .factory('refreshJwtInterceptor', refreshJwtInterceptor);
+    .factory('refreshJwtHttpInterceptor', refreshJwtHttpInterceptor);
 
   /** @ngInject */
-  function refreshJwtInterceptor($injector, $q, $log, vmsLocalStorage) {
-    $log.debug("### refreshJwtInterceptor ###");
+  function refreshJwtHttpInterceptor($injector, $q, $log, vmsLocalStorage) {
+    $log.debug("### refreshJwtHttpInterceptor ###");
 
     var service = {
 
@@ -49,7 +49,7 @@
           });
         }
 
-        $log.debug("### refreshJwtInterceptor reject");
+        $log.debug("### refreshJwtHttpInterceptor reject");
 
         return $q.reject(response);
       }

@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .controller('ManageProjectMemberController', ManageProjectMemberController);
+    .controller('ProjectMemberListController', ProjectMemberListController);
 
   /** @ngInject */
-  function ManageProjectMemberController(
+  function ProjectMemberListController(
     $log,
     membersData,
     vmsClient

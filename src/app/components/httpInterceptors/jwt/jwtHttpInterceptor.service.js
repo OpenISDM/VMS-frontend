@@ -3,10 +3,10 @@
 
   angular
     .module('vmsFrontend')
-    .factory('jwtInjector', jwtInjector);
+    .factory('jwtHttpInterceptor', jwtHttpInterceptor);
 
   /** @ngInject */
-  function jwtInjector($injector, $log) {
+  function jwtHttpInterceptor($injector, $log) {
     var service = {
 
       request: function(config) {

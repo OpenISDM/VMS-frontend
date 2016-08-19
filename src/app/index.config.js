@@ -16,11 +16,11 @@
     // Set local storage prefix name
     localStorageServiceProvider.setPrefix('vms');
 
-    // Interceptors
+    // Http Interceptors
     var interceptors = [
-      'apiKeyInjector',
-      'jwtInjector',
-      'refreshJwtInterceptor'
+      'apiKeyHttpInterceptor',
+      'jwtHttpInterceptor',
+      'refreshJwtHttpInterceptor'
     ];
 
     // Add $http interceptors
