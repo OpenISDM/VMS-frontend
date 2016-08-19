@@ -150,7 +150,7 @@
         url: '/edit/experience-education',
         views: {
           'profileContent': {
-            templateUrl: 'app/volunteerExperienceEducation/experienceAndEducation.html',
+            templateUrl: 'app/user/experienceAndEducation.html',
           },
           'experienceContent@rootEditProfile.experienceEducation': {
             templateUrl: 'app/user/experience/userExperience.html',
@@ -420,17 +420,6 @@
           'mainContent@': {
             templateUrl: 'app/project/customField/fill/fillCustomFields.html',
             controller: 'FillCustomFieldsController',
-            controllerAs: 'vm'
-          },
-        }
-      })
-      .state('showAllMembersCustomFieldData', {
-        parent: 'site',
-        url: '/projects/:projectId/all-members-custom-fields-data',
-        views: {
-          'mainContent@': {
-            templateUrl: 'app/projectCustomFields/viewAllCustomFieldData.html',
-            controller: 'ViewAllCustomFieldDataController',
             controllerAs: 'vm'
           },
         }
